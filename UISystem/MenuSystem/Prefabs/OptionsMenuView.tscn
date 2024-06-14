@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://cp2yn6w4kyuam"]
+
+[ext_resource type="Script" path="res://UISystem/MenuSystem/Views/OptionsMenuView.cs" id="1_sgbji"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_5rv4x"]
+
+[node name="OptionsMenuView" type="Control" node_paths=PackedStringArray("audioSettingsButton", "videoSettingsButton", "returnButton", "fadeObjectsContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_sgbji")
+audioSettingsButton = NodePath("Container/VBoxContainer/AudioSettingsButton")
+videoSettingsButton = NodePath("Container/VBoxContainer/VideoSettingsButton")
+returnButton = NodePath("Container/VBoxContainer/ReturnButton")
+fadeObjectsContainer = NodePath("Container")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Options menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.001
+offset_top = -1.0
+offset_right = 99.999
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="AudioSettingsButton" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Audio"
+script = ExtResource("2_5rv4x")
+
+[node name="VideoSettingsButton" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Video"
+script = ExtResource("2_5rv4x")
+
+[node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Return"
+script = ExtResource("2_5rv4x")

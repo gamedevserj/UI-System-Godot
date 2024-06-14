@@ -1,0 +1,75 @@
+[gd_scene load_steps=4 format=3 uid="uid://2snibql101pc"]
+
+[ext_resource type="Script" path="res://UISystem/MenuSystem/Views/VideoSettingsMenuView.cs" id="1_8cb4u"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_j4lep"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_r5vq3"]
+
+[node name="VideoSettingsMenuView" type="Control" node_paths=PackedStringArray("windowModeDropdown", "resolutionDropdown", "saveSettingsButton", "returnButton", "fadeObjectsContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_8cb4u")
+windowModeDropdown = NodePath("Container/VBoxContainer/WindowModeDropdown")
+resolutionDropdown = NodePath("Container/VBoxContainer/ResolutionDropdown")
+saveSettingsButton = NodePath("Container/VBoxContainer/SaveSettingsButton")
+returnButton = NodePath("Container/VBoxContainer/ReturnButton")
+fadeObjectsContainer = NodePath("Container")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Video settings menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.001
+offset_top = -1.0
+offset_right = 99.999
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="WindowModeDropdown" type="OptionButton" parent="Container/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_j4lep")
+
+[node name="ResolutionDropdown" type="OptionButton" parent="Container/VBoxContainer"]
+layout_mode = 2
+script = ExtResource("2_j4lep")
+
+[node name="SaveSettingsButton" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Save"
+script = ExtResource("2_r5vq3")
+
+[node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Return"
+script = ExtResource("2_r5vq3")

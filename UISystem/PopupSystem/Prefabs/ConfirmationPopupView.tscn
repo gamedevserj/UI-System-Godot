@@ -1,0 +1,74 @@
+[gd_scene load_steps=4 format=3 uid="uid://cpni7t3hr221b"]
+
+[ext_resource type="Script" path="res://UISystem/PopupSystem/Views/ConfirmationPopupView.cs" id="1_rr6j1"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_oiwka"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_ulc4q"]
+
+[node name="ConfirmationPopup" type="Control" node_paths=PackedStringArray("cancelButton", "message", "confirmButton")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_rr6j1")
+cancelButton = NodePath("ButtonsContainer/CancelButton")
+message = NodePath("Message")
+confirmButton = NodePath("ButtonsContainer/ConfirmButton")
+
+[node name="Background" type="TextureRect" parent="."]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -200.0
+offset_top = -150.0
+offset_right = 200.0
+offset_bottom = 150.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_ulc4q")
+
+[node name="Message" type="Label" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.3
+anchor_right = 0.65
+anchor_bottom = 0.55
+offset_left = -3.05176e-05
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 0
+text = "Message"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="."]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.35
+anchor_top = 0.6
+anchor_right = 0.65
+anchor_bottom = 0.7
+theme_override_constants/separation = 25
+
+[node name="ConfirmButton" type="Button" parent="ButtonsContainer"]
+modulate = Color(0, 1, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_right = NodePath("../CancelButton")
+text = "Confirm"
+script = ExtResource("2_oiwka")
+
+[node name="CancelButton" type="Button" parent="ButtonsContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../ConfirmButton")
+text = "Cancel"
+script = ExtResource("2_oiwka")

@@ -1,0 +1,7 @@
+[gd_scene load_steps=2 format=3 uid="uid://chb1hfosmlv1l"]
+
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="1_3x5mf"]
+
+[node name="ReturnButton" type="Button"]
+text = "Simple button"
+script = ExtResource("1_3x5mf")

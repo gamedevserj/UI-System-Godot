@@ -1,0 +1,35 @@
+[gd_scene load_steps=2 format=3 uid="uid://cfy7wvjugk741"]
+
+[ext_resource type="Script" path="res://UISystem/MenuSystem/Views/InGameMenuView.cs" id="1_yoo8i"]
+
+[node name="InGameMenuView" type="Control" node_paths=PackedStringArray("fadeObjectsContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_yoo8i")
+fadeObjectsContainer = NodePath("Container")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "InGame menu"
+horizontal_alignment = 1
+vertical_alignment = 1

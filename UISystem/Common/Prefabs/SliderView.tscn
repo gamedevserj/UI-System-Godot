@@ -1,0 +1,9 @@
+[gd_scene load_steps=2 format=3 uid="uid://di4hxwe8sp8wr"]
+
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/HSliderView.cs" id="1_x5ed2"]
+
+[node name="SimpleSlider" type="HSlider"]
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("1_x5ed2")

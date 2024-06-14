@@ -1,0 +1,70 @@
+[gd_scene load_steps=3 format=3 uid="uid://dlummbpn4khpc"]
+
+[ext_resource type="Script" path="res://UISystem/MenuSystem/Views/MainMenuView.cs" id="1_qlhqn"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_evdg8"]
+
+[node name="MainMenuView" type="Control" node_paths=PackedStringArray("playButton", "optionsButton", "quitButton", "fadeObjectsContainer")]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_qlhqn")
+playButton = NodePath("Container/VBoxContainer/PlayButton")
+optionsButton = NodePath("Container/VBoxContainer/OptionsButton")
+quitButton = NodePath("Container/VBoxContainer/QuitButton")
+fadeObjectsContainer = NodePath("Container")
+
+[node name="Container" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" type="Label" parent="Container"]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -150.0
+offset_right = 150.0
+offset_bottom = 78.0
+grow_horizontal = 2
+theme_override_font_sizes/font_size = 40
+text = "Main menu"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -100.001
+offset_top = -1.0
+offset_right = 99.999
+offset_bottom = 199.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/separation = 10
+alignment = 1
+
+[node name="PlayButton" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Play"
+script = ExtResource("2_evdg8")
+
+[node name="OptionsButton" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Options"
+script = ExtResource("2_evdg8")
+
+[node name="QuitButton" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Quit"
+script = ExtResource("2_evdg8")
