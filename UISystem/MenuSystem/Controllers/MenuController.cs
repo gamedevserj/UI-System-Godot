@@ -1,13 +1,13 @@
 ﻿using Godot;
 using GodotExtensions;
-using MenuSystem.Constants;
-using MenuSystem.Enums;
-using MenuSystem.Interfaces;
-using MenuSystem.Views;
 using System;
 using UISystem.Common.Interfaces;
+using UISystem.MenuSystem.Constants;
+using UISystem.MenuSystem.Enums;
+using UISystem.MenuSystem.Interfaces;
+using UISystem.MenuSystem.Views;
 
-namespace MenuSystem.Controllers;
+namespace UISystem.MenuSystem.Controllers;
 public abstract class MenuController<TView, TModel> : IMenuController where TView : MenuView where TModel : IMenuModel
 {
 

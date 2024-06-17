@@ -1,13 +1,12 @@
 ﻿using Godot;
-using MenuSystem.Enums;
-using MenuSystem.Models;
-using MenuSystem.Views;
-using PopupSystem;
-using PopupSystem.Enums;
 using UISystem.Constants;
+using UISystem.MenuSystem.Enums;
+using UISystem.MenuSystem.Models;
+using UISystem.MenuSystem.Views;
+using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
 
-namespace MenuSystem.Controllers;
+namespace UISystem.MenuSystem.Controllers;
 public class AudioSettingsMenuController : MenuControllerFade<AudioSettingsMenuView, AudioSettingsMenuModel>
 {
 

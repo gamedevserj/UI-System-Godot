@@ -1,4 +1,4 @@
-﻿namespace MenuSystem.Enums;
+﻿namespace UISystem.MenuSystem.Enums;
 public enum MenuStackBehaviourEnum
 {
     AddToStack = 0,

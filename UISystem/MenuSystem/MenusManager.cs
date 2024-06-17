@@ -1,15 +1,15 @@
 using Godot;
-using MenuSystem.Constants;
-using MenuSystem.Controllers;
-using MenuSystem.Enums;
-using MenuSystem.Interfaces;
-using MenuSystem.Models;
-using PopupSystem;
 using System;
 using System.Collections.Generic;
+using UISystem.MenuSystem.Constants;
+using UISystem.MenuSystem.Controllers;
+using UISystem.MenuSystem.Enums;
+using UISystem.MenuSystem.Interfaces;
+using UISystem.MenuSystem.Models;
+using UISystem.PopupSystem;
 using UISystem.ScreenFade;
 
-namespace MenuSystem;
+namespace UISystem.MenuSystem;
 public partial class MenusManager : Control
 {
     

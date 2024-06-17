@@ -1,7 +1,7 @@
 ﻿using Godot;
 using UISystem.Constants;
 
-namespace MenuSystem;
+namespace UISystem.MenuSystem;
 public class MenuBackgroundController 
 {
 

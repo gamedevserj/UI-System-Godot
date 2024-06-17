@@ -1,4 +1,4 @@
-﻿namespace PopupSystem.Enums;
+﻿namespace UISystem.PopupSystem.Enums;
 public enum PopupType
 {
 

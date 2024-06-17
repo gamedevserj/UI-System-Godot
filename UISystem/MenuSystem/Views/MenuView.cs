@@ -1,9 +1,9 @@
 ﻿using Godot;
-using MenuSystem.Interfaces;
 using UISystem.Common;
+using UISystem.MenuSystem.Interfaces;
 
-namespace MenuSystem.Views;
-public partial class MenuView : BaseMenuView, IMenuView
+namespace UISystem.MenuSystem.Views;
+public partial class MenuView : BaseInteractableView, IMenuView
 {
 
     [Export] private Control fadeObjectsContainer;

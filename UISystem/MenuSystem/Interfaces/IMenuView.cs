@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace MenuSystem.Interfaces;
+namespace UISystem.MenuSystem.Interfaces;
 public interface IMenuView
 {
 

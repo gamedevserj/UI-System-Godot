@@ -1,4 +1,4 @@
-﻿namespace PopupSystem.Constants;
+﻿namespace UISystem.PopupSystem.Constants;
 public static class PopupViewsPaths
 {
 

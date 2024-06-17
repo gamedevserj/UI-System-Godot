@@ -1,10 +1,10 @@
 ﻿using Godot;
-using MenuSystem.Constants;
-using MenuSystem.Enums;
-using MenuSystem.Models;
-using MenuSystem.Views;
+using UISystem.MenuSystem.Constants;
+using UISystem.MenuSystem.Enums;
+using UISystem.MenuSystem.Models;
+using UISystem.MenuSystem.Views;
 
-namespace MenuSystem.Controllers;
+namespace UISystem.MenuSystem.Controllers;
 public class InGameMenuController : MenuControllerFade<InGameMenuView, InGameMenuModel>
 {
 

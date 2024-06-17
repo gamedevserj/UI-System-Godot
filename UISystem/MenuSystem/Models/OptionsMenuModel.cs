@@ -1,6 +1,6 @@
-﻿using MenuSystem.Interfaces;
+﻿using UISystem.MenuSystem.Interfaces;
 
-namespace MenuSystem.Models;
+namespace UISystem.MenuSystem.Models;
 public class OptionsMenuModel : IMenuModel
 {
 }

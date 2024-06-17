@@ -2,7 +2,7 @@
 using UISystem.Common.Interfaces;
 
 namespace UISystem.Common;
-public abstract partial class BaseMenuView : Control
+public abstract partial class BaseInteractableView : Control
 {
 
     protected IFocusableControl[] _focusableElements;

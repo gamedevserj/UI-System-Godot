@@ -1,4 +1,4 @@
-﻿namespace MenuSystem.Constants;
+﻿namespace UISystem.MenuSystem.Constants;
 internal static class MenuViewsPaths
 {
 

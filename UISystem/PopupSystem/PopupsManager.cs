@@ -1,14 +1,12 @@
 ﻿using Godot;
-using PopupSystem.Constants;
-using PopupSystem.Controllers;
-using PopupSystem.Enums;
-using PopupSystem.Interfaces;
 using System;
 using System.Collections.Generic;
+using UISystem.PopupSystem.Constants;
 using UISystem.PopupSystem.Controllers;
 using UISystem.PopupSystem.Enums;
+using UISystem.PopupSystem.Interfaces;
 
-namespace PopupSystem;
+namespace UISystem.PopupSystem;
 public partial class PopupsManager : Control
 {
 

@@ -2,7 +2,7 @@
 using System;
 using UISystem.PopupSystem.Enums;
 
-namespace PopupSystem.Interfaces;
+namespace UISystem.PopupSystem.Interfaces;
 public interface IPopupController
 {
 

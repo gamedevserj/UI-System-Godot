@@ -3,9 +3,9 @@ using UISystem.Common;
 using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
 
-namespace PopupSystem.Views;
+namespace UISystem.PopupSystem.Views;
 
-public partial class PopupView : BaseMenuView
+public partial class PopupView : BaseInteractableView
 {
 
     [Export] private Label message;

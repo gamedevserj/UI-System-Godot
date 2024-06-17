@@ -1,8 +1,6 @@
 ﻿using Godot;
-using PopupSystem;
-using PopupSystem.Controllers;
-using PopupSystem.Views;
 using UISystem.PopupSystem.Enums;
+using UISystem.PopupSystem.Views;
 
 namespace UISystem.PopupSystem.Controllers;
 public class YesNoCancelPopupController : PopupController<YesNoCancelPopupView>

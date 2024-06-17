@@ -1,15 +1,14 @@
 using Godot;
-using MenuSystem.Enums;
-using MenuSystem.Views;
-using PopupSystem;
-using PopupSystem.Enums;
 using System;
-using UISystem.ScreenFade;
-using MenuSystem.Models;
 using UISystem.Constants;
+using UISystem.MenuSystem.Enums;
+using UISystem.MenuSystem.Models;
+using UISystem.MenuSystem.Views;
+using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
+using UISystem.ScreenFade;
 
-namespace MenuSystem.Controllers;
+namespace UISystem.MenuSystem.Controllers;
 public class MainMenuController : MenuControllerFade<MainMenuView, MainMenuModel>
 {
 

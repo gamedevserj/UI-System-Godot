@@ -2,7 +2,7 @@
 using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
 
-namespace PopupSystem.Views;
+namespace UISystem.PopupSystem.Views;
 public partial class YesNoCancelPopupView : YesNoPopupView
 {
 

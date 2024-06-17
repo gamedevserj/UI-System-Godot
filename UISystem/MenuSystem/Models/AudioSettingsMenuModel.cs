@@ -1,8 +1,8 @@
 ﻿using Godot;
-using MenuSystem.Interfaces;
 using UISystem.Constants;
+using UISystem.MenuSystem.Interfaces;
 
-namespace MenuSystem.Models;
+namespace UISystem.MenuSystem.Models;
 public class AudioSettingsMenuModel : IMenuModel
 {
 

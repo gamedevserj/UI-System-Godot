@@ -1,11 +1,11 @@
 using Godot;
-using MenuSystem.Enums;
-using MenuSystem.Interfaces;
-using MenuSystem.Views;
 using System;
 using UISystem.Constants;
+using UISystem.MenuSystem.Enums;
+using UISystem.MenuSystem.Interfaces;
+using UISystem.MenuSystem.Views;
 
-namespace MenuSystem.Controllers;
+namespace UISystem.MenuSystem.Controllers;
 public abstract class MenuControllerFade<TView, TModel> : MenuController<TView, TModel>, IMenuController where TView : MenuView where TModel : IMenuModel
 {
 

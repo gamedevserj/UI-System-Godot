@@ -1,9 +1,9 @@
 using Godot;
-using MenuSystem.Enums;
-using MenuSystem.Views;
-using MenuSystem.Models;
+using UISystem.MenuSystem.Enums;
+using UISystem.MenuSystem.Models;
+using UISystem.MenuSystem.Views;
 
-namespace MenuSystem.Controllers;
+namespace UISystem.MenuSystem.Controllers;
 public partial class OptionsMenuController : MenuControllerFade<OptionsMenuView, OptionsMenuModel>
 {
 

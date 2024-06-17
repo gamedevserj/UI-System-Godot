@@ -1,9 +1,9 @@
 ﻿using Godot;
-using MenuSystem.Interfaces;
 using UISystem.Constants;
+using UISystem.MenuSystem.Interfaces;
 using static Godot.DisplayServer;
 
-namespace MenuSystem.Models;
+namespace UISystem.MenuSystem.Models;
 public class VideoSettingsMenuModel : IMenuModel
 {
 

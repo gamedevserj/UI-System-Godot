@@ -2,7 +2,7 @@
 using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
 
-namespace MenuSystem.Views;
+namespace UISystem.MenuSystem.Views;
 public partial class VideoSettingsMenuView : MenuView
 {
 

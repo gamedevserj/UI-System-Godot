@@ -1,13 +1,12 @@
-﻿using GodotExtensions;
-using Godot;
-using PopupSystem.Interfaces;
-using PopupSystem.Views;
+﻿using Godot;
+using GodotExtensions;
 using System;
 using UISystem.Constants;
-using UISystem.Common.Interfaces;
 using UISystem.PopupSystem.Enums;
+using UISystem.PopupSystem.Interfaces;
+using UISystem.PopupSystem.Views;
 
-namespace PopupSystem.Controllers;
+namespace UISystem.PopupSystem.Controllers;
 public abstract class PopupController<T> : IPopupController where T : PopupView
 {
 

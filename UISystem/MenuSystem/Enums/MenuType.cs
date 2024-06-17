@@ -1,4 +1,4 @@
-namespace MenuSystem.Enums;
+namespace UISystem.MenuSystem.Enums;
 public enum MenuType
 {
     Main = 0,

@@ -1,16 +1,15 @@
 ﻿using Godot;
 using GodotExtensions;
-using MenuSystem.Enums;
-using MenuSystem.Models;
-using MenuSystem.Views;
-using PopupSystem;
-using PopupSystem.Enums;
 using System.Text.RegularExpressions;
 using UISystem.Common;
 using UISystem.Constants;
+using UISystem.MenuSystem.Enums;
+using UISystem.MenuSystem.Models;
+using UISystem.MenuSystem.Views;
+using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
 
-namespace MenuSystem.Controllers;
+namespace UISystem.MenuSystem.Controllers;
 public class VideoSettingsMenuController : MenuControllerFade<VideoSettingsMenuView, VideoSettingsMenuModel>
 {
     public override MenuType MenuType => MenuType.VideoSettings;

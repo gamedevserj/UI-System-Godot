@@ -1,8 +1,8 @@
 using Godot;
-using MenuSystem.Enums;
 using System;
+using UISystem.MenuSystem.Enums;
 
-namespace MenuSystem.Interfaces;
+namespace UISystem.MenuSystem.Interfaces;
 public interface IMenuController
 {
 
