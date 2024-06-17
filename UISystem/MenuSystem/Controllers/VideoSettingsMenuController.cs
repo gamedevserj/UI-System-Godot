@@ -53,7 +53,23 @@ public class VideoSettingsMenuController : MenuControllerFade<VideoSettingsMenuV
         SetupWindowModeDropdown();
         SetupResolutionDropdown();
         _view.SaveSettingsButton.ButtonDown += _model.SaveSettings;
+        _view.ResetToDefaultButton.ButtonDown += OnResetToDefaultButtonDown;
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
+    }
+
+    private void OnResetToDefaultButtonDown()
+    {
+        _lastSelectedElement = _view.ResetToDefaultButton;
+        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.ResetToDefault, (result) =>
+        {
+            if (result == PopupResult.Yes)
+            {
+                _model.ResetToDefault();
+                _view.WindowModeDropdown.Select(_model.CurrenWindowModeIndex);
+                _view.ResolutionDropdown.Select(_model.CurrentResolutionIndex);
+            }
+            SwitchFocusAvailability(true);
+        });
     }
 
     private void SetupWindowModeDropdown()

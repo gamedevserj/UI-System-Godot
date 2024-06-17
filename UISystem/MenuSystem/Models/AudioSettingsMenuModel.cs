@@ -30,7 +30,7 @@ public class AudioSettingsMenuModel : IMenuModel
         LoadSettings();
     }
 
-    public void ResetSettingsToDefault()
+    public void ResetToDefault()
     {
         _musicVolume = _tempMusicVolume = DefaultMusicVolume;
         _sfxVolume = _tempSfxVolume = DefaultSfxVolume;

@@ -66,7 +66,7 @@ public class AudioSettingsMenuController : MenuControllerFade<AudioSettingsMenuV
         {
             if (result == PopupResult.Yes)
             {
-                _model.ResetSettingsToDefault();
+                _model.ResetToDefault();
                 _view.MusicSlider.SetValueNoSignal(_model.MusicVolume);
                 _view.SfxSlider.SetValueNoSignal(_model.SfxVolume);
             }

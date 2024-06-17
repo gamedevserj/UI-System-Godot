@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_j4lep"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_r5vq3"]
 
-[node name="VideoSettingsMenuView" type="Control" node_paths=PackedStringArray("windowModeDropdown", "resolutionDropdown", "saveSettingsButton", "returnButton", "fadeObjectsContainer")]
+[node name="VideoSettingsMenuView" type="Control" node_paths=PackedStringArray("windowModeDropdown", "resolutionDropdown", "saveSettingsButton", "resetToDefaultButton", "returnButton", "fadeObjectsContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,6 +15,7 @@ script = ExtResource("1_8cb4u")
 windowModeDropdown = NodePath("Container/VBoxContainer/WindowModeDropdown")
 resolutionDropdown = NodePath("Container/VBoxContainer/ResolutionDropdown")
 saveSettingsButton = NodePath("Container/VBoxContainer/SaveSettingsButton")
+resetToDefaultButton = NodePath("Container/VBoxContainer/ResetToDefaultButton")
 returnButton = NodePath("Container/VBoxContainer/ReturnButton")
 fadeObjectsContainer = NodePath("Container")
 
@@ -67,6 +68,11 @@ script = ExtResource("2_j4lep")
 [node name="SaveSettingsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
 text = "Save"
+script = ExtResource("2_r5vq3")
+
+[node name="ResetToDefaultButton" type="Button" parent="Container/VBoxContainer"]
+layout_mode = 2
+text = "Reset to default"
 script = ExtResource("2_r5vq3")
 
 [node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]

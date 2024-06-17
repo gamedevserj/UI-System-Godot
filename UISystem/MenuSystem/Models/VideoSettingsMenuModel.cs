@@ -55,6 +55,15 @@ public class VideoSettingsMenuModel : IMenuModel
         _config.Save(ConfigData.ConfigLocation);
     }
 
+    public void ResetToDefault()
+    {
+        _currentResolution = _tempResolution = ConfigData.DefaultResolution;
+        _currentWindowMode = _tempWindowMode = ConfigData.DefaultWindowMode;
+        SaveSettings();
+        SetResolution(_currentResolution);
+        SetWindowMode( _currentWindowMode);
+    }
+
     private Vector2I[] GetAvailableResolutions()
     {
         return VideoSettings.GetResolutionsForAspect(Aspect);
