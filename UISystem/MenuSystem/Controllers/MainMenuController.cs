@@ -7,6 +7,7 @@ using System;
 using UISystem.ScreenFade;
 using MenuSystem.Models;
 using UISystem.Constants;
+using UISystem.PopupSystem.Enums;
 
 namespace MenuSystem.Controllers;
 public class MainMenuController : MenuControllerFade<MainMenuView, MainMenuModel>
@@ -75,16 +76,12 @@ public class MainMenuController : MenuControllerFade<MainMenuView, MainMenuModel
     {
         _lastSelectedElement = _view.QuitButton;
         SwitchFocusAvailability(false);
-        _popupsManager.ShowPopup(PopupType.ConfirmationPopup, PopupMessages.QuitGame, (result)=>
+        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.QuitGame, (result)=>
         {
-            if (result)
-            {
+            if (result == PopupResult.Yes)
                 _sceneTree.Quit(); 
-            }
-            else
-            {
+            else if (result == PopupResult.No) 
                 SwitchFocusAvailability(true);
-            }
         });
     }
 

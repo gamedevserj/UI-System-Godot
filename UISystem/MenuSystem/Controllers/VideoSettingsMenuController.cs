@@ -8,6 +8,7 @@ using PopupSystem.Enums;
 using System.Text.RegularExpressions;
 using UISystem.Common;
 using UISystem.Constants;
+using UISystem.PopupSystem.Enums;
 
 namespace MenuSystem.Controllers;
 public class VideoSettingsMenuController : MenuControllerFade<VideoSettingsMenuView, VideoSettingsMenuModel>
@@ -34,9 +35,9 @@ public class VideoSettingsMenuController : MenuControllerFade<VideoSettingsMenuV
     {
         if (_model.HasUnappliedSettings)
         {
-            _popupsManager.ShowPopup(PopupType.ConfirmationPopup, PopupMessages.SaveChanges, (result) =>
+            _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.SaveChanges, (result) =>
             {
-                if (result)
+                if (result == PopupResult.Yes)
                     _model.SaveSettings();
 
                 base.OnReturnToPreviousMenuButtonDown();

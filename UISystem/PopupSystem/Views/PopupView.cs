@@ -9,15 +9,15 @@ public partial class PopupView : BaseMenuView
 {
 
     [Export] private Label message;
-    [Export] protected ButtonView confirmButton;
+    [Export] protected ButtonView yesButton;
 
     public Label Message { get => message; set => message = value; }
-    public ButtonView ConfirmButton => confirmButton;
-    public virtual Control DefaultSelectedElement => ConfirmButton;
+    public ButtonView YesButton => yesButton;
+    public virtual Control DefaultSelectedElement => YesButton;
 
     protected override void PopulateFocusableElements()
     {
-        _focusableElements = new IFocusableControl[] { ConfirmButton};
+        _focusableElements = new IFocusableControl[] { YesButton };
     }
 
 }

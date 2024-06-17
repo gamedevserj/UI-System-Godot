@@ -1,21 +1,22 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpni7t3hr221b"]
+[gd_scene load_steps=4 format=3 uid="uid://bkgi74vea0ofm"]
 
-[ext_resource type="Script" path="res://UISystem/PopupSystem/Views/ConfirmationPopupView.cs" id="1_rr6j1"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_oiwka"]
+[ext_resource type="Script" path="res://UISystem/PopupSystem/Views/YesNoCancelPopupView.cs" id="1_r2q6b"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_r31ud"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ulc4q"]
 
-[node name="ConfirmationPopup" type="Control" node_paths=PackedStringArray("cancelButton", "message", "confirmButton")]
+[node name="ConfirmationPopup" type="Control" node_paths=PackedStringArray("cancelButton", "noButton", "message", "yesButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_rr6j1")
+script = ExtResource("1_r2q6b")
 cancelButton = NodePath("ButtonsContainer/CancelButton")
+noButton = NodePath("ButtonsContainer/NoButton")
 message = NodePath("Message")
-confirmButton = NodePath("ButtonsContainer/ConfirmButton")
+yesButton = NodePath("ButtonsContainer/YesButton")
 
 [node name="Background" type="TextureRect" parent="."]
 modulate = Color(0, 0, 0, 1)
@@ -57,18 +58,25 @@ anchor_right = 0.65
 anchor_bottom = 0.7
 theme_override_constants/separation = 25
 
-[node name="ConfirmButton" type="Button" parent="ButtonsContainer"]
+[node name="YesButton" type="Button" parent="ButtonsContainer"]
 modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_right = NodePath("../CancelButton")
-text = "Confirm"
-script = ExtResource("2_oiwka")
+focus_neighbor_right = NodePath("../NoButton")
+text = "Yes"
+script = ExtResource("2_r31ud")
 
-[node name="CancelButton" type="Button" parent="ButtonsContainer"]
+[node name="NoButton" type="Button" parent="ButtonsContainer"]
 modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../ConfirmButton")
+focus_neighbor_left = NodePath("../YesButton")
+text = "No"
+script = ExtResource("2_r31ud")
+
+[node name="CancelButton" type="Button" parent="ButtonsContainer"]
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../YesButton")
 text = "Cancel"
-script = ExtResource("2_oiwka")
+script = ExtResource("2_r31ud")

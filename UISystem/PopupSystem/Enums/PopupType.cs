@@ -2,7 +2,8 @@
 public enum PopupType
 {
 
-    ConfirmationPopup = 1,
-    InformationPopup = 2,
+    Yes = 1,
+    YesNo = 2,
+    YesNoCancel = 3,
 
 }

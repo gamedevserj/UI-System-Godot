@@ -3,7 +3,7 @@ using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
 
 namespace PopupSystem.Views;
-public partial class ConfirmationPopupView : PopupView
+public partial class YesNoCancelPopupView : YesNoPopupView
 {
 
     [Export] private ButtonView cancelButton;
@@ -14,6 +14,6 @@ public partial class ConfirmationPopupView : PopupView
 
     protected override void PopulateFocusableElements()
     {
-        _focusableElements = new IFocusableControl[] { ConfirmButton, CancelButton };
+        _focusableElements = new IFocusableControl[] { YesButton, NoButton, CancelButton };
     }
 }

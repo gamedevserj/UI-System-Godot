@@ -7,6 +7,7 @@ using PopupSystem;
 using PopupSystem.Enums;
 using System;
 using UISystem.Constants;
+using UISystem.PopupSystem.Enums;
 using UISystem.ScreenFade;
 
 namespace MenuSystem.Controllers;
@@ -85,9 +86,9 @@ public class PauseMenuController : MenuControllerFade<PauseMenuView, PauseMenuMo
         _lastSelectedElement = _view.ReturnToMainMenuButton;
         SwitchFocusAvailability(false);
 
-        _popupsManager.ShowPopup(PopupType.ConfirmationPopup, PopupMessages.QuitToMainMenu, (result) =>
+        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.QuitToMainMenu, (result) =>
         {
-            if (result)
+            if (result == PopupResult.Yes)
             {
                 _screenFadeManager.FadeOut(() => 
                 {
@@ -95,7 +96,7 @@ public class PauseMenuController : MenuControllerFade<PauseMenuView, PauseMenuMo
                 });
                 
             }
-            else
+            else if (result == PopupResult.No) 
             {
                 SwitchFocusAvailability(true);
             }

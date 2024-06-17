@@ -5,6 +5,7 @@ using PopupSystem.Views;
 using System;
 using UISystem.Constants;
 using UISystem.Common.Interfaces;
+using UISystem.PopupSystem.Enums;
 
 namespace PopupSystem.Controllers;
 public abstract class PopupController<T> : IPopupController where T : PopupView
@@ -14,7 +15,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
 
     protected T _view;
     protected Control _defaultSelectedElement;
-    protected Action<bool> _onHideAction;
+    protected Action<PopupResult> _onHideAction;
 
     protected readonly string _prefab;
     protected readonly PopupsManager _popupsManager;
@@ -36,7 +37,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         _defaultSelectedElement = _view.DefaultSelectedElement;
     }
 
-    public void Show(string message, Action<bool> onHideAction)
+    public void Show(string message, Action<PopupResult> onHideAction)
     {
         _view.Message.Text = message;
         _onHideAction = onHideAction;
@@ -55,7 +56,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         }));
     }
 
-    public void Hide(bool result)
+    public void Hide(PopupResult result)
     {
         SwitchFocusAvailability(false);
         Tween tween = _sceneTree.CreateTween();

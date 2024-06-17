@@ -5,6 +5,7 @@ using MenuSystem.Views;
 using PopupSystem;
 using PopupSystem.Enums;
 using UISystem.Constants;
+using UISystem.PopupSystem.Enums;
 
 namespace MenuSystem.Controllers;
 public class AudioSettingsMenuController : MenuControllerFade<AudioSettingsMenuView, AudioSettingsMenuModel>
@@ -32,12 +33,16 @@ public class AudioSettingsMenuController : MenuControllerFade<AudioSettingsMenuV
     {
         if (_model.HasUnappliedSettings)
         {
-            _popupsManager.ShowPopup(PopupType.ConfirmationPopup, PopupMessages.SaveChanges, (result) =>
+            _popupsManager.ShowPopup(PopupType.YesNoCancel, PopupMessages.SaveChanges, (result) =>
             {
-                if (result)
-                    _model.SaveSettings();
 
-                base.OnReturnToPreviousMenuButtonDown();
+                if (result == PopupResult.Yes)
+                {
+                    _model.SaveSettings();
+                    base.OnReturnToPreviousMenuButtonDown();
+                }
+                else if (result == PopupResult.No)
+                    base.OnReturnToPreviousMenuButtonDown();
             });
         }
         else
@@ -58,9 +63,9 @@ public class AudioSettingsMenuController : MenuControllerFade<AudioSettingsMenuV
     private void OnResetToDefaultButtonDown()
     {
         _lastSelectedElement = _view.ResetToDefaultButton;
-        _popupsManager.ShowPopup(PopupType.ConfirmationPopup, "Reset to default?", (result) =>
+        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.ResetToDefault, (result) =>
         {
-            if (result)
+            if (result == PopupResult.Yes)
             {
                 _model.ResetSettingsToDefault();
                 _view.MusicSlider.SetValueNoSignal(_model.MusicVolume);

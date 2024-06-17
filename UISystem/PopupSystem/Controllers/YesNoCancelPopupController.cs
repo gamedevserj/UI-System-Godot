@@ -1,0 +1,22 @@
+﻿using Godot;
+using PopupSystem;
+using PopupSystem.Controllers;
+using PopupSystem.Views;
+using UISystem.PopupSystem.Enums;
+
+namespace UISystem.PopupSystem.Controllers;
+public class YesNoCancelPopupController : PopupController<YesNoCancelPopupView>
+{
+    public YesNoCancelPopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree) : base(prefab, popupsManager, sceneTree)
+    {
+    }
+
+    public override void Init(Node popupParent)
+    {
+        base.Init(popupParent);
+        _view.YesButton.ButtonDown += ()=> _popupsManager.HidePopup(PopupResult.Yes);
+        _view.NoButton.ButtonDown += ()=> _popupsManager.HidePopup(PopupResult.No);
+        _view.CancelButton.ButtonDown += ()=> _popupsManager.HidePopup(PopupResult.Cancel);
+    }
+
+}

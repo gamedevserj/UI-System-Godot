@@ -1,18 +1,19 @@
-[gd_scene load_steps=4 format=3 uid="uid://4mgylfwefvrf"]
+[gd_scene load_steps=4 format=3 uid="uid://cpni7t3hr221b"]
 
-[ext_resource type="Script" path="res://UISystem/PopupSystem/Views/PopupView.cs" id="1_0bf6x"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_wr1kv"]
+[ext_resource type="Script" path="res://UISystem/PopupSystem/Views/YesNoPopupView.cs" id="1_rr6j1"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_oiwka"]
 
-[sub_resource type="CanvasTexture" id="CanvasTexture_0lu1q"]
+[sub_resource type="CanvasTexture" id="CanvasTexture_ulc4q"]
 
-[node name="InfoPopup" type="Control" node_paths=PackedStringArray("message", "yesButton")]
+[node name="ConfirmationPopup" type="Control" node_paths=PackedStringArray("noButton", "message", "yesButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0bf6x")
+script = ExtResource("1_rr6j1")
+noButton = NodePath("ButtonsContainer/NoButton")
 message = NodePath("Message")
 yesButton = NodePath("ButtonsContainer/YesButton")
 
@@ -30,7 +31,7 @@ offset_right = 200.0
 offset_bottom = 150.0
 grow_horizontal = 2
 grow_vertical = 2
-texture = SubResource("CanvasTexture_0lu1q")
+texture = SubResource("CanvasTexture_ulc4q")
 
 [node name="Message" type="Label" parent="."]
 layout_mode = 1
@@ -60,5 +61,14 @@ theme_override_constants/separation = 25
 modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
-text = "Ok"
-script = ExtResource("2_wr1kv")
+focus_neighbor_right = NodePath("../NoButton")
+text = "Yes"
+script = ExtResource("2_oiwka")
+
+[node name="NoButton" type="Button" parent="ButtonsContainer"]
+modulate = Color(1, 0, 0, 1)
+layout_mode = 2
+size_flags_horizontal = 3
+focus_neighbor_left = NodePath("../YesButton")
+text = "No"
+script = ExtResource("2_oiwka")

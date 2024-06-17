@@ -5,6 +5,8 @@ using PopupSystem.Enums;
 using PopupSystem.Interfaces;
 using System;
 using System.Collections.Generic;
+using UISystem.PopupSystem.Controllers;
+using UISystem.PopupSystem.Enums;
 
 namespace PopupSystem;
 public partial class PopupsManager : Control
@@ -19,19 +21,20 @@ public partial class PopupsManager : Control
         SceneTree tree = GetTree();
         _controllers = new Dictionary<PopupType, IPopupController>
         {
-            { PopupType.InformationPopup, new InformationPopupController(PopupViewsPaths.Info, this, tree)},
-            { PopupType.ConfirmationPopup, new ConfirmationPopupController(PopupViewsPaths.Confirmation, this, tree)},
+            { PopupType.Yes, new InformationPopupController(PopupViewsPaths.Info, this, tree)},
+            { PopupType.YesNo, new YesNoPopupController(PopupViewsPaths.YesNo, this, tree)},
+            { PopupType.YesNoCancel, new YesNoCancelPopupController(PopupViewsPaths.YesNoCancel, this, tree)},
         };
     }
 
-    public void ShowPopup(PopupType popupType, string message, Action<bool> onHideAction = null)
+    public void ShowPopup(PopupType popupType, string message, Action<PopupResult> onHideAction = null)
     {
         _currentController = _controllers[popupType];
         _currentController.Init(this);
         _currentController.Show(message, onHideAction);
     }
 
-    public void HidePopup(bool result)
+    public void HidePopup(PopupResult result)
     {
         _currentController?.Hide(result);
         _currentController = null;

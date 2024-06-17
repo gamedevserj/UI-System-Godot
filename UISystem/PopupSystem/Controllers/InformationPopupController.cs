@@ -1,5 +1,6 @@
 ﻿using Godot;
 using PopupSystem.Views;
+using UISystem.PopupSystem.Enums;
 
 namespace PopupSystem.Controllers;
 public class InformationPopupController : PopupController<PopupView>
@@ -11,11 +12,7 @@ public class InformationPopupController : PopupController<PopupView>
     public override void Init(Node popupParent)
     {
         base.Init(popupParent);
-        _view.ConfirmButton.ButtonDown += PressedConfirm;
+        _view.YesButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.Yes);
     }
 
-    private void PressedConfirm()
-    {
-        _popupsManager.HidePopup(true);
-    }
 }
