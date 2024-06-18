@@ -1,8 +1,8 @@
 ﻿using Godot;
 using GodotExtensions;
 using System;
+using UISystem.Common.Constants;
 using UISystem.Common.Interfaces;
-using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Enums;
 using UISystem.MenuSystem.Interfaces;
 using UISystem.MenuSystem.Views;
@@ -48,7 +48,7 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
 
     public virtual void HandleInputPressedWhenActive(InputEvent key)
     {
-        if (key.IsAction(InputsData.ReturnToPreviousMenu))
+        if (key.IsActionPressed(InputsData.ReturnToPreviousMenu))
             OnReturnToPreviousMenuButtonDown();
     }
 
@@ -75,7 +75,7 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
         _view.SwitchFocusAwailability(enable);
 
         if (enable && IsElementValid(_lastSelectedElement))
-            _lastSelectedElement.FocusElement();
+            _lastSelectedElement.SwitchFocus(true);
     }
 
     protected float GetDuration(bool instant)

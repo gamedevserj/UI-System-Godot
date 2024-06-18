@@ -26,11 +26,11 @@ public abstract class MenuControllerFade<TView, TModel> : MenuController<TView, 
             SwitchFocusAvailability(true);
             if (IsElementValid(_lastSelectedElement))
             {
-                _lastSelectedElement.FocusElement();
+                _lastSelectedElement.SwitchFocus(true);
             }
             else if (IsElementValid(_defaultSelectedElement))
             {
-                _defaultSelectedElement.FocusElement();
+                _defaultSelectedElement.SwitchFocus(true);
             }
         }));
     }

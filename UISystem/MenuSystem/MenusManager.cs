@@ -19,13 +19,11 @@ public partial class MenusManager : Control
 
     public override void _Input(InputEvent @event)
     {
-        if (_currentController != null)
+        if (@event.IsPressed())
         {
-            if (@event.IsPressed())
-            {
-                _currentController.HandleInputPressedWhenActive(@event);
-            }
+            
         }
+        _currentController?.HandleInputPressedWhenActive(@event);
     }
 
     public void Init(ConfigFile config, PopupsManager popupsManager, ScreenFadeManager screenFadeManager, 
@@ -43,8 +41,8 @@ public partial class MenusManager : Control
             new PauseMenuController(MenuViewsPaths.Pause, new PauseMenuModel(), this, tree, popupsManager, screenFadeManager, menuBackgroundController),
             new OptionsMenuController(MenuViewsPaths.Options, new OptionsMenuModel(), this, tree),
             new AudioSettingsMenuController(MenuViewsPaths.AudioSettings, new AudioSettingsMenuModel(config), this, tree, popupsManager),
-            new VideoSettingsMenuController(MenuViewsPaths.VideoSettings, new VideoSettingsMenuModel(config), this, tree, popupsManager)
-
+            new VideoSettingsMenuController(MenuViewsPaths.VideoSettings, new VideoSettingsMenuModel(config), this, tree, popupsManager),
+            new RebindKeysMenuController(MenuViewsPaths.RebindKeys, new RebindKeysMenuModel(config), this, tree, popupsManager)
         });       
     }
 

@@ -19,4 +19,6 @@ public static class ConfigData
     public const string WindowModeKey = "WindowMode";
     public const WindowMode DefaultWindowMode = WindowMode.ExclusiveFullscreen;
 
+    public const string KeysSectionName = "Keys";
+
 }

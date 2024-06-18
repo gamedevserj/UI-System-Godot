@@ -34,7 +34,6 @@ public class AudioSettingsMenuController : MenuControllerFade<AudioSettingsMenuV
         {
             _popupsManager.ShowPopup(PopupType.YesNoCancel, PopupMessages.SaveChanges, (result) =>
             {
-
                 if (result == PopupResult.Yes)
                 {
                     _model.SaveSettings();

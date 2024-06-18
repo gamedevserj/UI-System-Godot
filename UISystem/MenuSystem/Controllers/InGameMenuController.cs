@@ -1,5 +1,5 @@
 ﻿using Godot;
-using UISystem.MenuSystem.Constants;
+using UISystem.Common.Constants;
 using UISystem.MenuSystem.Enums;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;

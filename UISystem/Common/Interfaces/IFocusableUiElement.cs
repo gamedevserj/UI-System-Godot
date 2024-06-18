@@ -8,9 +8,12 @@ public interface IFocusableUiElement<T> where T : Control
 
     private T Instance => (T)this;
 
-    void FocusElement()
+    void SwitchFocus(bool focus)
     {
-        Instance.GrabFocus();
+        if (focus)
+            Instance.GrabFocus();
+        else
+            Instance.ReleaseFocus();
     }
 
     bool IsValidElement()
