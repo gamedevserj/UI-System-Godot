@@ -8,4 +8,5 @@ public enum MenuType
     AudioSettings = 4,
     VideoSettings = 5,
     RebindKeys = 6,
+    InterfaceSettings = 7,
 }

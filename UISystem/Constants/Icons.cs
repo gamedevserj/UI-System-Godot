@@ -1,5 +1,6 @@
 ﻿using Godot;
 using UISystem.Common.Constants;
+using UISystem.Common.Enums;
 
 namespace UISystem.Constants;
 public static class Icons
@@ -30,7 +31,27 @@ public static class Icons
     }
     private static string GetIcon(Key key) => KeyboardIcons.GetIcon(key);
     private static string GetIcon(MouseButton button) => MouseIcons.GetIcon(button);
-    private static string GetIcon(JoyButton button) => PS5Icons.GetIcon(button);
-    private static string GetIcon(JoyAxis axis, float positive) => PS5Icons.GetIcon(axis, positive);
+    private static string GetIcon(JoyButton button) => GetIconByControllerType(button);
+    private static string GetIcon(JoyAxis axis, float positive) => GetIconByControllerType(axis, positive);
 
+
+    private static string GetIconByControllerType(JoyButton button)
+    {
+        return GameSettings.CurrentControllerIconsType switch
+        {
+            ControllerIconsType.Xbox => XboxIcons.GetIcon(button),
+            ControllerIconsType.Ps5 => PS5Icons.GetIcon(button),
+            _ => XboxIcons.GetIcon(button),
+        };
+    }
+
+    private static string GetIconByControllerType(JoyAxis axis, float positive)
+    {
+        return GameSettings.CurrentControllerIconsType switch
+        {
+            ControllerIconsType.Xbox => XboxIcons.GetIcon(axis, positive),
+            ControllerIconsType.Ps5 => PS5Icons.GetIcon(axis, positive),
+            _ => XboxIcons.GetIcon(axis, positive),
+        };
+    }
 }

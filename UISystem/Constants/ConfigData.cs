@@ -1,4 +1,5 @@
 ﻿using Godot;
+using UISystem.Common.Enums;
 using static Godot.DisplayServer;
 
 namespace UISystem.Constants;
@@ -20,5 +21,9 @@ public static class ConfigData
     public const WindowMode DefaultWindowMode = WindowMode.ExclusiveFullscreen;
 
     public const string KeysSectionName = "Keys";
+
+    public const string InterfaceSectionName = "Interface";
+    public const string ControllerIconsKey = "ControllerIcons";
+    public const ControllerIconsType DefaultControllerIconsType = ControllerIconsType.Xbox;
 
 }

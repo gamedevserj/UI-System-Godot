@@ -8,6 +8,7 @@ using UISystem.MenuSystem.Interfaces;
 using UISystem.MenuSystem.Models;
 using UISystem.PopupSystem;
 using UISystem.ScreenFade;
+using UISystem.UISystem.MenuSystem.Controllers;
 
 namespace UISystem.MenuSystem;
 public partial class MenusManager : Control
@@ -42,7 +43,8 @@ public partial class MenusManager : Control
             new OptionsMenuController(MenuViewsPaths.Options, new OptionsMenuModel(), this, tree),
             new AudioSettingsMenuController(MenuViewsPaths.AudioSettings, new AudioSettingsMenuModel(config), this, tree, popupsManager),
             new VideoSettingsMenuController(MenuViewsPaths.VideoSettings, new VideoSettingsMenuModel(config), this, tree, popupsManager),
-            new RebindKeysMenuController(MenuViewsPaths.RebindKeys, new RebindKeysMenuModel(config), this, tree, popupsManager)
+            new RebindKeysMenuController(MenuViewsPaths.RebindKeys, new RebindKeysMenuModel(config), this, tree, popupsManager),
+            new InterfaceSettingsMenuController(MenuViewsPaths.InterfaceSettings, new InterfaceSettingsMenuModel(config), this, tree, popupsManager)
         });       
     }
 

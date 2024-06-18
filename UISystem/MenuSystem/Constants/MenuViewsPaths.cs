@@ -11,5 +11,6 @@ internal static class MenuViewsPaths
     public const string AudioSettings = Folder + "AudioSettingsMenuView.tscn";
     public const string VideoSettings = Folder + "VideoSettingsMenuView.tscn";
     public const string RebindKeys = Folder + "RebindKeysMenuView.tscn";
+    public const string InterfaceSettings = Folder + "InterfaceSettingsMenuView.tscn";
 
 }

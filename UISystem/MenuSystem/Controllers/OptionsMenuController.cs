@@ -27,6 +27,7 @@ public partial class OptionsMenuController : MenuControllerFade<OptionsMenuView,
         _view.AudioSettingsButton.ButtonDown += OnAudioSettingsButtonDown;
         _view.VideoSettingsButton.ButtonDown += OnVideoSettingsButtonDown;
         _view.RebindKeysButton.ButtonDown += OnRebindKeysButtonDown;
+        _view.InterfaceSettingsButton.ButtonDown += OnInterfaceSettingsButtonDown;
     }
 
     private void OnAudioSettingsButtonDown()
@@ -45,6 +46,12 @@ public partial class OptionsMenuController : MenuControllerFade<OptionsMenuView,
     {
         _lastSelectedElement = _view.RebindKeysButton;
         _menusManager.ChangeMenu(MenuType.RebindKeys, MenuStackBehaviourEnum.AddToStack);
+    }
+
+    private void OnInterfaceSettingsButtonDown()
+    {
+        _lastSelectedElement = _view.InterfaceSettingsButton;
+        _menusManager.ChangeMenu(MenuType.InterfaceSettings, MenuStackBehaviourEnum.AddToStack);
     }
 
 }

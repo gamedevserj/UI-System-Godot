@@ -11,7 +11,7 @@ public partial class GameInstaller : Node
         Error err = config.Load(ConfigData.ConfigLocation);
         if (err != Error.Ok)
         {
-            DefaultSettingsInitializer.SaveDefaultSettings(config);
+            GameSettings.SaveDefaultSettings(config);
         }
 
         UiInstaller.Instance.Init(config);

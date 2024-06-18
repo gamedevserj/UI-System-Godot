@@ -34,7 +34,7 @@ public class VideoSettingsMenuController : MenuControllerFade<VideoSettingsMenuV
     {
         if (_model.HasUnappliedSettings)
         {
-            _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.SaveChanges, (result) =>
+            _popupsManager.ShowPopup(PopupType.YesNoCancel, PopupMessages.SaveChanges, (result) =>
             {
                 if (result == PopupResult.Yes)
                     _model.SaveSettings();
