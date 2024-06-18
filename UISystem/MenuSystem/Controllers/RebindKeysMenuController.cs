@@ -41,26 +41,7 @@ public class RebindKeysMenuController : MenuControllerFade<RebindKeysMenuView, R
     private static void UpdateButtonView(RebindableKeyButtonView button, string action, int index)
     {
         var e = InputMap.ActionGetEvents(action)[index];
-        string icon = "";
-        
-        if (e is InputEventKey key)
-        {
-            icon = Icons.GetIcon(key.PhysicalKeycode);
-        }
-        else if (e is InputEventMouseButton mouseButton)
-        {
-            icon = Icons.GetIcon(mouseButton.ButtonIndex);
-        }
-        if (e is InputEventJoypadButton inputButton)
-        {
-            icon = Icons.GetIcon(inputButton.ButtonIndex);
-        }
-        else if (e is InputEventJoypadMotion motion)
-        {
-            icon = Icons.GetIcon(motion.Axis, motion.AxisValue);
-        }
-
-        button.Image.Texture = (Texture2D)GD.Load(icon);
+        button.Image.Texture = (Texture2D)GD.Load(Icons.GetIcon(e));
     }
 
     private void ResetToDefault()
