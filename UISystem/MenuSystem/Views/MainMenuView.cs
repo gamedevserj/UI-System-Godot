@@ -3,7 +3,7 @@ using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
-public partial class MainMenuView : MenuView
+public partial class MainMenuView : MenuViewFade
 {
 
     [Export] private ButtonView playButton;

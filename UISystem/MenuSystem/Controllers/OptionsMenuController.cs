@@ -4,7 +4,7 @@ using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-public partial class OptionsMenuController : MenuControllerFade<OptionsMenuView, OptionsMenuModel>
+public partial class OptionsMenuController : MenuController<OptionsMenuView, OptionsMenuModel>
 {
 
     public override MenuType MenuType => MenuType.Options;

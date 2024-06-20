@@ -7,7 +7,7 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
 
 namespace UISystem.MenuSystem.Controllers;
-public class AudioSettingsMenuController : MenuControllerFade<AudioSettingsMenuView, AudioSettingsMenuModel>
+public class AudioSettingsMenuController : MenuController<AudioSettingsMenuView, AudioSettingsMenuModel>
 {
 
     public override MenuType MenuType => MenuType.AudioSettings;

@@ -7,7 +7,7 @@ public abstract partial class BaseInteractableView : Control
 
     protected IFocusableControl[] _focusableElements;
 
-    public void Init()
+    public virtual void Init()
     {
         PopulateFocusableElements();
     }

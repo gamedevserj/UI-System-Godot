@@ -5,7 +5,7 @@ using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-public class InGameMenuController : MenuControllerFade<InGameMenuView, InGameMenuModel>
+public class InGameMenuController : MenuController<InGameMenuView, InGameMenuModel>
 {
 
     public override MenuType MenuType => MenuType.InGame;

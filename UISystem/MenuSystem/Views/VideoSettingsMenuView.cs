@@ -3,7 +3,7 @@ using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
-public partial class VideoSettingsMenuView : MenuView
+public partial class VideoSettingsMenuView : MenuViewFade
 {
 
     [Export] private OptionButtonView windowModeDropdown;

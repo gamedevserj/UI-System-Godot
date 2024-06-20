@@ -3,7 +3,7 @@ using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
-public partial class AudioSettingsMenuView : MenuView
+public partial class AudioSettingsMenuView : MenuViewFade
 {
 
     [Export] private HSliderView musicSlider;

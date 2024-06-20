@@ -1,4 +1,4 @@
 namespace UISystem.MenuSystem.Views;
-public partial class InGameMenuView : MenuView
+public partial class InGameMenuView : MenuViewFade
 {
 }

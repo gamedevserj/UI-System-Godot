@@ -41,9 +41,29 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
         }
     }
 
-    public abstract void Show(Action onComplete = null, bool instant = false);
+    public virtual void Show(Action onComplete = null, bool instant = false)
+    {
+        SwitchFocusAvailability(false);
+        _view.Show(() =>
+        {
+            onComplete?.Invoke();
+            SwitchFocusAvailability(true);
+            if (IsElementValid(_lastSelectedElement))
+            {
+                _lastSelectedElement.SwitchFocus(true);
+            }
+            else if (IsElementValid(_defaultSelectedElement))
+            {
+                _defaultSelectedElement.SwitchFocus(true);
+            }
+        }, instant);
+    }
 
-    public abstract void Hide(MenuStackBehaviourEnum stackBehaviour, Action onComplete = null, bool instant = false);
+    public virtual void Hide(MenuStackBehaviourEnum stackBehaviour, Action onComplete = null, bool instant = false)
+    {
+        SwitchFocusAvailability(false);
+        _view.Hide(() => onComplete?.Invoke(), instant);
+    }
 
 
     public virtual void HandleInputPressedWhenActive(InputEvent key)

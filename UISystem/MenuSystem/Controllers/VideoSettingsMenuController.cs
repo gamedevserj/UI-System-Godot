@@ -10,7 +10,7 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
 
 namespace UISystem.MenuSystem.Controllers;
-public class VideoSettingsMenuController : MenuControllerFade<VideoSettingsMenuView, VideoSettingsMenuModel>
+public class VideoSettingsMenuController : MenuController<VideoSettingsMenuView, VideoSettingsMenuModel>
 {
     public override MenuType MenuType => MenuType.VideoSettings;
 

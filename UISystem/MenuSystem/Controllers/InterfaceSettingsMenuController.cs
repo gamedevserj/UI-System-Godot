@@ -13,7 +13,7 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
 
 namespace UISystem.UISystem.MenuSystem.Controllers;
-public class InterfaceSettingsMenuController : MenuControllerFade<InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
+public class InterfaceSettingsMenuController : MenuController<InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
 {
 
     private readonly int _controllerIconsNumber;

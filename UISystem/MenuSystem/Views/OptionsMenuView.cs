@@ -3,7 +3,7 @@ using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
-public partial class OptionsMenuView : MenuView
+public partial class OptionsMenuView : MenuViewFade
 {
 
     [Export] private ButtonView interfaceSettingsButton;

@@ -10,7 +10,7 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
 
 namespace UISystem.MenuSystem.Controllers;
-public class RebindKeysMenuController : MenuControllerFade<RebindKeysMenuView, RebindKeysMenuModel>
+public class RebindKeysMenuController : MenuController<RebindKeysMenuView, RebindKeysMenuModel>
 {
 
     private readonly PopupsManager _popupsManager;

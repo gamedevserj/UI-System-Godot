@@ -3,7 +3,7 @@ using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
-public partial class PauseMenuView : MenuView
+public partial class PauseMenuView : MenuViewFade
 {
 
     [Export] private ButtonView resumeGameButton;

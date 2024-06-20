@@ -10,7 +10,7 @@ using UISystem.PopupSystem.Enums;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
-public class PauseMenuController : MenuControllerFade<PauseMenuView, PauseMenuModel>
+public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
 {
 
     public override MenuType MenuType => MenuType.Pause;

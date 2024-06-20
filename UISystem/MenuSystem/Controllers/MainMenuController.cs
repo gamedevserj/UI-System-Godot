@@ -9,7 +9,7 @@ using UISystem.PopupSystem.Enums;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
-public class MainMenuController : MenuControllerFade<MainMenuView, MainMenuModel>
+public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
 {
 
     public override MenuType MenuType => MenuType.Main;
