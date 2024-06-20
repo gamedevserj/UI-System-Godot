@@ -11,8 +11,6 @@ namespace UISystem.MenuSystem.Controllers;
 public abstract class MenuController<TView, TModel> : IMenuController where TView : MenuView where TModel : IMenuModel
 {
 
-    protected const float TransitionDuration = 0.25f;
-
     protected TView _view;
     protected TModel _model;
     protected IFocusableControl _defaultSelectedElement;
