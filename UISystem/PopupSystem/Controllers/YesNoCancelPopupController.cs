@@ -5,6 +5,9 @@ using UISystem.PopupSystem.Views;
 namespace UISystem.PopupSystem.Controllers;
 public class YesNoCancelPopupController : PopupController<YesNoCancelPopupView>
 {
+
+    public override PopupType PopupType => PopupType.YesNoCancel;
+
     public YesNoCancelPopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree) : base(prefab, popupsManager, sceneTree)
     {
     }

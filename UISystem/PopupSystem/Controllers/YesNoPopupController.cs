@@ -6,6 +6,7 @@ namespace UISystem.PopupSystem.Controllers;
 public class YesNoPopupController : PopupController<YesNoPopupView>
 {
 
+    public override PopupType PopupType => PopupType.YesNo;
     public YesNoPopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree) : base(prefab, popupsManager, sceneTree)
     {
 

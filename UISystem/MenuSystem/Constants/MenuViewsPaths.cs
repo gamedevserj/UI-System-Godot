@@ -1,16 +1,31 @@
-﻿namespace UISystem.MenuSystem.Constants;
+﻿using System.Collections.Generic;
+using UISystem.MenuSystem.Enums;
+
+namespace UISystem.MenuSystem.Constants;
 internal static class MenuViewsPaths
 {
 
     private const string Folder = "res://UISystem/MenuSystem/Prefabs/";
 
-    public const string Main = Folder + "MainMenuView.tscn";
-    public const string InGame = Folder + "InGameMenuView.tscn";
-    public const string Pause = Folder + "PauseMenuView.tscn";
-    public const string Options = Folder + "OptionsMenuView.tscn";
-    public const string AudioSettings = Folder + "AudioSettingsMenuView.tscn";
-    public const string VideoSettings = Folder + "VideoSettingsMenuView.tscn";
-    public const string RebindKeys = Folder + "RebindKeysMenuView.tscn";
-    public const string InterfaceSettings = Folder + "InterfaceSettingsMenuView.tscn";
+    private const string Main = Folder + "MainMenuView.tscn";
+    private const string InGame = Folder + "InGameMenuView.tscn";
+    private const string Pause = Folder + "PauseMenuView.tscn";
+    private const string Options = Folder + "OptionsMenuView.tscn";
+    private const string AudioSettings = Folder + "AudioSettingsMenuView.tscn";
+    private const string VideoSettings = Folder + "VideoSettingsMenuView.tscn";
+    private const string RebindKeys = Folder + "RebindKeysMenuView.tscn";
+    private const string InterfaceSettings = Folder + "InterfaceSettingsMenuView.tscn";
+
+    public static readonly Dictionary<MenuType, string> Paths = new()
+    {
+        { MenuType.Main, Main },
+        { MenuType.InGame, InGame },
+        { MenuType.Pause, Pause },
+        { MenuType.Options, Options },
+        { MenuType.AudioSettings, AudioSettings },
+        { MenuType.VideoSettings, VideoSettings },
+        { MenuType.RebindKeys, RebindKeys },
+        { MenuType.InterfaceSettings, InterfaceSettings },
+    };
 
 }

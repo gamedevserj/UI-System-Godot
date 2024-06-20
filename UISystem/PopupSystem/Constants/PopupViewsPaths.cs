@@ -1,11 +1,21 @@
-﻿namespace UISystem.PopupSystem.Constants;
+﻿using System.Collections.Generic;
+using UISystem.PopupSystem.Enums;
+
+namespace UISystem.PopupSystem.Constants;
 public static class PopupViewsPaths
 {
 
     private const string Folder = "res://UISystem/PopupSystem/Prefabs/";
 
-    public const string Info = Folder + "InfoPopupView.tscn";
-    public const string YesNo = Folder + "YesNoPopupView.tscn";
-    public const string YesNoCancel = Folder + "YesNoCancelPopupView.tscn";
+    private const string Info = Folder + "InfoPopupView.tscn";
+    private const string YesNo = Folder + "YesNoPopupView.tscn";
+    private const string YesNoCancel = Folder + "YesNoCancelPopupView.tscn";
+
+    public static readonly Dictionary<PopupType, string> Paths = new()
+    {
+        { PopupType.Yes, Info },
+        { PopupType.YesNo, YesNo },
+        { PopupType.YesNoCancel, YesNoCancel },
+    };
 
 }

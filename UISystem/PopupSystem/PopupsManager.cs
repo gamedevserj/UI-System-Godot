@@ -17,12 +17,14 @@ public partial class PopupsManager : Control
     public void Init()
     {
         SceneTree tree = GetTree();
-        _controllers = new Dictionary<PopupType, IPopupController>
+
+        _controllers = new Dictionary<PopupType, IPopupController>();
+        AddPopups(new IPopupController[]
         {
-            { PopupType.Yes, new InformationPopupController(PopupViewsPaths.Info, this, tree)},
-            { PopupType.YesNo, new YesNoPopupController(PopupViewsPaths.YesNo, this, tree)},
-            { PopupType.YesNoCancel, new YesNoCancelPopupController(PopupViewsPaths.YesNoCancel, this, tree)},
-        };
+            new InformationPopupController(GetPopupPath(PopupType.Yes), this, tree),
+            new YesNoPopupController(GetPopupPath(PopupType.YesNo), this, tree),
+            new YesNoCancelPopupController(GetPopupPath(PopupType.YesNoCancel), this, tree)
+        });
     }
 
     public void ShowPopup(PopupType popupType, string message, Action<PopupResult> onHideAction = null)
@@ -36,6 +38,19 @@ public partial class PopupsManager : Control
     {
         _currentController?.Hide(result);
         _currentController = null;
+    }
+
+    private void AddPopups(IPopupController[] popupControllers)
+    {
+        for (int i = 0; i < popupControllers.Length; i++)
+        {
+            _controllers.Add(popupControllers[i].PopupType, popupControllers[i]);
+        }
+    }
+
+    private static string GetPopupPath(PopupType type)
+    {
+        return PopupViewsPaths.Paths[type];
     }
 
 }

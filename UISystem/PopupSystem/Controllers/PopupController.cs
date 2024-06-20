@@ -20,6 +20,8 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
     protected readonly PopupsManager _popupsManager;
     protected readonly SceneTree _sceneTree;
 
+    public abstract PopupType PopupType { get; }
+
     public PopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree)
     {
         _prefab = prefab;

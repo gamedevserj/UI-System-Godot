@@ -37,14 +37,14 @@ public partial class MenusManager : Control
         
         AddMenus(new IMenuController[]
         {
-            new MainMenuController(MenuViewsPaths.Main, new MainMenuModel(), this, tree, popupsManager, screenFadeManager, menuBackgroundController),
-            new InGameMenuController(MenuViewsPaths.InGame, new InGameMenuModel(), this),
-            new PauseMenuController(MenuViewsPaths.Pause, new PauseMenuModel(), this, popupsManager, screenFadeManager, menuBackgroundController),
-            new OptionsMenuController(MenuViewsPaths.Options, new OptionsMenuModel(), this),
-            new AudioSettingsMenuController(MenuViewsPaths.AudioSettings, new AudioSettingsMenuModel(config), this, popupsManager),
-            new VideoSettingsMenuController(MenuViewsPaths.VideoSettings, new VideoSettingsMenuModel(config), this, popupsManager),
-            new RebindKeysMenuController(MenuViewsPaths.RebindKeys, new RebindKeysMenuModel(config), this, popupsManager),
-            new InterfaceSettingsMenuController(MenuViewsPaths.InterfaceSettings, new InterfaceSettingsMenuModel(config, settings), this, popupsManager)
+            new MainMenuController(GetMenuView(MenuType.Main), new MainMenuModel(), this, tree, popupsManager, screenFadeManager, menuBackgroundController),
+            new InGameMenuController(GetMenuView(MenuType.InGame), new InGameMenuModel(), this),
+            new PauseMenuController(GetMenuView(MenuType.Pause), new PauseMenuModel(), this, popupsManager, screenFadeManager, menuBackgroundController),
+            new OptionsMenuController(GetMenuView(MenuType.Options), new OptionsMenuModel(), this),
+            new AudioSettingsMenuController(GetMenuView(MenuType.AudioSettings), new AudioSettingsMenuModel(config), this, popupsManager),
+            new VideoSettingsMenuController(GetMenuView(MenuType.VideoSettings), new VideoSettingsMenuModel(config), this, popupsManager),
+            new RebindKeysMenuController(GetMenuView(MenuType.RebindKeys), new RebindKeysMenuModel(config), this, popupsManager),
+            new InterfaceSettingsMenuController(GetMenuView(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(config, settings), this, popupsManager)
         });       
     }
 
@@ -120,5 +120,10 @@ public partial class MenusManager : Control
         {
             onNewMenuShown?.Invoke();
         }, instant);
+    }
+
+    private static string GetMenuView(MenuType menuType)
+    {
+        return MenuViewsPaths.Paths[menuType];
     }
 } 
