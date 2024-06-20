@@ -53,7 +53,7 @@ public partial class MenusManager : Control
     /// </summary>
     /// <param name="menuType"></param>
     /// <param name="stackBehaviour"></param>
-    public void ChangeMenu(MenuType menuType, MenuStackBehaviourEnum stackBehaviour,
+    public void ShowMenu(MenuType menuType, MenuStackBehaviourEnum stackBehaviour,
         Action onNewMenuShown = null, bool instant = false)
     {
         if (_currentController?.MenuType == menuType)
@@ -63,12 +63,12 @@ public partial class MenusManager : Control
         {
             _currentController.Hide(stackBehaviour, () =>
             {
-                ShowMenu(menuType, stackBehaviour, onNewMenuShown);
+                ChangeMenu(menuType, stackBehaviour, onNewMenuShown);
             }, instant);
         }
         else
         {
-            ShowMenu(menuType, stackBehaviour, onNewMenuShown);
+            ChangeMenu(menuType, stackBehaviour, onNewMenuShown);
         }
     }
 
@@ -76,7 +76,7 @@ public partial class MenusManager : Control
     {
         if (_currentController.CanReturnToPreviousMenu && _previousMenus.Count > 0)
         {
-            ChangeMenu(_previousMenus.Peek().MenuType, MenuStackBehaviourEnum.RemoveFromStack, onComplete);
+            ShowMenu(_previousMenus.Peek().MenuType, MenuStackBehaviourEnum.RemoveFromStack, onComplete);
         }
     }
 
@@ -88,7 +88,7 @@ public partial class MenusManager : Control
         }
     }
 
-    private void ShowMenu(MenuType menuType, MenuStackBehaviourEnum stackBehaviour,
+    private void ChangeMenu(MenuType menuType, MenuStackBehaviourEnum stackBehaviour,
         Action onNewMenuShown = null, bool instant = false)
     {
         IMenuController controller = _controllers[menuType];

@@ -27,25 +27,25 @@ public partial class OptionsMenuController : MenuController<OptionsMenuView, Opt
     private void OnAudioSettingsButtonDown()
     {
         _lastSelectedElement = _view.AudioSettingsButton;
-        _menusManager.ChangeMenu(MenuType.AudioSettings, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.AudioSettings, MenuStackBehaviourEnum.AddToStack);
     }
 
     private void OnVideoSettingsButtonDown()
     {
         _lastSelectedElement = _view.VideoSettingsButton;
-        _menusManager.ChangeMenu(MenuType.VideoSettings, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.VideoSettings, MenuStackBehaviourEnum.AddToStack);
     }
 
     private void OnRebindKeysButtonDown()
     {
         _lastSelectedElement = _view.RebindKeysButton;
-        _menusManager.ChangeMenu(MenuType.RebindKeys, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.RebindKeys, MenuStackBehaviourEnum.AddToStack);
     }
 
     private void OnInterfaceSettingsButtonDown()
     {
         _lastSelectedElement = _view.InterfaceSettingsButton;
-        _menusManager.ChangeMenu(MenuType.InterfaceSettings, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.InterfaceSettings, MenuStackBehaviourEnum.AddToStack);
     }
 
 }

@@ -25,7 +25,7 @@ public partial class UiInstaller : Control
     {
         popupsManager.Init();
         menusManager.Init(config, settings, popupsManager, screenFadeManager, new MenuBackgroundController(GetTree(), menuBackground));
-        menusManager.ChangeMenu(MenuType.Main, MenuStackBehaviourEnum.ClearStack);
+        menusManager.ShowMenu(MenuType.Main, MenuStackBehaviourEnum.ClearStack);
     }
 
 }

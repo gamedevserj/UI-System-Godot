@@ -71,7 +71,7 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
     private void PressedOptions()
     {
         _lastSelectedElement = _view.OptionsButton;
-        _menusManager.ChangeMenu(MenuType.Options, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.Options, MenuStackBehaviourEnum.AddToStack);
     }
 
     private void PressedReturn()
@@ -85,7 +85,7 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
             {
                 _screenFadeManager.FadeOut(() => 
                 {
-                    _menusManager.ChangeMenu(MenuType.Main, MenuStackBehaviourEnum.ClearStack, null, true);
+                    _menusManager.ShowMenu(MenuType.Main, MenuStackBehaviourEnum.ClearStack, null, true);
                 });
                 
             }

@@ -57,14 +57,14 @@ public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
         _lastSelectedElement = _view.PlayButton;
         _screenFadeManager.FadeOut(() =>
         {
-            _menusManager.ChangeMenu(MenuType.InGame, MenuStackBehaviourEnum.ClearStack, null, true);
+            _menusManager.ShowMenu(MenuType.InGame, MenuStackBehaviourEnum.ClearStack, null, true);
         });
     }
 
     private void PressedOptions()
     {
         _lastSelectedElement = _view.OptionsButton;
-        _menusManager.ChangeMenu(MenuType.Options, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.Options, MenuStackBehaviourEnum.AddToStack);
     }
 
     private void PressedQuit()
