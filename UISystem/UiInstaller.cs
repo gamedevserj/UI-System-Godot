@@ -8,8 +8,7 @@ namespace UISystem;
 public partial class UiInstaller : Control
 {
 
-    private static UiInstaller instance;
-    public static UiInstaller Instance { get => instance; private set => instance = value; }
+    public static UiInstaller Instance { get; private set; }
 
     [Export] private TextureRect menuBackground;
     [Export] private MenusManager menusManager;
@@ -18,7 +17,7 @@ public partial class UiInstaller : Control
 
     public override void _EnterTree()
     {
-        instance ??= this;
+        Instance ??= this;
     }
 
     public void Init(ConfigFile config, GameSettings settings)
