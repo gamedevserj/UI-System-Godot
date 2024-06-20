@@ -19,7 +19,7 @@ To add new menu:
 ### Menu background controller
 A simple script that handles menu's background, look at MainMenu and PauseMenu controllers for example.
 
-### Example menus notes
+### ℹ️: Example menus notes
 
 #### Audio, video, and interface menus are setup to have a popup if some settings were not saved before quitting. Key rebinding menu saves binds when new key is assigned.
 
