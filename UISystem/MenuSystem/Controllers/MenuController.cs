@@ -97,11 +97,6 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
             _lastSelectedElement.SwitchFocus(true);
     }
 
-    protected float GetDuration(bool instant)
-    {
-        return instant ? 0 : TransitionDuration;
-    }
-
     protected bool IsElementValid(IFocusableControl element)
     {
         return element != null && element.IsValidElement();

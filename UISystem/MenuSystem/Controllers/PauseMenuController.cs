@@ -42,7 +42,7 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
     public override void Show(Action onComplete = null, bool instant = false)
     {
         base.Show(onComplete, instant);
-        _menuBackgroundController.ShowBackground(GetDuration(instant));
+        _menuBackgroundController.ShowBackground(instant);
     }
 
     public override void Hide(MenuStackBehaviourEnum stackBehaviour, Action onComplete = null, bool instant = false)
@@ -51,7 +51,7 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
         
         if (stackBehaviour != MenuStackBehaviourEnum.AddToStack)
         {
-            _menuBackgroundController.HideBackground(GetDuration(instant));
+            _menuBackgroundController.HideBackground(instant);
         }
     }
 
