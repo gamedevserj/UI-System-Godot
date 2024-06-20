@@ -29,13 +29,6 @@ public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
         _screenFadeManager = screenFadeManager;
     }
 
-    protected override void CreateView(Node menuParent)
-    {
-        base.CreateView(menuParent);
-        SetupElements();
-        _defaultSelectedElement = _view.PlayButton;
-    }
-
     public override void Show(Action onComplete = null, bool instant = false)
     {
         base.Show(onComplete, instant);
@@ -51,11 +44,12 @@ public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
         }
     }
 
-    private void SetupElements()
+    protected override void SetupElements()
     {
         _view.PlayButton.ButtonDown += PressedPlay;
         _view.OptionsButton.ButtonDown += PressedOptions;
         _view.QuitButton.ButtonDown += PressedQuit;
+        _defaultSelectedElement = _view.PlayButton;
     }
 
     private void PressedPlay()

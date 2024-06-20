@@ -21,13 +21,6 @@ public class AudioSettingsMenuController : MenuController<AudioSettingsMenuView,
         _popupsManager = popupsManager;
     }
 
-    protected override void CreateView(Node menuParent)
-    {
-        base.CreateView(menuParent);
-        SetupElements();
-        _defaultSelectedElement = _view.MusicSlider;
-    }
-
     protected override void OnReturnToPreviousMenuButtonDown()
     {
         if (_model.HasUnappliedSettings)
@@ -49,13 +42,14 @@ public class AudioSettingsMenuController : MenuController<AudioSettingsMenuView,
         }
     }
 
-    private void SetupElements()
+    protected override void SetupElements()
     {
         SetupMusicSlider();
         SetupSfxSlider();
         _view.SaveSettingsButton.ButtonDown += _model.SaveSettings;
         _view.ResetToDefaultButton.ButtonDown += OnResetToDefaultButtonDown;
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
+        _defaultSelectedElement = _view.MusicSlider;
     }
 
     private void OnResetToDefaultButtonDown()

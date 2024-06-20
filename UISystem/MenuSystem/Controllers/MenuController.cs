@@ -80,6 +80,7 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
         PackedScene loadedPrefab = ResourceLoader.Load<PackedScene>(_prefab);
         _view = loadedPrefab.Instantiate() as TView;
         _view.Init();
+        SetupElements();
         menuParent.AddChild(_view);
     }
 
@@ -105,4 +106,6 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
     {
         return element != null && element.IsValidElement();
     }
+
+    protected abstract void SetupElements();
 }

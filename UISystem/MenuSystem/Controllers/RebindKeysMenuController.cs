@@ -31,13 +31,6 @@ public class RebindKeysMenuController : MenuController<RebindKeysMenuView, Rebin
             base.HandleInputPressedWhenActive(key);
     }
 
-    protected override void CreateView(Node menuParent)
-    {
-        base.CreateView(menuParent);
-        SetupElements();
-        _defaultSelectedElement = _view.ReturnButton;
-    }
-
     private static void UpdateButtonView(RebindableKeyButtonView button, string action, int index)
     {
         var e = InputMap.ActionGetEvents(action)[index];
@@ -84,7 +77,7 @@ public class RebindKeysMenuController : MenuController<RebindKeysMenuView, Rebin
         }
     }
 
-    private void SetupElements()
+    protected override void SetupElements()
     {
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
         _view.ResetToDefaultButton.ButtonDown += ResetToDefault;
@@ -105,6 +98,7 @@ public class RebindKeysMenuController : MenuController<RebindKeysMenuView, Rebin
         OnButtonDown(_view.JumpJoystick, InputsData.Jump, InputsData.JoystickEventIndex);
 
         UpdateAllButtonViews();
+        _defaultSelectedElement = _view.ReturnButton;
     }
 
     private void UpdateAllButtonViews()

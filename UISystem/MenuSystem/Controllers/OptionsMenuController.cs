@@ -14,20 +14,14 @@ public partial class OptionsMenuController : MenuController<OptionsMenuView, Opt
     {
     }
 
-    protected override void CreateView(Node menuParent)
-    {
-        base.CreateView(menuParent);
-        SetupElements();
-        _defaultSelectedElement = _view.InterfaceSettingsButton;
-    }
-
-    private void SetupElements()
+    protected override void SetupElements()
     {
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
         _view.AudioSettingsButton.ButtonDown += OnAudioSettingsButtonDown;
         _view.VideoSettingsButton.ButtonDown += OnVideoSettingsButtonDown;
         _view.RebindKeysButton.ButtonDown += OnRebindKeysButtonDown;
         _view.InterfaceSettingsButton.ButtonDown += OnInterfaceSettingsButtonDown;
+        _defaultSelectedElement = _view.InterfaceSettingsButton;
     }
 
     private void OnAudioSettingsButtonDown()

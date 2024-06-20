@@ -33,4 +33,8 @@ public class InGameMenuController : MenuController<InGameMenuView, InGameMenuMod
         _menusManager.ChangeMenu(MenuType.Pause, MenuStackBehaviourEnum.AddToStack);
     }
 
+    protected override void SetupElements()
+    {
+        
+    }
 }

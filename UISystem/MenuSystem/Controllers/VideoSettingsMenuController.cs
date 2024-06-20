@@ -1,5 +1,4 @@
-﻿using Godot;
-using GodotExtensions;
+﻿using GodotExtensions;
 using System.Text.RegularExpressions;
 using UISystem.Common;
 using UISystem.Constants;
@@ -22,13 +21,6 @@ public class VideoSettingsMenuController : MenuController<VideoSettingsMenuView,
         _popupsManager = popupsManager;
     }
 
-    protected override void CreateView(Node menuParent)
-    {
-        base.CreateView(menuParent);
-        SetupElements();
-        _defaultSelectedElement = _view.ReturnButton;
-    }
-
     protected override void OnReturnToPreviousMenuButtonDown()
     {
         if (_model.HasUnappliedSettings)
@@ -47,13 +39,14 @@ public class VideoSettingsMenuController : MenuController<VideoSettingsMenuView,
         }
     }
 
-    private void SetupElements()
+    protected override void SetupElements()
     {
         SetupWindowModeDropdown();
         SetupResolutionDropdown();
         _view.SaveSettingsButton.ButtonDown += _model.SaveSettings;
         _view.ResetToDefaultButton.ButtonDown += OnResetToDefaultButtonDown;
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
+        _defaultSelectedElement = _view.ReturnButton;
     }
 
     private void OnResetToDefaultButtonDown()

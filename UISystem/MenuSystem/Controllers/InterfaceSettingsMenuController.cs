@@ -29,13 +29,6 @@ public class InterfaceSettingsMenuController : MenuController<InterfaceSettingsM
         _popupsManager = popupsManager;
     }
 
-    protected override void CreateView(Node menuParent)
-    {
-        base.CreateView(menuParent);
-        SetupElements();
-        _defaultSelectedElement = _view.ReturnButton;
-    }
-
     protected override void OnReturnToPreviousMenuButtonDown()
     {
         if (_model.HasUnappliedSettings)
@@ -54,12 +47,13 @@ public class InterfaceSettingsMenuController : MenuController<InterfaceSettingsM
         }
     }
 
-    private void SetupElements()
+    protected override void SetupElements()
     {
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
         SetupControllerIconsDropdown();
         _view.SaveSettingsButton.ButtonDown += _model.SaveSettings;
         _view.ResetToDefaultButton.ButtonDown += OnResetToDefaultButtonDown;
+        _defaultSelectedElement = _view.ControllerIconsDropdown;
     }
 
     private void SetupControllerIconsDropdown()

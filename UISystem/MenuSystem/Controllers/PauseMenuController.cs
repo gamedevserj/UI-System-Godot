@@ -28,13 +28,6 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
         _menuBackgroundController = menuBackgroundController;
     }
 
-    protected override void CreateView(Node menuParent)
-    {
-        base.CreateView(menuParent);
-        SetupElements();
-        _defaultSelectedElement = _view.ResumeGameButton;
-    }
-
     public override void HandleInputPressedWhenActive(InputEvent key)
     {
         if (key.IsPressed())
@@ -62,11 +55,12 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
         }
     }
 
-    private void SetupElements()
+    protected override void SetupElements()
     {
         _view.ResumeGameButton.ButtonDown += PressedResume;
         _view.OptionsButton.ButtonDown += PressedOptions;
         _view.ReturnToMainMenuButton.ButtonDown += PressedReturn;
+        _defaultSelectedElement = _view.ResumeGameButton;
     }
 
     private void PressedResume()
