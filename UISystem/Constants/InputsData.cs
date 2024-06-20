@@ -13,6 +13,6 @@ public static class InputsData
     public const string MoveRight = "MoveRight";
     public const string Jump = "Jump";
 
-    public static string[] RebindableActions = { MoveLeft, MoveRight, Jump };
+    public static readonly string[] RebindableActions = { MoveLeft, MoveRight, Jump };
 
 }
