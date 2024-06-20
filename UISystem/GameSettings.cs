@@ -1,12 +1,19 @@
 ﻿using Godot;
+using System;
 using UISystem.Common.Enums;
 using UISystem.Constants;
-using UISystem.MenuSystem.Models;
 using static Godot.DisplayServer;
 
 namespace UISystem;
-public static class GameSettings
+/// <summary>
+/// methods to set properties are not marked as static so that only classes with access to instance can change them
+/// </summary>
+public class GameSettings
 {
+
+    public static event Action<float> OnMusicVolumeChanged;
+    public static event Action<float> OnSfxVolumeChanged;
+    public static event Action<ControllerIconsType> OnControllerIconsChanged;
 
     public static float CurrentMusicVolume { get; private set; } = ConfigData.DefaultMusicVolume;
     public static float CurrentSfxVolume { get; private set; } = ConfigData.DefaultSfxVolume;
@@ -14,12 +21,33 @@ public static class GameSettings
     public static WindowMode CurrentWindowMode { get; private set; } = ConfigData.DefaultWindowMode;
     public static ControllerIconsType CurrentControllerIconsType { get; private set; } = ConfigData.DefaultControllerIconsType;
 
-    static GameSettings()
+    public GameSettings(ConfigFile config, Error err)
     {
-        InterfaceSettingsMenuModel.OnControllerIconsTypeChange += (type) => CurrentControllerIconsType = type;
+        if (err != Error.Ok)
+        {
+            SaveDefaultSettings(config);
+        }
     }
 
-    public static void SaveDefaultSettings(ConfigFile config)
+    public void SetMusicVolume(float volume)
+    {
+        CurrentMusicVolume = volume;
+        OnMusicVolumeChanged?.Invoke(volume);
+    }
+
+    public void SetSfxVolume(float volume)
+    {
+        CurrentSfxVolume = volume;
+        OnSfxVolumeChanged?.Invoke(volume);
+    }
+
+    public void SetControllerIconsType(ControllerIconsType type)
+    {
+        CurrentControllerIconsType = type;
+        OnControllerIconsChanged?.Invoke(type);
+    }
+
+    private static void SaveDefaultSettings(ConfigFile config)
     {
         config.SetValue(ConfigData.AudioSectionName, ConfigData.MusicVolumeKey, ConfigData.DefaultMusicVolume);
         config.SetValue(ConfigData.AudioSectionName, ConfigData.SfxVolumeKey, ConfigData.DefaultSfxVolume);

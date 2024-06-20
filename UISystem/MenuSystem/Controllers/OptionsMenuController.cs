@@ -9,8 +9,8 @@ public partial class OptionsMenuController : MenuController<OptionsMenuView, Opt
 
     public override MenuType MenuType => MenuType.Options;
 
-    public OptionsMenuController(string prefab, OptionsMenuModel model, MenusManager menusManager, SceneTree sceneTree) 
-        : base(prefab, model, menusManager, sceneTree)
+    public OptionsMenuController(string prefab, OptionsMenuModel model, MenusManager menusManager) 
+        : base(prefab, model, menusManager)
     {
     }
 
@@ -18,7 +18,7 @@ public partial class OptionsMenuController : MenuController<OptionsMenuView, Opt
     {
         base.CreateView(menuParent);
         SetupElements();
-        _defaultSelectedElement = _view.AudioSettingsButton;
+        _defaultSelectedElement = _view.InterfaceSettingsButton;
     }
 
     private void SetupElements()

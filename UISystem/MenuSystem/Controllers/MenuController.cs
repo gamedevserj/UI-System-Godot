@@ -20,17 +20,15 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
 
     protected readonly string _prefab;
     protected readonly MenusManager _menusManager;
-    protected readonly SceneTree _sceneTree;
 
     public virtual bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
     public abstract MenuType MenuType { get; }
 
-    public MenuController(string prefab, TModel model, MenusManager menusManager, SceneTree sceneTree)
+    public MenuController(string prefab, TModel model, MenusManager menusManager)
     {
         _prefab = prefab;
         _model = model;
         _menusManager = menusManager;
-        _sceneTree = sceneTree;
     }
 
     public void Init(Node menuParent)

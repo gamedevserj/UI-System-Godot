@@ -9,12 +9,9 @@ public partial class GameInstaller : Node
     {
         var config = new ConfigFile();
         Error err = config.Load(ConfigData.ConfigLocation);
-        if (err != Error.Ok)
-        {
-            GameSettings.SaveDefaultSettings(config);
-        }
+        GameSettings settings = new(config, err);
 
-        UiInstaller.Instance.Init(config);
+        UiInstaller.Instance.Init(config, settings);
     }
 
 }

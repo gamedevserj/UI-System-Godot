@@ -21,10 +21,10 @@ public partial class UiInstaller : Control
         instance ??= this;
     }
 
-    public void Init(ConfigFile config)
+    public void Init(ConfigFile config, GameSettings settings)
     {
         popupsManager.Init();
-        menusManager.Init(config, popupsManager, screenFadeManager, new MenuBackgroundController(GetTree(), menuBackground));
+        menusManager.Init(config, settings, popupsManager, screenFadeManager, new MenuBackgroundController(GetTree(), menuBackground));
         menusManager.ChangeMenu(MenuType.Main, MenuStackBehaviourEnum.ClearStack);
     }
 

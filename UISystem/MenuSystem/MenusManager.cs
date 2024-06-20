@@ -27,7 +27,7 @@ public partial class MenusManager : Control
         _currentController?.HandleInputPressedWhenActive(@event);
     }
 
-    public void Init(ConfigFile config, PopupsManager popupsManager, ScreenFadeManager screenFadeManager, 
+    public void Init(ConfigFile config, GameSettings settings, PopupsManager popupsManager, ScreenFadeManager screenFadeManager, 
         MenuBackgroundController menuBackgroundController)
     {
         _previousMenus = new Stack<IMenuController>();
@@ -38,13 +38,13 @@ public partial class MenusManager : Control
         AddMenus(new IMenuController[]
         {
             new MainMenuController(MenuViewsPaths.Main, new MainMenuModel(), this, tree, popupsManager, screenFadeManager, menuBackgroundController),
-            new InGameMenuController(MenuViewsPaths.InGame, new InGameMenuModel(), this, tree),
-            new PauseMenuController(MenuViewsPaths.Pause, new PauseMenuModel(), this, tree, popupsManager, screenFadeManager, menuBackgroundController),
-            new OptionsMenuController(MenuViewsPaths.Options, new OptionsMenuModel(), this, tree),
-            new AudioSettingsMenuController(MenuViewsPaths.AudioSettings, new AudioSettingsMenuModel(config), this, tree, popupsManager),
-            new VideoSettingsMenuController(MenuViewsPaths.VideoSettings, new VideoSettingsMenuModel(config), this, tree, popupsManager),
-            new RebindKeysMenuController(MenuViewsPaths.RebindKeys, new RebindKeysMenuModel(config), this, tree, popupsManager),
-            new InterfaceSettingsMenuController(MenuViewsPaths.InterfaceSettings, new InterfaceSettingsMenuModel(config), this, tree, popupsManager)
+            new InGameMenuController(MenuViewsPaths.InGame, new InGameMenuModel(), this),
+            new PauseMenuController(MenuViewsPaths.Pause, new PauseMenuModel(), this, popupsManager, screenFadeManager, menuBackgroundController),
+            new OptionsMenuController(MenuViewsPaths.Options, new OptionsMenuModel(), this),
+            new AudioSettingsMenuController(MenuViewsPaths.AudioSettings, new AudioSettingsMenuModel(config), this, popupsManager),
+            new VideoSettingsMenuController(MenuViewsPaths.VideoSettings, new VideoSettingsMenuModel(config), this, popupsManager),
+            new RebindKeysMenuController(MenuViewsPaths.RebindKeys, new RebindKeysMenuModel(config), this, popupsManager),
+            new InterfaceSettingsMenuController(MenuViewsPaths.InterfaceSettings, new InterfaceSettingsMenuModel(config, settings), this, popupsManager)
         });       
     }
 

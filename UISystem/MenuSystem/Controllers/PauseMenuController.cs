@@ -19,9 +19,9 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
-    public PauseMenuController(string prefab, PauseMenuModel model, MenusManager menusManager, SceneTree sceneTree, 
+    public PauseMenuController(string prefab, PauseMenuModel model, MenusManager menusManager, 
         PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
-        : base(prefab, model, menusManager, sceneTree)
+        : base(prefab, model, menusManager)
     {
         _popupsManager = popupsManager;
         _screenFadeManager = screenFadeManager;

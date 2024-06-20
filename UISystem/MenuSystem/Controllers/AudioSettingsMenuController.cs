@@ -14,9 +14,9 @@ public class AudioSettingsMenuController : MenuController<AudioSettingsMenuView,
 
     private readonly PopupsManager _popupsManager;
 
-    public AudioSettingsMenuController(string prefab, AudioSettingsMenuModel model, MenusManager menusManager, SceneTree sceneTree,
+    public AudioSettingsMenuController(string prefab, AudioSettingsMenuModel model, MenusManager menusManager,
         PopupsManager popupsManager) 
-        : base(prefab, model, menusManager, sceneTree)
+        : base(prefab, model, menusManager)
     {
         _popupsManager = popupsManager;
     }

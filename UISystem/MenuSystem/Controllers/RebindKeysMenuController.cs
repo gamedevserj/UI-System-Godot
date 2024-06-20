@@ -17,8 +17,8 @@ public class RebindKeysMenuController : MenuController<RebindKeysMenuView, Rebin
 
     public override MenuType MenuType => MenuType.RebindKeys;
 
-    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, MenusManager menusManager, SceneTree sceneTree,
-        PopupsManager popupsManager) : base(prefab, model, menusManager, sceneTree)
+    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, MenusManager menusManager,
+        PopupsManager popupsManager) : base(prefab, model, menusManager)
     {
         _popupsManager = popupsManager;
     }

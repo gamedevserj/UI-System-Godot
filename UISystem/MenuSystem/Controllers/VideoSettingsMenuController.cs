@@ -16,9 +16,8 @@ public class VideoSettingsMenuController : MenuController<VideoSettingsMenuView,
 
     private readonly PopupsManager _popupsManager;
 
-    public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, MenusManager menusManager, SceneTree sceneTree,
-        PopupsManager popupsManager) 
-        : base(prefab, model, menusManager, sceneTree)
+    public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, MenusManager menusManager, PopupsManager popupsManager) 
+        : base(prefab, model, menusManager)
     {
         _popupsManager = popupsManager;
     }

@@ -10,7 +10,7 @@ public class InGameMenuController : MenuController<InGameMenuView, InGameMenuMod
 
     public override MenuType MenuType => MenuType.InGame;
 
-    public InGameMenuController(string prefab, InGameMenuModel model, MenusManager menusManager, SceneTree sceneTree) : base(prefab, model, menusManager, sceneTree)
+    public InGameMenuController(string prefab, InGameMenuModel model, MenusManager menusManager) : base(prefab, model, menusManager)
     {
 
     }

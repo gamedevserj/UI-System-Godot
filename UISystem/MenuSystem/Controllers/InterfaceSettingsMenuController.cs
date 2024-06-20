@@ -22,9 +22,8 @@ public class InterfaceSettingsMenuController : MenuController<InterfaceSettingsM
     public override MenuType MenuType => MenuType.InterfaceSettings;
 
 
-    public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, MenusManager menusManager, 
-        SceneTree sceneTree, PopupsManager popupsManager) : 
-        base(prefab, model, menusManager, sceneTree)
+    public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, MenusManager menusManager, PopupsManager popupsManager) : 
+        base(prefab, model, menusManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;
         _popupsManager = popupsManager;

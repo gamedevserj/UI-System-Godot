@@ -14,14 +14,16 @@ public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
 
     public override MenuType MenuType => MenuType.Main;
 
+    private readonly SceneTree _sceneTree;
     private readonly PopupsManager _popupsManager;
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(string prefab, MainMenuModel model, MenusManager menusManager, SceneTree sceneTree, 
+    public MainMenuController(string prefab, MainMenuModel model, MenusManager menusManager, SceneTree sceneTree,
         PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) : 
-        base(prefab, model, menusManager, sceneTree)
+        base(prefab, model, menusManager)
     {
+        _sceneTree = sceneTree;
         _popupsManager = popupsManager;
         _menuBackgroundController = menuBackgroundController;
         _screenFadeManager = screenFadeManager;
