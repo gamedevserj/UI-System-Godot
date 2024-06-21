@@ -39,6 +39,11 @@ public class InterfaceSettingsMenuModel : IMenuModel
         SaveToConfig();
     }
 
+    public void DiscardChanges()
+    {
+        _tempIconsType = _iconsType;
+    }
+
     public void ResetToDefault()
     {
         _iconsType = _tempIconsType = DefaultIconsType;

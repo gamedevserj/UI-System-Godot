@@ -44,6 +44,12 @@ public class AudioSettingsMenuModel : IMenuModel
         SaveToConfig();
     }
 
+    public void DiscardChanges()
+    {
+        _tempMusicVolume = _musicVolume;
+        _tempSfxVolume = _sfxVolume;
+    }
+
     private void LoadSettings()
     {
         _musicVolume = _tempMusicVolume = (float)_config.GetValue(SectionName, MusicVolumeKey, DefaultMusicVolume);

@@ -33,7 +33,10 @@ public class AudioSettingsMenuController : MenuController<AudioSettingsMenuView,
                     base.OnReturnToPreviousMenuButtonDown();
                 }
                 else if (result == PopupResult.No)
-                    base.OnReturnToPreviousMenuButtonDown();
+                {
+                    _model.DiscardChanges();
+                    base.OnReturnToPreviousMenuButtonDown(); 
+                }
             });
         }
         else

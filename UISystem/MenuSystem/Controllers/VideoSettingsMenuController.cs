@@ -33,7 +33,10 @@ public class VideoSettingsMenuController : MenuController<VideoSettingsMenuView,
                     base.OnReturnToPreviousMenuButtonDown();
                 }
                 else if (result == PopupResult.No)
+                {
+                    _model.DiscardChanges();
                     base.OnReturnToPreviousMenuButtonDown();
+                }
             });
         }
         else
