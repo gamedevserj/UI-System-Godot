@@ -36,9 +36,12 @@ public class InterfaceSettingsMenuController : MenuController<InterfaceSettingsM
             _popupsManager.ShowPopup(PopupType.YesNoCancel, PopupMessages.SaveChanges, (result) =>
             {
                 if (result == PopupResult.Yes)
+                {
                     _model.SaveSettings();
-
-                base.OnReturnToPreviousMenuButtonDown();
+                    base.OnReturnToPreviousMenuButtonDown();
+                }
+                else if (result == PopupResult.No)
+                    base.OnReturnToPreviousMenuButtonDown();
             });
         }
         else
