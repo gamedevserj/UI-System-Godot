@@ -2,6 +2,8 @@
 
 UI system for Godot that uses Dependency Injection and MVC patterns.  
 
+![Example](https://raw.githubusercontent.com/gamedevserj/Images-For-Repo/main/UiSystemGodot/UISystemGodot.gif)  
+
 ## Menu system
 The repo has some menus created: **Main, Options, Pause, Audio/Video settings, Interface settings, Key rebinding**   
 
