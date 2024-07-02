@@ -36,8 +36,7 @@ public class AudioSettingsMenuModel : IMenuModel
 
     public void DiscardChanges()
     {
-        _tempMusicVolume = GameSettings.MusicVolume;
-        _tempSfxVolume = GameSettings.SfxVolume;
+        LoadSettings();
     }
 
     private void LoadSettings()

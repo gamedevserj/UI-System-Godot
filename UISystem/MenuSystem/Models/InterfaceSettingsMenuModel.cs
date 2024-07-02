@@ -9,7 +9,7 @@ public class InterfaceSettingsMenuModel : IMenuModel
     private ControllerIconsType _tempIconsType;
     private readonly GameSettings _settings;
 
-    public bool HasUnappliedSettings => ControllerIconsType != _tempIconsType;
+    public bool HasUnappliedSettings => GameSettings.ControllerIconsType != _tempIconsType;
     public ControllerIconsType ControllerIconsType { get => GameSettings.ControllerIconsType; set => _tempIconsType = value; }
 
     public InterfaceSettingsMenuModel(GameSettings settings)
@@ -31,7 +31,7 @@ public class InterfaceSettingsMenuModel : IMenuModel
 
     public void DiscardChanges()
     {
-        _tempIconsType = ControllerIconsType;
+        LoadSettings();
     }
 
     public void ResetToDefault()
