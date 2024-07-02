@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://cpni7t3hr221b"]
+[gd_scene load_steps=5 format=3 uid="uid://cpni7t3hr221b"]
 
 [ext_resource type="Script" path="res://UISystem/PopupSystem/Views/YesNoPopupView.cs" id="1_rr6j1"]
+[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/ButtonsFontTheme.tres" id="2_focc0"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_oiwka"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ulc4q"]
@@ -44,9 +45,11 @@ offset_left = -3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
+theme = ExtResource("2_focc0")
 text = "Message"
 horizontal_alignment = 1
 vertical_alignment = 1
+autowrap_mode = 2
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
@@ -62,6 +65,7 @@ modulate = Color(0, 1, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_right = NodePath("../NoButton")
+theme = ExtResource("2_focc0")
 text = "Yes"
 script = ExtResource("2_oiwka")
 
@@ -70,5 +74,6 @@ modulate = Color(1, 0, 0, 1)
 layout_mode = 2
 size_flags_horizontal = 3
 focus_neighbor_left = NodePath("../YesButton")
+theme = ExtResource("2_focc0")
 text = "No"
 script = ExtResource("2_oiwka")

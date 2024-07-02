@@ -37,7 +37,7 @@ public static class Icons
 
     private static string GetIconByControllerType(JoyButton button)
     {
-        return GameSettings.CurrentControllerIconsType switch
+        return GameSettings.ControllerIconsType switch
         {
             ControllerIconsType.Xbox => XboxIcons.GetIcon(button),
             ControllerIconsType.Ps5 => PS5Icons.GetIcon(button),
@@ -47,7 +47,7 @@ public static class Icons
 
     private static string GetIconByControllerType(JoyAxis axis, float positive)
     {
-        return GameSettings.CurrentControllerIconsType switch
+        return GameSettings.ControllerIconsType switch
         {
             ControllerIconsType.Xbox => XboxIcons.GetIcon(axis, positive),
             ControllerIconsType.Ps5 => PS5Icons.GetIcon(axis, positive),

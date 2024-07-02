@@ -17,8 +17,6 @@ public class InGameMenuController : MenuController<InGameMenuView, InGameMenuMod
 
     public override void HandleInputPressedWhenActive(InputEvent key)
     {
-        base.HandleInputPressedWhenActive(key);
-
         if (key.IsPressed())
         {
             if (key.IsAction(InputsData.PauseButton))
