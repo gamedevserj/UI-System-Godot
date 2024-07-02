@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://cp2yn6w4kyuam"]
+[gd_scene load_steps=4 format=3 uid="uid://cp2yn6w4kyuam"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Views/OptionsMenuView.cs" id="1_sgbji"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_5rv4x"]
+[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/ButtonsFontTheme.tres" id="2_a3m3i"]
 
 [node name="OptionsMenuView" type="Control" node_paths=PackedStringArray("interfaceSettingsButton", "audioSettingsButton", "videoSettingsButton", "rebindKeysButton", "returnButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -58,25 +59,35 @@ alignment = 1
 
 [node name="InterfaceSettingsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_a3m3i")
 text = "Interface"
 script = ExtResource("2_5rv4x")
 
 [node name="AudioSettingsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_a3m3i")
 text = "Audio"
 script = ExtResource("2_5rv4x")
 
 [node name="VideoSettingsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_a3m3i")
 text = "Video"
 script = ExtResource("2_5rv4x")
 
 [node name="RebindKeysButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_a3m3i")
 text = "Controls"
 script = ExtResource("2_5rv4x")
 
 [node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_a3m3i")
 text = "Return"
 script = ExtResource("2_5rv4x")

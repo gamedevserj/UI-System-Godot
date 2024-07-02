@@ -1,5 +1,6 @@
 ﻿using Godot;
 using System;
+using System.Text.RegularExpressions;
 using static Godot.DisplayServer;
 
 namespace UISystem.Constants;
@@ -13,24 +14,11 @@ public static class VideoSettings
         WindowMode.Windowed,
         WindowMode.Maximized,
     };
+    public static readonly string[] WindowModeNames;
 
-    public static readonly string[] ResolutionNames16x9 = new string[]
+    private static readonly Vector2I[] Resolutions16x9 = new Vector2I[]
     {
-        "640x360",
-        "854x480",
-        "960x540",
-        "1280x720",
-        "1366x768",
-        "1600x900",
-        "1920x1080",
-        "2560x1440",
-        "3200x1800",
-        "3840x2160",
-    };
 
-    public static readonly Vector2I[] Resolutions16x9 = new Vector2I[]
-    {
-        new (640, 360),
         new (854, 480),
         new (960, 540),
         new (1280, 720),
@@ -41,18 +29,9 @@ public static class VideoSettings
         new(3200, 1800),
         new(3840, 2160),
     };
+    private static readonly string[] ResolutionNames16x9;
 
-    public static readonly string[] ResolutionNames16x10 = new string[]
-    {
-        "1280x800",
-        "1440x900",
-        "1680x1050",
-        "1920x1200",
-        "2560x1600",
-        "3840x2400",
-    };
-
-    public static readonly Vector2I[] Resolutions16x10 = new Vector2I[]
+    private static readonly Vector2I[] Resolutions16x10 = new Vector2I[]
     {
         new (1280, 800),
         new (1440, 900),
@@ -61,6 +40,28 @@ public static class VideoSettings
         new (2560, 1600),
         new (3840, 2400),
     };
+    private static readonly string[] ResolutionNames16x10;
+
+    static VideoSettings()
+    {
+        ResolutionNames16x9 = new string[Resolutions16x9.Length];
+        for (int i = 0; i < Resolutions16x9.Length; i++)
+        {
+            ResolutionNames16x9[i] = GetResolutionName(Resolutions16x9[i]);
+        }
+
+        ResolutionNames16x10 = new string[Resolutions16x10.Length];
+        for (int i = 0; i < Resolutions16x10.Length; i++)
+        {
+            ResolutionNames16x10[i] = GetResolutionName(Resolutions16x10[i]);
+        }
+
+        WindowModeNames = new string[WindowModeOptions.Length];
+        for (int i = 0; i < WindowModeOptions.Length; i++)
+        {
+            WindowModeNames[i] = Regex.Replace(WindowModeOptions[i].ToString(), "([A-Z])", " $1").Trim(); // to have space in ExclusiveFullscreen
+        }
+    }
 
     public static Vector2I[] GetResolutionsForAspect(double aspect)
     {
@@ -90,6 +91,11 @@ public static class VideoSettings
     public static int GetWindwoModeIndex(WindowMode mode)
     {
         return Array.IndexOf(WindowModeOptions, mode);
+    }
+
+    private static string GetResolutionName(Vector2I resolution)
+    {
+        return resolution.X + "x" + resolution.Y;
     }
 
 }

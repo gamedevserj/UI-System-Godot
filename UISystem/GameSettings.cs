@@ -15,36 +15,64 @@ public class GameSettings
     public static event Action<float> OnSfxVolumeChanged;
     public static event Action<ControllerIconsType> OnControllerIconsChanged;
 
-    public static float CurrentMusicVolume { get; private set; } = ConfigData.DefaultMusicVolume;
-    public static float CurrentSfxVolume { get; private set; } = ConfigData.DefaultSfxVolume;
-    public static Vector2I CurrentResolution { get; private set; } = ConfigData.DefaultResolution;
-    public static WindowMode CurrentWindowMode { get; private set; } = ConfigData.DefaultWindowMode;
-    public static ControllerIconsType CurrentControllerIconsType { get; private set; } = ConfigData.DefaultControllerIconsType;
+    private readonly ConfigFile _config;
+
+    public static float MusicVolume { get; private set; } = ConfigData.DefaultMusicVolume;
+    public static float SfxVolume { get; private set; } = ConfigData.DefaultSfxVolume;
+    public static Vector2I Resolution { get; private set; } = ConfigData.DefaultResolution;
+    public static WindowMode WindowMode { get; private set; } = ConfigData.DefaultWindowMode;
+    public static ControllerIconsType ControllerIconsType { get; private set; } = ConfigData.DefaultControllerIconsType;
+
 
     public GameSettings(ConfigFile config, Error err)
     {
+        _config = config;
         if (err != Error.Ok)
         {
-            SaveDefaultSettings(config);
+            SaveDefaultSettings(_config);
+        }
+        else
+        {
+            LoadSettings(_config);
         }
     }
 
     public void SetMusicVolume(float volume)
     {
-        CurrentMusicVolume = volume;
+        MusicVolume = volume;
+        _config.SetValue(ConfigData.AudioSectionName, ConfigData.MusicVolumeKey, volume);
         OnMusicVolumeChanged?.Invoke(volume);
     }
 
     public void SetSfxVolume(float volume)
     {
-        CurrentSfxVolume = volume;
+        SfxVolume = volume;
+        _config.SetValue(ConfigData.AudioSectionName, ConfigData.SfxVolumeKey, volume);
         OnSfxVolumeChanged?.Invoke(volume);
     }
 
     public void SetControllerIconsType(ControllerIconsType type)
     {
-        CurrentControllerIconsType = type;
+        ControllerIconsType = type;
+        _config.SetValue(ConfigData.InterfaceSectionName, ConfigData.ControllerIconsKey, (int)type);
         OnControllerIconsChanged?.Invoke(type);
+    }
+
+    public void SetResolution(Vector2I resolution)
+    {
+        Resolution = resolution;
+        _config.SetValue(ConfigData.VideoSectionName, ConfigData.ResolutionKey, resolution);
+    }
+
+    public void SetWindowMode(WindowMode windowMode)
+    {
+        WindowMode = windowMode;
+        _config.SetValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, (int)windowMode);
+    }
+
+    public void Save()
+    {
+        _config.Save(ConfigData.ConfigLocation);
     }
 
     private static void SaveDefaultSettings(ConfigFile config)
@@ -58,6 +86,17 @@ public class GameSettings
         config.SetValue(ConfigData.InterfaceSectionName, ConfigData.ControllerIconsKey, (int)ConfigData.DefaultControllerIconsType);
         
         config.Save(ConfigData.ConfigLocation);
+    }
+
+    private static void LoadSettings(ConfigFile config)
+    {
+        MusicVolume = (float)config.GetValue(ConfigData.AudioSectionName, ConfigData.MusicVolumeKey, ConfigData.DefaultMusicVolume);
+        SfxVolume = (float)config.GetValue(ConfigData.AudioSectionName, ConfigData.SfxVolumeKey, ConfigData.DefaultSfxVolume);
+
+        Resolution = (Vector2I)config.GetValue(ConfigData.VideoSectionName, ConfigData.ResolutionKey, ConfigData.DefaultResolution);
+        WindowMode = (WindowMode)(int)config.GetValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, (int)ConfigData.DefaultWindowMode);
+
+        ControllerIconsType = (ControllerIconsType)(int)config.GetValue(ConfigData.InterfaceSectionName, ConfigData.ControllerIconsKey, (int)ConfigData.DefaultControllerIconsType);
     }
 
 }

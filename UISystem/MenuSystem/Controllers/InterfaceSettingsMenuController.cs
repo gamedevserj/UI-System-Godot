@@ -72,7 +72,7 @@ public class InterfaceSettingsMenuController : MenuController<InterfaceSettingsM
         }
         _view.ControllerIconsDropdown.AddMultipleItems(items);
         _view.ControllerIconsDropdown.ItemSelected += SelectControllerIconsType;
-        _view.ControllerIconsDropdown.Select((int)_model.CurrentControllerIconsType);
+        _view.ControllerIconsDropdown.Select((int)_model.ControllerIconsType);
     }
 
     private void SelectControllerIconsType(long index)
@@ -87,7 +87,7 @@ public class InterfaceSettingsMenuController : MenuController<InterfaceSettingsM
             if (result == PopupResult.Yes)
             {
                 _model.ResetToDefault();
-                _view.ControllerIconsDropdown.Select((int)_model.CurrentControllerIconsType);
+                _view.ControllerIconsDropdown.Select((int)_model.ControllerIconsType);
             }
         });
     }

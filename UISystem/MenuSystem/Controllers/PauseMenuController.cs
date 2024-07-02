@@ -32,7 +32,7 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
     {
         if (key.IsPressed())
         {
-            if (key.IsAction(InputsData.PauseButton))
+            if (key.IsAction(InputsData.ReturnToPreviousMenu))
             {
                 PressedResume();
             }

@@ -41,10 +41,10 @@ public partial class MenusManager : Control
             new InGameMenuController(GetMenuView(MenuType.InGame), new InGameMenuModel(), this),
             new PauseMenuController(GetMenuView(MenuType.Pause), new PauseMenuModel(), this, popupsManager, screenFadeManager, menuBackgroundController),
             new OptionsMenuController(GetMenuView(MenuType.Options), new OptionsMenuModel(), this),
-            new AudioSettingsMenuController(GetMenuView(MenuType.AudioSettings), new AudioSettingsMenuModel(config), this, popupsManager),
-            new VideoSettingsMenuController(GetMenuView(MenuType.VideoSettings), new VideoSettingsMenuModel(config), this, popupsManager),
+            new AudioSettingsMenuController(GetMenuView(MenuType.AudioSettings), new AudioSettingsMenuModel(settings), this, popupsManager),
+            new VideoSettingsMenuController(GetMenuView(MenuType.VideoSettings), new VideoSettingsMenuModel(settings), this, popupsManager),
             new RebindKeysMenuController(GetMenuView(MenuType.RebindKeys), new RebindKeysMenuModel(config), this, popupsManager),
-            new InterfaceSettingsMenuController(GetMenuView(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(config, settings), this, popupsManager)
+            new InterfaceSettingsMenuController(GetMenuView(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(settings), this, popupsManager)
         });       
     }
 

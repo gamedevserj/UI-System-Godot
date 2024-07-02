@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://2snibql101pc"]
+[gd_scene load_steps=5 format=3 uid="uid://2snibql101pc"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Views/VideoSettingsMenuView.cs" id="1_8cb4u"]
+[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/ButtonsFontTheme.tres" id="2_6q7xp"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_j4lep"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_r5vq3"]
 
@@ -59,23 +60,28 @@ alignment = 1
 
 [node name="WindowModeDropdown" type="OptionButton" parent="Container/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_6q7xp")
 script = ExtResource("2_j4lep")
 
 [node name="ResolutionDropdown" type="OptionButton" parent="Container/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_6q7xp")
 script = ExtResource("2_j4lep")
 
 [node name="SaveSettingsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_6q7xp")
 text = "Save"
 script = ExtResource("2_r5vq3")
 
 [node name="ResetToDefaultButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_6q7xp")
 text = "Reset to default"
 script = ExtResource("2_r5vq3")
 
 [node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
+theme = ExtResource("2_6q7xp")
 text = "Return"
 script = ExtResource("2_r5vq3")

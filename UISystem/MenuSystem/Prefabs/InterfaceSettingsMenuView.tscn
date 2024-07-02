@@ -1,6 +1,7 @@
-[gd_scene load_steps=4 format=3 uid="uid://d0lqlkxfi5o25"]
+[gd_scene load_steps=5 format=3 uid="uid://d0lqlkxfi5o25"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Views/InterfaceSettingsMenuView.cs" id="1_830ao"]
+[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/ButtonsFontTheme.tres" id="2_hfura"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_lueqv"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="3_y1vo0"]
 
@@ -58,19 +59,27 @@ alignment = 1
 
 [node name="ControllerIconsDropdown" type="OptionButton" parent="Container/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_hfura")
 script = ExtResource("2_lueqv")
 
 [node name="SaveSettingsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_hfura")
 text = "Save"
 script = ExtResource("3_y1vo0")
 
 [node name="ResetToDefaultButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
-text = "Reset to default"
+size_flags_vertical = 3
+theme = ExtResource("2_hfura")
+text = "Reset"
 script = ExtResource("3_y1vo0")
 
 [node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_hfura")
 text = "Return"
 script = ExtResource("3_y1vo0")

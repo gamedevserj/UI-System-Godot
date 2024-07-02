@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bkc5imtbwisbp"]
+[gd_scene load_steps=6 format=3 uid="uid://bkc5imtbwisbp"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Views/RebindKeysMenuView.cs" id="1_53hud"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/RebindableKeyButtonView.cs" id="2_1gokv"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_aytam"]
+[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/ButtonsFontTheme.tres" id="2_dyxee"]
 [ext_resource type="Texture2D" uid="uid://fx6gyp2ifiet" path="res://UISystem/Textures/Inputs/ellipsis.png" id="3_hujmc"]
 
 [node name="RebindKeysMenuView" type="Control" node_paths=PackedStringArray("moveLeft", "moveLeftJoystick", "moveRight", "moveRightJoystick", "jump", "jumpJoystick", "resetToDefaultButton", "returnButton", "fadeObjectsContainer")]
@@ -52,6 +53,7 @@ anchor_left = 0.2
 anchor_top = 0.236
 anchor_right = 0.8
 anchor_bottom = 0.451
+offset_bottom = 160.68
 
 [node name="Labels" type="VBoxContainer" parent="Container/HBoxContainer"]
 layout_mode = 2
@@ -62,16 +64,22 @@ alignment = 1
 [node name="MoveLeftLabel" type="Label" parent="Container/HBoxContainer/Labels"]
 layout_mode = 2
 size_flags_vertical = 6
+theme = ExtResource("2_dyxee")
+theme_override_font_sizes/font_size = 40
 text = "Move left"
 
 [node name="MoveRightLabel" type="Label" parent="Container/HBoxContainer/Labels"]
 layout_mode = 2
 size_flags_vertical = 6
+theme = ExtResource("2_dyxee")
+theme_override_font_sizes/font_size = 40
 text = "Move right"
 
 [node name="JumpLabel" type="Label" parent="Container/HBoxContainer/Labels"]
 layout_mode = 2
 size_flags_vertical = 6
+theme = ExtResource("2_dyxee")
+theme_override_font_sizes/font_size = 40
 text = "Jump"
 
 [node name="ButtonsKeyboard" type="VBoxContainer" parent="Container/HBoxContainer"]
@@ -93,10 +101,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
+offset_left = -35.4
+offset_top = -34.428
+offset_right = 34.6
+offset_bottom = 35.572
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hujmc")
@@ -116,10 +124,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
+offset_left = -35.4
+offset_top = -34.428
+offset_right = 34.6
+offset_bottom = 35.572
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hujmc")
@@ -139,10 +147,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
+offset_left = -35.4
+offset_top = -34.928
+offset_right = 34.6
+offset_bottom = 35.072
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hujmc")
@@ -168,10 +176,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
+offset_left = -35.4
+offset_top = -34.428
+offset_right = 34.6
+offset_bottom = 35.572
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hujmc")
@@ -191,10 +199,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
+offset_left = -35.4
+offset_top = -34.428
+offset_right = 34.6
+offset_bottom = 35.572
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hujmc")
@@ -214,10 +222,10 @@ anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -15.0
-offset_top = -15.0
-offset_right = 15.0
-offset_bottom = 15.0
+offset_left = -35.4
+offset_top = -34.928
+offset_right = 34.6
+offset_bottom = 35.072
 grow_horizontal = 2
 grow_vertical = 2
 texture = ExtResource("3_hujmc")
@@ -226,15 +234,15 @@ stretch_mode = 4
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Container"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.5
+anchor_top = 0.747
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.001
-offset_top = -1.0
-offset_right = 99.999
-offset_bottom = 199.0
+anchor_bottom = 0.747
+offset_left = -100.0
+offset_top = 2.94397
+offset_right = 100.0
+offset_bottom = 138.944
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
@@ -242,10 +250,14 @@ alignment = 1
 
 [node name="ResetToDefaultButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
-text = "Reset to default"
+size_flags_vertical = 3
+theme = ExtResource("2_dyxee")
+text = "Reset"
 script = ExtResource("2_aytam")
 
 [node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
+size_flags_vertical = 3
+theme = ExtResource("2_dyxee")
 text = "Return"
 script = ExtResource("2_aytam")
