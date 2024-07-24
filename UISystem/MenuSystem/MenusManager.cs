@@ -43,7 +43,7 @@ public partial class MenusManager : Control
             new OptionsMenuController(GetMenuView(MenuType.Options), new OptionsMenuModel(), this),
             new AudioSettingsMenuController(GetMenuView(MenuType.AudioSettings), new AudioSettingsMenuModel(settings), this, popupsManager),
             new VideoSettingsMenuController(GetMenuView(MenuType.VideoSettings), new VideoSettingsMenuModel(settings), this, popupsManager),
-            new RebindKeysMenuController(GetMenuView(MenuType.RebindKeys), new RebindKeysMenuModel(config), this, popupsManager),
+            new RebindKeysMenuController(GetMenuView(MenuType.RebindKeys), new RebindKeysMenuModel(settings), this, popupsManager),
             new InterfaceSettingsMenuController(GetMenuView(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(settings), this, popupsManager)
         });       
     }

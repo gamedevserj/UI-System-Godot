@@ -1,5 +1,7 @@
 ﻿using Godot;
 using System;
+using System.Linq;
+using UISystem.Common.Constants;
 using UISystem.Common.Enums;
 using UISystem.Constants;
 using static Godot.DisplayServer;
@@ -24,17 +26,10 @@ public class GameSettings
     public static ControllerIconsType ControllerIconsType { get; private set; } = ConfigData.DefaultControllerIconsType;
 
 
-    public GameSettings(ConfigFile config, Error err)
+    public GameSettings(ConfigFile config)
     {
         _config = config;
-        if (err != Error.Ok)
-        {
-            SaveDefaultSettings(_config);
-        }
-        else
-        {
-            LoadSettings(_config);
-        }
+        LoadSettings();
     }
 
     public void SetMusicVolume(float volume)
@@ -70,33 +65,104 @@ public class GameSettings
         _config.SetValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, (int)windowMode);
     }
 
+    public void ResetInputMapToDefault()
+    {
+        InputMap.LoadFromProjectSettings();
+        SetAllInputsInConfig();
+        Save();
+    }
+
+    public void SaveInputActionKey(string action, Godot.Collections.Array<InputEvent> events)
+    {
+        InputMap.ActionEraseEvents(action);
+        foreach (var item in events)
+        {
+            InputMap.ActionAddEvent(action, item);
+        }
+        SetInputInConfig(action);
+        Save();
+    }
+
     public void Save()
     {
         _config.Save(ConfigData.ConfigLocation);
     }
 
-    private static void SaveDefaultSettings(ConfigFile config)
+    private void LoadSettings()
     {
-        config.SetValue(ConfigData.AudioSectionName, ConfigData.MusicVolumeKey, ConfigData.DefaultMusicVolume);
-        config.SetValue(ConfigData.AudioSectionName, ConfigData.SfxVolumeKey, ConfigData.DefaultSfxVolume);
+        bool saveNewSettings = false;
+        MusicVolume = (float)GetConfigValue(ConfigData.AudioSectionName, ConfigData.MusicVolumeKey, ConfigData.DefaultMusicVolume, ref saveNewSettings);
+        SfxVolume = (float)GetConfigValue(ConfigData.AudioSectionName, ConfigData.SfxVolumeKey, ConfigData.DefaultSfxVolume, ref saveNewSettings);
 
-        config.SetValue(ConfigData.VideoSectionName, ConfigData.ResolutionKey, ConfigData.DefaultResolution);
-        config.SetValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, (int)ConfigData.DefaultWindowMode);
+        Resolution = (Vector2I)GetConfigValue(ConfigData.VideoSectionName, ConfigData.ResolutionKey, ConfigData.DefaultResolution, ref saveNewSettings);
+        WindowMode = (WindowMode)(int)GetConfigValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, (int)ConfigData.DefaultWindowMode, ref saveNewSettings);
 
-        config.SetValue(ConfigData.InterfaceSectionName, ConfigData.ControllerIconsKey, (int)ConfigData.DefaultControllerIconsType);
-        
-        config.Save(ConfigData.ConfigLocation);
+        ControllerIconsType = (ControllerIconsType)(int)GetConfigValue(ConfigData.InterfaceSectionName, ConfigData.ControllerIconsKey, (int)ConfigData.DefaultControllerIconsType, ref saveNewSettings);
+
+        LoadInputs(ref saveNewSettings);
+
+        if (saveNewSettings)
+            Save();
     }
 
-    private static void LoadSettings(ConfigFile config)
+    // if config didn't contain the key, saves and returns default value, otherwise returns saved value
+    // is used to save newly added keys
+    private Variant GetConfigValue(string sectionName, string keyName, Variant defaultValue, ref bool isNewSetting)
     {
-        MusicVolume = (float)config.GetValue(ConfigData.AudioSectionName, ConfigData.MusicVolumeKey, ConfigData.DefaultMusicVolume);
-        SfxVolume = (float)config.GetValue(ConfigData.AudioSectionName, ConfigData.SfxVolumeKey, ConfigData.DefaultSfxVolume);
+        if (!_config.HasSection(sectionName) || !_config.HasSectionKey(sectionName, keyName))
+            isNewSetting = true;
 
-        Resolution = (Vector2I)config.GetValue(ConfigData.VideoSectionName, ConfigData.ResolutionKey, ConfigData.DefaultResolution);
-        WindowMode = (WindowMode)(int)config.GetValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, (int)ConfigData.DefaultWindowMode);
+        Variant value = _config.GetValue(sectionName, keyName, defaultValue);
+        if (isNewSetting) _config.SetValue(sectionName, keyName, value);
 
-        ControllerIconsType = (ControllerIconsType)(int)config.GetValue(ConfigData.InterfaceSectionName, ConfigData.ControllerIconsKey, (int)ConfigData.DefaultControllerIconsType);
+        return value;
+    }
+
+    private void LoadInputs(ref bool saveNewSettings)
+    {
+        if (!_config.HasSection(ConfigData.KeysSectionName))
+        {
+            InputMap.LoadFromProjectSettings();
+            SetAllInputsInConfig();
+            saveNewSettings = true;
+            return;
+        }
+
+        var savedKeys = _config.GetSectionKeys(ConfigData.KeysSectionName);
+        for (int i = 0; i < InputsData.RebindableActions.Length; i++)
+        {
+            if (!savedKeys.Contains(InputsData.RebindableActions[i]))
+            {
+                SetInputInConfig(InputsData.RebindableActions[i]);
+                saveNewSettings = true;
+            }
+        }
+
+        for (int i = 0; i < savedKeys.Length; i++)
+        {
+            var action = savedKeys[i];
+            Godot.Collections.Array<InputEvent> events = (Godot.Collections.Array<InputEvent>)_config.GetValue(ConfigData.KeysSectionName, action);
+
+            InputMap.ActionEraseEvents(action);
+            for (int k = 0; k < events.Count; k++)
+            {
+                InputMap.ActionAddEvent(action, events[k]);
+            }
+        }
+    }
+
+    private void SetAllInputsInConfig()
+    {
+        for (var i = 0; i < InputsData.RebindableActions.Length; i++)
+        {
+            SetInputInConfig(InputsData.RebindableActions[i]);
+        }
+    }
+
+    private void SetInputInConfig(string action)
+    {
+        var events = InputMap.ActionGetEvents(action);
+        _config.SetValue(ConfigData.KeysSectionName, action, events);
     }
 
 }

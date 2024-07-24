@@ -2,7 +2,6 @@
 using Godot.Collections;
 using System;
 using UISystem.Common.Constants;
-using UISystem.Constants;
 using UISystem.MenuSystem.Interfaces;
 using UISystem.PopupSystem.Enums;
 
@@ -14,25 +13,20 @@ public class RebindKeysMenuModel : IMenuModel
     private string _currentlyRebindingAction;
     private int _currentlyRebindingEventIndex; // 0 - for keyboard, 1 - for joystick
     private Action _onFinishedRebinding;
-    private readonly ConfigFile _config;
+    private readonly GameSettings _settings;
 
     public bool IsRebinding => _isRebinding;
 
-    private static string ConfigLocation => ConfigData.ConfigLocation;
-    private static string SectionName => ConfigData.KeysSectionName;
-
-    public RebindKeysMenuModel(ConfigFile config)
+    public RebindKeysMenuModel(GameSettings settings)
     {
-        _config = config;
-        LoadInputMap();
+        _settings = settings;
     }    
 
     public void ResetToDefault(PopupResult result)
     {
         if (result == PopupResult.Yes)
         {
-            InputMap.LoadFromProjectSettings();
-            SaveInputMap();
+            _settings.ResetInputMapToDefault();
         }
     }
 
@@ -68,14 +62,8 @@ public class RebindKeysMenuModel : IMenuModel
         }
 
         currentEvents[_currentlyRebindingEventIndex] = key;
+        _settings.SaveInputActionKey(_currentlyRebindingAction, currentEvents);
 
-        InputMap.ActionEraseEvents(_currentlyRebindingAction);
-        foreach (var item in currentEvents)
-        {
-            InputMap.ActionAddEvent(_currentlyRebindingAction, item);
-        }
-
-        SaveInputMap();
         EndRebinding();
     }
 
@@ -102,40 +90,6 @@ public class RebindKeysMenuModel : IMenuModel
         _currentlyRebindingAction = "";
         _isRebinding = false;
         _onFinishedRebinding?.Invoke();
-    }
-
-    private void SaveInputMap()
-    {
-        for (var i = 0; i < InputsData.RebindableActions.Length; i++)
-        {
-            var events = InputMap.ActionGetEvents(InputsData.RebindableActions[i]);
-            _config.SetValue(SectionName, InputsData.RebindableActions[i], events);
-        }
-        _config.Save(ConfigLocation);
-    }
-
-    private void LoadInputMap()
-    {
-        Error err = _config.Load(ConfigLocation);
-
-        if (err != Error.Ok || !_config.HasSection(SectionName))
-        {
-            InputMap.LoadFromProjectSettings();
-            SaveInputMap();
-            return;
-        }
-
-        for (int i = 0; i < _config.GetSectionKeys(SectionName).Length; i++)
-        {
-            var action = _config.GetSectionKeys(SectionName)[i];
-            Array<InputEvent> events = (Array<InputEvent>)_config.GetValue(SectionName, action);
-
-            InputMap.ActionEraseEvents(action);
-            for (int k = 0; k < events.Count; k++)
-            {
-                InputMap.ActionAddEvent(action, events[k]);
-            }
-        }
     }
 
     private bool IsInputFromCorrectDevice(InputEvent key)

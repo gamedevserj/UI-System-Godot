@@ -9,7 +9,7 @@ public partial class GameInstaller : Node
     {
         var config = new ConfigFile();
         Error err = config.Load(ConfigData.ConfigLocation);
-        GameSettings settings = new(config, err);
+        GameSettings settings = new(config);
 
         UiInstaller.Instance.Init(config, settings);
     }
