@@ -1,6 +1,6 @@
 [gd_scene load_steps=2 format=3 uid="uid://cfy7wvjugk741"]
 
-[ext_resource type="Script" path="res://UISystem/MenuSystem/Views/InGameMenuView.cs" id="1_yoo8i"]
+[ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/InGame/InGameMenuView.cs" id="1_yoo8i"]
 
 [node name="InGameMenuView" type="Control" node_paths=PackedStringArray("fadeObjectsContainer")]
 layout_mode = 3

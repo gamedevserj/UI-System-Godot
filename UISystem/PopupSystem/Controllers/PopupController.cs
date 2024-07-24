@@ -2,6 +2,7 @@
 using GodotExtensions;
 using System;
 using UISystem.Constants;
+using UISystem.MenuSystem.Interfaces;
 using UISystem.PopupSystem.Enums;
 using UISystem.PopupSystem.Interfaces;
 using UISystem.PopupSystem.Views;
@@ -15,6 +16,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
     protected T _view;
     protected Control _defaultSelectedElement;
     protected Action<PopupResult> _onHideAction;
+    private IMenuController _caller;
 
     protected readonly string _prefab;
     protected readonly PopupsManager _popupsManager;
@@ -38,8 +40,10 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         _defaultSelectedElement = _view.DefaultSelectedElement;
     }
 
-    public void Show(string message, Action<PopupResult> onHideAction)
+    public void Show(IMenuController caller, string message, Action<PopupResult> onHideAction)
     {
+        _caller = caller;
+        _caller.CanReturnToPreviousMenu = false;
         _view.Message.Text = message;
         _onHideAction = onHideAction;
         SwitchFocusAvailability(false);
@@ -65,6 +69,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         tween.TweenProperty(_view, PropertyConstants.Modulate, new Color(_view.Modulate, 0), fadeDuration);
         tween.TweenCallback(Callable.From(() =>
         {
+            _caller.CanReturnToPreviousMenu = true;
             _onHideAction?.Invoke(result);
             DestroyView();
         }));

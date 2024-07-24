@@ -74,7 +74,7 @@ public partial class MenusManager : Control
 
     public void ReturnToPreviousMenu(Action onComplete = null)
     {
-        if (_currentController.CanReturnToPreviousMenu && _previousMenus.Count > 0)
+        if (_previousMenus.Count > 0)
         {
             ShowMenu(_previousMenus.Peek().MenuType, MenuStackBehaviourEnum.RemoveFromStack, onComplete);
         }

@@ -26,6 +26,13 @@ project/assembly_name="UISystem"
 
 naming/scene_name_casing=1
 
+[file_customization]
+
+folder_colors={
+"res://UISystem/MenuSystem/Prefabs/": "yellow",
+"res://UISystem/PopupSystem/Prefabs/": "yellow"
+}
+
 [input]
 
 ui_accept={

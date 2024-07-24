@@ -1,6 +1,6 @@
 [gd_scene load_steps=5 format=3 uid="uid://2snibql101pc"]
 
-[ext_resource type="Script" path="res://UISystem/MenuSystem/Views/VideoSettingsMenuView.cs" id="1_8cb4u"]
+[ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/VideoSettings/VideoSettingsMenuView.cs" id="1_8cb4u"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/ButtonsFontTheme.tres" id="2_6q7xp"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_j4lep"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_r5vq3"]

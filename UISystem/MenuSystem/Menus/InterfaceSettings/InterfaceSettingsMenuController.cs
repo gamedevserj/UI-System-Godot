@@ -1,5 +1,4 @@
-﻿using Godot;
-using GodotExtensions;
+﻿using GodotExtensions;
 using System;
 using UISystem.Common;
 using UISystem.Common.Enums;
@@ -13,7 +12,7 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
 
 namespace UISystem.UISystem.MenuSystem.Controllers;
-public class InterfaceSettingsMenuController : MenuController<InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
+public class InterfaceSettingsMenuController : SettingsMenuController<InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
 {
 
     private readonly int _controllerIconsNumber;
@@ -31,10 +30,12 @@ public class InterfaceSettingsMenuController : MenuController<InterfaceSettingsM
 
     protected override void OnReturnToPreviousMenuButtonDown()
     {
-        if (_model.HasUnappliedSettings)
+        if (_model.HasUnappliedSettings && CanReturnToPreviousMenu)
         {
-            _popupsManager.ShowPopup(PopupType.YesNoCancel, PopupMessages.SaveChanges, (result) =>
+            CanReturnToPreviousMenu = false;
+            _popupsManager.ShowPopup(PopupType.YesNoCancel, this, PopupMessages.SaveChanges, (result) =>
             {
+                CanReturnToPreviousMenu = true;
                 if (result == PopupResult.Yes)
                 {
                     _model.SaveSettings();
@@ -82,7 +83,7 @@ public class InterfaceSettingsMenuController : MenuController<InterfaceSettingsM
 
     private void OnResetToDefaultButtonDown()
     {
-        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.ResetToDefault, (result) =>
+        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.ResetToDefault, (result) =>
         {
             if (result == PopupResult.Yes)
             {
@@ -92,4 +93,8 @@ public class InterfaceSettingsMenuController : MenuController<InterfaceSettingsM
         });
     }
 
+    protected override void ResetViewToDefault()
+    {
+        _view.ControllerIconsDropdown.Select((int)_model.ControllerIconsType);
+    }
 }

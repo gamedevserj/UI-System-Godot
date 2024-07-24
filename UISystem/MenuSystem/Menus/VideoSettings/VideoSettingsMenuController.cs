@@ -9,7 +9,7 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
 
 namespace UISystem.MenuSystem.Controllers;
-public class VideoSettingsMenuController : MenuController<VideoSettingsMenuView, VideoSettingsMenuModel>
+public class VideoSettingsMenuController : SettingsMenuController<VideoSettingsMenuView, VideoSettingsMenuModel>
 {
     public override MenuType MenuType => MenuType.VideoSettings;
 
@@ -23,10 +23,12 @@ public class VideoSettingsMenuController : MenuController<VideoSettingsMenuView,
 
     protected override void OnReturnToPreviousMenuButtonDown()
     {
-        if (_model.HasUnappliedSettings)
+        if (_model.HasUnappliedSettings && CanReturnToPreviousMenu)
         {
-            _popupsManager.ShowPopup(PopupType.YesNoCancel, PopupMessages.SaveChanges, (result) =>
+            CanReturnToPreviousMenu = false;
+            _popupsManager.ShowPopup(PopupType.YesNoCancel, this, PopupMessages.SaveChanges, (result) =>
             {
+                CanReturnToPreviousMenu = true;
                 if (result == PopupResult.Yes)
                 {
                     _model.SaveSettings();
@@ -58,13 +60,12 @@ public class VideoSettingsMenuController : MenuController<VideoSettingsMenuView,
     private void OnResetToDefaultButtonDown()
     {
         _lastSelectedElement = _view.ResetToDefaultButton;
-        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.ResetToDefault, (result) =>
+        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.ResetToDefault, (result) =>
         {
             if (result == PopupResult.Yes)
             {
                 _model.ResetToDefault();
-                _view.WindowModeDropdown.Select(_model.CurrenWindowModeIndex);
-                _view.ResolutionDropdown.Select(_model.CurrentResolutionIndex);
+                ResetViewToDefault();
             }
             SwitchFocusAvailability(true);
         });
@@ -108,4 +109,9 @@ public class VideoSettingsMenuController : MenuController<VideoSettingsMenuView,
         _model.SelectWindowMode((int)index);
     }
 
+    protected override void ResetViewToDefault()
+    {
+        _view.WindowModeDropdown.Select(_model.CurrenWindowModeIndex);
+        _view.ResolutionDropdown.Select(_model.CurrentResolutionIndex);
+    }
 }

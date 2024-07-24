@@ -1,6 +1,7 @@
 ﻿using Godot;
 using System;
 using System.Collections.Generic;
+using UISystem.MenuSystem.Interfaces;
 using UISystem.PopupSystem.Constants;
 using UISystem.PopupSystem.Controllers;
 using UISystem.PopupSystem.Enums;
@@ -27,11 +28,11 @@ public partial class PopupsManager : Control
         });
     }
 
-    public void ShowPopup(PopupType popupType, string message, Action<PopupResult> onHideAction = null)
+    public void ShowPopup(PopupType popupType, IMenuController caller, string message, Action<PopupResult> onHideAction = null)
     {
         _currentController = _controllers[popupType];
         _currentController.Init(this);
-        _currentController.Show(message, onHideAction);
+        _currentController.Show(caller, message, onHideAction);
     }
 
     public void HidePopup(PopupResult result)

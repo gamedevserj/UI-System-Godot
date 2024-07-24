@@ -10,7 +10,7 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
 
 namespace UISystem.MenuSystem.Controllers;
-public class RebindKeysMenuController : MenuController<RebindKeysMenuView, RebindKeysMenuModel>
+public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuView, RebindKeysMenuModel>
 {
 
     private readonly PopupsManager _popupsManager;
@@ -41,10 +41,10 @@ public class RebindKeysMenuController : MenuController<RebindKeysMenuView, Rebin
     {
         _lastSelectedElement = _view.ResetToDefaultButton;
         SwitchFocusAvailability(false);
-        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.ResetToDefault, (result) =>
+        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.ResetToDefault, (result) =>
         {
             _model.ResetToDefault(result);
-            UpdateAllButtonViews();
+            ResetViewToDefault();
             SwitchFocusAvailability(true);
         });
     }
@@ -117,4 +117,8 @@ public class RebindKeysMenuController : MenuController<RebindKeysMenuView, Rebin
 
     }
 
+    protected override void ResetViewToDefault()
+    {
+        UpdateAllButtonViews();
+    }
 }

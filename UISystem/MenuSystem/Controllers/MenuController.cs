@@ -64,7 +64,7 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
 
     public virtual void HandleInputPressedWhenActive(InputEvent key)
     {
-        if (key.IsActionPressed(InputsData.ReturnToPreviousMenu))
+        if (key.IsActionPressed(InputsData.ReturnToPreviousMenu) && CanReturnToPreviousMenu)
             OnReturnToPreviousMenuButtonDown();
     }
 
@@ -84,7 +84,8 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
 
     protected virtual void OnReturnToPreviousMenuButtonDown()
     {
-        _menusManager.ReturnToPreviousMenu();
+        if (CanReturnToPreviousMenu)
+            _menusManager.ReturnToPreviousMenu();
     }
 
     protected virtual void SwitchFocusAvailability(bool enable)

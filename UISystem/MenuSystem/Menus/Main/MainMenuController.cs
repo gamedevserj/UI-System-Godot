@@ -1,6 +1,5 @@
-﻿using Godot;
+using Godot;
 using System;
-using UISystem.Common.Constants;
 using UISystem.Constants;
 using UISystem.MenuSystem.Enums;
 using UISystem.MenuSystem.Models;
@@ -10,33 +9,24 @@ using UISystem.PopupSystem.Enums;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
-public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
+public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
 {
 
-    public override MenuType MenuType => MenuType.Pause;
+    public override MenuType MenuType => MenuType.Main;
 
+    private readonly SceneTree _sceneTree;
     private readonly PopupsManager _popupsManager;
-    private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
+    private readonly ScreenFadeManager _screenFadeManager;
 
-    public PauseMenuController(string prefab, PauseMenuModel model, MenusManager menusManager, 
-        PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
-        : base(prefab, model, menusManager)
+    public MainMenuController(string prefab, MainMenuModel model, MenusManager menusManager, SceneTree sceneTree,
+        PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) : 
+        base(prefab, model, menusManager)
     {
+        _sceneTree = sceneTree;
         _popupsManager = popupsManager;
-        _screenFadeManager = screenFadeManager;
         _menuBackgroundController = menuBackgroundController;
-    }
-
-    public override void HandleInputPressedWhenActive(InputEvent key)
-    {
-        if (key.IsPressed())
-        {
-            if (key.IsAction(InputsData.ReturnToPreviousMenu))
-            {
-                PressedResume();
-            }
-        }
+        _screenFadeManager = screenFadeManager;
     }
 
     public override void Show(Action onComplete = null, bool instant = false)
@@ -48,7 +38,6 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
     public override void Hide(MenuStackBehaviourEnum stackBehaviour, Action onComplete = null, bool instant = false)
     {
         base.Hide(stackBehaviour, onComplete, instant);
-        
         if (stackBehaviour != MenuStackBehaviourEnum.AddToStack)
         {
             _menuBackgroundController.HideBackground(instant);
@@ -57,15 +46,24 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
 
     protected override void SetupElements()
     {
-        _view.ResumeGameButton.ButtonDown += PressedResume;
+        _view.PlayButton.ButtonDown += PressedPlay;
         _view.OptionsButton.ButtonDown += PressedOptions;
-        _view.ReturnToMainMenuButton.ButtonDown += PressedReturn;
-        _defaultSelectedElement = _view.ResumeGameButton;
+        _view.QuitButton.ButtonDown += PressedQuit;
+        _defaultSelectedElement = _view.PlayButton;
     }
 
-    private void PressedResume()
+    protected override void OnReturnToPreviousMenuButtonDown()
     {
-        _menusManager.ReturnToPreviousMenu();
+        PressedQuit();
+    }
+
+    private void PressedPlay()
+    {
+        _lastSelectedElement = _view.PlayButton;
+        _screenFadeManager.FadeOut(() =>
+        {
+            _menusManager.ShowMenu(MenuType.InGame, MenuStackBehaviourEnum.ClearStack, null, true);
+        });
     }
 
     private void PressedOptions()
@@ -74,26 +72,17 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
         _menusManager.ShowMenu(MenuType.Options, MenuStackBehaviourEnum.AddToStack);
     }
 
-    private void PressedReturn()
+    private void PressedQuit()
     {
-        _lastSelectedElement = _view.ReturnToMainMenuButton;
+        _lastSelectedElement = _view.QuitButton;
         SwitchFocusAvailability(false);
-
-        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.QuitToMainMenu, (result) =>
+        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.QuitGame, (result)=>
         {
             if (result == PopupResult.Yes)
-            {
-                _screenFadeManager.FadeOut(() => 
-                {
-                    _menusManager.ShowMenu(MenuType.Main, MenuStackBehaviourEnum.ClearStack, null, true);
-                });
-                
-            }
+                _sceneTree.Quit(); 
             else if (result == PopupResult.No) 
-            {
                 SwitchFocusAvailability(true);
-            }
         });
-        
     }
+
 }

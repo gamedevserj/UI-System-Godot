@@ -1,5 +1,4 @@
-﻿using Godot;
-using UISystem.Constants;
+﻿using UISystem.Constants;
 using UISystem.MenuSystem.Enums;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
@@ -7,7 +6,7 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
 
 namespace UISystem.MenuSystem.Controllers;
-public class AudioSettingsMenuController : MenuController<AudioSettingsMenuView, AudioSettingsMenuModel>
+public class AudioSettingsMenuController : SettingsMenuController<AudioSettingsMenuView, AudioSettingsMenuModel>
 {
 
     public override MenuType MenuType => MenuType.AudioSettings;
@@ -25,7 +24,7 @@ public class AudioSettingsMenuController : MenuController<AudioSettingsMenuView,
     {
         if (_model.HasUnappliedSettings)
         {
-            _popupsManager.ShowPopup(PopupType.YesNoCancel, PopupMessages.SaveChanges, (result) =>
+            _popupsManager.ShowPopup(PopupType.YesNoCancel, this, PopupMessages.SaveChanges, (result) =>
             {
                 if (result == PopupResult.Yes)
                 {
@@ -58,13 +57,12 @@ public class AudioSettingsMenuController : MenuController<AudioSettingsMenuView,
     private void OnResetToDefaultButtonDown()
     {
         _lastSelectedElement = _view.ResetToDefaultButton;
-        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.ResetToDefault, (result) =>
+        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.ResetToDefault, (result) =>
         {
             if (result == PopupResult.Yes)
             {
                 _model.ResetToDefault();
-                _view.MusicSlider.SetValueNoSignal(_model.MusicVolume);
-                _view.SfxSlider.SetValueNoSignal(_model.SfxVolume);
+                ResetViewToDefault();
             }
             SwitchFocusAvailability(true);
         });
@@ -110,4 +108,9 @@ public class AudioSettingsMenuController : MenuController<AudioSettingsMenuView,
         _model.SfxVolume = (float)_view.SfxSlider.Value;
     }
 
+    protected override void ResetViewToDefault()
+    {
+        _view.MusicSlider.SetValueNoSignal(_model.MusicVolume);
+        _view.SfxSlider.SetValueNoSignal(_model.SfxVolume);
+    }
 }
