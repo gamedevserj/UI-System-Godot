@@ -1,7 +1,6 @@
 ﻿using Godot;
 using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
-using UISystem.UISystem.PopupSystem.Views;
 
 namespace UISystem.PopupSystem.Views;
 public partial class YesNoCancelPopupView : PopupViewFade

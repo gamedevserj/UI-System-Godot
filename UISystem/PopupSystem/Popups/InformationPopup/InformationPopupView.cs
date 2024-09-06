@@ -1,6 +1,6 @@
-﻿using UISystem.UISystem.PopupSystem.Views;
+﻿using UISystem.PopupSystem.Views;
 
-namespace UISystem.UISystem.PopupSystem.Popups.InformationPopup;
+namespace UISystem.PopupSystem.Popups.InformationPopup;
 public partial class InformationPopupView : PopupViewFade
 {
 }
