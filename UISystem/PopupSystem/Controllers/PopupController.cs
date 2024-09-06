@@ -2,7 +2,6 @@
 using GodotExtensions;
 using System;
 using UISystem.Common.Constants;
-using UISystem.Constants;
 using UISystem.MenuSystem.Interfaces;
 using UISystem.PopupSystem.Enums;
 using UISystem.PopupSystem.Interfaces;
@@ -55,32 +54,25 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         _view.Message.Text = message;
         _onHideAction = onHideAction;
         SwitchFocusAvailability(false);
-
-        Tween tween = _sceneTree.CreateTween();
-        tween.SetPauseMode(Tween.TweenPauseMode.Process);
-        tween.TweenProperty(_view, PropertyConstants.Modulate, new Color(_view.Modulate, 1), fadeDuration);
-        tween.TweenCallback(Callable.From(() =>
+        _view.Show(()=>
         {
             SwitchFocusAvailability(true);
             if (_defaultSelectedElement.IsValid())
             {
                 _defaultSelectedElement.GrabFocus();
             }
-        }));
+        });
     }
 
     public void Hide(PopupResult result)
     {
         SwitchFocusAvailability(false);
-        Tween tween = _sceneTree.CreateTween();
-        tween.SetPauseMode(Tween.TweenPauseMode.Process);
-        tween.TweenProperty(_view, PropertyConstants.Modulate, new Color(_view.Modulate, 0), fadeDuration);
-        tween.TweenCallback(Callable.From(() =>
+        _view.Hide(() =>
         {
             _caller.CanReturnToPreviousMenu = true;
             _onHideAction?.Invoke(result);
             DestroyView();
-        }));
+        });
     }
 
     protected virtual void SwitchFocusAvailability(bool enable)

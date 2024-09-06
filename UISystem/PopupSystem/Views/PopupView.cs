@@ -1,11 +1,12 @@
 ﻿using Godot;
+using System;
 using UISystem.Common;
 using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
 
 namespace UISystem.PopupSystem.Views;
 
-public partial class PopupView : BaseInteractableView
+public abstract partial class PopupView : BaseInteractableView
 {
 
     [Export] private Label message;
@@ -19,5 +20,8 @@ public partial class PopupView : BaseInteractableView
     {
         _focusableElements = new IFocusableControl[] { YesButton };
     }
+
+    public abstract void Show(Action onShown);
+    public abstract void Hide(Action onHidden);
 
 }
