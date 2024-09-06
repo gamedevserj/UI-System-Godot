@@ -4,7 +4,7 @@ using UISystem.MenuSystem.Interfaces;
 using static Godot.DisplayServer;
 
 namespace UISystem.MenuSystem.Models;
-public class VideoSettingsMenuModel : IMenuModel
+public class VideoSettingsMenuModel : ISettingsMenuModel
 {
 
     private Vector2I _tempResolution;

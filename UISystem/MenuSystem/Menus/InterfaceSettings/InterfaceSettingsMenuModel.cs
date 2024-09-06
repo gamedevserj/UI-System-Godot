@@ -3,7 +3,7 @@ using UISystem.Constants;
 using UISystem.MenuSystem.Interfaces;
 
 namespace UISystem.MenuSystem.Models;
-public class InterfaceSettingsMenuModel : IMenuModel
+public class InterfaceSettingsMenuModel : ISettingsMenuModel
 {
 
     private ControllerIconsType _tempIconsType;

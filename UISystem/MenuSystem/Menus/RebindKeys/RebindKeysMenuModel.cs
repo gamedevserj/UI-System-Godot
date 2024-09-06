@@ -6,7 +6,7 @@ using UISystem.MenuSystem.Interfaces;
 using UISystem.PopupSystem.Enums;
 
 namespace UISystem.MenuSystem.Models;
-public class RebindKeysMenuModel : IMenuModel
+public class RebindKeysMenuModel : ISettingsMenuModel
 {
 
     private bool _isRebinding;
@@ -17,17 +17,16 @@ public class RebindKeysMenuModel : IMenuModel
 
     public bool IsRebinding => _isRebinding;
 
+    public bool HasUnappliedSettings => false;
+
     public RebindKeysMenuModel(GameSettings settings)
     {
         _settings = settings;
     }    
 
-    public void ResetToDefault(PopupResult result)
+    public void ResetToDefault()
     {
-        if (result == PopupResult.Yes)
-        {
-            _settings.ResetInputMapToDefault();
-        }
+        _settings.ResetInputMapToDefault();
     }
 
     /// <summary>
@@ -134,4 +133,17 @@ public class RebindKeysMenuModel : IMenuModel
         return result;
     }
 
+    public void SaveSettings()
+    {
+        // is not implemented in this setup
+        // saving happens when player presses a key
+        // if you want to change it - store the actions that player tried to rebind and save/discard them when the button is pressed
+    }
+
+    public void DiscardChanges()
+    {
+        // is not implemented in this setup
+        // saving happens when player presses a key
+        // if you want to change it - store the actions that player tried to rebind and save/discard them when the button is pressed
+    }
 }

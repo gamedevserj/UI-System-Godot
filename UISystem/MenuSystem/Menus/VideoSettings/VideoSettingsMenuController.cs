@@ -1,50 +1,20 @@
 ﻿using GodotExtensions;
 using System.Text.RegularExpressions;
 using UISystem.Common;
-using UISystem.Constants;
 using UISystem.MenuSystem.Enums;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
-using UISystem.PopupSystem.Enums;
 
 namespace UISystem.MenuSystem.Controllers;
 public class VideoSettingsMenuController : SettingsMenuController<VideoSettingsMenuView, VideoSettingsMenuModel>
 {
     public override MenuType MenuType => MenuType.VideoSettings;
 
-    private readonly PopupsManager _popupsManager;
-
     public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, MenusManager menusManager, PopupsManager popupsManager) 
-        : base(prefab, model, menusManager)
+        : base(prefab, model, menusManager, popupsManager)
     {
-        _popupsManager = popupsManager;
-    }
-
-    protected override void OnReturnToPreviousMenuButtonDown()
-    {
-        if (_model.HasUnappliedSettings && CanReturnToPreviousMenu)
-        {
-            CanReturnToPreviousMenu = false;
-            _popupsManager.ShowPopup(PopupType.YesNoCancel, this, PopupMessages.SaveChanges, (result) =>
-            {
-                CanReturnToPreviousMenu = true;
-                if (result == PopupResult.Yes)
-                {
-                    _model.SaveSettings();
-                    base.OnReturnToPreviousMenuButtonDown();
-                }
-                else if (result == PopupResult.No)
-                {
-                    _model.DiscardChanges();
-                    base.OnReturnToPreviousMenuButtonDown();
-                }
-            });
-        }
-        else
-        {
-            base.OnReturnToPreviousMenuButtonDown();
-        }
+        
     }
 
     protected override void SetupElements()
@@ -54,21 +24,13 @@ public class VideoSettingsMenuController : SettingsMenuController<VideoSettingsM
         _view.SaveSettingsButton.ButtonDown += _model.SaveSettings;
         _view.ResetToDefaultButton.ButtonDown += OnResetToDefaultButtonDown;
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
-        _defaultSelectedElement = _view.ReturnButton;
+        DefaultSelectedElement = _view.ReturnButton;
     }
 
-    private void OnResetToDefaultButtonDown()
+    protected override void OnResetToDefaultButtonDown()
     {
         _lastSelectedElement = _view.ResetToDefaultButton;
-        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.ResetToDefault, (result) =>
-        {
-            if (result == PopupResult.Yes)
-            {
-                _model.ResetToDefault();
-                ResetViewToDefault();
-            }
-            SwitchFocusAvailability(true);
-        });
+        base.OnResetToDefaultButtonDown();
     }
 
     private void SetupWindowModeDropdown()

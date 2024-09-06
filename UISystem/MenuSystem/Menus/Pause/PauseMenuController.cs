@@ -60,7 +60,7 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
         _view.ResumeGameButton.ButtonDown += PressedResume;
         _view.OptionsButton.ButtonDown += PressedOptions;
         _view.ReturnToMainMenuButton.ButtonDown += PressedReturn;
-        _defaultSelectedElement = _view.ResumeGameButton;
+        DefaultSelectedElement = _view.ResumeGameButton;
     }
 
     private void PressedResume()

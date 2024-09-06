@@ -2,7 +2,7 @@
 using UISystem.MenuSystem.Interfaces;
 
 namespace UISystem.MenuSystem.Models;
-public class AudioSettingsMenuModel : IMenuModel
+public class AudioSettingsMenuModel : ISettingsMenuModel
 {
 
     private float _tempMusicVolume;

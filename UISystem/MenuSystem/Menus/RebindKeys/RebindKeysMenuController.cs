@@ -7,20 +7,17 @@ using UISystem.MenuSystem.Enums;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
-using UISystem.PopupSystem.Enums;
 
 namespace UISystem.MenuSystem.Controllers;
 public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuView, RebindKeysMenuModel>
 {
 
-    private readonly PopupsManager _popupsManager;
-
     public override MenuType MenuType => MenuType.RebindKeys;
 
     public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, MenusManager menusManager,
-        PopupsManager popupsManager) : base(prefab, model, menusManager)
+        PopupsManager popupsManager) : base(prefab, model, menusManager, popupsManager)
     {
-        _popupsManager = popupsManager;
+        
     }
 
     public override void HandleInputPressedWhenActive(InputEvent key)
@@ -37,16 +34,10 @@ public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuVie
         button.Image.Texture = (Texture2D)GD.Load(Icons.GetIcon(e));
     }
 
-    private void ResetToDefault()
+    protected override void OnResetToDefaultButtonDown()
     {
         _lastSelectedElement = _view.ResetToDefaultButton;
-        SwitchFocusAvailability(false);
-        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.ResetToDefault, (result) =>
-        {
-            _model.ResetToDefault(result);
-            ResetViewToDefault();
-            SwitchFocusAvailability(true);
-        });
+        base.OnResetToDefaultButtonDown();
     }
 
     private void OnButtonDown(RebindableKeyButtonView button, string action, int index)
@@ -80,7 +71,7 @@ public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuVie
     protected override void SetupElements()
     {
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
-        _view.ResetToDefaultButton.ButtonDown += ResetToDefault;
+        _view.ResetToDefaultButton.ButtonDown += OnResetToDefaultButtonDown;
 
         _view.MoveLeft.ButtonDown += () =>
         OnButtonDown(_view.MoveLeft, InputsData.MoveLeft, InputsData.KeyboardEventIndex);
@@ -98,7 +89,7 @@ public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuVie
         OnButtonDown(_view.JumpJoystick, InputsData.Jump, InputsData.JoystickEventIndex);
 
         UpdateAllButtonViews();
-        _defaultSelectedElement = _view.ReturnButton;
+        DefaultSelectedElement = _view.ReturnButton;
     }
 
     private void UpdateAllButtonViews()

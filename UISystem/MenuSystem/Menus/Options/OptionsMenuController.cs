@@ -20,7 +20,7 @@ public partial class OptionsMenuController : MenuController<OptionsMenuView, Opt
         _view.VideoSettingsButton.ButtonDown += OnVideoSettingsButtonDown;
         _view.RebindKeysButton.ButtonDown += OnRebindKeysButtonDown;
         _view.InterfaceSettingsButton.ButtonDown += OnInterfaceSettingsButtonDown;
-        _defaultSelectedElement = _view.InterfaceSettingsButton;
+        DefaultSelectedElement = _view.InterfaceSettingsButton;
     }
 
     private void OnAudioSettingsButtonDown()

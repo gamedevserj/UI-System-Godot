@@ -50,11 +50,11 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
         {
             onComplete?.Invoke();
             SwitchFocusAvailability(true);
-            if (IsElementValid(_lastSelectedElement))
+            if (_lastSelectedElement?.IsValidElement() == true)
             {
                 _lastSelectedElement.SwitchFocus(true);
             }
-            else if (IsElementValid(_defaultSelectedElement))
+            else if (_defaultSelectedElement?.IsValidElement() == true)
             {
                 _defaultSelectedElement.SwitchFocus(true);
             }
@@ -98,13 +98,8 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
     {
         _view.SwitchFocusAwailability(enable);
 
-        if (enable && IsElementValid(_lastSelectedElement))
+        if (enable && _lastSelectedElement?.IsValidElement() == true)
             _lastSelectedElement.SwitchFocus(true);
-    }
-
-    protected bool IsElementValid(IFocusableControl element)
-    {
-        return element != null && element.IsValidElement();
     }
 
     protected abstract void SetupElements();

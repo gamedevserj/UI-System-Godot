@@ -49,7 +49,7 @@ public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
         _view.PlayButton.ButtonDown += PressedPlay;
         _view.OptionsButton.ButtonDown += PressedOptions;
         _view.QuitButton.ButtonDown += PressedQuit;
-        _defaultSelectedElement = _view.PlayButton;
+        DefaultSelectedElement = _view.PlayButton;
     }
 
     protected override void OnReturnToPreviousMenuButtonDown()
