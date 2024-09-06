@@ -1,6 +1,7 @@
 ﻿using Godot;
 using GodotExtensions;
 using System;
+using UISystem.Common.Constants;
 using UISystem.Constants;
 using UISystem.MenuSystem.Interfaces;
 using UISystem.PopupSystem.Enums;
@@ -23,6 +24,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
     protected readonly SceneTree _sceneTree;
 
     public abstract PopupType PopupType { get; }
+    public abstract PopupResult PressedReturnPopupResult { get; }
 
     public PopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree)
     {
@@ -38,6 +40,12 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
             CreateView(popupParent);
         }
         _defaultSelectedElement = _view.DefaultSelectedElement;
+    }
+
+    public void HandleInputPressedWhenActive(InputEvent key)
+    {
+        if (key.IsActionPressed(InputsData.ReturnToPreviousMenu))
+            _popupsManager.HidePopup(PressedReturnPopupResult);
     }
 
     public void Show(IMenuController caller, string message, Action<PopupResult> onHideAction)

@@ -20,14 +20,10 @@ public partial class MenusManager : Control
 
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsPressed())
-        {
-            
-        }
         _currentController?.HandleInputPressedWhenActive(@event);
     }
 
-    public void Init(ConfigFile config, GameSettings settings, PopupsManager popupsManager, ScreenFadeManager screenFadeManager, 
+    public void Init(GameSettings settings, PopupsManager popupsManager, ScreenFadeManager screenFadeManager, 
         MenuBackgroundController menuBackgroundController)
     {
         _previousMenus = new Stack<IMenuController>();

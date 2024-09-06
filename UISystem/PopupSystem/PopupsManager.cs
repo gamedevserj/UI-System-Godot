@@ -28,6 +28,11 @@ public partial class PopupsManager : Control
         });
     }
 
+    public override void _Input(InputEvent @event)
+    {
+        _currentController?.HandleInputPressedWhenActive(@event);
+    }
+
     public void ShowPopup(PopupType popupType, IMenuController caller, string message, Action<PopupResult> onHideAction = null)
     {
         _currentController = _controllers[popupType];
