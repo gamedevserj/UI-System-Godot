@@ -2,6 +2,7 @@
 using GodotExtensions;
 using System;
 using UISystem.Common.Constants;
+using UISystem.Common.Interfaces;
 using UISystem.MenuSystem.Interfaces;
 using UISystem.PopupSystem.Enums;
 using UISystem.PopupSystem.Interfaces;
@@ -14,7 +15,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
     protected const float fadeDuration = 0.25f;
 
     protected T _view;
-    protected Control _defaultSelectedElement;
+    protected IFocusableControl _defaultSelectedElement;
     protected Action<PopupResult> _onHideAction;
     private IMenuController _caller;
 
@@ -57,9 +58,9 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         _view.Show(()=>
         {
             SwitchFocusAvailability(true);
-            if (_defaultSelectedElement.IsValid())
+            if (_defaultSelectedElement?.IsValidElement() == true)
             {
-                _defaultSelectedElement.GrabFocus();
+                _defaultSelectedElement.SwitchFocus(true);
             }
         });
     }
@@ -75,7 +76,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         });
     }
 
-    protected virtual void SwitchFocusAvailability(bool enable)
+    private void SwitchFocusAvailability(bool enable)
     {
         _view.SwitchFocusAwailability(enable);
     }

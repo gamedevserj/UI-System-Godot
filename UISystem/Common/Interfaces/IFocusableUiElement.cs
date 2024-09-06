@@ -16,9 +16,9 @@ public interface IFocusableUiElement<T> where T : Control
             Instance.ReleaseFocus();
     }
 
-    bool IsValidElement()
+    bool? IsValidElement()
     {
-        return Instance.IsValid();
+        return Instance?.IsValid();
     }
 
     void SwitchFocusAvailability(bool focusable)

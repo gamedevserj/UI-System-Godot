@@ -54,7 +54,7 @@ public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
 
     protected override void OnReturnToPreviousMenuButtonDown()
     {
-        PressedQuit();
+        ShowQuitPopup();
     }
 
     private void PressedPlay()
@@ -75,12 +75,17 @@ public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
     private void PressedQuit()
     {
         _lastSelectedElement = _view.QuitButton;
+        ShowQuitPopup();
+    }
+
+    private void ShowQuitPopup()
+    {
         SwitchFocusAvailability(false);
-        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.QuitGame, (result)=>
+        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.QuitGame, (result) =>
         {
             if (result == PopupResult.Yes)
-                _sceneTree.Quit(); 
-            else if (result == PopupResult.No) 
+                _sceneTree.Quit();
+            else if (result == PopupResult.No)
                 SwitchFocusAvailability(true);
         });
     }

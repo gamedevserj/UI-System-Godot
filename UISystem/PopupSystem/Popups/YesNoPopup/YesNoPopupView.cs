@@ -11,7 +11,7 @@ public partial class YesNoPopupView : PopupViewFade
 
     public ButtonView NoButton => noButton;
 
-    public override Control DefaultSelectedElement => NoButton;
+    public override IFocusableControl DefaultSelectedElement => NoButton;
 
     protected override void PopulateFocusableElements()
     {
