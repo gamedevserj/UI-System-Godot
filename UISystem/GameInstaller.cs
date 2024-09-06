@@ -11,7 +11,7 @@ public partial class GameInstaller : Node
         Error err = config.Load(ConfigData.ConfigLocation);
         GameSettings settings = new(config);
 
-        UiInstaller.Instance.Init(config, settings);
+        UiInstaller.Instance.Init(settings);
     }
 
 }

@@ -8,7 +8,6 @@ using UISystem.MenuSystem.Interfaces;
 using UISystem.MenuSystem.Models;
 using UISystem.PopupSystem;
 using UISystem.ScreenFade;
-using UISystem.UISystem.MenuSystem.Controllers;
 
 namespace UISystem.MenuSystem;
 public partial class MenusManager : Control
@@ -27,7 +26,7 @@ public partial class MenusManager : Control
         _currentController?.HandleInputPressedWhenActive(@event);
     }
 
-    public void Init(ConfigFile config, GameSettings settings, PopupsManager popupsManager, ScreenFadeManager screenFadeManager, 
+    public void Init(GameSettings settings, PopupsManager popupsManager, ScreenFadeManager screenFadeManager, 
         MenuBackgroundController menuBackgroundController)
     {
         _previousMenus = new Stack<IMenuController>();
