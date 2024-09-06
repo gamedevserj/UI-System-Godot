@@ -7,6 +7,8 @@ public class YesNoPopupController : PopupController<YesNoPopupView>
 {
 
     public override PopupType PopupType => PopupType.YesNo;
+    public override PopupResult PressedReturnPopupResult => PopupResult.No;
+
     public YesNoPopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree) : base(prefab, popupsManager, sceneTree)
     {
 

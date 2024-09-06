@@ -1,6 +1,6 @@
 [gd_scene load_steps=4 format=3 uid="uid://4mgylfwefvrf"]
 
-[ext_resource type="Script" path="res://UISystem/PopupSystem/Views/PopupView.cs" id="1_0bf6x"]
+[ext_resource type="Script" path="res://UISystem/PopupSystem/Popups/InformationPopup/InformationPopupView.cs" id="1_qipf6"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_wr1kv"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_0lu1q"]
@@ -12,7 +12,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_0bf6x")
+script = ExtResource("1_qipf6")
 message = NodePath("Message")
 yesButton = NodePath("ButtonsContainer/YesButton")
 

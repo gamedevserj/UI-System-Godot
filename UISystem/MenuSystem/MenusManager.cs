@@ -19,10 +19,6 @@ public partial class MenusManager : Control
 
     public override void _Input(InputEvent @event)
     {
-        if (@event.IsPressed())
-        {
-            
-        }
         _currentController?.HandleInputPressedWhenActive(@event);
     }
 

@@ -14,7 +14,7 @@ public abstract partial class PopupView : BaseInteractableView
 
     public Label Message { get => message; set => message = value; }
     public ButtonView YesButton => yesButton;
-    public virtual Control DefaultSelectedElement => YesButton;
+    public virtual IFocusableControl DefaultSelectedElement => YesButton;
 
     protected override void PopulateFocusableElements()
     {

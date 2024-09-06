@@ -1,13 +1,14 @@
 ﻿using Godot;
 using UISystem.PopupSystem.Enums;
-using UISystem.PopupSystem.Views;
+using UISystem.PopupSystem.Popups.InformationPopup;
 
 namespace UISystem.PopupSystem.Controllers;
-public class InformationPopupController : PopupController<PopupView>
+public class InformationPopupController : PopupController<InformationPopupView>
 {
 
     public override PopupType PopupType => PopupType.Yes;
-    
+    public override PopupResult PressedReturnPopupResult => PopupResult.Yes;
+
     public InformationPopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree) : base(prefab, popupsManager, sceneTree)
     {
     }

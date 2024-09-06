@@ -3,14 +3,16 @@ using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
 
 namespace UISystem.PopupSystem.Views;
-public partial class YesNoCancelPopupView : YesNoPopupView
+public partial class YesNoCancelPopupView : PopupViewFade
 {
 
+    [Export] private ButtonView noButton;
     [Export] private ButtonView cancelButton;
 
+    public ButtonView NoButton => noButton;
     public ButtonView CancelButton => cancelButton;
 
-    public override Control DefaultSelectedElement => CancelButton;
+    public override IFocusableControl DefaultSelectedElement => CancelButton;
 
     protected override void PopulateFocusableElements()
     {

@@ -1,7 +1,8 @@
 ﻿using Godot;
 using GodotExtensions;
 using System;
-using UISystem.Constants;
+using UISystem.Common.Constants;
+using UISystem.Common.Interfaces;
 using UISystem.MenuSystem.Interfaces;
 using UISystem.PopupSystem.Enums;
 using UISystem.PopupSystem.Interfaces;
@@ -14,7 +15,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
     protected const float fadeDuration = 0.25f;
 
     protected T _view;
-    protected Control _defaultSelectedElement;
+    protected IFocusableControl _defaultSelectedElement;
     protected Action<PopupResult> _onHideAction;
     private IMenuController _caller;
 
@@ -23,6 +24,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
     protected readonly SceneTree _sceneTree;
 
     public abstract PopupType PopupType { get; }
+    public abstract PopupResult PressedReturnPopupResult { get; }
 
     public PopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree)
     {
@@ -40,6 +42,12 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         _defaultSelectedElement = _view.DefaultSelectedElement;
     }
 
+    public void HandleInputPressedWhenActive(InputEvent key)
+    {
+        if (key.IsActionPressed(InputsData.ReturnToPreviousMenu))
+            _popupsManager.HidePopup(PressedReturnPopupResult);
+    }
+
     public void Show(IMenuController caller, string message, Action<PopupResult> onHideAction)
     {
         _caller = caller;
@@ -47,35 +55,28 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         _view.Message.Text = message;
         _onHideAction = onHideAction;
         SwitchFocusAvailability(false);
-
-        Tween tween = _sceneTree.CreateTween();
-        tween.SetPauseMode(Tween.TweenPauseMode.Process);
-        tween.TweenProperty(_view, PropertyConstants.Modulate, new Color(_view.Modulate, 1), fadeDuration);
-        tween.TweenCallback(Callable.From(() =>
+        _view.Show(()=>
         {
             SwitchFocusAvailability(true);
-            if (_defaultSelectedElement.IsValid())
+            if (_defaultSelectedElement?.IsValidElement() == true)
             {
-                _defaultSelectedElement.GrabFocus();
+                _defaultSelectedElement.SwitchFocus(true);
             }
-        }));
+        });
     }
 
     public void Hide(PopupResult result)
     {
         SwitchFocusAvailability(false);
-        Tween tween = _sceneTree.CreateTween();
-        tween.SetPauseMode(Tween.TweenPauseMode.Process);
-        tween.TweenProperty(_view, PropertyConstants.Modulate, new Color(_view.Modulate, 0), fadeDuration);
-        tween.TweenCallback(Callable.From(() =>
+        _view.Hide(() =>
         {
             _caller.CanReturnToPreviousMenu = true;
             _onHideAction?.Invoke(result);
             DestroyView();
-        }));
+        });
     }
 
-    protected virtual void SwitchFocusAvailability(bool enable)
+    private void SwitchFocusAvailability(bool enable)
     {
         _view.SwitchFocusAwailability(enable);
     }
