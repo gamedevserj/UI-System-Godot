@@ -21,7 +21,7 @@ public abstract partial class PopupView : BaseInteractableWindow
         _focusableElements = new IFocusableControl[] { YesButton };
     }
 
-    public abstract void Show(Action onShown);
-    public abstract void Hide(Action onHidden);
+    public abstract void Show(Action onShown, bool instant = false);
+    public abstract void Hide(Action onHidden, bool instant = false);
 
 }

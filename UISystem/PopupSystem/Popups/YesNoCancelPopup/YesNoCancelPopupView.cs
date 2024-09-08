@@ -1,9 +1,11 @@
 ﻿using Godot;
+using System;
 using UISystem.Common.Elements;
+using UISystem.Common.Helpers;
 using UISystem.Common.Interfaces;
 
 namespace UISystem.PopupSystem.Views;
-public partial class YesNoCancelPopupView : PopupViewFade
+public partial class YesNoCancelPopupView : PopupView
 {
 
     [Export] private ButtonView noButton;
@@ -13,6 +15,16 @@ public partial class YesNoCancelPopupView : PopupViewFade
     public ButtonView CancelButton => cancelButton;
 
     public override IFocusableControl DefaultSelectedElement => CancelButton;
+
+    public override void Hide(Action onHidden, bool instant = false)
+    {
+        Fader.Hide(GetTree(), this, onHidden, instant);
+    }
+
+    public override void Show(Action onShown, bool instant = false)
+    {
+        Fader.Show(GetTree(), this, onShown, instant);
+    }
 
     protected override void PopulateFocusableElements()
     {
