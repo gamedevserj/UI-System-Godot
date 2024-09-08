@@ -34,12 +34,6 @@ public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuVie
         button.Image.Texture = (Texture2D)GD.Load(Icons.GetIcon(e));
     }
 
-    protected override void OnResetToDefaultButtonDown()
-    {
-        _lastSelectedElement = _view.ResetToDefaultButton;
-        base.OnResetToDefaultButtonDown();
-    }
-
     private void OnButtonDown(RebindableKeyButtonView button, string action, int index)
     {
         button.Image.Texture = (Texture2D)GD.Load(Icons.EllipsisImage);
@@ -71,7 +65,7 @@ public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuVie
     protected override void SetupElements()
     {
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
-        _view.ResetToDefaultButton.ButtonDown += OnResetToDefaultButtonDown;
+        _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
 
         _view.MoveLeft.ButtonDown += () =>
         OnButtonDown(_view.MoveLeft, InputsData.MoveLeft, InputsData.KeyboardEventIndex);

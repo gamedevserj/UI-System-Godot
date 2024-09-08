@@ -21,7 +21,7 @@ public class AudioSettingsMenuController : SettingsMenuController<AudioSettingsM
         SetupMusicSlider();
         SetupSfxSlider();
         _view.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
-        _view.ResetToDefaultButton.ButtonDown += OnResetToDefaultButtonDown;
+        _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
         DefaultSelectedElement = _view.MusicSlider;
     }
@@ -30,12 +30,6 @@ public class AudioSettingsMenuController : SettingsMenuController<AudioSettingsM
     {
         _model.SaveSettings();
         _lastSelectedElement = _view.SaveSettingsButton;
-    }
-
-    protected override void OnResetToDefaultButtonDown()
-    {
-        _lastSelectedElement = _view.ResetToDefaultButton;
-        base.OnResetToDefaultButtonDown();
     }
 
     private void SetupMusicSlider()
@@ -48,9 +42,7 @@ public class AudioSettingsMenuController : SettingsMenuController<AudioSettingsM
     private void OnMusicSliderDragEnded(bool dragEnded)
     {
         if (dragEnded)
-        {
             _model.MusicVolume = (float)_view.MusicSlider.Value;
-        }
     }
 
     private void OnMusicSliderDragStarted()
@@ -69,9 +61,7 @@ public class AudioSettingsMenuController : SettingsMenuController<AudioSettingsM
     private void OnSfxSliderDragEnded(bool dragEnded)
     {
         if (dragEnded)
-        {
             _model.SfxVolume = (float)_view.SfxSlider.Value;
-        }
     }
 
     private void OnSfxSliderDragStarted()
@@ -84,6 +74,6 @@ public class AudioSettingsMenuController : SettingsMenuController<AudioSettingsM
     {
         _view.MusicSlider.SetValueNoSignal(_model.MusicVolume);
         _view.SfxSlider.SetValueNoSignal(_model.SfxVolume);
-        _lastSelectedElement = _view.ResetToDefaultButton;
+        _lastSelectedElement = _view.ResetButton;
     }
 }

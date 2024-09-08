@@ -58,12 +58,12 @@ public partial class MenusManager : Control
         {
             _currentController.Hide(stackBehaviour, () =>
             {
-                ChangeMenu(menuType, stackBehaviour, onNewMenuShown);
+                ChangeMenu(menuType, stackBehaviour, onNewMenuShown, instant);
             }, instant);
         }
         else
         {
-            ChangeMenu(menuType, stackBehaviour, onNewMenuShown);
+            ChangeMenu(menuType, stackBehaviour, onNewMenuShown, instant);
         }
     }
 

@@ -2,7 +2,10 @@
 using UISystem.Common.Interfaces;
 
 namespace UISystem.Common;
-public abstract partial class BaseInteractableView : Control
+/// <summary>
+/// Base class for a window with interactable elements (menu, popup, etc.)
+/// </summary>
+public abstract partial class BaseInteractableWindow : Control
 {
 
     protected IFocusableControl[] _focusableElements;

@@ -22,15 +22,9 @@ public class VideoSettingsMenuController : SettingsMenuController<VideoSettingsM
         SetupWindowModeDropdown();
         SetupResolutionDropdown();
         _view.SaveSettingsButton.ButtonDown += _model.SaveSettings;
-        _view.ResetToDefaultButton.ButtonDown += OnResetToDefaultButtonDown;
+        _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
         DefaultSelectedElement = _view.ReturnButton;
-    }
-
-    protected override void OnResetToDefaultButtonDown()
-    {
-        _lastSelectedElement = _view.ResetToDefaultButton;
-        base.OnResetToDefaultButtonDown();
     }
 
     private void SetupWindowModeDropdown()

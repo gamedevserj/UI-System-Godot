@@ -5,7 +5,7 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Enums;
 
 namespace UISystem.MenuSystem.Controllers;
-public abstract class SettingsMenuController<TView, TModel> : MenuController<TView, TModel> where TView : MenuView where TModel : ISettingsMenuModel
+public abstract class SettingsMenuController<TView, TModel> : MenuController<TView, TModel> where TView : SettingsMenuView where TModel : ISettingsMenuModel
 {
 
     protected readonly PopupsManager _popupsManager;
@@ -55,6 +55,7 @@ public abstract class SettingsMenuController<TView, TModel> : MenuController<TVi
 
     protected virtual void OnResetToDefaultButtonDown()
     {
+        _lastSelectedElement = _view.ResetButton;
         SwitchFocusAvailability(false);
         _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.ResetToDefault, (result) =>
         {

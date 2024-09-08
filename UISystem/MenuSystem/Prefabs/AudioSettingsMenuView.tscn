@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/HSliderView.cs" id="2_8b7gh"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="3_sk5vb"]
 
-[node name="AudioSettingsMenuView" type="Control" node_paths=PackedStringArray("musicSlider", "sfxSlider", "saveSettingsButton", "resetToDefaultButton", "returnButton", "fadeObjectsContainer")]
+[node name="AudioSettingsMenuView" type="Control" node_paths=PackedStringArray("musicSlider", "sfxSlider", "saveSettingsButton", "returnButton", "fadeObjectsContainer", "resetButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,9 +16,9 @@ script = ExtResource("1_ca7ap")
 musicSlider = NodePath("Container/VBoxContainer/MusicSlider")
 sfxSlider = NodePath("Container/VBoxContainer/SfxSlider")
 saveSettingsButton = NodePath("Container/VBoxContainer/SaveSettingsButton")
-resetToDefaultButton = NodePath("Container/VBoxContainer/ResetToDefaultButton")
 returnButton = NodePath("Container/VBoxContainer/ReturnButton")
 fadeObjectsContainer = NodePath("Container")
+resetButton = NodePath("Container/VBoxContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1

@@ -6,7 +6,7 @@ using UISystem.Common.Interfaces;
 
 namespace UISystem.PopupSystem.Views;
 
-public abstract partial class PopupView : BaseInteractableView
+public abstract partial class PopupView : BaseInteractableWindow
 {
 
     [Export] private Label message;

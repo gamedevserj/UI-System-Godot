@@ -1,12 +1,16 @@
-using Godot;
+﻿using Godot;
 using System;
+using UISystem.Common.Elements;
 using UISystem.Common.Helpers;
 
 namespace UISystem.MenuSystem.Views;
-public partial class InGameMenuView : MenuView
+public partial class SettingsMenuView : MenuView
 {
 
     [Export] private Control fadeObjectsContainer;
+    [Export] private ButtonView resetButton;
+
+    public ButtonView ResetButton => resetButton;
 
     public override void Init()
     {
@@ -23,5 +27,4 @@ public partial class InGameMenuView : MenuView
     {
         Fader.Show(GetTree(), fadeObjectsContainer, onShown, instant);
     }
-
 }

@@ -1,12 +1,10 @@
 using Godot;
 using System;
-using UISystem.Constants;
+using UISystem.Common.Helpers;
 
 namespace UISystem.ScreenFade;
 public partial class ScreenFadeManager : TextureRect
 {
-
-    private const float Duration = 0.25f;
 
     private bool _isFading;
 
@@ -17,32 +15,15 @@ public partial class ScreenFadeManager : TextureRect
 
         _isFading = true;
         MouseFilter = MouseFilterEnum.Stop;
-        Fade(1, () =>
+
+        Fader.Show(GetTree(), this, ()=>
         {
             onFadeOutComplete?.Invoke();
-            FadeIn();
-        });
-    }
 
-    private void Fade(float targetValue, Action onFadeOutComplete = null)
-    {
-        ShaderMaterial material = Material as ShaderMaterial;
-
-        Tween tween = GetTree().CreateTween();
-        tween.SetPauseMode(Tween.TweenPauseMode.Process);
-        tween.TweenProperty(this, PropertyConstants.Modulate, new Color(Modulate, targetValue), Duration);
-        tween.TweenCallback(Callable.From(() =>
-        {
-            onFadeOutComplete?.Invoke();
-        }));
-    }
-
-    private void FadeIn()
-    {
-        Fade(0, () =>
-        { 
-            _isFading = false;
-            MouseFilter = MouseFilterEnum.Ignore;
+            Fader.Hide(GetTree(), this, () => {
+                _isFading = false;
+                MouseFilter = MouseFilterEnum.Ignore;
+            });
         });
     }
 

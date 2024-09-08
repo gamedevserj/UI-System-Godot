@@ -4,7 +4,7 @@ using UISystem.Common;
 using UISystem.MenuSystem.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
-public abstract partial class MenuView : BaseInteractableView, IMenuView
+public abstract partial class MenuView : BaseInteractableWindow, IMenuView
 {
 
     public abstract void Show(Action onShown, bool instant = false);

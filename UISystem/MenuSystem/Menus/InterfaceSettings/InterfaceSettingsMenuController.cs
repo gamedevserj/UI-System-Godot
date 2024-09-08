@@ -27,7 +27,7 @@ public class InterfaceSettingsMenuController : SettingsMenuController<InterfaceS
         _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
         SetupControllerIconsDropdown();
         _view.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
-        _view.ResetToDefaultButton.ButtonDown += OnResetToDefaultButtonDown;
+        _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
         DefaultSelectedElement = _view.ControllerIconsDropdown;
     }
 
@@ -54,12 +54,6 @@ public class InterfaceSettingsMenuController : SettingsMenuController<InterfaceS
     {
         _model.SelectIconType((int)index);
         _lastSelectedElement = _view.ControllerIconsDropdown;
-    }
-
-    protected override void OnResetToDefaultButtonDown()
-    {
-        _lastSelectedElement = _view.ResetToDefaultButton;
-        base.OnResetToDefaultButtonDown();
     }
 
     protected override void ResetViewToDefault()
