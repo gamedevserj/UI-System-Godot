@@ -9,21 +9,23 @@ The repo has some menus created: **Main, Options, Pause, Audio/Video settings, I
 
 To add new menu:
 1. Add your menu type to the MenuType enum
-2. Create your menu view script that either inherits from MenuView (if you want to make a custom transition) or from MenuViewFade (that has simple fade as a transition)
+2. Create your menu view script that either inherits from MenuView or from SettingsMenuView (it has functionality to reset setting to default via model and reset view to default)
 3. If your view has interactable elements (buttons, sliders, etc.), they should have scripts attached to them that implement IFocusableControl to disable elements during menu transitions. Some of the elements already included in the repo at UISystem/Common/Elements, there are also prefabs for them in the UISystem/Common/Prefabs, so you can use those
-4. Create your menu model script that implements IMenuModel interface (it is just a marker interface)
+4. Create your menu model script that implements IMenuModel interface (it is just a marker interface) or ISettingsMenuModel (which has methods to save, discard and reset to default)
 5. Create your menu controller sctipt that inherits from MenuController providing your view and model
 6. In your menu controller implement the MenuType property by providing your menu type and implement SetupElements()
 7. Create path to your view prefab in MenuViewsPaths
 8. In MenusManager Init() create your menu controller and add it to the array that is passed to the AddControllers()
 9. After that you should be able to call _menusManager.ShowMenu(...) to show your new menu
 
+The repo contains a helper Fader class to make simple fading transitions. 
+
 ### Menu background controller
 A simple script that handles menu's background, look at MainMenu and PauseMenu controllers for example.
 
 ### ℹ️: Example menus notes
 
-#### Audio, video, and interface menus are setup to have a popup if some settings were not saved before quitting. Key rebinding menu saves binds when new key is assigned.
+#### Audio, video, and interface menus are setup to have a popup if some settings were not saved before quitting. Key rebinding menu saves binds when new key is assigned that's why it has empty Save and DiscardChanges methods. If you want to save changes only when pressing save button, you need to make some changes - look at audio/video settings for example how it can be done.
 
 #### Rebinding menu example  
   
