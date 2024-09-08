@@ -10,7 +10,7 @@ public static class Fader
 
     public static void Init(Control target)
     {
-        target.Modulate = new Color(target.Modulate.R, target.Modulate.G, target.Modulate.B, 0);
+        target.Modulate = new Color(target.Modulate, 0);
     }
 
     public static void Show(SceneTree tree, Control target, Action onComplete = null, bool instant = false)
