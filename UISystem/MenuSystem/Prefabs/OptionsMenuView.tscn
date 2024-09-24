@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://cp2yn6w4kyuam"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Options/OptionsMenuView.cs" id="1_sgbji"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_5rv4x"]
-[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/ButtonsFontTheme.tres" id="2_a3m3i"]
+[ext_resource type="Theme" uid="uid://b55ogigy56x2q" path="res://UISystem/ButtonTheme.tres" id="2_lg4ex"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedMenuButtonView.cs" id="3_7cbkr"]
 
 [node name="OptionsMenuView" type="Control" node_paths=PackedStringArray("interfaceSettingsButton", "audioSettingsButton", "videoSettingsButton", "rebindKeysButton", "returnButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -20,6 +20,7 @@ returnButton = NodePath("Container/VBoxContainer/ReturnButton")
 fadeObjectsContainer = NodePath("Container")
 
 [node name="Container" type="Control" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -43,51 +44,51 @@ vertical_alignment = 1
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Container"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.001
-offset_top = -1.0
-offset_right = 99.999
-offset_bottom = 199.0
+anchors_preset = -1
+anchor_left = 0.0503472
+anchor_top = 0.177469
+anchor_right = 0.440972
+anchor_bottom = 0.902778
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/separation = 10
-alignment = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="InterfaceSettingsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_a3m3i")
+theme = ExtResource("2_lg4ex")
 text = "Interface"
-script = ExtResource("2_5rv4x")
+alignment = 0
+clip_text = true
+script = ExtResource("3_7cbkr")
 
 [node name="AudioSettingsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_a3m3i")
+theme = ExtResource("2_lg4ex")
 text = "Audio"
-script = ExtResource("2_5rv4x")
+alignment = 0
+clip_text = true
+script = ExtResource("3_7cbkr")
 
 [node name="VideoSettingsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_a3m3i")
+theme = ExtResource("2_lg4ex")
 text = "Video"
-script = ExtResource("2_5rv4x")
+alignment = 0
+clip_text = true
+script = ExtResource("3_7cbkr")
 
 [node name="RebindKeysButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_a3m3i")
+theme = ExtResource("2_lg4ex")
 text = "Controls"
-script = ExtResource("2_5rv4x")
+alignment = 0
+clip_text = true
+script = ExtResource("3_7cbkr")
 
 [node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_a3m3i")
+theme = ExtResource("2_lg4ex")
 text = "Return"
-script = ExtResource("2_5rv4x")
+alignment = 0
+clip_text = true
+script = ExtResource("3_7cbkr")

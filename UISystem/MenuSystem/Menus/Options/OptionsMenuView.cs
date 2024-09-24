@@ -1,12 +1,15 @@
 using Godot;
 using System;
 using UISystem.Common.Elements;
-using UISystem.Common.Helpers;
 using UISystem.Common.Interfaces;
+using UISystem.MenuSystem.Interfaces;
+using UISystem.MenuSystem.ViewTransitions;
 
 namespace UISystem.MenuSystem.Views;
 public partial class OptionsMenuView : MenuView
 {
+
+    private const float AnimationDuration = 0.5f;
 
     [Export] private ButtonView interfaceSettingsButton;
     [Export] private ButtonView audioSettingsButton;
@@ -14,6 +17,8 @@ public partial class OptionsMenuView : MenuView
     [Export] private ButtonView rebindKeysButton;
     [Export] private ButtonView returnButton;
     [Export] private Control fadeObjectsContainer;
+
+    private IViewTransition _transition;
 
     public ButtonView ReturnButton => returnButton;
     public ButtonView InterfaceSettingsButton => interfaceSettingsButton;
@@ -30,17 +35,18 @@ public partial class OptionsMenuView : MenuView
     public override void Init()
     {
         base.Init();
-        Fader.Init(fadeObjectsContainer);
+        _transition = new ElementsDropTransition(this, fadeObjectsContainer, InterfaceSettingsButton,
+            new[] { ReturnButton, AudioSettingsButton, VideoSettingsButton, RebindKeysButton }, AnimationDuration);
     }
 
     public override void Hide(Action onHidden, bool instant)
     {
-        Fader.Hide(GetTree(), fadeObjectsContainer, onHidden, instant);
+        _transition.Hide(onHidden, instant);
     }
 
     public override void Show(Action onShown, bool instant)
     {
-        Fader.Show(GetTree(), fadeObjectsContainer, onShown, instant);
+        _transition.Show(onShown, instant);
     }
 
 }

@@ -53,7 +53,6 @@ theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
 
 [node name="PlayButton" type="Button" parent="Container/ButtonsContainer"]
-z_index = 2
 layout_mode = 2
 theme = ExtResource("2_oqxyp")
 text = "PLAY"
@@ -62,7 +61,6 @@ clip_text = true
 script = ExtResource("3_yxw06")
 
 [node name="OptionsButton" type="Button" parent="Container/ButtonsContainer"]
-z_index = 1
 layout_mode = 2
 theme = ExtResource("2_oqxyp")
 text = "OPTIONS"

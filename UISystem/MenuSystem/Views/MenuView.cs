@@ -1,5 +1,4 @@
-﻿using Godot;
-using System;
+﻿using System;
 using UISystem.Common;
 using UISystem.MenuSystem.Interfaces;
 
