@@ -45,6 +45,7 @@ mouse_filter = 2
 script = ExtResource("2_kes4k")
 
 [node name="PopupsManager" type="Control" parent="CanvasLayer"]
+z_index = 90
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

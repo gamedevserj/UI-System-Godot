@@ -1,17 +1,22 @@
 using Godot;
 using System;
 using UISystem.Common.Elements;
-using UISystem.Common.Helpers;
 using UISystem.Common.Interfaces;
+using UISystem.MenuSystem.Interfaces;
+using UISystem.MenuSystem.ViewTransitions;
 
 namespace UISystem.MenuSystem.Views;
 public partial class PauseMenuView : MenuView
 {
 
+    private const float AnimationDuration = 0.5f;
+
     [Export] private ButtonView resumeGameButton;
     [Export] private ButtonView optionsButton;
     [Export] private ButtonView returnToMainMenuButton;
     [Export] private Control fadeObjectsContainer;
+
+    private IViewTransition _transition;
 
     public ButtonView ResumeGameButton => resumeGameButton;
     public ButtonView OptionsButton => optionsButton;
@@ -25,17 +30,19 @@ public partial class PauseMenuView : MenuView
     public override void Init()
     {
         base.Init();
-        Fader.Init(fadeObjectsContainer);
+        _transition = new ElementsDropTransition(this, fadeObjectsContainer, ResumeGameButton, 
+            new[] { OptionsButton, ReturnToMainMenuButton },
+            AnimationDuration);
     }
 
     public override void Hide(Action onHidden, bool instant)
     {
-        Fader.Hide(GetTree(), fadeObjectsContainer, onHidden, instant);
+        _transition.Hide(onHidden, instant);
     }
 
     public override void Show(Action onShown, bool instant)
     {
-        Fader.Show(GetTree(), fadeObjectsContainer, onShown, instant);
+        _transition.Show(onShown, instant);
     }
 
 }
