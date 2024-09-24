@@ -47,12 +47,12 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
 
     public override void Hide(MenuStackBehaviourEnum stackBehaviour, Action onComplete = null, bool instant = false)
     {
-        base.Hide(stackBehaviour, onComplete, instant);
-        
-        if (stackBehaviour != MenuStackBehaviourEnum.AddToStack)
+        base.Hide(stackBehaviour, ()=> 
         {
-            _menuBackgroundController.HideBackground(instant);
-        }
+            if (stackBehaviour != MenuStackBehaviourEnum.AddToStack)
+                _menuBackgroundController.HideBackground(instant);
+            onComplete?.Invoke();
+        }, instant);
     }
 
     protected override void SetupElements()

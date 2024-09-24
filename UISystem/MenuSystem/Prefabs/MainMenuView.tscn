@@ -1,8 +1,8 @@
 [gd_scene load_steps=4 format=3 uid="uid://dlummbpn4khpc"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Main/MainMenuView.cs" id="1_qlhqn"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_evdg8"]
-[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/ButtonsFontTheme.tres" id="2_hlu3m"]
+[ext_resource type="Theme" uid="uid://b55ogigy56x2q" path="res://UISystem/ButtonTheme.tres" id="2_oqxyp"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedMenuButtonView.cs" id="3_yxw06"]
 
 [node name="MainMenuView" type="Control" node_paths=PackedStringArray("playButton", "optionsButton", "quitButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -12,12 +12,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qlhqn")
-playButton = NodePath("Container/VBoxContainer/PlayButton")
-optionsButton = NodePath("Container/VBoxContainer/OptionsButton")
-quitButton = NodePath("Container/VBoxContainer/QuitButton")
+playButton = NodePath("Container/ButtonsContainer/PlayButton")
+optionsButton = NodePath("Container/ButtonsContainer/OptionsButton")
+quitButton = NodePath("Container/ButtonsContainer/QuitButton")
 fadeObjectsContainer = NodePath("Container")
 
 [node name="Container" type="Control" parent="."]
+clip_contents = true
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,39 +40,40 @@ text = "Main menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+[node name="ButtonsContainer" type="VBoxContainer" parent="Container"]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -100.001
-offset_top = -1.0
-offset_right = 99.999
-offset_bottom = 199.0
+anchors_preset = -1
+anchor_left = 0.091
+anchor_top = 0.461
+anchor_right = 0.482208
+anchor_bottom = 0.897
+offset_left = 0.167992
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/separation = 10
-alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="PlayButton" type="Button" parent="Container/VBoxContainer"]
+[node name="PlayButton" type="Button" parent="Container/ButtonsContainer"]
+z_index = 2
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_hlu3m")
-text = "Play"
-script = ExtResource("2_evdg8")
+theme = ExtResource("2_oqxyp")
+text = "PLAY"
+alignment = 0
+clip_text = true
+script = ExtResource("3_yxw06")
 
-[node name="OptionsButton" type="Button" parent="Container/VBoxContainer"]
+[node name="OptionsButton" type="Button" parent="Container/ButtonsContainer"]
+z_index = 1
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_hlu3m")
-text = "Options"
-script = ExtResource("2_evdg8")
+theme = ExtResource("2_oqxyp")
+text = "OPTIONS"
+alignment = 0
+clip_text = true
+script = ExtResource("3_yxw06")
 
-[node name="QuitButton" type="Button" parent="Container/VBoxContainer"]
+[node name="QuitButton" type="Button" parent="Container/ButtonsContainer"]
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_hlu3m")
-text = "Quit"
-script = ExtResource("2_evdg8")
+theme = ExtResource("2_oqxyp")
+text = "QUIT"
+alignment = 0
+clip_text = true
+script = ExtResource("3_yxw06")

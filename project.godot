@@ -18,6 +18,10 @@ config/features=PackedStringArray("4.2", "C#", "GL Compatibility")
 
 UiInstaller="*res://UISystem/UIInstaller.tscn"
 
+[display]
+
+window/stretch/mode="viewport"
+
 [dotnet]
 
 project/assembly_name="UISystem"
