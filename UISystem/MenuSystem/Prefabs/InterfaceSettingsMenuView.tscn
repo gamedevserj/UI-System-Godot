@@ -1,4 +1,4 @@
-[gd_scene load_steps=9 format=3 uid="uid://d0lqlkxfi5o25"]
+[gd_scene load_steps=13 format=3 uid="uid://d0lqlkxfi5o25"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/InterfaceSettings/InterfaceSettingsMenuView.cs" id="1_830ao"]
 [ext_resource type="Theme" uid="uid://p3e6ki5xgue4" path="res://UISystem/Themes/DropdownButtonTheme.tres" id="2_2bwi3"]
@@ -6,10 +6,20 @@
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_hfura"]
 [ext_resource type="Theme" uid="uid://bnsr26qnlb8kl" path="res://UISystem/Themes/OptionButtonTheme.tres" id="2_k5k8k"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_lueqv"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedMenuButtonView.cs" id="5_nmu8u"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="6_ihsn5"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedButtonView.cs" id="6_imtu2"]
 [ext_resource type="Resource" uid="uid://bjgmoqe4es2ph" path="res://UISystem/AnimationSettings/OptionButtonSettings.tres" id="7_6qthg"]
+[ext_resource type="PackedScene" uid="uid://bvtey7pkj2tdr" path="res://UISystem/Common/Prefabs/AnimatedButtonView.tscn" id="8_ru38l"]
 
-[node name="InterfaceSettingsMenuView" type="Control" node_paths=PackedStringArray("controllerIconsDropdown", "saveSettingsButton", "returnButton", "panel", "fadeObjectsContainer", "resetButton")]
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blj3m"]
+bg_color = Color(1, 1, 1, 1)
+skew = Vector2(0.5, 0)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5067c"]
+bg_color = Color(0, 0, 0, 1)
+skew = Vector2(0.5, 0)
+
+[node name="InterfaceSettingsMenuView" type="Control" node_paths=PackedStringArray("controllerIconsDropdown", "saveSettingsButton", "returnButton", "panel", "animReturnButton", "animSaveButton", "animResetButton", "fadeObjectsContainer", "resetButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +31,9 @@ controllerIconsDropdown = NodePath("Container/PanelContainer/Margin/ControllerIc
 saveSettingsButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton")
 returnButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ReturnButton")
 panel = NodePath("Container/PanelContainer")
+animReturnButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ReturnButton")
+animSaveButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton")
+animResetButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton")
 fadeObjectsContainer = NodePath("Container")
 resetButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton")
 
@@ -101,28 +114,166 @@ theme_override_constants/separation = 10
 alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="ReturnButton" type="Button" parent="Container/PanelContainer/Margin/ButtonsContainer"]
+[node name="ReturnButton" type="Button" parent="Container/PanelContainer/Margin/ButtonsContainer" node_paths=PackedStringArray("animatedButtonView")]
 layout_mode = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 theme = ExtResource("2_k5k8k")
-theme_override_font_sizes/font_size = 55
+flat = true
 text_overrun_behavior = 2
 clip_text = true
-script = ExtResource("5_nmu8u")
+script = ExtResource("6_ihsn5")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton" instance=ExtResource("8_ru38l")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelMask" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+text = "RETURN"
+
+[node name="SaveSettingsButton" type="Button" parent="Container/PanelContainer/Margin/ButtonsContainer" node_paths=PackedStringArray("animatedButtonView")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_k5k8k")
+text_overrun_behavior = 2
+clip_text = true
+script = ExtResource("6_ihsn5")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton" instance=ExtResource("8_ru38l")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelMask" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+text = "SAVE"
+
+[node name="ResetToDefaultButton" type="Button" parent="Container/PanelContainer/Margin/ButtonsContainer" node_paths=PackedStringArray("animatedButtonView")]
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_k5k8k")
+text_overrun_behavior = 2
+clip_text = true
+script = ExtResource("6_ihsn5")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton" instance=ExtResource("8_ru38l")]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="LabelMask" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+text = "RESET"
+
+[node name="ReturnButton2" type="Button" parent="Container"]
+visible = false
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -152.0
+offset_top = 82.0
+offset_right = 152.0
+offset_bottom = 190.0
+grow_horizontal = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme = ExtResource("2_k5k8k")
+theme_override_font_sizes/font_size = 55
+flat = true
+text_overrun_behavior = 2
+clip_text = true
+script = ExtResource("6_imtu2")
 settings = ExtResource("7_6qthg")
 
-[node name="Label" type="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton"]
+[node name="Control" type="Control" parent="Container/ReturnButton2"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Outline" type="PanelContainer" parent="Container/ReturnButton2/Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_blj3m")
+
+[node name="Control" type="Control" parent="Container/ReturnButton2/Control/Outline"]
+layout_mode = 2
+
+[node name="InsideColor" type="PanelContainer" parent="Container/ReturnButton2/Control/Outline/Control"]
+modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_5067c")
+
+[node name="Mask" type="Control" parent="Container/ReturnButton2/Control"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 30.0
+offset_top = 7.0
+offset_right = -30.0
+offset_bottom = -7.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Container/ReturnButton2/Control/Mask"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -152.0
-offset_top = -38.0
-offset_right = 152.0
-offset_bottom = 38.0
+offset_left = -126.0
+offset_top = -40.0
+offset_right = 126.0
+offset_bottom = 40.0
 grow_horizontal = 2
 grow_vertical = 2
 theme = ExtResource("2_hfura")
@@ -132,56 +283,6 @@ vertical_alignment = 1
 clip_text = true
 text_overrun_behavior = 1
 
-[node name="SaveSettingsButton" type="Button" parent="Container/PanelContainer/Margin/ButtonsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_k5k8k")
-text_overrun_behavior = 2
-clip_text = true
-script = ExtResource("5_nmu8u")
-settings = ExtResource("7_6qthg")
-
-[node name="Label" type="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -38.0
-offset_bottom = 38.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_hfura")
-text = "SAVE"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-text_overrun_behavior = 1
-
-[node name="ResetToDefaultButton" type="Button" parent="Container/PanelContainer/Margin/ButtonsContainer"]
-layout_mode = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_k5k8k")
-text_overrun_behavior = 2
-clip_text = true
-script = ExtResource("5_nmu8u")
-settings = ExtResource("7_6qthg")
-
-[node name="Label" type="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton"]
-layout_mode = 1
-anchors_preset = 14
-anchor_top = 0.5
-anchor_right = 1.0
-anchor_bottom = 0.5
-offset_top = -38.0
-offset_bottom = 38.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_hfura")
-text = "RESET"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-text_overrun_behavior = 1
+[editable path="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView"]
+[editable path="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView"]
+[editable path="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView"]

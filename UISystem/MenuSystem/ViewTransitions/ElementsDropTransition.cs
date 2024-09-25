@@ -3,6 +3,7 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UISystem.Common.Elements;
 using UISystem.Constants;
 using UISystem.Extensions;
 using UISystem.MenuSystem.Interfaces;
@@ -19,8 +20,8 @@ public class ElementsDropTransition : IViewTransition
 
     private readonly MenuView _view;
     private readonly Control _fadeObjectsContainer;
-    private readonly Control _primaryElement;
-    private readonly Control[] _secondaryElements;
+    private readonly ButtonView _primaryElement;
+    private readonly ButtonView[] _secondaryElements;
     private readonly float _animationDuration;
 
     private SceneTree _sceneTree;
@@ -33,8 +34,8 @@ public class ElementsDropTransition : IViewTransition
         }
     }
 
-    public ElementsDropTransition(MenuView view, Control fadeObjectsContainer, Control primaryElement,
-        Control[] secondaryElements, float animationDuration)
+    public ElementsDropTransition(MenuView view, Control fadeObjectsContainer, ButtonView primaryElement,
+        ButtonView[] secondaryElements, float animationDuration)
     {
         _view = view;
         _fadeObjectsContainer = fadeObjectsContainer;
@@ -65,13 +66,15 @@ public class ElementsDropTransition : IViewTransition
 
         Vector2 size = new(0, _primaryElement.Size.Y);
         float duration = _animationDuration * 0.5f;
-        tween.SetTrans(Tween.TransitionType.Linear);
-        tween.Parallel().TweenProperty(_primaryElement, PropertyConstants.Modulate, new Color(_primaryElement.Modulate, 0), duration);
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
-        //tween.Parallel().TweenProperty(_primaryElement, PropertyConstants.Size, size, duration);
-        tween.TweenControlSize(true, _primaryElement, size, duration);
-        tween.Parallel().TweenProperty(_fadeObjectsContainer, PropertyConstants.Modulate, new Color(_fadeObjectsContainer.Modulate, 0), duration).SetDelay(duration);
+        tween.ControlSize(true, _primaryElement.AnimatedButtonView, size, duration);
+        tween.TweenCallback(Callable.From(() =>
+        {
+            VisibilityManger.HideItem(_primaryElement);
+        }));
+
+        tween.TweenProperty(_fadeObjectsContainer, PropertyConstants.Modulate, new Color(_fadeObjectsContainer.Modulate, 0), duration);
         tween.TweenCallback(Callable.From(() =>
         {
             onHidden?.Invoke();
@@ -96,7 +99,7 @@ public class ElementsDropTransition : IViewTransition
             return;
         }
         
-        _primaryElement.Size = new(0, _primaryElement.Size.Y);
+        _primaryElement.AnimatedButtonView.Size = new(0, _primaryElement.AnimatedButtonView.Size.Y);
         VisibilityManger.ShowItem(_primaryElement);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
@@ -109,16 +112,13 @@ public class ElementsDropTransition : IViewTransition
 
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
-        //tween.Parallel().TweenProperty(_primaryElement, PropertyConstants.Size, _primaryElementSize, _animationDuration * 0.5f);
-        tween.TweenControlSize(true, _primaryElement, _primaryElementSize, _animationDuration * 0.5f);
+        tween.ControlSize(true, _primaryElement.AnimatedButtonView, _primaryElementSize, _animationDuration * 0.5f);
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(true); }));
 
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            //tween.Parallel().TweenProperty(_secondaryElements[i], PropertyConstants.Position,
-            //    _secondaryElementsPositions[_secondaryElements[i]], _animationDuration);
-            tween.TweenControlPosition(true, _secondaryElements[i], _secondaryElementsPositions[_secondaryElements[i]], _animationDuration);
+            tween.ControlPosition(true, _secondaryElements[i], _secondaryElementsPositions[_secondaryElements[i]], _animationDuration);
         }
         tween.TweenCallback(Callable.From(() => { onShown?.Invoke(); }));
     }
@@ -126,7 +126,7 @@ public class ElementsDropTransition : IViewTransition
     private async Task InitElementParameters()
     {
         await _view.ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
-        _primaryElementSize = _primaryElement.Size;
+        _primaryElementSize = _primaryElement.AnimatedButtonView.Size;
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
             _secondaryElementsPositions.Add(_secondaryElements[i], _secondaryElements[i].Position);
@@ -137,7 +137,7 @@ public class ElementsDropTransition : IViewTransition
 
     private void SetButtonsOrdering()
     {
-        List<Control> buttonsByPosition = _secondaryElements.OrderByDescending(o => o.Position.Y).ToList();
+        List<ButtonView> buttonsByPosition = _secondaryElements.OrderByDescending(o => o.Position.Y).ToList();
         int last = 0;
         for (int i = 0; i < buttonsByPosition.Count; i++)
         {

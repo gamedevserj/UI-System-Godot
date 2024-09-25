@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using UISystem.Common.Elements;
+using UISystem.Common.ElementViews;
 using UISystem.Common.Interfaces;
 using UISystem.MenuSystem.Interfaces;
 using UISystem.MenuSystem.ViewTransitions;
@@ -30,7 +31,7 @@ public partial class MainMenuView : MenuView
     public override void Init()
     {
         base.Init();
-        _transition = new ElementsDropTransition(this, fadeObjectsContainer, PlayButton, new[] { OptionsButton, QuitButton },
+        _transition = new ElementsDropTransition(this, fadeObjectsContainer, playButton, new[] { optionsButton, quitButton },
             AnimationDuration);
     }
 

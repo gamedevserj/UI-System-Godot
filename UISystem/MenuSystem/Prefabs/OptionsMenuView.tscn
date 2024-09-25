@@ -1,8 +1,8 @@
 [gd_scene load_steps=5 format=3 uid="uid://cp2yn6w4kyuam"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Options/OptionsMenuView.cs" id="1_sgbji"]
-[ext_resource type="Theme" uid="uid://b55ogigy56x2q" path="res://UISystem/Themes/MenuNavigationButtonTheme.tres" id="2_lg4ex"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedMenuButtonView.cs" id="3_7cbkr"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_geyvt"]
+[ext_resource type="PackedScene" uid="uid://bvtey7pkj2tdr" path="res://UISystem/Common/Prefabs/AnimatedButtonView.tscn" id="4_57c4y"]
 [ext_resource type="Resource" uid="uid://dj5acww1ovp0b" path="res://UISystem/AnimationSettings/MenuNavigationButtonSettings.tres" id="4_u6xag"]
 
 [node name="OptionsMenuView" type="Control" node_paths=PackedStringArray("interfaceSettingsButton", "audioSettingsButton", "videoSettingsButton", "rebindKeysButton", "returnButton", "fadeObjectsContainer")]
@@ -54,47 +54,138 @@ grow_horizontal = 2
 theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
 
-[node name="InterfaceSettingsButton" type="Button" parent="Container/VBoxContainer"]
+[node name="InterfaceSettingsButton" type="Button" parent="Container/VBoxContainer" node_paths=PackedStringArray("animatedButtonView")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme = ExtResource("2_lg4ex")
-text = "Interface"
+size_flags_vertical = 3
+flat = true
 alignment = 0
 clip_text = true
-script = ExtResource("3_7cbkr")
+script = ExtResource("2_geyvt")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="Container/VBoxContainer/InterfaceSettingsButton" instance=ExtResource("4_57c4y")]
 settings = ExtResource("4_u6xag")
 
-[node name="AudioSettingsButton" type="Button" parent="Container/VBoxContainer"]
+[node name="LabelMask" parent="Container/VBoxContainer/InterfaceSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Label" parent="Container/VBoxContainer/InterfaceSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+anchor_left = 0.08
+anchor_right = 0.08
+offset_left = 3.2
+offset_right = 371.2
+text = "INTERFACE"
+horizontal_alignment = 0
+
+[node name="AudioSettingsButton" type="Button" parent="Container/VBoxContainer" node_paths=PackedStringArray("animatedButtonView")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme = ExtResource("2_lg4ex")
-text = "Audio"
+size_flags_vertical = 3
+flat = true
 alignment = 0
 clip_text = true
-script = ExtResource("3_7cbkr")
+script = ExtResource("2_geyvt")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="Container/VBoxContainer/AudioSettingsButton" instance=ExtResource("4_57c4y")]
 settings = ExtResource("4_u6xag")
 
-[node name="VideoSettingsButton" type="Button" parent="Container/VBoxContainer"]
+[node name="LabelMask" parent="Container/VBoxContainer/AudioSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Label" parent="Container/VBoxContainer/AudioSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+anchor_left = 0.08
+anchor_right = 0.08
+offset_left = 3.2
+offset_right = 371.2
+text = "AUDIO"
+horizontal_alignment = 0
+
+[node name="VideoSettingsButton" type="Button" parent="Container/VBoxContainer" node_paths=PackedStringArray("animatedButtonView")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme = ExtResource("2_lg4ex")
-text = "Video"
+size_flags_vertical = 3
+flat = true
 alignment = 0
 clip_text = true
-script = ExtResource("3_7cbkr")
+script = ExtResource("2_geyvt")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="Container/VBoxContainer/VideoSettingsButton" instance=ExtResource("4_57c4y")]
 settings = ExtResource("4_u6xag")
 
-[node name="RebindKeysButton" type="Button" parent="Container/VBoxContainer"]
+[node name="LabelMask" parent="Container/VBoxContainer/VideoSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Label" parent="Container/VBoxContainer/VideoSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+anchor_left = 0.08
+anchor_right = 0.08
+offset_left = 3.2
+offset_right = 371.2
+text = "VIDEO"
+horizontal_alignment = 0
+
+[node name="RebindKeysButton" type="Button" parent="Container/VBoxContainer" node_paths=PackedStringArray("animatedButtonView")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme = ExtResource("2_lg4ex")
-text = "Controls"
+size_flags_vertical = 3
+flat = true
 alignment = 0
 clip_text = true
-script = ExtResource("3_7cbkr")
+script = ExtResource("2_geyvt")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="Container/VBoxContainer/RebindKeysButton" instance=ExtResource("4_57c4y")]
 settings = ExtResource("4_u6xag")
 
-[node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]
+[node name="LabelMask" parent="Container/VBoxContainer/RebindKeysButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Label" parent="Container/VBoxContainer/RebindKeysButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+anchor_left = 0.08
+anchor_right = 0.08
+offset_left = 3.2
+offset_right = 371.2
+text = "CONTROLS"
+horizontal_alignment = 0
+
+[node name="ReturnButton" type="Button" parent="Container/VBoxContainer" node_paths=PackedStringArray("animatedButtonView")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme = ExtResource("2_lg4ex")
-text = "Return"
+size_flags_vertical = 3
+flat = true
 alignment = 0
 clip_text = true
-script = ExtResource("3_7cbkr")
+script = ExtResource("2_geyvt")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="Container/VBoxContainer/ReturnButton" instance=ExtResource("4_57c4y")]
 settings = ExtResource("4_u6xag")
+
+[node name="LabelMask" parent="Container/VBoxContainer/ReturnButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Label" parent="Container/VBoxContainer/ReturnButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+anchor_left = 0.08
+anchor_right = 0.08
+offset_left = 3.2
+offset_right = 371.2
+text = "RETURN"
+horizontal_alignment = 0
+
+[editable path="Container/VBoxContainer/InterfaceSettingsButton/AnimatedButtonView"]
+[editable path="Container/VBoxContainer/AudioSettingsButton/AnimatedButtonView"]
+[editable path="Container/VBoxContainer/VideoSettingsButton/AnimatedButtonView"]
+[editable path="Container/VBoxContainer/RebindKeysButton/AnimatedButtonView"]
+[editable path="Container/VBoxContainer/ReturnButton/AnimatedButtonView"]

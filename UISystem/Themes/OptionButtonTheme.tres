@@ -8,6 +8,7 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
+corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg2l8"]
 bg_color = Color(0, 0, 0, 1)
@@ -17,6 +18,7 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
+corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3p0yk"]
 bg_color = Color(0, 0, 0, 1)
@@ -26,6 +28,7 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
+corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_an3sj"]
 bg_color = Color(0, 0, 0, 1)
@@ -35,6 +38,7 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
+corner_detail = 1
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oecyl"]
 bg_color = Color(0, 0, 0, 1)
@@ -44,11 +48,13 @@ border_width_top = 5
 border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
+corner_detail = 1
 
 [resource]
-default_font_size = 55
+default_font_size = 0
 Button/colors/font_focus_color = Color(0.94902, 0, 0, 1)
 Button/colors/font_hover_color = Color(0.94902, 0, 0, 1)
+Button/font_sizes/font_size = 55
 Button/styles/disabled = SubResource("StyleBoxFlat_q8loe")
 Button/styles/focus = SubResource("StyleBoxFlat_lg2l8")
 Button/styles/hover = SubResource("StyleBoxFlat_3p0yk")

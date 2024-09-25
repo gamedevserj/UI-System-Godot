@@ -1,9 +1,9 @@
 [gd_scene load_steps=5 format=3 uid="uid://dlummbpn4khpc"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Main/MainMenuView.cs" id="1_qlhqn"]
-[ext_resource type="Theme" uid="uid://b55ogigy56x2q" path="res://UISystem/Themes/MenuNavigationButtonTheme.tres" id="2_oqxyp"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedMenuButtonView.cs" id="3_yxw06"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="3_wqd0n"]
 [ext_resource type="Resource" uid="uid://dj5acww1ovp0b" path="res://UISystem/AnimationSettings/MenuNavigationButtonSettings.tres" id="4_6edjl"]
+[ext_resource type="PackedScene" uid="uid://bvtey7pkj2tdr" path="res://UISystem/Common/Prefabs/AnimatedButtonView.tscn" id="4_lktki"]
 
 [node name="MainMenuView" type="Control" node_paths=PackedStringArray("playButton", "optionsButton", "quitButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -53,29 +53,78 @@ grow_horizontal = 2
 theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayButton" type="Button" parent="Container/ButtonsContainer"]
+[node name="PlayButton" type="Button" parent="Container/ButtonsContainer" node_paths=PackedStringArray("animatedButtonView")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
-theme = ExtResource("2_oqxyp")
+size_flags_vertical = 3
+flat = true
+script = ExtResource("3_wqd0n")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="Container/ButtonsContainer/PlayButton" instance=ExtResource("4_lktki")]
+settings = ExtResource("4_6edjl")
+
+[node name="LabelMask" parent="Container/ButtonsContainer/PlayButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Label" parent="Container/ButtonsContainer/PlayButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+anchor_left = 0.08
+anchor_right = 0.08
+offset_left = 0.0
+offset_right = 368.0
 text = "PLAY"
-alignment = 0
-clip_text = true
-script = ExtResource("3_yxw06")
+horizontal_alignment = 0
+
+[node name="OptionsButton" type="Button" parent="Container/ButtonsContainer" node_paths=PackedStringArray("animatedButtonView")]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+flat = true
+script = ExtResource("3_wqd0n")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="Container/ButtonsContainer/OptionsButton" instance=ExtResource("4_lktki")]
 settings = ExtResource("4_6edjl")
 
-[node name="OptionsButton" type="Button" parent="Container/ButtonsContainer"]
-layout_mode = 2
-theme = ExtResource("2_oqxyp")
+[node name="LabelMask" parent="Container/ButtonsContainer/OptionsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Label" parent="Container/ButtonsContainer/OptionsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+anchor_left = 0.08
+anchor_right = 0.08
+offset_left = 0.0
+offset_right = 368.0
 text = "OPTIONS"
-alignment = 0
-clip_text = true
-script = ExtResource("3_yxw06")
+horizontal_alignment = 0
+
+[node name="QuitButton" type="Button" parent="Container/ButtonsContainer" node_paths=PackedStringArray("animatedButtonView")]
+self_modulate = Color(1, 1, 1, 0)
+layout_mode = 2
+size_flags_vertical = 3
+flat = true
+script = ExtResource("3_wqd0n")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="Container/ButtonsContainer/QuitButton" instance=ExtResource("4_lktki")]
 settings = ExtResource("4_6edjl")
 
-[node name="QuitButton" type="Button" parent="Container/ButtonsContainer"]
-layout_mode = 2
-theme = ExtResource("2_oqxyp")
+[node name="LabelMask" parent="Container/ButtonsContainer/QuitButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Label" parent="Container/ButtonsContainer/QuitButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+anchor_left = 0.08
+anchor_right = 0.08
+offset_left = 0.0
+offset_right = 368.0
 text = "QUIT"
-alignment = 0
-clip_text = true
-script = ExtResource("3_yxw06")
-settings = ExtResource("4_6edjl")
+horizontal_alignment = 0
+
+[editable path="Container/ButtonsContainer/PlayButton/AnimatedButtonView"]
+[editable path="Container/ButtonsContainer/OptionsButton/AnimatedButtonView"]
+[editable path="Container/ButtonsContainer/QuitButton/AnimatedButtonView"]

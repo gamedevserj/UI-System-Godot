@@ -1,0 +1,79 @@
+[gd_scene load_steps=5 format=3 uid="uid://bvtey7pkj2tdr"]
+
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedButtonView.cs" id="2_n2rmi"]
+[ext_resource type="Resource" uid="uid://bjgmoqe4es2ph" path="res://UISystem/AnimationSettings/OptionButtonSettings.tres" id="3_ruxhi"]
+[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="4_sffel"]
+[ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="4_td8np"]
+
+[node name="AnimatedButtonView" type="Control"]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 450.0
+offset_bottom = 90.0
+mouse_filter = 2
+script = ExtResource("2_n2rmi")
+settings = ExtResource("3_ruxhi")
+
+[node name="Outline" type="PanelContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("4_td8np")
+
+[node name="Control" type="Control" parent="Outline"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="InsideColor" type="PanelContainer" parent="Outline/Control"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("4_td8np")
+
+[node name="Control" type="Control" parent="Outline/Control/InsideColor"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="LabelMask" type="Control" parent="Outline/Control/InsideColor/Control"]
+clip_contents = true
+layout_mode = 1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 20.0
+offset_right = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Label" type="Label" parent="Outline/Control/InsideColor/Control/LabelMask"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -126.0
+offset_top = -40.0
+offset_right = 126.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("4_sffel")
+text = "TEXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1

@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://bwmjk045qeqk8"]
+
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="1_i0i7k"]
+[ext_resource type="PackedScene" uid="uid://bvtey7pkj2tdr" path="res://UISystem/Common/Prefabs/AnimatedButtonView.tscn" id="2_suabn"]
+[ext_resource type="Resource" uid="uid://dj5acww1ovp0b" path="res://UISystem/AnimationSettings/MenuNavigationButtonSettings.tres" id="3_y66p4"]
+
+[node name="MenuNavigationButton" type="Button" node_paths=PackedStringArray("animatedButtonView")]
+self_modulate = Color(1, 1, 1, 0)
+size_flags_vertical = 3
+flat = true
+script = ExtResource("1_i0i7k")
+animatedButtonView = NodePath("AnimatedButtonView")
+
+[node name="AnimatedButtonView" parent="." instance=ExtResource("2_suabn")]
+settings = ExtResource("3_y66p4")
+
+[node name="LabelMask" parent="AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
+anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
+
+[node name="Label" parent="AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+anchor_left = 0.08
+anchor_right = 0.08
+offset_left = 0.0
+offset_right = 368.0
+horizontal_alignment = 0
+
+[editable path="AnimatedButtonView"]
