@@ -1,11 +1,11 @@
 ﻿using GodotExtensions;
 using System;
-using UISystem.Common;
 using UISystem.Common.Enums;
 using UISystem.MenuSystem.Enums;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
+using UISystem.Common.Structs;
 
 namespace UISystem.MenuSystem.Controllers;
 public class InterfaceSettingsMenuController : SettingsMenuController<InterfaceSettingsMenuView, InterfaceSettingsMenuModel>

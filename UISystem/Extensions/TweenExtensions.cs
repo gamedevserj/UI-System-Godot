@@ -1,26 +1,37 @@
 ﻿using Godot;
+using System;
 using UISystem.Common.Enums;
+using UISystem.Common.Structs;
 using UISystem.Constants;
 
 namespace UISystem.Extensions;
 public static class TweenExtensions
 {
 
-    public static void TweenControlSize(this Tween tween, bool parallel, Control target, Vector2 sizeIncrease, float duration,
-        Vector2 originalPosition,
-        Vector2 originalSize,
-        HorizontalControlSizeChangeDirection horizontalDirection = HorizontalControlSizeChangeDirection.FromLeft,
-        VerticalControlSizeChangeDirection verticalDirection = VerticalControlSizeChangeDirection.FromTop)
+    public static void TweenControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration,
+        TweenSizeSettings sizeSettings = default)
     {
-        tween.TweenControlSize(parallel, target, originalSize + sizeIncrease, duration);
-        float multiplierX = GetHorizontalMultiplier(horizontalDirection);
-        float multiplierY = GetVerticalMultiplier(verticalDirection);
-        Vector2 position = originalPosition - sizeIncrease * new Vector2(multiplierX, multiplierY);
+        tween.TweenControlSize(parallel, target, size, duration);
 
+        if (!sizeSettings.IsInitialized)
+            return;
+
+        float multiplierX = GetHorizontalMultiplier(sizeSettings.HorizontalDirection);
+        float multiplierY = GetVerticalMultiplier(sizeSettings.VerticalDirection);
+        Vector2 sizeDifference = size - sizeSettings.OriginalSize;
+        Vector2 position = sizeSettings.OriginalPosition - sizeDifference * new Vector2(multiplierX, multiplierY);
+
+        tween.TweenControlPosition(parallel, target, position, duration);
+    }
+
+    public static void TweenControlPosition(this Tween tween, bool parallel, Control target, Vector2 position, float duration)
+    {
+        if (parallel)
+            tween.Parallel();
         tween.Parallel().TweenProperty(target, PropertyConstants.Position, position, duration);
-    }   
+    }
 
-    public static void TweenControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration)
+    private static void TweenControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration)
     {
         if (parallel)
             tween.Parallel();

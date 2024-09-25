@@ -1,6 +1,6 @@
 using Godot;
-using UISystem.Common;
 using UISystem.Common.Elements;
+using UISystem.Common.Structs;
 
 namespace GodotExtensions
 {

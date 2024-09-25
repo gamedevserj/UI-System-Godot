@@ -1,10 +1,10 @@
 ﻿using GodotExtensions;
 using System.Text.RegularExpressions;
-using UISystem.Common;
 using UISystem.MenuSystem.Enums;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
+using UISystem.Common.Structs;
 
 namespace UISystem.MenuSystem.Controllers;
 public class VideoSettingsMenuController : SettingsMenuController<VideoSettingsMenuView, VideoSettingsMenuModel>

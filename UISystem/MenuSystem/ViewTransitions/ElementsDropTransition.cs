@@ -4,18 +4,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UISystem.Constants;
-using UISystem.MenuSystem.Views;
-using UISystem.MenuSystem.Interfaces;
-using VisibilityManger = UISystem.Common.Helpers.CanvasItemVisibilityManager;
-using UISystem.Common.Helpers;
 using UISystem.Extensions;
+using UISystem.MenuSystem.Interfaces;
+using UISystem.MenuSystem.Views;
+using VisibilityManger = UISystem.Common.Helpers.CanvasItemVisibilityManager;
 
 namespace UISystem.MenuSystem.ViewTransitions;
 public class ElementsDropTransition : IViewTransition
 {
 
     private Vector2 _primaryElementSize;
-    private bool _initializedButtonParameters;
+    private bool _initializedParameters;
     private Dictionary<Control, Vector2> _secondaryElementsPositions = new();
 
     private readonly MenuView _view;
@@ -85,7 +84,7 @@ public class ElementsDropTransition : IViewTransition
         VisibilityManger.HideItem(_fadeObjectsContainer);
         SwitchSecondaryButtonsVisibility(false);
 
-        if (!_initializedButtonParameters)
+        if (!_initializedParameters)
             await InitElementParameters();
 
         if (instant)
@@ -117,8 +116,9 @@ public class ElementsDropTransition : IViewTransition
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            tween.Parallel().TweenProperty(_secondaryElements[i], PropertyConstants.Position,
-                _secondaryElementsPositions[_secondaryElements[i]], _animationDuration);
+            //tween.Parallel().TweenProperty(_secondaryElements[i], PropertyConstants.Position,
+            //    _secondaryElementsPositions[_secondaryElements[i]], _animationDuration);
+            tween.TweenControlPosition(true, _secondaryElements[i], _secondaryElementsPositions[_secondaryElements[i]], _animationDuration);
         }
         tween.TweenCallback(Callable.From(() => { onShown?.Invoke(); }));
     }
@@ -132,7 +132,7 @@ public class ElementsDropTransition : IViewTransition
             _secondaryElementsPositions.Add(_secondaryElements[i], _secondaryElements[i].Position);
         }
         SetButtonsOrdering();
-        _initializedButtonParameters = true;
+        _initializedParameters = true;
     }
 
     private void SetButtonsOrdering()

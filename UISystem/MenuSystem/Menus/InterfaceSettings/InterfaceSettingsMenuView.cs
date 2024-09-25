@@ -3,7 +3,9 @@ using System;
 using System.Threading.Tasks;
 using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
+using UISystem.Common.Structs;
 using UISystem.Constants;
+using UISystem.Extensions;
 using Color = Godot.Color;
 using VisibilityManger = UISystem.Common.Helpers.CanvasItemVisibilityManager;
 
@@ -19,10 +21,13 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
     [Export] private PanelContainer panel;
 
     private Vector2 _panelSize;
+    private Vector2 _panelPosition;
     private Vector2 _dropdownSize;
     private Vector2 _saveButtonSize;
     private Vector2 _returnButtonSize;
     private Vector2 _resetButtonSize;
+    private TweenSizeSettings _panelTweenSizeSettings;
+    private bool _initializedParameters;
 
     public ButtonView SaveSettingsButton => saveSettingsButton;
     public ButtonView ReturnButton => returnButton;
@@ -56,6 +61,7 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
         }));
 
         tween.Parallel().TweenProperty(panel, PropertyConstants.Size, Vector2.Zero, AnimationDuration);
+        tween.TweenControlSize(false, panel, Vector2.Zero, AnimationDuration, _panelTweenSizeSettings);
 
         tween.Parallel().TweenProperty(fadeObjectsContainer, PropertyConstants.Modulate, new Color(fadeObjectsContainer.Modulate, 0), AnimationDuration).SetDelay(AnimationDuration);
         tween.TweenCallback(Callable.From(() =>
@@ -65,19 +71,25 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
 
     }
 
-    public override void Show(Action onShown, bool instant)
+    public override async void Show(Action onShown, bool instant)
     {
+        //if (!_initializedParameters)
+        //    await InitElementParameters();
         base.Show(onShown, instant);
     }
 
-    private async Task GetParameters()
+    private async Task InitElementParameters()
     {
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
         _panelSize = panel.Size;
+        _panelPosition = panel.Position;
         _dropdownSize = ControllerIconsDropdown.Size;
         _saveButtonSize = SaveSettingsButton.Size;
         _returnButtonSize = ReturnButton.Size;
         _resetButtonSize = ResetButton.Size;
+        _panelTweenSizeSettings = new TweenSizeSettings(_panelPosition, _panelSize,
+            Common.Enums.HorizontalControlSizeChangeDirection.FromCenter, 
+            Common.Enums.VerticalControlSizeChangeDirection.FromCenter);
     }
 
 }

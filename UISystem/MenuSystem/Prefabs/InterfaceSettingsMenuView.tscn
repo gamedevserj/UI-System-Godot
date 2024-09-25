@@ -50,15 +50,18 @@ vertical_alignment = 1
 clip_contents = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0598958
-anchor_top = 0.445988
-anchor_right = 0.953993
-anchor_bottom = 0.927469
+anchor_left = 0.06
+anchor_top = 0.446
+anchor_right = 0.954
+anchor_bottom = 0.927
+offset_left = -0.120033
+offset_top = -0.00778198
+offset_right = -0.00805664
+offset_bottom = 0.303894
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
 theme = ExtResource("2_7o5vc")
-metadata/_edit_use_anchors_ = true
 
 [node name="Margin" type="Control" parent="Container/PanelContainer"]
 clip_contents = true

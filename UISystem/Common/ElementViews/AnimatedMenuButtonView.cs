@@ -1,6 +1,7 @@
 ﻿using Godot;
 using UISystem.Common.Elements;
 using UISystem.Common.Resources;
+using UISystem.Common.Structs;
 using UISystem.Extensions;
 
 namespace UISystem.Common.ElementViews;
@@ -12,12 +13,14 @@ public partial class AnimatedMenuButtonView : ButtonView
     private Tween _tween;
     private Vector2 _size;
     private Vector2 _position;
+    private TweenSizeSettings _tweenSizeSettings;
 
     public override async void _Ready()
     {
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
         _size = Size;
         _position = Position;
+        _tweenSizeSettings = new TweenSizeSettings(_position, _size, settings.HorizontalDirection, settings.VerticalDirection);
     }
 
     public override void _EnterTree()
@@ -48,22 +51,22 @@ public partial class AnimatedMenuButtonView : ButtonView
 
     private void OnMouseEntered()
     {
-        MouseEnteredTweenSize(settings.ChangeSizeHover);
+        MouseEnteredTweenSize(_size + settings.ChangeSizeHover);
     }
 
     private void OnMouseExited()
     {
-        MouseEnteredTweenSize(Vector2.Zero);
+        MouseEnteredTweenSize(_size);
     }
 
     private void OnFocusEntered()
     {
-        Animate(settings.ChangeSizeFocus);
+        Animate(_size + settings.ChangeSizeFocus);
     }
 
     private void OnFocusExited()
     {
-        Animate(Vector2.Zero);
+        Animate(_size);
     }
 
     private void MouseEnteredTweenSize(Vector2 size)
@@ -80,7 +83,7 @@ public partial class AnimatedMenuButtonView : ButtonView
         _tween = GetTree().CreateTween();
         _tween.SetEase(settings.Ease);
         _tween.SetTrans(settings.Transition);
-        _tween.TweenControlSize(true, this, size, settings.Duration, _position, _size, settings.HorizontalDirection, settings.VerticalDirection);
+        _tween.TweenControlSize(true, this, size, settings.Duration, _tweenSizeSettings);
     }
 
 }
