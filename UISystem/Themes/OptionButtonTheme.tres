@@ -1,17 +1,6 @@
-[gd_resource type="Theme" load_steps=6 format=3 uid="uid://b55ogigy56x2q"]
+[gd_resource type="Theme" load_steps=6 format=3 uid="uid://bnsr26qnlb8kl"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_bcaq4"]
-content_margin_left = 50.0
-bg_color = Color(0.184314, 0.184314, 0.184314, 1)
-skew = Vector2(0.5, 0)
-border_width_left = 5
-border_width_top = 5
-border_width_right = 5
-border_width_bottom = 5
-border_color = Color(1, 1, 1, 1)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ywrac"]
-content_margin_left = 50.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8loe"]
 bg_color = Color(0, 0, 0, 1)
 skew = Vector2(0.5, 0)
 border_width_left = 5
@@ -20,8 +9,16 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_42ler"]
-content_margin_left = 50.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_lg2l8"]
+bg_color = Color(0, 0, 0, 1)
+skew = Vector2(0.5, 0)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_3p0yk"]
 bg_color = Color(0, 0, 0, 1)
 skew = Vector2(0.5, 0)
 border_width_left = 5
@@ -31,7 +28,6 @@ border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_an3sj"]
-content_margin_left = 50.0
 bg_color = Color(0, 0, 0, 1)
 skew = Vector2(0.5, 0)
 border_width_left = 5
@@ -40,8 +36,7 @@ border_width_right = 5
 border_width_bottom = 5
 border_color = Color(1, 1, 1, 1)
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_87s1l"]
-content_margin_left = 50.0
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oecyl"]
 bg_color = Color(0, 0, 0, 1)
 skew = Vector2(0.5, 0)
 border_width_left = 5
@@ -54,8 +49,8 @@ border_color = Color(1, 1, 1, 1)
 default_font_size = 55
 Button/colors/font_focus_color = Color(0.94902, 0, 0, 1)
 Button/colors/font_hover_color = Color(0.94902, 0, 0, 1)
-Button/styles/disabled = SubResource("StyleBoxFlat_bcaq4")
-Button/styles/focus = SubResource("StyleBoxFlat_ywrac")
-Button/styles/hover = SubResource("StyleBoxFlat_42ler")
+Button/styles/disabled = SubResource("StyleBoxFlat_q8loe")
+Button/styles/focus = SubResource("StyleBoxFlat_lg2l8")
+Button/styles/hover = SubResource("StyleBoxFlat_3p0yk")
 Button/styles/normal = SubResource("StyleBoxFlat_an3sj")
-Button/styles/pressed = SubResource("StyleBoxFlat_87s1l")
+Button/styles/pressed = SubResource("StyleBoxFlat_oecyl")

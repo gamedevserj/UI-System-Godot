@@ -1,0 +1,68 @@
+[gd_resource type="Theme" load_steps=8 format=3 uid="uid://p3e6ki5xgue4"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_q8loe"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rei7m"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5glav"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_an3sj"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_oecyl"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 1, 1, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_c86d3"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0, 0, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8eh15"]
+bg_color = Color(0, 0, 0, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+
+[resource]
+default_font_size = 55
+Button/colors/font_focus_color = Color(0.94902, 0, 0, 1)
+Button/colors/font_hover_color = Color(0.94902, 0, 0, 1)
+Button/styles/disabled = SubResource("StyleBoxFlat_q8loe")
+Button/styles/focus = SubResource("StyleBoxFlat_rei7m")
+Button/styles/hover = SubResource("StyleBoxFlat_5glav")
+Button/styles/normal = SubResource("StyleBoxFlat_an3sj")
+Button/styles/pressed = SubResource("StyleBoxFlat_oecyl")
+PopupMenu/styles/hover = SubResource("StyleBoxFlat_c86d3")
+PopupMenu/styles/panel = SubResource("StyleBoxFlat_8eh15")

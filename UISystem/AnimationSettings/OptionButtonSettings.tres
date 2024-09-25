@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="AnimatedButtonSettings" load_steps=2 format=3 uid="uid://bjgmoqe4es2ph"]
+
+[ext_resource type="Script" path="res://UISystem/Common/Resources/AnimatedButtonSettings.cs" id="1_krfdn"]
+
+[resource]
+script = ExtResource("1_krfdn")
+duration = 1.0
+ease = 1
+transition = 6
+horizontalDirection = 0
+verticalDirection = 1
+changeSizeHover = Vector2(0, 10)
+changeSizeFocus = Vector2(0, 20)

@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://dlummbpn4khpc"]
+[gd_scene load_steps=5 format=3 uid="uid://dlummbpn4khpc"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Main/MainMenuView.cs" id="1_qlhqn"]
-[ext_resource type="Theme" uid="uid://b55ogigy56x2q" path="res://UISystem/ButtonTheme.tres" id="2_oqxyp"]
+[ext_resource type="Theme" uid="uid://b55ogigy56x2q" path="res://UISystem/Themes/MenuNavigationButtonTheme.tres" id="2_oqxyp"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedMenuButtonView.cs" id="3_yxw06"]
+[ext_resource type="Resource" uid="uid://dj5acww1ovp0b" path="res://UISystem/AnimationSettings/MenuNavigationButtonSettings.tres" id="4_6edjl"]
 
 [node name="MainMenuView" type="Control" node_paths=PackedStringArray("playButton", "optionsButton", "quitButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -59,6 +60,7 @@ text = "PLAY"
 alignment = 0
 clip_text = true
 script = ExtResource("3_yxw06")
+settings = ExtResource("4_6edjl")
 
 [node name="OptionsButton" type="Button" parent="Container/ButtonsContainer"]
 layout_mode = 2
@@ -67,6 +69,7 @@ text = "OPTIONS"
 alignment = 0
 clip_text = true
 script = ExtResource("3_yxw06")
+settings = ExtResource("4_6edjl")
 
 [node name="QuitButton" type="Button" parent="Container/ButtonsContainer"]
 layout_mode = 2
@@ -75,3 +78,4 @@ text = "QUIT"
 alignment = 0
 clip_text = true
 script = ExtResource("3_yxw06")
+settings = ExtResource("4_6edjl")

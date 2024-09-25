@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://bs7t6acp3yhci"]
+[gd_scene load_steps=5 format=3 uid="uid://bs7t6acp3yhci"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Pause/PauseMenuView.cs" id="1_wuqlt"]
-[ext_resource type="Theme" uid="uid://b55ogigy56x2q" path="res://UISystem/ButtonTheme.tres" id="2_f6d8t"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_ws8tk"]
+[ext_resource type="Theme" uid="uid://b55ogigy56x2q" path="res://UISystem/Themes/MenuNavigationButtonTheme.tres" id="2_f6d8t"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedMenuButtonView.cs" id="3_s8lv8"]
+[ext_resource type="Resource" uid="uid://dj5acww1ovp0b" path="res://UISystem/AnimationSettings/MenuNavigationButtonSettings.tres" id="4_3iqds"]
 
 [node name="PauseMenuView" type="Control" node_paths=PackedStringArray("resumeGameButton", "optionsButton", "returnToMainMenuButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -56,7 +57,8 @@ theme = ExtResource("2_f6d8t")
 text = "Resume"
 alignment = 0
 clip_text = true
-script = ExtResource("2_ws8tk")
+script = ExtResource("3_s8lv8")
+settings = ExtResource("4_3iqds")
 
 [node name="OptionsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
@@ -64,7 +66,8 @@ theme = ExtResource("2_f6d8t")
 text = "Options"
 alignment = 0
 clip_text = true
-script = ExtResource("2_ws8tk")
+script = ExtResource("3_s8lv8")
+settings = ExtResource("4_3iqds")
 
 [node name="ReturnToMainMenuButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
@@ -72,4 +75,5 @@ theme = ExtResource("2_f6d8t")
 text = "Main menu"
 alignment = 0
 clip_text = true
-script = ExtResource("2_ws8tk")
+script = ExtResource("3_s8lv8")
+settings = ExtResource("4_3iqds")

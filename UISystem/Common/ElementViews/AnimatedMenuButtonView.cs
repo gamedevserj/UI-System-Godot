@@ -1,22 +1,23 @@
 ﻿using Godot;
 using UISystem.Common.Elements;
-using UISystem.Constants;
+using UISystem.Common.Resources;
+using UISystem.Extensions;
 
 namespace UISystem.Common.ElementViews;
 public partial class AnimatedMenuButtonView : ButtonView
 {
 
-    private const float AnimationDuration = 1f;
-
-    [Export] private float mouseEnterSize = 75;
+    [Export] private AnimatedButtonSettings settings;
 
     private Tween _tween;
     private Vector2 _size;
+    private Vector2 _position;
 
     public override async void _Ready()
     {
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
-        _size = new Vector2(GetParentAreaSize().X, Size.Y); 
+        _size = Size;
+        _position = Position;
     }
 
     public override void _EnterTree()
@@ -47,39 +48,39 @@ public partial class AnimatedMenuButtonView : ButtonView
 
     private void OnMouseEntered()
     {
-        MouseEnteredTweenSize(_size + new Vector2(mouseEnterSize, 0));
+        MouseEnteredTweenSize(settings.ChangeSizeHover);
     }
 
     private void OnMouseExited()
     {
-        MouseEnteredTweenSize(_size);
+        MouseEnteredTweenSize(Vector2.Zero);
     }
 
     private void OnFocusEntered()
     {
-        TweenSize(_size + new Vector2(mouseEnterSize * 2f, 0));
+        Animate(settings.ChangeSizeFocus);
     }
 
     private void OnFocusExited()
     {
-        TweenSize(_size);
+        Animate(Vector2.Zero);
     }
 
     private void MouseEnteredTweenSize(Vector2 size)
     {
         if (HasFocus()) return;
-        TweenSize(size);
+        Animate(size);
 
     }
 
-    private void TweenSize(Vector2 size)
+    private void Animate(Vector2 size)
     {
         if (Disabled) return;
         _tween?.Kill();
         _tween = GetTree().CreateTween();
-        _tween.SetEase(Tween.EaseType.Out);
-        _tween.SetTrans(Tween.TransitionType.Elastic);
-        _tween.TweenProperty(this, PropertyConstants.Size, size, AnimationDuration);
+        _tween.SetEase(settings.Ease);
+        _tween.SetTrans(settings.Transition);
+        _tween.TweenControlSize(true, this, size, settings.Duration, _position, _size, settings.HorizontalDirection, settings.VerticalDirection);
     }
 
 }

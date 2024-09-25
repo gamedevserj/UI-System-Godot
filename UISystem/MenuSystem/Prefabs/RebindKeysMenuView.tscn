@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/RebindKeys/RebindKeysMenuView.cs" id="1_53hud"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/RebindableKeyButtonView.cs" id="2_1gokv"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_aytam"]
-[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/ButtonsFontTheme.tres" id="2_dyxee"]
+[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_dyxee"]
 [ext_resource type="Texture2D" uid="uid://fx6gyp2ifiet" path="res://UISystem/Textures/Inputs/ellipsis.png" id="3_hujmc"]
 
 [node name="RebindKeysMenuView" type="Control" node_paths=PackedStringArray("moveLeft", "moveLeftJoystick", "moveRight", "moveRightJoystick", "jump", "jumpJoystick", "returnButton", "fadeObjectsContainer", "resetButton")]

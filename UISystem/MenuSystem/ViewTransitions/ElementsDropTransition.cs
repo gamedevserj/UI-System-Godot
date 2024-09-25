@@ -7,6 +7,8 @@ using UISystem.Constants;
 using UISystem.MenuSystem.Views;
 using UISystem.MenuSystem.Interfaces;
 using VisibilityManger = UISystem.Common.Helpers.CanvasItemVisibilityManager;
+using UISystem.Common.Helpers;
+using UISystem.Extensions;
 
 namespace UISystem.MenuSystem.ViewTransitions;
 public class ElementsDropTransition : IViewTransition
@@ -59,7 +61,6 @@ public class ElementsDropTransition : IViewTransition
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
             tween.Parallel().TweenProperty(_secondaryElements[i], PropertyConstants.Position, Vector2.Zero, _animationDuration);
-
         }
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(false); }));
 
@@ -69,7 +70,8 @@ public class ElementsDropTransition : IViewTransition
         tween.Parallel().TweenProperty(_primaryElement, PropertyConstants.Modulate, new Color(_primaryElement.Modulate, 0), duration);
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.Parallel().TweenProperty(_primaryElement, PropertyConstants.Size, size, duration);
+        //tween.Parallel().TweenProperty(_primaryElement, PropertyConstants.Size, size, duration);
+        tween.TweenControlSize(true, _primaryElement, size, duration);
         tween.Parallel().TweenProperty(_fadeObjectsContainer, PropertyConstants.Modulate, new Color(_fadeObjectsContainer.Modulate, 0), duration).SetDelay(duration);
         tween.TweenCallback(Callable.From(() =>
         {
@@ -80,6 +82,7 @@ public class ElementsDropTransition : IViewTransition
     public async void Show(Action onShown, bool instant)
     {
         VisibilityManger.HideItem(_primaryElement);
+        VisibilityManger.HideItem(_fadeObjectsContainer);
         SwitchSecondaryButtonsVisibility(false);
 
         if (!_initializedButtonParameters)
@@ -88,12 +91,12 @@ public class ElementsDropTransition : IViewTransition
         if (instant)
         {
             VisibilityManger.ShowItem(_primaryElement);
+            VisibilityManger.ShowItem(_fadeObjectsContainer);
             SwitchSecondaryButtonsVisibility(true);
             onShown?.Invoke();
             return;
         }
-
-        VisibilityManger.HideItem(_fadeObjectsContainer);
+        
         _primaryElement.Size = new(0, _primaryElement.Size.Y);
         VisibilityManger.ShowItem(_primaryElement);
         for (int i = 0; i < _secondaryElements.Length; i++)
@@ -107,7 +110,8 @@ public class ElementsDropTransition : IViewTransition
 
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.Parallel().TweenProperty(_primaryElement, PropertyConstants.Size, _primaryElementSize, _animationDuration * 0.5f);
+        //tween.Parallel().TweenProperty(_primaryElement, PropertyConstants.Size, _primaryElementSize, _animationDuration * 0.5f);
+        tween.TweenControlSize(true, _primaryElement, _primaryElementSize, _animationDuration * 0.5f);
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(true); }));
 
         tween.SetTrans(Tween.TransitionType.Back);

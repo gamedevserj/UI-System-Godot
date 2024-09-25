@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://cpni7t3hr221b"]
 
 [ext_resource type="Script" path="res://UISystem/PopupSystem/Popups/YesNoPopup/YesNoPopupView.cs" id="1_rr6j1"]
-[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/ButtonsFontTheme.tres" id="2_focc0"]
+[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_focc0"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_oiwka"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ulc4q"]

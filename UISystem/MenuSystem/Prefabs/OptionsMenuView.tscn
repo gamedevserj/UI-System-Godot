@@ -1,8 +1,9 @@
-[gd_scene load_steps=4 format=3 uid="uid://cp2yn6w4kyuam"]
+[gd_scene load_steps=5 format=3 uid="uid://cp2yn6w4kyuam"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Options/OptionsMenuView.cs" id="1_sgbji"]
-[ext_resource type="Theme" uid="uid://b55ogigy56x2q" path="res://UISystem/ButtonTheme.tres" id="2_lg4ex"]
+[ext_resource type="Theme" uid="uid://b55ogigy56x2q" path="res://UISystem/Themes/MenuNavigationButtonTheme.tres" id="2_lg4ex"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedMenuButtonView.cs" id="3_7cbkr"]
+[ext_resource type="Resource" uid="uid://dj5acww1ovp0b" path="res://UISystem/AnimationSettings/MenuNavigationButtonSettings.tres" id="4_u6xag"]
 
 [node name="OptionsMenuView" type="Control" node_paths=PackedStringArray("interfaceSettingsButton", "audioSettingsButton", "videoSettingsButton", "rebindKeysButton", "returnButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -60,6 +61,7 @@ text = "Interface"
 alignment = 0
 clip_text = true
 script = ExtResource("3_7cbkr")
+settings = ExtResource("4_u6xag")
 
 [node name="AudioSettingsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
@@ -68,6 +70,7 @@ text = "Audio"
 alignment = 0
 clip_text = true
 script = ExtResource("3_7cbkr")
+settings = ExtResource("4_u6xag")
 
 [node name="VideoSettingsButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
@@ -76,6 +79,7 @@ text = "Video"
 alignment = 0
 clip_text = true
 script = ExtResource("3_7cbkr")
+settings = ExtResource("4_u6xag")
 
 [node name="RebindKeysButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
@@ -84,6 +88,7 @@ text = "Controls"
 alignment = 0
 clip_text = true
 script = ExtResource("3_7cbkr")
+settings = ExtResource("4_u6xag")
 
 [node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]
 layout_mode = 2
@@ -92,3 +97,4 @@ text = "Return"
 alignment = 0
 clip_text = true
 script = ExtResource("3_7cbkr")
+settings = ExtResource("4_u6xag")

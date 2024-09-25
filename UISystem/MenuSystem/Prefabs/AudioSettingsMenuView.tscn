@@ -1,7 +1,7 @@
 [gd_scene load_steps=5 format=3 uid="uid://bx45yom4bi85n"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/AudioSettings/AudioSettingsMenuView.cs" id="1_ca7ap"]
-[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/ButtonsFontTheme.tres" id="2_6en0s"]
+[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_6en0s"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/HSliderView.cs" id="2_8b7gh"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="3_sk5vb"]
 

@@ -7,7 +7,7 @@ namespace UISystem.MenuSystem.Views;
 public partial class SettingsMenuView : MenuView
 {
 
-    [Export] private Control fadeObjectsContainer;
+    [Export] protected Control fadeObjectsContainer;
     [Export] private ButtonView resetButton;
 
     public ButtonView ResetButton => resetButton;
