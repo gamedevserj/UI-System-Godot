@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://d0lqlkxfi5o25"]
+[gd_scene load_steps=12 format=3 uid="uid://d0lqlkxfi5o25"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/InterfaceSettings/InterfaceSettingsMenuView.cs" id="1_830ao"]
 [ext_resource type="Theme" uid="uid://p3e6ki5xgue4" path="res://UISystem/Themes/DropdownButtonTheme.tres" id="2_2bwi3"]
@@ -8,7 +8,6 @@
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_lueqv"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="6_ihsn5"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedButtonView.cs" id="6_imtu2"]
-[ext_resource type="Resource" uid="uid://pxdlfq08bkq1" path="res://UISystem/AnimationSettings/OptionButtonSettings.tres" id="7_6qthg"]
 [ext_resource type="PackedScene" uid="uid://bvtey7pkj2tdr" path="res://UISystem/Common/Prefabs/AnimatedButtonView.tscn" id="8_ru38l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blj3m"]
@@ -216,7 +215,6 @@ flat = true
 text_overrun_behavior = 2
 clip_text = true
 script = ExtResource("6_imtu2")
-settings = ExtResource("7_6qthg")
 
 [node name="Control" type="Control" parent="Container/ReturnButton2"]
 layout_mode = 1

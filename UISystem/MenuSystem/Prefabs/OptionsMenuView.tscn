@@ -62,13 +62,12 @@ flat = true
 alignment = 0
 clip_text = true
 script = ExtResource("2_geyvt")
+buttonHoverSettings = ExtResource("4_u6xag")
 animatedButtonView = NodePath("AnimatedButtonView")
 
 [node name="AnimatedButtonView" parent="Container/VBoxContainer/InterfaceSettingsButton" instance=ExtResource("4_57c4y")]
-settings = ExtResource("4_u6xag")
 
 [node name="LabelMask" parent="Container/VBoxContainer/InterfaceSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
 offset_left = 0.0
 offset_right = 0.0
 
@@ -88,13 +87,12 @@ flat = true
 alignment = 0
 clip_text = true
 script = ExtResource("2_geyvt")
+buttonHoverSettings = ExtResource("4_u6xag")
 animatedButtonView = NodePath("AnimatedButtonView")
 
 [node name="AnimatedButtonView" parent="Container/VBoxContainer/AudioSettingsButton" instance=ExtResource("4_57c4y")]
-settings = ExtResource("4_u6xag")
 
 [node name="LabelMask" parent="Container/VBoxContainer/AudioSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
 offset_left = 0.0
 offset_right = 0.0
 
@@ -114,13 +112,12 @@ flat = true
 alignment = 0
 clip_text = true
 script = ExtResource("2_geyvt")
+buttonHoverSettings = ExtResource("4_u6xag")
 animatedButtonView = NodePath("AnimatedButtonView")
 
 [node name="AnimatedButtonView" parent="Container/VBoxContainer/VideoSettingsButton" instance=ExtResource("4_57c4y")]
-settings = ExtResource("4_u6xag")
 
 [node name="LabelMask" parent="Container/VBoxContainer/VideoSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
 offset_left = 0.0
 offset_right = 0.0
 
@@ -140,13 +137,12 @@ flat = true
 alignment = 0
 clip_text = true
 script = ExtResource("2_geyvt")
+buttonHoverSettings = ExtResource("4_u6xag")
 animatedButtonView = NodePath("AnimatedButtonView")
 
 [node name="AnimatedButtonView" parent="Container/VBoxContainer/RebindKeysButton" instance=ExtResource("4_57c4y")]
-settings = ExtResource("4_u6xag")
 
 [node name="LabelMask" parent="Container/VBoxContainer/RebindKeysButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
 offset_left = 0.0
 offset_right = 0.0
 
@@ -166,13 +162,12 @@ flat = true
 alignment = 0
 clip_text = true
 script = ExtResource("2_geyvt")
+buttonHoverSettings = ExtResource("4_u6xag")
 animatedButtonView = NodePath("AnimatedButtonView")
 
 [node name="AnimatedButtonView" parent="Container/VBoxContainer/ReturnButton" instance=ExtResource("4_57c4y")]
-settings = ExtResource("4_u6xag")
 
 [node name="LabelMask" parent="Container/VBoxContainer/ReturnButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
 offset_left = 0.0
 offset_right = 0.0
 

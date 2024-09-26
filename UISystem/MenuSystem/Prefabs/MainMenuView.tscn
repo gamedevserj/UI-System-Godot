@@ -59,10 +59,10 @@ layout_mode = 2
 size_flags_vertical = 3
 flat = true
 script = ExtResource("3_wqd0n")
+buttonHoverSettings = ExtResource("4_6edjl")
 animatedButtonView = NodePath("AnimatedButtonView")
 
 [node name="AnimatedButtonView" parent="Container/ButtonsContainer/PlayButton" instance=ExtResource("4_lktki")]
-settings = ExtResource("4_6edjl")
 
 [node name="LabelMask" parent="Container/ButtonsContainer/PlayButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
 offset_left = 0.0
@@ -82,10 +82,10 @@ layout_mode = 2
 size_flags_vertical = 3
 flat = true
 script = ExtResource("3_wqd0n")
+buttonHoverSettings = ExtResource("4_6edjl")
 animatedButtonView = NodePath("AnimatedButtonView")
 
 [node name="AnimatedButtonView" parent="Container/ButtonsContainer/OptionsButton" instance=ExtResource("4_lktki")]
-settings = ExtResource("4_6edjl")
 
 [node name="LabelMask" parent="Container/ButtonsContainer/OptionsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
 offset_left = 0.0
@@ -105,10 +105,10 @@ layout_mode = 2
 size_flags_vertical = 3
 flat = true
 script = ExtResource("3_wqd0n")
+buttonHoverSettings = ExtResource("4_6edjl")
 animatedButtonView = NodePath("AnimatedButtonView")
 
 [node name="AnimatedButtonView" parent="Container/ButtonsContainer/QuitButton" instance=ExtResource("4_lktki")]
-settings = ExtResource("4_6edjl")
 
 [node name="LabelMask" parent="Container/ButtonsContainer/QuitButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
 offset_left = 0.0
