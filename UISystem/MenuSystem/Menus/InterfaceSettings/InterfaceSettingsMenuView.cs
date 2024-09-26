@@ -21,9 +21,9 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
     [Export] private ButtonView returnButton;
     [Export] private PanelContainer panel;
 
-    [Export] private AnimatedButtonView animReturnButton;
-    [Export] private AnimatedButtonView animSaveButton;
-    [Export] private AnimatedButtonView animResetButton;
+    //[Export] private AnimatedButtonView animReturnButton;
+    //[Export] private AnimatedButtonView animSaveButton;
+    //[Export] private AnimatedButtonView animResetButton;
 
     private Vector2 _panelSize;
     private Vector2 _panelPosition;
@@ -50,35 +50,32 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
         tween.SetPauseMode(Tween.TweenPauseMode.Process);
 
         float duration = AnimationDuration * 0.5f;
-        //tween.Parallel().TweenProperty(ControllerIconsDropdown, PropertyConstants.Size, Vector2.Zero, duration);
+        tween.TweenControlSize(true, ControllerIconsDropdown, Vector2.Zero, duration);
 
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Linear);
-        //tween.ControlSize(true, animReturnButton.AnimatedNode, Vector2.Zero, duration, _returnButtonAnimationSettings);
-        //tween.ControlSize(true, animSaveButton.AnimatedNode, Vector2.Zero, duration, _saveButtonAnimationSettings);
-        //tween.ControlSize(true, animResetButton.AnimatedNode, Vector2.Zero, duration, _resetButtonAnimationSettings);
+        tween.TweenControlSize(true, returnButton.ResizableizeControl, Vector2.Zero, duration, _returnButtonAnimationSettings);
+        tween.TweenControlSize(true, saveSettingsButton.ResizableizeControl, Vector2.Zero, duration, _saveButtonAnimationSettings);
+        tween.TweenControlSize(true, ResetButton.ResizableizeControl, Vector2.Zero, duration, _resetButtonAnimationSettings);
         tween.TweenControlSize(true, ControllerIconsDropdown, Vector2.Zero, duration, _dropdownAnimationSettings);
+        tween.TweenCallback(Callable.From(() =>
+        {
+            VisibilityManger.HideItem(ControllerIconsDropdown);
+            VisibilityManger.HideItem(SaveSettingsButton);
+            VisibilityManger.HideItem(ReturnButton);
+            VisibilityManger.HideItem(ResetButton);
+        }));
 
-        //tween.Parallel().TweenProperty(SaveSettingsButton, PropertyConstants.Size, Vector2.Zero, duration);
-        //tween.Parallel().TweenProperty(ResetButton, PropertyConstants.Size, Vector2.Zero, duration);
-        //tween.TweenCallback(Callable.From(() => 
-        //{
-        //    VisibilityManger.HideItem(ControllerIconsDropdown);
-        //    VisibilityManger.HideItem(SaveSettingsButton);
-        //    VisibilityManger.HideItem(ReturnButton);
-        //    VisibilityManger.HideItem(ResetButton);
-        //}));
-        
-        //tween.ControlSize(true, panel, Vector2.Zero, AnimationDuration, _panelTweenSizeSettings);
+        tween.TweenControlSize(true, panel, Vector2.Zero, AnimationDuration, _panelTweenSizeSettings);
 
-        //tween.SetEase(Tween.EaseType.Out);
-        //tween.SetTrans(Tween.TransitionType.Quad);
-        //tween.TweenProperty(fadeObjectsContainer, PropertyConstants.Modulate, new Color(fadeObjectsContainer.Modulate, 0), duration);
+        tween.SetEase(Tween.EaseType.Out);
+        tween.SetTrans(Tween.TransitionType.Quad);
+        tween.TweenCanvasItemModulate(true, fadeObjectsContainer, new Color(fadeObjectsContainer.Modulate, 0), duration);
         //tween.TweenCallback(Callable.From(() =>
         //{
         //    onHidden?.Invoke();
         //}));
-        //tween.Finished += ()=> onHidden?.Invoke();
+        tween.Finished += ()=> onHidden?.Invoke();
 
     }
 
@@ -92,16 +89,19 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
     private async Task InitElementParameters()
     {
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
-        //_panelSize = panel.Size;
-        //_panelPosition = panel.Position;
+        _panelSize = panel.Size;
+        _panelPosition = panel.Position;
 
-        //var horizontalDirection = Common.Enums.HorizontalControlSizeChangeDirection.FromCenter;
-        //var verticalDirection = Common.Enums.VerticalControlSizeChangeDirection.FromCenter;
-        //_saveButtonAnimationSettings = new TweenSizeSettings(animSaveButton.OriginalPosition, animSaveButton.OriginalSize, horizontalDirection, verticalDirection);
-        //_returnButtonAnimationSettings = new TweenSizeSettings(animReturnButton.OriginalPosition, animReturnButton.OriginalSize, horizontalDirection, verticalDirection);
-        //_resetButtonAnimationSettings = new TweenSizeSettings(animResetButton.OriginalPosition, animResetButton.OriginalSize, horizontalDirection, verticalDirection);
-        //_dropdownAnimationSettings = new TweenSizeSettings(ControllerIconsDropdown.Position, ControllerIconsDropdown.Size, horizontalDirection, verticalDirection);
-        //_panelTweenSizeSettings = new TweenSizeSettings(_panelPosition, _panelSize, horizontalDirection, verticalDirection);
+        var horizontalDirection = Common.Enums.HorizontalControlSizeChangeDirection.FromCenter;
+        var verticalDirection = Common.Enums.VerticalControlSizeChangeDirection.FromCenter;
+        _saveButtonAnimationSettings = new SizeSettings(saveSettingsButton.ResizableizeControl.Position,
+            saveSettingsButton.ResizableizeControl.Size, horizontalDirection, verticalDirection);
+        _returnButtonAnimationSettings = new SizeSettings(ReturnButton.ResizableizeControl.Position,
+            ReturnButton.ResizableizeControl.Size, horizontalDirection, verticalDirection);
+        _resetButtonAnimationSettings = new SizeSettings(ResetButton.ResizableizeControl.Position,
+            ResetButton.ResizableizeControl.Size, horizontalDirection, verticalDirection);
+        _dropdownAnimationSettings = new SizeSettings(ControllerIconsDropdown.Position, ControllerIconsDropdown.Size, horizontalDirection, verticalDirection);
+        _panelTweenSizeSettings = new SizeSettings(_panelPosition, _panelSize, horizontalDirection, verticalDirection);
     }
 
 }

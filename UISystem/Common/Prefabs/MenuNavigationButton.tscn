@@ -6,16 +6,17 @@
 
 [node name="MenuNavigationButton" type="Button" node_paths=PackedStringArray("animatedButtonView")]
 self_modulate = Color(1, 1, 1, 0)
+offset_right = 450.0
+offset_bottom = 87.0
 size_flags_vertical = 3
 flat = true
 script = ExtResource("1_i0i7k")
+buttonHoverSettings = ExtResource("3_y66p4")
 animatedButtonView = NodePath("AnimatedButtonView")
 
 [node name="AnimatedButtonView" parent="." instance=ExtResource("2_suabn")]
-settings = ExtResource("3_y66p4")
 
 [node name="LabelMask" parent="AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
 offset_left = 0.0
 offset_right = 0.0
 

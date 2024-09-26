@@ -37,6 +37,13 @@ public static class TweenExtensions
         tween.Parallel().TweenProperty(target, PropertyConstants.SelfModulate, color, duration);
     }
 
+    public static void TweenCanvasItemModulate(this Tween tween, bool parallel, CanvasItem target, Color color, float duration)
+    {
+        if (parallel)
+            tween.Parallel();
+        tween.Parallel().TweenProperty(target, PropertyConstants.Modulate, color, duration);
+    }
+
     private static void ControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration)
     {
         if (parallel)

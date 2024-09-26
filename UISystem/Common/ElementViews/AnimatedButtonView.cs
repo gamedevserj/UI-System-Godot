@@ -6,7 +6,7 @@ public partial class AnimatedButtonView : Control
 
     [Export] private Control border;
 
-    public Control ResizeableControl => this;
+    public Control ResizableControl => this;
     public Control Border => border;
 
 }

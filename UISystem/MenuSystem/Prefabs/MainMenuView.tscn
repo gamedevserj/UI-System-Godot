@@ -1,9 +1,7 @@
-[gd_scene load_steps=5 format=3 uid="uid://dlummbpn4khpc"]
+[gd_scene load_steps=3 format=3 uid="uid://dlummbpn4khpc"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Main/MainMenuView.cs" id="1_qlhqn"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="3_wqd0n"]
-[ext_resource type="Resource" uid="uid://dj5acww1ovp0b" path="res://UISystem/AnimationSettings/MenuNavigationButtonSettings.tres" id="4_6edjl"]
-[ext_resource type="PackedScene" uid="uid://bvtey7pkj2tdr" path="res://UISystem/Common/Prefabs/AnimatedButtonView.tscn" id="4_lktki"]
+[ext_resource type="PackedScene" uid="uid://bwmjk045qeqk8" path="res://UISystem/Common/Prefabs/MenuNavigationButton.tscn" id="2_24ejg"]
 
 [node name="MainMenuView" type="Control" node_paths=PackedStringArray("playButton", "optionsButton", "quitButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -53,75 +51,27 @@ grow_horizontal = 2
 theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayButton" type="Button" parent="Container/ButtonsContainer" node_paths=PackedStringArray("animatedButtonView")]
-self_modulate = Color(1, 1, 1, 0)
+[node name="PlayButton" parent="Container/ButtonsContainer" instance=ExtResource("2_24ejg")]
 layout_mode = 2
-size_flags_vertical = 3
-flat = true
-script = ExtResource("3_wqd0n")
-buttonHoverSettings = ExtResource("4_6edjl")
-animatedButtonView = NodePath("AnimatedButtonView")
-
-[node name="AnimatedButtonView" parent="Container/ButtonsContainer/PlayButton" instance=ExtResource("4_lktki")]
-
-[node name="LabelMask" parent="Container/ButtonsContainer/PlayButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-offset_left = 0.0
-offset_right = 0.0
 
 [node name="Label" parent="Container/ButtonsContainer/PlayButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
-anchor_left = 0.08
-anchor_right = 0.08
-offset_left = 0.0
-offset_right = 368.0
 text = "PLAY"
-horizontal_alignment = 0
 
-[node name="OptionsButton" type="Button" parent="Container/ButtonsContainer" node_paths=PackedStringArray("animatedButtonView")]
-self_modulate = Color(1, 1, 1, 0)
+[node name="OptionsButton" parent="Container/ButtonsContainer" instance=ExtResource("2_24ejg")]
 layout_mode = 2
-size_flags_vertical = 3
-flat = true
-script = ExtResource("3_wqd0n")
-buttonHoverSettings = ExtResource("4_6edjl")
-animatedButtonView = NodePath("AnimatedButtonView")
-
-[node name="AnimatedButtonView" parent="Container/ButtonsContainer/OptionsButton" instance=ExtResource("4_lktki")]
-
-[node name="LabelMask" parent="Container/ButtonsContainer/OptionsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-offset_left = 0.0
-offset_right = 0.0
 
 [node name="Label" parent="Container/ButtonsContainer/OptionsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
-anchor_left = 0.08
-anchor_right = 0.08
-offset_left = 0.0
-offset_right = 368.0
 text = "OPTIONS"
-horizontal_alignment = 0
 
-[node name="QuitButton" type="Button" parent="Container/ButtonsContainer" node_paths=PackedStringArray("animatedButtonView")]
-self_modulate = Color(1, 1, 1, 0)
+[node name="QuitButton" parent="Container/ButtonsContainer" instance=ExtResource("2_24ejg")]
 layout_mode = 2
-size_flags_vertical = 3
-flat = true
-script = ExtResource("3_wqd0n")
-buttonHoverSettings = ExtResource("4_6edjl")
-animatedButtonView = NodePath("AnimatedButtonView")
-
-[node name="AnimatedButtonView" parent="Container/ButtonsContainer/QuitButton" instance=ExtResource("4_lktki")]
-
-[node name="LabelMask" parent="Container/ButtonsContainer/QuitButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-offset_left = 0.0
-offset_right = 0.0
 
 [node name="Label" parent="Container/ButtonsContainer/QuitButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
-anchor_left = 0.08
-anchor_right = 0.08
-offset_left = 0.0
-offset_right = 368.0
 text = "QUIT"
-horizontal_alignment = 0
 
+[editable path="Container/ButtonsContainer/PlayButton"]
 [editable path="Container/ButtonsContainer/PlayButton/AnimatedButtonView"]
+[editable path="Container/ButtonsContainer/OptionsButton"]
 [editable path="Container/ButtonsContainer/OptionsButton/AnimatedButtonView"]
+[editable path="Container/ButtonsContainer/QuitButton"]
 [editable path="Container/ButtonsContainer/QuitButton/AnimatedButtonView"]
