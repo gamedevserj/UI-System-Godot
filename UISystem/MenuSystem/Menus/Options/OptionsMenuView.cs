@@ -2,8 +2,8 @@ using Godot;
 using System;
 using UISystem.Common.Elements;
 using UISystem.Common.Interfaces;
-using UISystem.MenuSystem.Interfaces;
-using UISystem.MenuSystem.ViewTransitions;
+using UISystem.Common.Transitions;
+using UISystem.Common.Transitions.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
 public partial class OptionsMenuView : MenuView

@@ -1,9 +1,9 @@
 ﻿using Godot;
 using System;
 using UISystem.Common.Helpers;
-using UISystem.MenuSystem.Interfaces;
+using UISystem.Common.Transitions.Interfaces;
 
-namespace UISystem.MenuSystem.ViewTransitions;
+namespace UISystem.Common.Transitions;
 public class FadeTransition : IViewTransition
 {
 

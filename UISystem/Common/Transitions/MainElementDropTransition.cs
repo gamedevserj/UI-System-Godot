@@ -6,11 +6,10 @@ using System.Threading.Tasks;
 using UISystem.Common.Elements;
 using UISystem.Constants;
 using UISystem.Extensions;
-using UISystem.MenuSystem.Interfaces;
-using UISystem.MenuSystem.Views;
+using UISystem.Common.Transitions.Interfaces;
 using VisibilityManger = UISystem.Common.Helpers.CanvasItemVisibilityManager;
 
-namespace UISystem.MenuSystem.ViewTransitions;
+namespace UISystem.Common.Transitions;
 public class MainElementDropTransition : IViewTransition
 {
 
@@ -18,7 +17,7 @@ public class MainElementDropTransition : IViewTransition
     private bool _initializedParameters;
     private Dictionary<Control, Vector2> _secondaryElementsPositions = new();
 
-    private readonly MenuView _view;
+    private readonly Control _caller;
     private readonly Control _fadeObjectsContainer;
     private readonly ButtonView _primaryElement;
     private readonly ButtonView[] _secondaryElements;
@@ -29,15 +28,15 @@ public class MainElementDropTransition : IViewTransition
     {
         get
         {
-            _sceneTree ??= _view.GetTree();
+            _sceneTree ??= _caller.GetTree();
             return _sceneTree;
         }
     }
 
-    public MainElementDropTransition(MenuView view, Control fadeObjectsContainer, ButtonView primaryElement,
+    public MainElementDropTransition(Control caller, Control fadeObjectsContainer, ButtonView primaryElement,
         ButtonView[] secondaryElements, float animationDuration)
     {
-        _view = view;
+        _caller = caller;
         _fadeObjectsContainer = fadeObjectsContainer;
         _primaryElement = primaryElement;
         _secondaryElements = secondaryElements;
@@ -98,7 +97,7 @@ public class MainElementDropTransition : IViewTransition
 
         if (!_initializedParameters)
             await InitElementParameters();
-        
+
         _primaryElement.ResizableizeControl.Size = new(0, _primaryElement.ResizableizeControl.Size.Y);
         VisibilityManger.ShowItem(_primaryElement);
         for (int i = 0; i < _secondaryElements.Length; i++)
@@ -125,7 +124,7 @@ public class MainElementDropTransition : IViewTransition
 
     private async Task InitElementParameters()
     {
-        await _view.ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
+        await _caller.ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
         _primaryElementSize = _primaryElement.ResizableizeControl.Size;
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
