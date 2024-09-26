@@ -30,7 +30,7 @@ public partial class SizeTweenSettings : TweenSettings
 
         private readonly SceneTree _tree;
         private readonly Control _target;
-        private readonly TweenSizeSettings _tweenSizeSettings;
+        private readonly SizeSettings _sizeSettings;
         private readonly SizeTweenSettings _settings;
         private readonly bool _parallel;
 
@@ -42,7 +42,7 @@ public partial class SizeTweenSettings : TweenSettings
             _settings = settings;
             _originalSize = target.Size;
             _originalPosition = target.Position;
-            _tweenSizeSettings = new TweenSizeSettings(_originalPosition, _originalSize, settings.HorizontalDirection, settings.VerticalDirection);
+            _sizeSettings = new SizeSettings(_originalPosition, _originalSize, settings.HorizontalDirection, settings.VerticalDirection);
         }
 
         public void OnMouseEntered() => Tween(_originalSize + _settings.ChangeSizeHover);
@@ -56,7 +56,7 @@ public partial class SizeTweenSettings : TweenSettings
             _tween = _tree.CreateTween();
             _tween.SetEase(_settings.Ease);
             _tween.SetTrans(_settings.Transition);
-            _tween.ControlSize(_parallel, _target, size, _settings.Duration, _tweenSizeSettings);
+            _tween.TweenControlSize(_parallel, _target, size, _settings.Duration, _sizeSettings);
         }
     }
 }

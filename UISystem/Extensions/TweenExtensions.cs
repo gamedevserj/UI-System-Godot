@@ -7,8 +7,8 @@ namespace UISystem.Extensions;
 public static class TweenExtensions
 {
 
-    public static void ControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration,
-        TweenSizeSettings sizeSettings = default)
+    public static void TweenControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration,
+        SizeSettings sizeSettings = default)
     {
         tween.ControlSize(parallel, target, size, duration);
 
@@ -20,14 +20,21 @@ public static class TweenExtensions
         Vector2 sizeDifference = size - sizeSettings.OriginalSize;
         Vector2 position = sizeSettings.OriginalPosition - sizeDifference * new Vector2(multiplierX, multiplierY);
 
-        tween.ControlPosition(parallel, target, position, duration);
+        tween.TweenNode2DPosition(parallel, target, position, duration);
     }
 
-    public static void ControlPosition(this Tween tween, bool parallel, Control target, Vector2 position, float duration)
+    public static void TweenNode2DPosition(this Tween tween, bool parallel, Control target, Vector2 position, float duration)
     {
         if (parallel)
             tween.Parallel();
         tween.Parallel().TweenProperty(target, PropertyConstants.Position, position, duration);
+    }
+
+    public static void TweenCanvasItemSelfModulate(this Tween tween, bool parallel, CanvasItem target, Color color, float duration)
+    {
+        if (parallel)
+            tween.Parallel();
+        tween.Parallel().TweenProperty(target, PropertyConstants.SelfModulate, color, duration);
     }
 
     private static void ControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration)

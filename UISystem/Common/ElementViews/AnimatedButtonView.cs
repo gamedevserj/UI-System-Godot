@@ -4,7 +4,9 @@ namespace UISystem.Common.ElementViews;
 public partial class AnimatedButtonView : Control
 {
 
-    public Control ResizeableControl => this;
+    [Export] private Control border;
 
+    public Control ResizeableControl => this;
+    public Control Border => border;
 
 }

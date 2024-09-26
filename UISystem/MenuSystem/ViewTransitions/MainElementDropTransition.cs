@@ -68,7 +68,7 @@ public class MainElementDropTransition : IViewTransition
         float duration = _animationDuration * 0.5f;
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.ControlSize(true, _primaryElement.SizeControl, size, duration);
+        tween.TweenControlSize(true, _primaryElement.SizeControl, size, duration);
         tween.TweenCallback(Callable.From(() =>
         {
             VisibilityManger.HideItem(_primaryElement);
@@ -112,13 +112,13 @@ public class MainElementDropTransition : IViewTransition
 
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.ControlSize(true, _primaryElement.SizeControl, _primaryElementSize, _animationDuration * 0.5f);
+        tween.TweenControlSize(true, _primaryElement.SizeControl, _primaryElementSize, _animationDuration * 0.5f);
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(true); }));
 
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            tween.ControlPosition(true, _secondaryElements[i], _secondaryElementsPositions[_secondaryElements[i]], _animationDuration);
+            tween.TweenNode2DPosition(true, _secondaryElements[i], _secondaryElementsPositions[_secondaryElements[i]], _animationDuration);
         }
         tween.TweenCallback(Callable.From(() => { onShown?.Invoke(); }));
     }

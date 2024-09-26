@@ -2,7 +2,7 @@
 using UISystem.Common.Enums;
 
 namespace UISystem.Common.Structs;
-public readonly struct TweenSizeSettings
+public readonly struct SizeSettings
 {
 
     public readonly Vector2 OriginalPosition = Vector2.Zero;
@@ -11,7 +11,7 @@ public readonly struct TweenSizeSettings
     public readonly VerticalControlSizeChangeDirection VerticalDirection = VerticalControlSizeChangeDirection.FromTop;
     public readonly bool IsInitialized = false; // using it to not tween position when settings are default
 
-    public TweenSizeSettings(Vector2 originalPosition, Vector2 originalSize,
+    public SizeSettings(Vector2 originalPosition, Vector2 originalSize,
         HorizontalControlSizeChangeDirection horizontalDirection,
         VerticalControlSizeChangeDirection verticalDirection)
     {

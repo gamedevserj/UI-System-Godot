@@ -13,13 +13,15 @@ public partial class ButtonView : BaseButton, IFocusableControl
     private ITweener _tweener;
 
     public Control SizeControl => animatedButtonView.ResizeableControl;
+    public Control Border => animatedButtonView.Border;
 
     public override async void _EnterTree()
     {
         if (buttonHoverSettings == null) return;
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
-        _tweener = buttonHoverSettings.SizeChangeSettings.CreateTweener(GetTree(), SizeControl);
+        
+        _tweener = buttonHoverSettings.CreateTweener(GetTree(), SizeControl, Border);
         Subscribe();
     }
 

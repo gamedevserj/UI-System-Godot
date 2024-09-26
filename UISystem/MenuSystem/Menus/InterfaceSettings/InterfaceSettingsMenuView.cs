@@ -27,12 +27,12 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
 
     private Vector2 _panelSize;
     private Vector2 _panelPosition;
-    private TweenSizeSettings _panelTweenSizeSettings;
+    private SizeSettings _panelTweenSizeSettings;
 
-    private TweenSizeSettings _dropdownAnimationSettings;
-    private TweenSizeSettings _returnButtonAnimationSettings;
-    private TweenSizeSettings _saveButtonAnimationSettings;
-    private TweenSizeSettings _resetButtonAnimationSettings;
+    private SizeSettings _dropdownAnimationSettings;
+    private SizeSettings _returnButtonAnimationSettings;
+    private SizeSettings _saveButtonAnimationSettings;
+    private SizeSettings _resetButtonAnimationSettings;
     private bool _initializedParameters;
 
     public ButtonView SaveSettingsButton => saveSettingsButton;
@@ -57,7 +57,7 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
         //tween.ControlSize(true, animReturnButton.AnimatedNode, Vector2.Zero, duration, _returnButtonAnimationSettings);
         //tween.ControlSize(true, animSaveButton.AnimatedNode, Vector2.Zero, duration, _saveButtonAnimationSettings);
         //tween.ControlSize(true, animResetButton.AnimatedNode, Vector2.Zero, duration, _resetButtonAnimationSettings);
-        tween.ControlSize(true, ControllerIconsDropdown, Vector2.Zero, duration, _dropdownAnimationSettings);
+        tween.TweenControlSize(true, ControllerIconsDropdown, Vector2.Zero, duration, _dropdownAnimationSettings);
 
         //tween.Parallel().TweenProperty(SaveSettingsButton, PropertyConstants.Size, Vector2.Zero, duration);
         //tween.Parallel().TweenProperty(ResetButton, PropertyConstants.Size, Vector2.Zero, duration);

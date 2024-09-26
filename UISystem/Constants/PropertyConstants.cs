@@ -4,6 +4,7 @@ public static class PropertyConstants
 
     // canvas item
     public const string Modulate = "modulate";
+    public const string SelfModulate = "self_modulate";
 
     // control layout
     public const string Size = "size";

@@ -1,18 +1,17 @@
-[gd_scene load_steps=5 format=3 uid="uid://bvtey7pkj2tdr"]
+[gd_scene load_steps=4 format=3 uid="uid://bvtey7pkj2tdr"]
 
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedButtonView.cs" id="2_n2rmi"]
-[ext_resource type="Resource" uid="uid://pxdlfq08bkq1" path="res://UISystem/AnimationSettings/OptionButtonSettings.tres" id="3_ruxhi"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="4_sffel"]
 [ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="4_td8np"]
 
-[node name="AnimatedButtonView" type="Control"]
+[node name="AnimatedButtonView" type="Control" node_paths=PackedStringArray("border")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 450.0
 offset_bottom = 90.0
 mouse_filter = 2
 script = ExtResource("2_n2rmi")
-settings = ExtResource("3_ruxhi")
+border = NodePath("Outline")
 
 [node name="Outline" type="PanelContainer" parent="."]
 layout_mode = 1
