@@ -13,14 +13,13 @@ public partial class SizeTweenSettings : TweenSettings
     [Export] private VerticalControlSizeChangeDirection verticalDirection = VerticalControlSizeChangeDirection.FromTop;
     [Export] private Vector2 changeSizeHover = new(75, 0);
     [Export] private Vector2 changeSizeFocus = new(150, 0);
-    [Export] private bool parallel = true;
 
     public HorizontalControlSizeChangeDirection HorizontalDirection => horizontalDirection;
     public VerticalControlSizeChangeDirection VerticalDirection => verticalDirection;
     public Vector2 ChangeSizeHover => changeSizeHover;
     public Vector2 ChangeSizeFocus => changeSizeFocus;
 
-    public ITweener CreateTweener(SceneTree tree, Control target) => new SizeTweener(tree, target, this);
+    public ITweener CreateTweener(SceneTree tree, Control target, bool parallel = true) => new SizeTweener(tree, target, parallel, this);
 
     private class SizeTweener : ITweener
     {
@@ -33,11 +32,13 @@ public partial class SizeTweenSettings : TweenSettings
         private readonly Control _target;
         private readonly TweenSizeSettings _tweenSizeSettings;
         private readonly SizeTweenSettings _settings;
+        private readonly bool _parallel;
 
-        public SizeTweener(SceneTree tree, Control target, SizeTweenSettings settings)
+        public SizeTweener(SceneTree tree, Control target, bool parallel, SizeTweenSettings settings)
         {
             _tree = tree;
             _target = target;
+            _parallel = parallel;
             _settings = settings;
             _originalSize = target.Size;
             _originalPosition = target.Position;
@@ -55,7 +56,7 @@ public partial class SizeTweenSettings : TweenSettings
             _tween = _tree.CreateTween();
             _tween.SetEase(_settings.Ease);
             _tween.SetTrans(_settings.Transition);
-            _tween.ControlSize(true, _target, size, _settings.Duration, _tweenSizeSettings);
+            _tween.ControlSize(_parallel, _target, size, _settings.Duration, _tweenSizeSettings);
         }
     }
 }
