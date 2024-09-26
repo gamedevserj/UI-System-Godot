@@ -30,7 +30,7 @@ public partial class PauseMenuView : MenuView
     public override void Init()
     {
         base.Init();
-        _transition = new ElementsDropTransition(this, fadeObjectsContainer, ResumeGameButton, 
+        _transition = new MainElementDropTransition(this, fadeObjectsContainer, ResumeGameButton, 
             new[] { OptionsButton, ReturnToMainMenuButton },
             AnimationDuration);
     }

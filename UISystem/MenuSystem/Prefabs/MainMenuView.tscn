@@ -65,7 +65,6 @@ animatedButtonView = NodePath("AnimatedButtonView")
 settings = ExtResource("4_6edjl")
 
 [node name="LabelMask" parent="Container/ButtonsContainer/PlayButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
 offset_left = 0.0
 offset_right = 0.0
 
@@ -89,7 +88,6 @@ animatedButtonView = NodePath("AnimatedButtonView")
 settings = ExtResource("4_6edjl")
 
 [node name="LabelMask" parent="Container/ButtonsContainer/OptionsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
 offset_left = 0.0
 offset_right = 0.0
 
@@ -113,7 +111,6 @@ animatedButtonView = NodePath("AnimatedButtonView")
 settings = ExtResource("4_6edjl")
 
 [node name="LabelMask" parent="Container/ButtonsContainer/QuitButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
 offset_left = 0.0
 offset_right = 0.0
 

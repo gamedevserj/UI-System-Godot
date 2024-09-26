@@ -11,7 +11,7 @@ using UISystem.MenuSystem.Views;
 using VisibilityManger = UISystem.Common.Helpers.CanvasItemVisibilityManager;
 
 namespace UISystem.MenuSystem.ViewTransitions;
-public class ElementsDropTransition : IViewTransition
+public class MainElementDropTransition : IViewTransition
 {
 
     private Vector2 _primaryElementSize;
@@ -34,7 +34,7 @@ public class ElementsDropTransition : IViewTransition
         }
     }
 
-    public ElementsDropTransition(MenuView view, Control fadeObjectsContainer, ButtonView primaryElement,
+    public MainElementDropTransition(MenuView view, Control fadeObjectsContainer, ButtonView primaryElement,
         ButtonView[] secondaryElements, float animationDuration)
     {
         _view = view;

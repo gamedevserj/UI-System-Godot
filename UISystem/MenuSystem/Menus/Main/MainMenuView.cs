@@ -31,7 +31,7 @@ public partial class MainMenuView : MenuView
     public override void Init()
     {
         base.Init();
-        _transition = new ElementsDropTransition(this, fadeObjectsContainer, playButton, new[] { optionsButton, quitButton },
+        _transition = new MainElementDropTransition(this, fadeObjectsContainer, playButton, new[] { optionsButton, quitButton },
             AnimationDuration);
     }
 

@@ -8,7 +8,7 @@
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_lueqv"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="6_ihsn5"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedButtonView.cs" id="6_imtu2"]
-[ext_resource type="Resource" uid="uid://bjgmoqe4es2ph" path="res://UISystem/AnimationSettings/OptionButtonSettings.tres" id="7_6qthg"]
+[ext_resource type="Resource" uid="uid://pxdlfq08bkq1" path="res://UISystem/AnimationSettings/OptionButtonSettings.tres" id="7_6qthg"]
 [ext_resource type="PackedScene" uid="uid://bvtey7pkj2tdr" path="res://UISystem/Common/Prefabs/AnimatedButtonView.tscn" id="8_ru38l"]
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blj3m"]
@@ -136,7 +136,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LabelMask" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
 
 [node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
 text = "RETURN"
@@ -162,7 +163,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LabelMask" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
 
 [node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
 text = "SAVE"
@@ -188,7 +190,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="LabelMask" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/Outline/Control/InsideColor/Control" index="0"]
-anchors_preset = 15
+offset_left = 0.0
+offset_right = 0.0
 
 [node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
 text = "RESET"

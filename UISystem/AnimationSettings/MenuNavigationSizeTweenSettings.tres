@@ -1,0 +1,13 @@
+[gd_resource type="Resource" script_class="SizeTweenSettings" load_steps=2 format=3 uid="uid://biq2cqekjljck"]
+
+[ext_resource type="Script" path="res://UISystem/Common/Resources/SizeTweenSettings.cs" id="1_wjher"]
+
+[resource]
+script = ExtResource("1_wjher")
+horizontalDirection = 0
+verticalDirection = 0
+changeSizeHover = Vector2(75, 0)
+changeSizeFocus = Vector2(150, 0)
+duration = 1.0
+ease = 1
+transition = 6
