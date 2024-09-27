@@ -98,7 +98,7 @@ offset_top = -46.0438
 offset_right = 0.41748
 offset_bottom = 45.9562
 theme_override_constants/separation = 10
-alignment = 2
+alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ReturnButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_212i7")]

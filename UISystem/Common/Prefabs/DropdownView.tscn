@@ -6,7 +6,7 @@
 [ext_resource type="StyleBox" uid="uid://nqg1m8r4efan" path="res://UISystem/Styles/DropdownShape.tres" id="4_uw6i0"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="5_1o05n"]
 
-[node name="AnimatedDropdownView" type="OptionButton" node_paths=PackedStringArray("animatedButtonView")]
+[node name="DropdownView" type="OptionButton" node_paths=PackedStringArray("animatedButtonView")]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(300, 0)
 offset_right = 342.0

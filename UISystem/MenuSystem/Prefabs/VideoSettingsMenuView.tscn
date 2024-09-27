@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://2snibql101pc"]
+[gd_scene load_steps=6 format=3 uid="uid://2snibql101pc"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/VideoSettings/VideoSettingsMenuView.cs" id="1_8cb4u"]
-[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_6q7xp"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_j4lep"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_r5vq3"]
+[ext_resource type="Theme" uid="uid://f388f1hm7tv8" path="res://UISystem/Themes/SettingsPanelTheme.tres" id="2_7uov2"]
+[ext_resource type="PackedScene" uid="uid://b02xnc3swcbfg" path="res://UISystem/Common/Prefabs/DropdownView.tscn" id="2_e1dgx"]
+[ext_resource type="Theme" uid="uid://p3e6ki5xgue4" path="res://UISystem/Themes/DropdownButtonTheme.tres" id="3_0vjj5"]
+[ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_mp8dl"]
 
 [node name="VideoSettingsMenuView" type="Control" node_paths=PackedStringArray("windowModeDropdown", "resolutionDropdown", "saveSettingsButton", "returnButton", "fadeObjectsContainer", "resetButton")]
 layout_mode = 3
@@ -13,12 +14,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8cb4u")
-windowModeDropdown = NodePath("Container/VBoxContainer/WindowModeDropdown")
-resolutionDropdown = NodePath("Container/VBoxContainer/ResolutionDropdown")
-saveSettingsButton = NodePath("Container/VBoxContainer/SaveSettingsButton")
-returnButton = NodePath("Container/VBoxContainer/ReturnButton")
+windowModeDropdown = NodePath("Container/PanelContainer/Margin/Control/VBoxContainer/WindowModeDropdown")
+resolutionDropdown = NodePath("Container/PanelContainer/Margin/Control/VBoxContainer/ResolutionDropdown")
+saveSettingsButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton")
+returnButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ReturnButton")
 fadeObjectsContainer = NodePath("Container")
-resetButton = NodePath("Container/VBoxContainer/ResetToDefaultButton")
+resetButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1
@@ -42,46 +43,114 @@ text = "Video settings menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+[node name="PanelContainer" type="PanelContainer" parent="Container"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.111123
+anchor_right = 0.954
+anchor_bottom = 0.927
+offset_left = -0.120033
+offset_top = -0.00778198
+offset_right = -0.00805664
+offset_bottom = 0.303894
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_7uov2")
+metadata/_edit_use_anchors_ = true
+
+[node name="Margin" type="Control" parent="Container/PanelContainer"]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 1
+
+[node name="Control" type="Control" parent="Container/PanelContainer/Margin"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchor_left = 0.354
+anchor_top = 0.123
+anchor_right = 0.648
+anchor_bottom = 0.315
+offset_left = -0.502472
+offset_right = -0.382507
+focus_mode = 2
+theme = ExtResource("3_0vjj5")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/PanelContainer/Margin/Control"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
 anchor_bottom = 0.5
-offset_left = -100.001
-offset_top = -1.0
-offset_right = 99.999
-offset_bottom = 199.0
+offset_left = -224.0
+offset_top = -88.824
+offset_right = 206.0
+offset_bottom = 130.176
 grow_horizontal = 2
 grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="WindowModeDropdown" type="OptionButton" parent="Container/VBoxContainer"]
+[node name="WindowModeDropdown" parent="Container/PanelContainer/Margin/Control/VBoxContainer" instance=ExtResource("2_e1dgx")]
 layout_mode = 2
-theme = ExtResource("2_6q7xp")
-script = ExtResource("2_j4lep")
 
-[node name="ResolutionDropdown" type="OptionButton" parent="Container/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_6q7xp")
-script = ExtResource("2_j4lep")
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/Control/VBoxContainer/WindowModeDropdown" index="1"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.0
+offset_right = 171.0
+grow_horizontal = 2
 
-[node name="SaveSettingsButton" type="Button" parent="Container/VBoxContainer"]
+[node name="ResolutionDropdown" parent="Container/PanelContainer/Margin/Control/VBoxContainer" instance=ExtResource("2_e1dgx")]
 layout_mode = 2
-theme = ExtResource("2_6q7xp")
-text = "Save"
-script = ExtResource("2_r5vq3")
 
-[node name="ResetToDefaultButton" type="Button" parent="Container/VBoxContainer"]
-layout_mode = 2
-theme = ExtResource("2_6q7xp")
-text = "Reset to default"
-script = ExtResource("2_r5vq3")
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/Control/VBoxContainer/ResolutionDropdown" index="1"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.0
+offset_right = 171.0
+grow_horizontal = 2
 
-[node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]
+[node name="ButtonsContainer" type="HBoxContainer" parent="Container/PanelContainer/Margin"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.722
+anchor_right = 0.958414
+anchor_bottom = 0.722
+offset_left = 0.139999
+offset_top = -46.0438
+offset_right = 0.41748
+offset_bottom = 45.9562
+theme_override_constants/separation = 10
+alignment = 1
+metadata/_edit_use_anchors_ = true
+
+[node name="ReturnButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_mp8dl")]
 layout_mode = 2
-theme = ExtResource("2_6q7xp")
-text = "Return"
-script = ExtResource("2_r5vq3")
+
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView" index="1"]
+text = "RETURN"
+
+[node name="SaveSettingsButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_mp8dl")]
+layout_mode = 2
+
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView" index="1"]
+text = "SAVE"
+
+[node name="ResetToDefaultButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_mp8dl")]
+layout_mode = 2
+
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView" index="1"]
+text = "RESET"
+
+[editable path="Container/PanelContainer/Margin/Control/VBoxContainer/WindowModeDropdown"]
+[editable path="Container/PanelContainer/Margin/Control/VBoxContainer/ResolutionDropdown"]
+[editable path="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton"]
+[editable path="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton"]
+[editable path="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton"]
