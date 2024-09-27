@@ -8,6 +8,7 @@ horizontalDirection = 0
 verticalDirection = 1
 changeSizeHover = Vector2(0, 10)
 changeSizeFocus = Vector2(0, 20)
+changeSizeFocusHover = Vector2(0, 30)
 duration = 1.0
 ease = 1
 transition = 6

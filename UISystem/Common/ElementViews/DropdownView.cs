@@ -1,5 +1,6 @@
 ﻿using Godot;
 using UISystem.Common.ElementViews;
+using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Resources;
 
@@ -11,6 +12,7 @@ public partial class DropdownView : OptionButton, IFocusableControl
     [Export] private AnimatedButtonView animatedButtonView;
 
     private ITweener _tweener;
+    private bool _mouseOver;
 
     public Control ResizableizeControl => animatedButtonView.ResizableControl;
     private Control Border => animatedButtonView.Border;
@@ -52,24 +54,33 @@ public partial class DropdownView : OptionButton, IFocusableControl
 
     private void OnMouseEntered()
     {
-        if (HasFocus()) return;
-        _tweener.OnMouseEntered();
+        _mouseOver = true;
+        _tweener.OnMouseEntered(GetDrawingMode());
     }
     private void OnMouseExited()
     {
-        if (HasFocus()) return;
-        _tweener.OnMouseExited();
+        _mouseOver = false;
+        _tweener.OnMouseExited(GetDrawingMode());
     }
 
     private void OnFocusEntered()
     {
-        if (Disabled) return;
-        _tweener.OnFocusEntered();
+        _tweener.OnFocusEntered(GetDrawingMode());
     }
     private void OnFocusExited()
     {
-        if (Disabled) return;
-        _tweener.OnFocusExited();
+        _tweener.OnFocusExited(GetDrawingMode());
+    }
+
+    private ControlDrawMode GetDrawingMode()
+    {
+        if (Disabled) return ControlDrawMode.Disabled;
+        if (HasFocus())
+        {
+            return _mouseOver ? ControlDrawMode.HoverFocus : ControlDrawMode.Focus;
+        }
+        else
+            return _mouseOver ? ControlDrawMode.Hover : ControlDrawMode.Normal;
     }
 
 }

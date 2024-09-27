@@ -12,12 +12,8 @@ public partial class SizeTweenSettings : TweenSettings
     [Export] private HorizontalControlSizeChangeDirection horizontalDirection = HorizontalControlSizeChangeDirection.FromLeft;
     [Export] private VerticalControlSizeChangeDirection verticalDirection = VerticalControlSizeChangeDirection.FromTop;
     [Export] private Vector2 changeSizeHover = new(75, 0);
-    [Export] private Vector2 changeSizeFocus = new(150, 0);
-
-    public HorizontalControlSizeChangeDirection HorizontalDirection => horizontalDirection;
-    public VerticalControlSizeChangeDirection VerticalDirection => verticalDirection;
-    public Vector2 ChangeSizeHover => changeSizeHover;
-    public Vector2 ChangeSizeFocus => changeSizeFocus;
+    [Export] private Vector2 changeSizeFocus = new(100, 0);
+    [Export] private Vector2 changeSizeFocusHover = new(150, 0);
 
     public ITweener CreateTweener(SceneTree tree, Control target, bool parallel = true) => new SizeTweener(tree, target, parallel, this);
 
@@ -42,13 +38,27 @@ public partial class SizeTweenSettings : TweenSettings
             _settings = settings;
             _originalSize = target.Size;
             _originalPosition = target.Position;
-            _sizeSettings = new SizeSettings(_originalPosition, _originalSize, settings.HorizontalDirection, settings.VerticalDirection);
+            _sizeSettings = new SizeSettings(_originalPosition, _originalSize, settings.horizontalDirection, settings.verticalDirection);
         }
 
-        public void OnMouseEntered() => Tween(_originalSize + _settings.ChangeSizeHover);
-        public void OnMouseExited() => Tween(_originalSize);
-        public void OnFocusEntered() => Tween(_originalSize + _settings.ChangeSizeFocus);
-        public void OnFocusExited() => Tween(_originalSize);
+        public void OnFocusEntered(ControlDrawMode mode)
+        {
+            Tween(SelectSize(mode));
+        }
+
+        public void OnFocusExited(ControlDrawMode mode)
+        {
+            Tween(SelectSize(mode));
+        }
+        public void OnMouseEntered(ControlDrawMode mode)
+        {
+            Tween(SelectSize(mode));
+        }
+
+        public void OnMouseExited(ControlDrawMode mode)
+        {
+            Tween(SelectSize(mode));
+        }
 
         private void Tween(Vector2 size)
         {
@@ -58,6 +68,22 @@ public partial class SizeTweenSettings : TweenSettings
             _tween.SetTrans(_settings.Transition);
             _tween.TweenControlSize(_parallel, _target, size, _settings.Duration, _sizeSettings);
         }
+
+        private Vector2 SelectSize(ControlDrawMode mode)
+        {
+            Vector2 sizeIncrease = mode switch
+            {
+                ControlDrawMode.Normal => Vector2.Zero,
+                ControlDrawMode.Hover => _settings.changeSizeHover,
+                ControlDrawMode.Focus => _settings.changeSizeFocus,
+                ControlDrawMode.HoverFocus => _settings.changeSizeFocusHover,
+                ControlDrawMode.Disabled => Vector2.Zero,
+                _ => Vector2.Zero,
+            };
+
+            return _originalSize + sizeIncrease;
+        }
     }
+    
 }
 

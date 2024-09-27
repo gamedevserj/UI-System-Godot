@@ -1,4 +1,5 @@
 ﻿using Godot;
+using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 using UISystem.Extensions;
 
@@ -7,11 +8,10 @@ namespace UISystem.Common.Resources;
 public partial class ColorTweenSettings : TweenSettings
 {
 
-    [Export] private Color hoverColor = new(1,1,1,1);
+    [Export] private Color hoverColor = new(1, 1, 1, 1);
     [Export] private Color focusColor = new(1, 1, 1, 1);
-
-    public Color HoverColor => hoverColor;
-    public Color FocusColor => focusColor;
+    [Export] private Color focusHoverColor = new(1, 1, 1, 1);
+    [Export] private Color disabledColor = new(0.5f, 0.5f, 0.5f, 1);
 
     public ITweener CreateTweener(SceneTree tree, Control target, bool parallel = true)
         => new ColorTweener(tree, target, parallel, this);
@@ -20,6 +20,8 @@ public partial class ColorTweenSettings : TweenSettings
     {
 
         private Tween _tween;
+        private bool _mouseOver;
+        private bool _hasFocus;
 
         private readonly SceneTree _tree;
         private readonly Control _target;
@@ -36,13 +38,29 @@ public partial class ColorTweenSettings : TweenSettings
             _originalColor = target.SelfModulate;
         }
 
-        public void OnFocusEntered() => Tween(_settings.FocusColor);
+        public void OnFocusEntered(ControlDrawMode mode)
+        {
+            _hasFocus = true;
+            Tween(SelectColor(mode));
+        }
 
-        public void OnFocusExited() => Tween(_originalColor);
+        public void OnFocusExited(ControlDrawMode mode)
+        {
+            _hasFocus = false;
+            Tween(SelectColor(mode));
+        }
 
-        public void OnMouseEntered() => Tween(_settings.HoverColor);
+        public void OnMouseEntered(ControlDrawMode mode)
+        {
+            _mouseOver = true;
+            Tween(SelectColor(mode));
+        }
 
-        public void OnMouseExited() => Tween(_originalColor);
+        public void OnMouseExited(ControlDrawMode mode)
+        {
+            _mouseOver = false;
+            Tween(SelectColor(mode));
+        }
 
         private void Tween(Color color)
         {
@@ -52,6 +70,17 @@ public partial class ColorTweenSettings : TweenSettings
             _tween.SetTrans(_settings.Transition);
             _tween.TweenCanvasItemSelfModulate(_parallel, _target, color, _settings.Duration);
         }
+
+        private Color SelectColor(ControlDrawMode mode) => mode switch
+        {
+            ControlDrawMode.Normal => _originalColor,
+            ControlDrawMode.Hover => _settings.hoverColor,
+            ControlDrawMode.Focus => _settings.focusColor,
+            ControlDrawMode.HoverFocus => _settings.focusHoverColor,
+            ControlDrawMode.Disabled => _settings.disabledColor,
+            _ => _originalColor,
+        };
+
     }
 
 }
