@@ -20,8 +20,6 @@ public partial class ColorTweenSettings : TweenSettings
     {
 
         private Tween _tween;
-        private bool _mouseOver;
-        private bool _hasFocus;
 
         private readonly SceneTree _tree;
         private readonly Control _target;
@@ -40,25 +38,21 @@ public partial class ColorTweenSettings : TweenSettings
 
         public void OnFocusEntered(ControlDrawMode mode)
         {
-            _hasFocus = true;
             Tween(SelectColor(mode));
         }
 
         public void OnFocusExited(ControlDrawMode mode)
         {
-            _hasFocus = false;
             Tween(SelectColor(mode));
         }
 
         public void OnMouseEntered(ControlDrawMode mode)
         {
-            _mouseOver = true;
             Tween(SelectColor(mode));
         }
 
         public void OnMouseExited(ControlDrawMode mode)
         {
-            _mouseOver = false;
             Tween(SelectColor(mode));
         }
 
