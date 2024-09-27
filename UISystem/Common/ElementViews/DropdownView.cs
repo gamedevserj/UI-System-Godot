@@ -1,10 +1,10 @@
-using Godot;
+﻿using Godot;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Resources;
 
 namespace UISystem.Common.Elements;
-public partial class ButtonView : BaseButton, IFocusableControl
+public partial class DropdownView : OptionButton, IFocusableControl
 {
 
     [Export] private ButtonHoverSettings buttonHoverSettings;
@@ -20,7 +20,7 @@ public partial class ButtonView : BaseButton, IFocusableControl
         if (buttonHoverSettings == null) return;
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
-        
+
         _tweener = buttonHoverSettings.CreateTweener(GetTree(), ResizableizeControl, Border);
         Subscribe();
     }
@@ -33,6 +33,8 @@ public partial class ButtonView : BaseButton, IFocusableControl
         FocusExited += OnFocusExited;
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
+        ItemSelected += OnItemSelected;
+        OnItemSelected(GetSelectedId());
     }
 
     private void Unsubscribe()
@@ -41,6 +43,11 @@ public partial class ButtonView : BaseButton, IFocusableControl
         FocusExited -= OnFocusExited;
         MouseEntered -= OnMouseEntered;
         MouseExited -= OnMouseExited;
+    }
+
+    private void OnItemSelected(long index)
+    {
+        animatedButtonView.Label.Text = GetItemText((int)index);
     }
 
     private void OnMouseEntered()

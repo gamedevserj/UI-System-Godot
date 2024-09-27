@@ -1,19 +1,82 @@
-[gd_scene load_steps=4 format=3 uid="uid://b02xnc3swcbfg"]
+[gd_scene load_steps=6 format=3 uid="uid://b02xnc3swcbfg"]
 
-[ext_resource type="Theme" uid="uid://p3e6ki5xgue4" path="res://UISystem/Themes/DropdownButtonTheme.tres" id="1_dmrw1"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_njmqp"]
-[ext_resource type="PackedScene" uid="uid://bvtey7pkj2tdr" path="res://UISystem/Common/Prefabs/AnimatedButtonView.tscn" id="3_54h7p"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/DropdownView.cs" id="1_623xw"]
+[ext_resource type="Resource" uid="uid://b01oed40pvom6" path="res://UISystem/AnimationSettings/DropdownHoverSettings/DropdownHoverSettings.tres" id="2_6eh7u"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedButtonView.cs" id="3_hwrpb"]
+[ext_resource type="StyleBox" uid="uid://nqg1m8r4efan" path="res://UISystem/Styles/DropdownShape.tres" id="4_uw6i0"]
+[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="5_1o05n"]
 
-[node name="ControllerIconsDropdown" type="OptionButton"]
+[node name="AnimatedDropdownView" type="OptionButton" node_paths=PackedStringArray("animatedButtonView")]
+self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(300, 0)
-offset_right = 466.0
+offset_right = 342.0
 offset_bottom = 90.0
 size_flags_vertical = 3
-theme = ExtResource("1_dmrw1")
+flat = true
 alignment = 1
 text_overrun_behavior = 2
 clip_text = true
 fit_to_longest_item = false
-script = ExtResource("2_njmqp")
+script = ExtResource("1_623xw")
+buttonHoverSettings = ExtResource("2_6eh7u")
+animatedButtonView = NodePath("AnimatedButtonView")
 
-[node name="AnimatedButtonView" parent="." instance=ExtResource("3_54h7p")]
+[node name="AnimatedButtonView" type="Control" parent="." node_paths=PackedStringArray("border", "inside", "label")]
+layout_mode = 1
+anchors_preset = 0
+offset_right = 342.0
+offset_bottom = 90.0
+mouse_filter = 2
+script = ExtResource("3_hwrpb")
+border = NodePath("Border")
+inside = NodePath("Border/Control/InsideColor")
+label = NodePath("Label")
+
+[node name="Border" type="PanelContainer" parent="AnimatedButtonView"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("4_uw6i0")
+
+[node name="Control" type="Control" parent="AnimatedButtonView/Border"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="InsideColor" type="PanelContainer" parent="AnimatedButtonView/Border/Control"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("4_uw6i0")
+
+[node name="Label" type="Label" parent="AnimatedButtonView"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -166.0
+offset_top = -40.0
+offset_right = 166.0
+offset_bottom = 40.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("5_1o05n")
+text = "TEXT"
+horizontal_alignment = 1
+vertical_alignment = 1
+clip_text = true
+text_overrun_behavior = 1

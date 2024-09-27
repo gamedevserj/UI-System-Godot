@@ -19,7 +19,7 @@ namespace GodotExtensions
             if (node.IsValid()) node.QueueFree();
         }
 
-        public static void AddMultipleItems(this OptionButtonView optionButton, OptionButtonItem[] items)
+        public static void AddMultipleItems(this DropdownView optionButton, OptionButtonItem[] items)
         {
             for (int i = 0; i < items.Length; i++)
             {

@@ -16,7 +16,7 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
 
     private const float AnimationDuration = 7f;
 
-    [Export] private OptionButtonView controllerIconsDropdown;
+    [Export] private DropdownView controllerIconsDropdown;
     [Export] private ButtonView saveSettingsButton;
     [Export] private ButtonView returnButton;
     [Export] private PanelContainer panel;
@@ -37,7 +37,7 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
 
     public ButtonView SaveSettingsButton => saveSettingsButton;
     public ButtonView ReturnButton => returnButton;
-    public OptionButtonView ControllerIconsDropdown => controllerIconsDropdown;
+    public DropdownView ControllerIconsDropdown => controllerIconsDropdown;
 
     protected override void PopulateFocusableElements()
     {

@@ -3,10 +3,10 @@
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/InterfaceSettings/InterfaceSettingsMenuView.cs" id="1_830ao"]
 [ext_resource type="Theme" uid="uid://p3e6ki5xgue4" path="res://UISystem/Themes/DropdownButtonTheme.tres" id="2_2bwi3"]
 [ext_resource type="Theme" uid="uid://f388f1hm7tv8" path="res://UISystem/Themes/SettingsPanelTheme.tres" id="2_7o5vc"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_lueqv"]
-[ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/MenuOptionButtonView.tscn" id="5_212i7"]
+[ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_212i7"]
+[ext_resource type="PackedScene" uid="uid://b02xnc3swcbfg" path="res://UISystem/Common/Prefabs/DropdownView.tscn" id="5_lrjck"]
 
-[node name="InterfaceSettingsMenuView" type="Control" node_paths=PackedStringArray("controllerIconsDropdown", "panel", "fadeObjectsContainer")]
+[node name="InterfaceSettingsMenuView" type="Control" node_paths=PackedStringArray("controllerIconsDropdown", "saveSettingsButton", "returnButton", "panel", "fadeObjectsContainer", "resetButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,9 +14,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_830ao")
-controllerIconsDropdown = NodePath("Container/PanelContainer/Margin/Control/ControllerIconsDropdown")
+controllerIconsDropdown = NodePath("Container/PanelContainer/Margin/Control/ControllerIconsDropdownView")
+saveSettingsButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton")
+returnButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ReturnButton")
 panel = NodePath("Container/PanelContainer")
 fadeObjectsContainer = NodePath("Container")
+resetButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1
@@ -74,21 +77,14 @@ offset_right = -0.382507
 focus_mode = 2
 theme = ExtResource("2_2bwi3")
 
-[node name="ControllerIconsDropdown" type="OptionButton" parent="Container/PanelContainer/Margin/Control"]
-custom_minimum_size = Vector2(300, 0)
+[node name="ControllerIconsDropdownView" parent="Container/PanelContainer/Margin/Control" instance=ExtResource("5_lrjck")]
 layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.0
+offset_right = 171.0
 grow_horizontal = 2
-grow_vertical = 2
-size_flags_vertical = 3
-theme = ExtResource("2_2bwi3")
-alignment = 1
-text_overrun_behavior = 2
-clip_text = true
-fit_to_longest_item = false
-script = ExtResource("2_lueqv")
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Container/PanelContainer/Margin"]
 layout_mode = 1
@@ -108,21 +104,22 @@ metadata/_edit_use_anchors_ = true
 [node name="ReturnButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/LabelMask" index="0"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView" index="1"]
 text = "RETURN"
 
 [node name="SaveSettingsButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/LabelMask" index="0"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView" index="1"]
 text = "SAVE"
 
 [node name="ResetToDefaultButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/LabelMask" index="0"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView" index="1"]
 text = "RESET"
 
+[editable path="Container/PanelContainer/Margin/Control/ControllerIconsDropdownView"]
 [editable path="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton"]
 [editable path="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton"]
 [editable path="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton"]

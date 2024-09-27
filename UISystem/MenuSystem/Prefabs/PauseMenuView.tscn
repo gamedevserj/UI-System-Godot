@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bs7t6acp3yhci"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Pause/PauseMenuView.cs" id="1_wuqlt"]
-[ext_resource type="PackedScene" uid="uid://ck4an0jqn373h" path="res://UISystem/Common/Prefabs/MenuNavigationButton.tscn" id="2_gndws"]
+[ext_resource type="PackedScene" uid="uid://ck4an0jqn373h" path="res://UISystem/Common/Prefabs/Variants/MenuNavigationButton.tscn" id="2_gndws"]
 
 [node name="PauseMenuView" type="Control" node_paths=PackedStringArray("resumeGameButton", "optionsButton", "returnToMainMenuButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -52,19 +52,19 @@ metadata/_edit_use_anchors_ = true
 [node name="ResumeButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/ResumeButton/AnimatedButtonView/LabelMask" index="0"]
+[node name="Label" parent="Container/VBoxContainer/ResumeButton/AnimatedButtonView" index="1"]
 text = "RESUME"
 
 [node name="OptionsButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/OptionsButton/AnimatedButtonView/LabelMask" index="0"]
+[node name="Label" parent="Container/VBoxContainer/OptionsButton/AnimatedButtonView" index="1"]
 text = "OPTIONS"
 
 [node name="ReturnToMainMenuButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/ReturnToMainMenuButton/AnimatedButtonView/LabelMask" index="0"]
+[node name="Label" parent="Container/VBoxContainer/ReturnToMainMenuButton/AnimatedButtonView" index="1"]
 text = "MAIN MENU"
 
 [editable path="Container/VBoxContainer/ResumeButton"]

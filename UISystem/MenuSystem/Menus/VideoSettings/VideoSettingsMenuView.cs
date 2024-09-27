@@ -6,13 +6,13 @@ namespace UISystem.MenuSystem.Views;
 public partial class VideoSettingsMenuView : SettingsMenuView
 {
 
-    [Export] private OptionButtonView windowModeDropdown;
-    [Export] private OptionButtonView resolutionDropdown;
+    [Export] private DropdownView windowModeDropdown;
+    [Export] private DropdownView resolutionDropdown;
     [Export] private ButtonView saveSettingsButton;
     [Export] private ButtonView returnButton;
 
-    public OptionButtonView WindowModeDropdown => windowModeDropdown;
-    public OptionButtonView ResolutionDropdown => resolutionDropdown;
+    public DropdownView WindowModeDropdown => windowModeDropdown;
+    public DropdownView ResolutionDropdown => resolutionDropdown;
     public ButtonView SaveSettingsButton => saveSettingsButton;
     public ButtonView ReturnButton => returnButton;
 
