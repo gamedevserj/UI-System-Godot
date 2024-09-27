@@ -4,16 +4,18 @@
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="4_sffel"]
 [ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="4_td8np"]
 
-[node name="AnimatedButtonView" type="Control" node_paths=PackedStringArray("border")]
+[node name="AnimatedButtonView" type="Control" node_paths=PackedStringArray("border", "inside", "label")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 450.0
 offset_bottom = 90.0
 mouse_filter = 2
 script = ExtResource("2_n2rmi")
-border = NodePath("Outline")
+border = NodePath("Border")
+inside = NodePath("Border/Control/InsideColor")
+label = NodePath("LabelMask/Label")
 
-[node name="Outline" type="PanelContainer" parent="."]
+[node name="Border" type="PanelContainer" parent="."]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -23,11 +25,11 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("4_td8np")
 
-[node name="Control" type="Control" parent="Outline"]
+[node name="Control" type="Control" parent="Border"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="InsideColor" type="PanelContainer" parent="Outline/Control"]
+[node name="InsideColor" type="PanelContainer" parent="Border/Control"]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -42,23 +44,20 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("4_td8np")
 
-[node name="Control" type="Control" parent="Outline/Control/InsideColor"]
-layout_mode = 2
-mouse_filter = 2
-
-[node name="LabelMask" type="Control" parent="Outline/Control/InsideColor/Control"]
+[node name="LabelMask" type="Control" parent="."]
 clip_contents = true
 layout_mode = 1
-anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_left = 20.0
-offset_right = -20.0
+offset_left = 25.0
+offset_top = 5.0
+offset_right = -25.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="Label" type="Label" parent="Outline/Control/InsideColor/Control/LabelMask"]
+[node name="Label" type="Label" parent="LabelMask"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5

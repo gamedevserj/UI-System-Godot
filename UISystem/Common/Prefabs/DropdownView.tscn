@@ -1,0 +1,19 @@
+[gd_scene load_steps=4 format=3 uid="uid://b02xnc3swcbfg"]
+
+[ext_resource type="Theme" uid="uid://p3e6ki5xgue4" path="res://UISystem/Themes/DropdownButtonTheme.tres" id="1_dmrw1"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_njmqp"]
+[ext_resource type="PackedScene" uid="uid://bvtey7pkj2tdr" path="res://UISystem/Common/Prefabs/AnimatedButtonView.tscn" id="3_54h7p"]
+
+[node name="ControllerIconsDropdown" type="OptionButton"]
+custom_minimum_size = Vector2(300, 0)
+offset_right = 466.0
+offset_bottom = 90.0
+size_flags_vertical = 3
+theme = ExtResource("1_dmrw1")
+alignment = 1
+text_overrun_behavior = 2
+clip_text = true
+fit_to_longest_item = false
+script = ExtResource("2_njmqp")
+
+[node name="AnimatedButtonView" parent="." instance=ExtResource("3_54h7p")]

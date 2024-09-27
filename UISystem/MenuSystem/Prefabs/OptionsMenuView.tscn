@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://cp2yn6w4kyuam"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Options/OptionsMenuView.cs" id="1_sgbji"]
-[ext_resource type="PackedScene" uid="uid://bwmjk045qeqk8" path="res://UISystem/Common/Prefabs/MenuNavigationButton.tscn" id="2_7ycum"]
+[ext_resource type="PackedScene" uid="uid://ck4an0jqn373h" path="res://UISystem/Common/Prefabs/MenuNavigationButton.tscn" id="2_arv6h"]
 
 [node name="OptionsMenuView" type="Control" node_paths=PackedStringArray("interfaceSettingsButton", "audioSettingsButton", "videoSettingsButton", "rebindKeysButton", "returnButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -52,43 +52,38 @@ grow_horizontal = 2
 theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
 
-[node name="InterfaceSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_7ycum")]
+[node name="InterfaceSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/InterfaceSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/VBoxContainer/InterfaceSettingsButton/AnimatedButtonView/LabelMask" index="0"]
 text = "INTERFACE"
 
-[node name="AudioSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_7ycum")]
+[node name="AudioSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/AudioSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/VBoxContainer/AudioSettingsButton/AnimatedButtonView/LabelMask" index="0"]
 text = "AUDIO"
 
-[node name="VideoSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_7ycum")]
+[node name="VideoSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/VideoSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/VBoxContainer/VideoSettingsButton/AnimatedButtonView/LabelMask" index="0"]
 text = "VIDEO"
 
-[node name="RebindKeysButton" parent="Container/VBoxContainer" instance=ExtResource("2_7ycum")]
+[node name="RebindKeysButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/RebindKeysButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/VBoxContainer/RebindKeysButton/AnimatedButtonView/LabelMask" index="0"]
 text = "CONTROLS"
 
-[node name="ReturnButton" parent="Container/VBoxContainer" instance=ExtResource("2_7ycum")]
+[node name="ReturnButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/ReturnButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/VBoxContainer/ReturnButton/AnimatedButtonView/LabelMask" index="0"]
 text = "RETURN"
 
 [editable path="Container/VBoxContainer/InterfaceSettingsButton"]
-[editable path="Container/VBoxContainer/InterfaceSettingsButton/AnimatedButtonView"]
 [editable path="Container/VBoxContainer/AudioSettingsButton"]
-[editable path="Container/VBoxContainer/AudioSettingsButton/AnimatedButtonView"]
 [editable path="Container/VBoxContainer/VideoSettingsButton"]
-[editable path="Container/VBoxContainer/VideoSettingsButton/AnimatedButtonView"]
 [editable path="Container/VBoxContainer/RebindKeysButton"]
-[editable path="Container/VBoxContainer/RebindKeysButton/AnimatedButtonView"]
 [editable path="Container/VBoxContainer/ReturnButton"]
-[editable path="Container/VBoxContainer/ReturnButton/AnimatedButtonView"]

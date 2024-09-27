@@ -1,6 +1,0 @@
-[gd_scene load_steps=2 format=3 uid="uid://b0ifhq3dslldh"]
-
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="1_x14y1"]
-
-[node name="OptionButton" type="OptionButton"]
-script = ExtResource("1_x14y1")

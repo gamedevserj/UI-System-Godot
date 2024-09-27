@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bs7t6acp3yhci"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Pause/PauseMenuView.cs" id="1_wuqlt"]
-[ext_resource type="PackedScene" uid="uid://bwmjk045qeqk8" path="res://UISystem/Common/Prefabs/MenuNavigationButton.tscn" id="5_iq7vc"]
+[ext_resource type="PackedScene" uid="uid://ck4an0jqn373h" path="res://UISystem/Common/Prefabs/MenuNavigationButton.tscn" id="2_gndws"]
 
 [node name="PauseMenuView" type="Control" node_paths=PackedStringArray("resumeGameButton", "optionsButton", "returnToMainMenuButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -49,27 +49,24 @@ grow_horizontal = 2
 theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
 
-[node name="ResumeButton" parent="Container/VBoxContainer" instance=ExtResource("5_iq7vc")]
+[node name="ResumeButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/ResumeButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/VBoxContainer/ResumeButton/AnimatedButtonView/LabelMask" index="0"]
 text = "RESUME"
 
-[node name="OptionsButton" parent="Container/VBoxContainer" instance=ExtResource("5_iq7vc")]
+[node name="OptionsButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/OptionsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/VBoxContainer/OptionsButton/AnimatedButtonView/LabelMask" index="0"]
 text = "OPTIONS"
 
-[node name="ReturnToMainMenuButton" parent="Container/VBoxContainer" instance=ExtResource("5_iq7vc")]
+[node name="ReturnToMainMenuButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/ReturnToMainMenuButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/VBoxContainer/ReturnToMainMenuButton/AnimatedButtonView/LabelMask" index="0"]
 text = "MAIN MENU"
 
 [editable path="Container/VBoxContainer/ResumeButton"]
-[editable path="Container/VBoxContainer/ResumeButton/AnimatedButtonView"]
 [editable path="Container/VBoxContainer/OptionsButton"]
-[editable path="Container/VBoxContainer/OptionsButton/AnimatedButtonView"]
 [editable path="Container/VBoxContainer/ReturnToMainMenuButton"]
-[editable path="Container/VBoxContainer/ReturnToMainMenuButton/AnimatedButtonView"]

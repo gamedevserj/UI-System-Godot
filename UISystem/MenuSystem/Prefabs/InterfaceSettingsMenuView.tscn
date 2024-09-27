@@ -1,23 +1,12 @@
-[gd_scene load_steps=11 format=3 uid="uid://d0lqlkxfi5o25"]
+[gd_scene load_steps=6 format=3 uid="uid://d0lqlkxfi5o25"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/InterfaceSettings/InterfaceSettingsMenuView.cs" id="1_830ao"]
 [ext_resource type="Theme" uid="uid://p3e6ki5xgue4" path="res://UISystem/Themes/DropdownButtonTheme.tres" id="2_2bwi3"]
 [ext_resource type="Theme" uid="uid://f388f1hm7tv8" path="res://UISystem/Themes/SettingsPanelTheme.tres" id="2_7o5vc"]
-[ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_hfura"]
-[ext_resource type="Theme" uid="uid://bnsr26qnlb8kl" path="res://UISystem/Themes/OptionButtonTheme.tres" id="2_k5k8k"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/OptionButtonView.cs" id="2_lueqv"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedButtonView.cs" id="6_imtu2"]
-[ext_resource type="PackedScene" uid="uid://b5xdwff8d81os" path="res://UISystem/Common/Prefabs/MenuOptionButtonView.tscn" id="9_vyrp3"]
+[ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/MenuOptionButtonView.tscn" id="5_212i7"]
 
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_blj3m"]
-bg_color = Color(1, 1, 1, 1)
-skew = Vector2(0.5, 0)
-
-[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_5067c"]
-bg_color = Color(0, 0, 0, 1)
-skew = Vector2(0.5, 0)
-
-[node name="InterfaceSettingsMenuView" type="Control" node_paths=PackedStringArray("controllerIconsDropdown", "saveSettingsButton", "returnButton", "panel", "fadeObjectsContainer", "resetButton")]
+[node name="InterfaceSettingsMenuView" type="Control" node_paths=PackedStringArray("controllerIconsDropdown", "panel", "fadeObjectsContainer")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,12 +14,9 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_830ao")
-controllerIconsDropdown = NodePath("Container/PanelContainer/Margin/ControllerIconsDropdown")
-saveSettingsButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton")
-returnButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ReturnButton")
+controllerIconsDropdown = NodePath("Container/PanelContainer/Margin/Control/ControllerIconsDropdown")
 panel = NodePath("Container/PanelContainer")
 fadeObjectsContainer = NodePath("Container")
-resetButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1
@@ -76,16 +62,26 @@ clip_contents = true
 layout_mode = 2
 mouse_filter = 1
 
-[node name="ControllerIconsDropdown" type="OptionButton" parent="Container/PanelContainer/Margin"]
+[node name="Control" type="Control" parent="Container/PanelContainer/Margin"]
 custom_minimum_size = Vector2(300, 0)
 layout_mode = 1
-anchors_preset = -1
 anchor_left = 0.354
 anchor_top = 0.123
 anchor_right = 0.648
 anchor_bottom = 0.315
 offset_left = -0.502472
 offset_right = -0.382507
+focus_mode = 2
+theme = ExtResource("2_2bwi3")
+
+[node name="ControllerIconsDropdown" type="OptionButton" parent="Container/PanelContainer/Margin/Control"]
+custom_minimum_size = Vector2(300, 0)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 theme = ExtResource("2_2bwi3")
 alignment = 1
@@ -109,119 +105,24 @@ theme_override_constants/separation = 10
 alignment = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="ReturnButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("9_vyrp3")]
+[node name="ReturnButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/LabelMask" index="0"]
 text = "RETURN"
 
-[node name="SaveSettingsButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("9_vyrp3")]
+[node name="SaveSettingsButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/LabelMask" index="0"]
 text = "SAVE"
 
-[node name="ResetToDefaultButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("9_vyrp3")]
+[node name="ResetToDefaultButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
-size_flags_horizontal = 3
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/LabelMask" index="0"]
 text = "RESET"
 
-[node name="ReturnButton2" type="Button" parent="Container"]
-visible = false
-self_modulate = Color(1, 1, 1, 0)
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -152.0
-offset_top = 82.0
-offset_right = 152.0
-offset_bottom = 190.0
-grow_horizontal = 2
-size_flags_horizontal = 3
-size_flags_vertical = 3
-theme = ExtResource("2_k5k8k")
-theme_override_font_sizes/font_size = 55
-flat = true
-text_overrun_behavior = 2
-clip_text = true
-script = ExtResource("6_imtu2")
-
-[node name="Control" type="Control" parent="Container/ReturnButton2"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-
-[node name="Outline" type="PanelContainer" parent="Container/ReturnButton2/Control"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_blj3m")
-
-[node name="Control" type="Control" parent="Container/ReturnButton2/Control/Outline"]
-layout_mode = 2
-
-[node name="InsideColor" type="PanelContainer" parent="Container/ReturnButton2/Control/Outline/Control"]
-modulate = Color(0, 0, 0, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 5.0
-offset_top = 5.0
-offset_right = -5.0
-offset_bottom = -5.0
-grow_horizontal = 2
-grow_vertical = 2
-theme_override_styles/panel = SubResource("StyleBoxFlat_5067c")
-
-[node name="Mask" type="Control" parent="Container/ReturnButton2/Control"]
-clip_contents = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = 30.0
-offset_top = 7.0
-offset_right = -30.0
-offset_bottom = -7.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Label" type="Label" parent="Container/ReturnButton2/Control/Mask"]
-layout_mode = 1
-anchors_preset = -1
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -126.0
-offset_top = -40.0
-offset_right = 126.0
-offset_bottom = 40.0
-grow_horizontal = 2
-grow_vertical = 2
-theme = ExtResource("2_hfura")
-text = "RETURN"
-horizontal_alignment = 1
-vertical_alignment = 1
-clip_text = true
-text_overrun_behavior = 1
-
 [editable path="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton"]
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView"]
 [editable path="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton"]
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView"]
 [editable path="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton"]
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView"]

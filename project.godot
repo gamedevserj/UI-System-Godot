@@ -33,6 +33,7 @@ naming/scene_name_casing=1
 [file_customization]
 
 folder_colors={
+"res://UISystem/Common/Prefabs/": "yellow",
 "res://UISystem/MenuSystem/Prefabs/": "yellow",
 "res://UISystem/PopupSystem/Prefabs/": "yellow"
 }

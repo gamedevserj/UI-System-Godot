@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://dlummbpn4khpc"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Main/MainMenuView.cs" id="1_qlhqn"]
-[ext_resource type="PackedScene" uid="uid://bwmjk045qeqk8" path="res://UISystem/Common/Prefabs/MenuNavigationButton.tscn" id="2_24ejg"]
+[ext_resource type="PackedScene" uid="uid://ck4an0jqn373h" path="res://UISystem/Common/Prefabs/MenuNavigationButton.tscn" id="2_ox1c7"]
 
 [node name="MainMenuView" type="Control" node_paths=PackedStringArray("playButton", "optionsButton", "quitButton", "fadeObjectsContainer")]
 layout_mode = 3
@@ -51,27 +51,24 @@ grow_horizontal = 2
 theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
 
-[node name="PlayButton" parent="Container/ButtonsContainer" instance=ExtResource("2_24ejg")]
+[node name="PlayButton" parent="Container/ButtonsContainer" instance=ExtResource("2_ox1c7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/ButtonsContainer/PlayButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/ButtonsContainer/PlayButton/AnimatedButtonView/LabelMask" index="0"]
 text = "PLAY"
 
-[node name="OptionsButton" parent="Container/ButtonsContainer" instance=ExtResource("2_24ejg")]
+[node name="OptionsButton" parent="Container/ButtonsContainer" instance=ExtResource("2_ox1c7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/ButtonsContainer/OptionsButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/ButtonsContainer/OptionsButton/AnimatedButtonView/LabelMask" index="0"]
 text = "OPTIONS"
 
-[node name="QuitButton" parent="Container/ButtonsContainer" instance=ExtResource("2_24ejg")]
+[node name="QuitButton" parent="Container/ButtonsContainer" instance=ExtResource("2_ox1c7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/ButtonsContainer/QuitButton/AnimatedButtonView/Outline/Control/InsideColor/Control/LabelMask" index="0"]
+[node name="Label" parent="Container/ButtonsContainer/QuitButton/AnimatedButtonView/LabelMask" index="0"]
 text = "QUIT"
 
 [editable path="Container/ButtonsContainer/PlayButton"]
-[editable path="Container/ButtonsContainer/PlayButton/AnimatedButtonView"]
 [editable path="Container/ButtonsContainer/OptionsButton"]
-[editable path="Container/ButtonsContainer/OptionsButton/AnimatedButtonView"]
 [editable path="Container/ButtonsContainer/QuitButton"]
-[editable path="Container/ButtonsContainer/QuitButton/AnimatedButtonView"]

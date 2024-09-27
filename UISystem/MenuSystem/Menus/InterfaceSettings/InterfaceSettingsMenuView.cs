@@ -50,8 +50,6 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
         tween.SetPauseMode(Tween.TweenPauseMode.Process);
 
         float duration = AnimationDuration * 0.5f;
-        tween.TweenControlSize(true, ControllerIconsDropdown, Vector2.Zero, duration);
-
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Linear);
         tween.TweenControlSize(true, returnButton.ResizableizeControl, Vector2.Zero, duration, _returnButtonAnimationSettings);
@@ -100,7 +98,9 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
             ReturnButton.ResizableizeControl.Size, horizontalDirection, verticalDirection);
         _resetButtonAnimationSettings = new SizeSettings(ResetButton.ResizableizeControl.Position,
             ResetButton.ResizableizeControl.Size, horizontalDirection, verticalDirection);
-        _dropdownAnimationSettings = new SizeSettings(ControllerIconsDropdown.Position, ControllerIconsDropdown.Size, horizontalDirection, verticalDirection);
+        _dropdownAnimationSettings = new SizeSettings(ControllerIconsDropdown.Position, ControllerIconsDropdown.Size, 
+            horizontalDirection, verticalDirection);
+        
         _panelTweenSizeSettings = new SizeSettings(_panelPosition, _panelSize, horizontalDirection, verticalDirection);
     }
 

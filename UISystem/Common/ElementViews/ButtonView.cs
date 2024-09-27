@@ -25,10 +25,7 @@ public partial class ButtonView : BaseButton, IFocusableControl
         Subscribe();
     }
 
-    public override void _ExitTree()
-    {
-        Unsubscribe();
-    }
+    public override void _ExitTree() => Unsubscribe();
 
     private void Subscribe()
     {
