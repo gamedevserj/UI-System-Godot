@@ -31,12 +31,12 @@ public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuVie
     private static void UpdateButtonView(RebindableKeyButtonView button, string action, int index)
     {
         var e = InputMap.ActionGetEvents(action)[index];
-        button.Image.Texture = (Texture2D)GD.Load(Icons.GetIcon(e));
+        button.TextureRect.Texture = (Texture2D)GD.Load(Icons.GetIcon(e));
     }
 
     private void OnButtonDown(RebindableKeyButtonView button, string action, int index)
     {
-        button.Image.Texture = (Texture2D)GD.Load(Icons.EllipsisImage);
+        button.TextureRect.Texture = (Texture2D)GD.Load(Icons.EllipsisImage);
         SwitchRebindingButtonFocusability(button, false);
 
         _model.StartRebinding(action, index, () =>

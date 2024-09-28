@@ -15,12 +15,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_53hud")
-moveLeft = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView")
-moveLeftJoystick = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView")
-moveRight = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView2")
-moveRightJoystick = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView2")
-jump = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView3")
-jumpJoystick = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView3")
+moveLeft = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard")
+moveLeftJoystick = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveLeftJoystick")
+moveRight = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard")
+moveRightJoystick = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveRightJoystick")
+jump = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/JumpKeyboard")
+jumpJoystick = NodePath("Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/JumpJoystick")
 returnButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ReturnButton")
 fadeObjectsContainer = NodePath("Container")
 resetButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton")
@@ -116,12 +116,12 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="OptionButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("image") instance=ExtResource("8_2psh3")]
+[node name="MoveLeftKeyboard" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
 layout_mode = 2
 script = ExtResource("2_1gokv")
-image = NodePath("TextureRect")
+textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView" index="0"]
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -131,10 +131,10 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView/AnimatedButtonView" index="1"]
+[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard/AnimatedButtonView" index="1"]
 visible = false
 
-[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView"]
+[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -151,12 +151,12 @@ texture = ExtResource("3_hujmc")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="OptionButtonView2" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("image") instance=ExtResource("8_2psh3")]
+[node name="MoveRightKeyboard" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
 layout_mode = 2
 script = ExtResource("2_1gokv")
-image = NodePath("TextureRect")
+textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView2" index="0"]
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -166,10 +166,10 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView2/AnimatedButtonView" index="1"]
+[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard/AnimatedButtonView" index="1"]
 visible = false
 
-[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView2"]
+[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -186,12 +186,12 @@ texture = ExtResource("3_hujmc")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="OptionButtonView3" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("image") instance=ExtResource("8_2psh3")]
+[node name="JumpKeyboard" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
 layout_mode = 2
 script = ExtResource("2_1gokv")
-image = NodePath("TextureRect")
+textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView3" index="0"]
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/JumpKeyboard" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -201,10 +201,10 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView3/AnimatedButtonView" index="1"]
+[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/JumpKeyboard/AnimatedButtonView" index="1"]
 visible = false
 
-[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView3"]
+[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/JumpKeyboard"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -227,12 +227,12 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="OptionButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("image") instance=ExtResource("8_2psh3")]
+[node name="MoveLeftJoystick" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
 layout_mode = 2
 script = ExtResource("2_1gokv")
-image = NodePath("TextureRect")
+textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView" index="0"]
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveLeftJoystick" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -242,10 +242,10 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView/AnimatedButtonView" index="1"]
+[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveLeftJoystick/AnimatedButtonView" index="1"]
 visible = false
 
-[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView"]
+[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveLeftJoystick"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -262,12 +262,12 @@ texture = ExtResource("3_hujmc")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="OptionButtonView2" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("image") instance=ExtResource("8_2psh3")]
+[node name="MoveRightJoystick" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
 layout_mode = 2
 script = ExtResource("2_1gokv")
-image = NodePath("TextureRect")
+textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView2" index="0"]
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveRightJoystick" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -277,10 +277,10 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView2/AnimatedButtonView" index="1"]
+[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveRightJoystick/AnimatedButtonView" index="1"]
 visible = false
 
-[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView2"]
+[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveRightJoystick"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -297,20 +297,20 @@ texture = ExtResource("3_hujmc")
 expand_mode = 1
 stretch_mode = 4
 
-[node name="OptionButtonView3" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("image") instance=ExtResource("8_2psh3")]
+[node name="JumpJoystick" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
 layout_mode = 2
 script = ExtResource("2_1gokv")
-image = NodePath("TextureRect")
+textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView3" index="0"]
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/JumpJoystick" index="0"]
 layout_mode = 1
 offset_right = 236.0
 offset_bottom = 89.0
 
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView3/AnimatedButtonView" index="1"]
+[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/JumpJoystick/AnimatedButtonView" index="1"]
 visible = false
 
-[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView3"]
+[node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/JumpJoystick"]
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5
@@ -372,11 +372,11 @@ grow_horizontal = 2
 [node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView" index="1"]
 text = "RESET"
 
-[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView"]
-[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView2"]
-[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/OptionButtonView3"]
-[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView"]
-[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView2"]
-[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/OptionButtonView3"]
+[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard"]
+[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard"]
+[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/JumpKeyboard"]
+[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveLeftJoystick"]
+[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveRightJoystick"]
+[editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/JumpJoystick"]
 [editable path="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton"]
 [editable path="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton"]

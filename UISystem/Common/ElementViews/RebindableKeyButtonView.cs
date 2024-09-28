@@ -5,8 +5,8 @@ namespace UISystem.Common.Elements;
 public partial class RebindableKeyButtonView : ButtonView, IFocusableControl
 {
 
-    [Export] private TextureRect image;
+    [Export] private TextureRect textureRect;
 
-    public TextureRect Image => image;
+    public TextureRect TextureRect => textureRect;
 
 }
