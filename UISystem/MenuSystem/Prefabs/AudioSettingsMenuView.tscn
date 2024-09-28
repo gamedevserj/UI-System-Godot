@@ -1,10 +1,12 @@
-[gd_scene load_steps=6 format=3 uid="uid://bx45yom4bi85n"]
+[gd_scene load_steps=8 format=3 uid="uid://bx45yom4bi85n"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/AudioSettings/AudioSettingsMenuView.cs" id="1_ca7ap"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_6en0s"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/HSliderView.cs" id="2_8b7gh"]
 [ext_resource type="Theme" uid="uid://f388f1hm7tv8" path="res://UISystem/Themes/SettingsPanelTheme.tres" id="2_dk510"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_l4qqc"]
+[ext_resource type="Resource" uid="uid://cwy3443w5wlcn" path="res://UISystem/AnimationSettings/ColorHoverSettings.tres" id="5_utyo3"]
+[ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="6_n1bc4"]
 
 [node name="AudioSettingsMenuView" type="Control" node_paths=PackedStringArray("musicSlider", "sfxSlider", "saveSettingsButton", "returnButton", "fadeObjectsContainer", "resetButton")]
 layout_mode = 3
@@ -87,13 +89,67 @@ theme = ExtResource("2_6en0s")
 text = "Music volume"
 horizontal_alignment = 1
 
-[node name="MusicSlider" type="HSlider" parent="Container/PanelContainer/Margin/VBoxContainer2"]
+[node name="MusicSlider" type="HSlider" parent="Container/PanelContainer/Margin/VBoxContainer2" node_paths=PackedStringArray("sliderBackground", "sliderFill", "grabber")]
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.01
 value = 0.5
 script = ExtResource("2_8b7gh")
+hoverSettings = ExtResource("5_utyo3")
+sliderBackground = NodePath("ResizableControl/SliderBackground")
+sliderFill = NodePath("ResizableControl/SliderFill")
+grabber = NodePath("ResizableControl/Grabber")
+
+[node name="ResizableControl" type="Control" parent="Container/PanelContainer/Margin/VBoxContainer2/MusicSlider"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SliderBackground" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/MusicSlider/ResizableControl"]
+self_modulate = Color(0.596078, 0.596078, 0.596078, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("6_n1bc4")
+
+[node name="SliderFill" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/MusicSlider/ResizableControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("6_n1bc4")
+
+[node name="Grabber" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/MusicSlider/ResizableControl"]
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
+layout_mode = 2
+anchor_left = 0.035
+anchor_top = 0.5
+anchor_right = 0.035
+anchor_bottom = 0.5
+offset_left = -12.845
+offset_top = -24.5
+offset_right = 13.155
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("6_n1bc4")
 
 [node name="SfxVolumeLabel" type="Label" parent="Container/PanelContainer/Margin/VBoxContainer2"]
 layout_mode = 2
@@ -102,13 +158,67 @@ theme = ExtResource("2_6en0s")
 text = "SFX volume"
 horizontal_alignment = 1
 
-[node name="SfxSlider" type="HSlider" parent="Container/PanelContainer/Margin/VBoxContainer2"]
+[node name="SfxSlider" type="HSlider" parent="Container/PanelContainer/Margin/VBoxContainer2" node_paths=PackedStringArray("sliderBackground", "sliderFill", "grabber")]
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 1.0
 step = 0.01
 value = 0.5
 script = ExtResource("2_8b7gh")
+hoverSettings = ExtResource("5_utyo3")
+sliderBackground = NodePath("ResizableControl2/SliderBackground")
+sliderFill = NodePath("ResizableControl2/SliderFill")
+grabber = NodePath("ResizableControl2/Grabber")
+
+[node name="ResizableControl2" type="Control" parent="Container/PanelContainer/Margin/VBoxContainer2/SfxSlider"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SliderBackground" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/SfxSlider/ResizableControl2"]
+self_modulate = Color(0.596078, 0.596078, 0.596078, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("6_n1bc4")
+
+[node name="SliderFill" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/SfxSlider/ResizableControl2"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("6_n1bc4")
+
+[node name="Grabber" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/SfxSlider/ResizableControl2"]
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
+layout_mode = 2
+anchor_left = 0.035
+anchor_top = 0.5
+anchor_right = 0.035
+anchor_bottom = 0.5
+offset_left = -12.845
+offset_top = -24.5
+offset_right = 13.155
+offset_bottom = 25.5
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("6_n1bc4")
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Container/PanelContainer/Margin"]
 layout_mode = 1
