@@ -1,9 +1,10 @@
-[gd_scene load_steps=5 format=3 uid="uid://bx45yom4bi85n"]
+[gd_scene load_steps=6 format=3 uid="uid://bx45yom4bi85n"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/AudioSettings/AudioSettingsMenuView.cs" id="1_ca7ap"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_6en0s"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/HSliderView.cs" id="2_8b7gh"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="3_sk5vb"]
+[ext_resource type="Theme" uid="uid://f388f1hm7tv8" path="res://UISystem/Themes/SettingsPanelTheme.tres" id="2_dk510"]
+[ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_l4qqc"]
 
 [node name="AudioSettingsMenuView" type="Control" node_paths=PackedStringArray("musicSlider", "sfxSlider", "saveSettingsButton", "returnButton", "fadeObjectsContainer", "resetButton")]
 layout_mode = 3
@@ -13,12 +14,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ca7ap")
-musicSlider = NodePath("Container/VBoxContainer/MusicSlider")
-sfxSlider = NodePath("Container/VBoxContainer/SfxSlider")
-saveSettingsButton = NodePath("Container/VBoxContainer/SaveSettingsButton")
-returnButton = NodePath("Container/VBoxContainer/ReturnButton")
+musicSlider = NodePath("Container/PanelContainer/Margin/VBoxContainer2/MusicSlider")
+sfxSlider = NodePath("Container/PanelContainer/Margin/VBoxContainer2/SfxSlider")
+saveSettingsButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton")
+returnButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ReturnButton")
 fadeObjectsContainer = NodePath("Container")
-resetButton = NodePath("Container/VBoxContainer/ResetToDefaultButton")
+resetButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1
@@ -42,30 +43,51 @@ text = "Audio settings menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container"]
+[node name="PanelContainer" type="PanelContainer" parent="Container"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.06
+anchor_top = 0.111123
+anchor_right = 0.954
+anchor_bottom = 0.927
+offset_left = -0.120033
+offset_top = -0.00778198
+offset_right = -0.00805664
+offset_bottom = 0.303894
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 1
+theme = ExtResource("2_dk510")
+metadata/_edit_use_anchors_ = true
+
+[node name="Margin" type="Control" parent="Container/PanelContainer"]
+clip_contents = true
+layout_mode = 2
+mouse_filter = 1
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Container/PanelContainer/Margin"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
-anchor_top = 0.287
+anchor_top = 0.0635838
 anchor_right = 0.5
-anchor_bottom = 0.287
-offset_left = -150.0
-offset_top = 4.024
-offset_right = 150.0
-offset_bottom = 435.024
+anchor_bottom = 0.0635838
+offset_left = -183.0
+offset_right = 184.0
+offset_bottom = 320.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="MusicVolumeLabel" type="Label" parent="Container/VBoxContainer"]
+[node name="MusicVolumeLabel" type="Label" parent="Container/PanelContainer/Margin/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_6en0s")
 text = "Music volume"
 horizontal_alignment = 1
 
-[node name="MusicSlider" type="HSlider" parent="Container/VBoxContainer"]
+[node name="MusicSlider" type="HSlider" parent="Container/PanelContainer/Margin/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 1.0
@@ -73,14 +95,14 @@ step = 0.01
 value = 0.5
 script = ExtResource("2_8b7gh")
 
-[node name="SfxVolumeLabel" type="Label" parent="Container/VBoxContainer"]
+[node name="SfxVolumeLabel" type="Label" parent="Container/PanelContainer/Margin/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 theme = ExtResource("2_6en0s")
 text = "SFX volume"
 horizontal_alignment = 1
 
-[node name="SfxSlider" type="HSlider" parent="Container/VBoxContainer"]
+[node name="SfxSlider" type="HSlider" parent="Container/PanelContainer/Margin/VBoxContainer2"]
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 1.0
@@ -88,23 +110,39 @@ step = 0.01
 value = 0.5
 script = ExtResource("2_8b7gh")
 
-[node name="SaveSettingsButton" type="Button" parent="Container/VBoxContainer"]
-layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_6en0s")
-text = "Save"
-script = ExtResource("3_sk5vb")
+[node name="ButtonsContainer" type="HBoxContainer" parent="Container/PanelContainer/Margin"]
+layout_mode = 1
+anchors_preset = -1
+anchor_left = 0.043
+anchor_top = 0.859
+anchor_right = 0.959
+anchor_bottom = 0.859
+offset_left = 0.139999
+offset_top = -45.821
+offset_right = -0.180298
+offset_bottom = 46.179
+theme_override_constants/separation = 10
+alignment = 1
+metadata/_edit_use_anchors_ = true
 
-[node name="ResetToDefaultButton" type="Button" parent="Container/VBoxContainer"]
+[node name="ReturnButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_l4qqc")]
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_6en0s")
-text = "Reset"
-script = ExtResource("3_sk5vb")
 
-[node name="ReturnButton" type="Button" parent="Container/VBoxContainer"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView" index="1"]
+text = "RETURN"
+
+[node name="SaveSettingsButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_l4qqc")]
 layout_mode = 2
-size_flags_vertical = 3
-theme = ExtResource("2_6en0s")
-text = "Return"
-script = ExtResource("3_sk5vb")
+
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView" index="1"]
+text = "SAVE"
+
+[node name="ResetToDefaultButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_l4qqc")]
+layout_mode = 2
+
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView" index="1"]
+text = "RESET"
+
+[editable path="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton"]
+[editable path="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton"]
+[editable path="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton"]
