@@ -69,11 +69,11 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
         tween.TweenCanvasItemModulate(true, fadeObjectsContainer, new Color(fadeObjectsContainer.Modulate, 0), duration);
-        //tween.TweenCallback(Callable.From(() =>
-        //{
-        //    onHidden?.Invoke();
-        //}));
-        tween.Finished += ()=> onHidden?.Invoke();
+        tween.TweenCallback(Callable.From(() =>
+        {
+            onHidden?.Invoke();
+        }));
+        //tween.Finished += ()=> onHidden?.Invoke();
 
     }
 

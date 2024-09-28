@@ -131,9 +131,6 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard/AnimatedButtonView" index="1"]
-visible = false
-
 [node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard"]
 layout_mode = 1
 anchors_preset = 8
@@ -166,9 +163,6 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard/AnimatedButtonView" index="1"]
-visible = false
-
 [node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard"]
 layout_mode = 1
 anchors_preset = 8
@@ -200,9 +194,6 @@ offset_right = 0.0
 offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
-
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/JumpKeyboard/AnimatedButtonView" index="1"]
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/JumpKeyboard"]
 layout_mode = 1
@@ -242,9 +233,6 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveLeftJoystick/AnimatedButtonView" index="1"]
-visible = false
-
 [node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveLeftJoystick"]
 layout_mode = 1
 anchors_preset = 8
@@ -277,9 +265,6 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveRightJoystick/AnimatedButtonView" index="1"]
-visible = false
-
 [node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveRightJoystick"]
 layout_mode = 1
 anchors_preset = 8
@@ -306,9 +291,6 @@ textureRect = NodePath("TextureRect")
 layout_mode = 1
 offset_right = 236.0
 offset_bottom = 89.0
-
-[node name="Label" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/JumpJoystick/AnimatedButtonView" index="1"]
-visible = false
 
 [node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/JumpJoystick"]
 layout_mode = 1
@@ -354,7 +336,7 @@ offset_left = -150.0
 offset_right = 150.0
 grow_horizontal = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView" index="1"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/TextClipper" index="0"]
 text = "RETURN"
 
 [node name="ResetToDefaultButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("8_2psh3")]
@@ -369,7 +351,7 @@ offset_left = -150.0
 offset_right = 150.0
 grow_horizontal = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView" index="1"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/TextClipper" index="0"]
 text = "RESET"
 
 [editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard"]
