@@ -2,10 +2,8 @@
 using System;
 using System.Threading.Tasks;
 using UISystem.Common.Elements;
-using UISystem.Common.ElementViews;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Structs;
-using UISystem.Constants;
 using UISystem.Extensions;
 using Color = Godot.Color;
 using VisibilityManger = UISystem.Common.Helpers.CanvasItemVisibilityManager;
@@ -14,16 +12,12 @@ namespace UISystem.MenuSystem.Views;
 public partial class InterfaceSettingsMenuView : SettingsMenuView
 {
 
-    private const float AnimationDuration = 7f;
+    private const float AnimationDuration = 1f;
 
     [Export] private DropdownView controllerIconsDropdown;
     [Export] private ButtonView saveSettingsButton;
     [Export] private ButtonView returnButton;
-    [Export] private PanelContainer panel;
-
-    //[Export] private AnimatedButtonView animReturnButton;
-    //[Export] private AnimatedButtonView animSaveButton;
-    //[Export] private AnimatedButtonView animResetButton;
+    [Export] private Control panel;
 
     private Vector2 _panelSize;
     private Vector2 _panelPosition;
@@ -55,7 +49,7 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
         tween.TweenControlSize(true, returnButton.ResizableizeControl, Vector2.Zero, duration, _returnButtonAnimationSettings);
         tween.TweenControlSize(true, saveSettingsButton.ResizableizeControl, Vector2.Zero, duration, _saveButtonAnimationSettings);
         tween.TweenControlSize(true, ResetButton.ResizableizeControl, Vector2.Zero, duration, _resetButtonAnimationSettings);
-        tween.TweenControlSize(true, ControllerIconsDropdown, Vector2.Zero, duration, _dropdownAnimationSettings);
+        tween.TweenControlSize(true, controllerIconsDropdown.ResizableizeControl, Vector2.Zero, duration, _dropdownAnimationSettings);
         tween.TweenCallback(Callable.From(() =>
         {
             VisibilityManger.HideItem(ControllerIconsDropdown);
@@ -64,11 +58,13 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
             VisibilityManger.HideItem(ResetButton);
         }));
 
-        tween.TweenControlSize(true, panel, Vector2.Zero, AnimationDuration, _panelTweenSizeSettings);
+        tween.SetEase(Tween.EaseType.In);
+        tween.SetTrans(Tween.TransitionType.Back);
+        tween.TweenControlSize(false, panel, Vector2.Zero, AnimationDuration, _panelTweenSizeSettings);
 
-        tween.SetEase(Tween.EaseType.Out);
+        //tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.TweenCanvasItemModulate(true, fadeObjectsContainer, new Color(fadeObjectsContainer.Modulate, 0), duration);
+        tween.TweenCanvasItemModulate(false, fadeObjectsContainer, new Color(fadeObjectsContainer.Modulate, 0), 0.1f);
         tween.TweenCallback(Callable.From(() =>
         {
             onHidden?.Invoke();
@@ -98,8 +94,8 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
             ReturnButton.ResizableizeControl.Size, horizontalDirection, verticalDirection);
         _resetButtonAnimationSettings = new SizeSettings(ResetButton.ResizableizeControl.Position,
             ResetButton.ResizableizeControl.Size, horizontalDirection, verticalDirection);
-        _dropdownAnimationSettings = new SizeSettings(ControllerIconsDropdown.Position, ControllerIconsDropdown.Size, 
-            horizontalDirection, verticalDirection);
+        _dropdownAnimationSettings = new SizeSettings(ControllerIconsDropdown.ResizableizeControl.Position, 
+            ControllerIconsDropdown.ResizableizeControl.Size, horizontalDirection, verticalDirection);
         
         _panelTweenSizeSettings = new SizeSettings(_panelPosition, _panelSize, horizontalDirection, verticalDirection);
     }

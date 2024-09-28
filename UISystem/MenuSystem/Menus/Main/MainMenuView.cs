@@ -9,7 +9,8 @@ namespace UISystem.MenuSystem.Views;
 public partial class MainMenuView : MenuView
 {
 
-    private const float AnimationDuration = 0.5f;
+    private const float MainElementAnimationDuration = 0.25f;
+    private const float SecondaryElementAnimationDuration = 0.5f;
 
     [Export] private ButtonView playButton;
     [Export] private ButtonView optionsButton;
@@ -31,7 +32,7 @@ public partial class MainMenuView : MenuView
     {
         base.Init();
         _transition = new MainElementDropTransition(this, fadeObjectsContainer, playButton, new[] { optionsButton, quitButton },
-            AnimationDuration);
+            MainElementAnimationDuration, SecondaryElementAnimationDuration);
     }
 
     public override void Hide(Action onHidden, bool instant)

@@ -1,10 +1,13 @@
-[gd_scene load_steps=6 format=3 uid="uid://d0lqlkxfi5o25"]
+[gd_scene load_steps=7 format=3 uid="uid://d0lqlkxfi5o25"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/InterfaceSettings/InterfaceSettingsMenuView.cs" id="1_830ao"]
-[ext_resource type="Theme" uid="uid://p3e6ki5xgue4" path="res://UISystem/Themes/DropdownButtonTheme.tres" id="2_2bwi3"]
 [ext_resource type="Theme" uid="uid://f388f1hm7tv8" path="res://UISystem/Themes/SettingsPanelTheme.tres" id="2_7o5vc"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_212i7"]
 [ext_resource type="PackedScene" uid="uid://b02xnc3swcbfg" path="res://UISystem/Common/Prefabs/DropdownView.tscn" id="5_lrjck"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_uwy47"]
+
+[sub_resource type="CanvasTexture" id="CanvasTexture_305pl"]
 
 [node name="InterfaceSettingsMenuView" type="Control" node_paths=PackedStringArray("controllerIconsDropdown", "saveSettingsButton", "returnButton", "panel", "fadeObjectsContainer", "resetButton")]
 layout_mode = 3
@@ -14,12 +17,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_830ao")
-controllerIconsDropdown = NodePath("Container/PanelContainer/Margin/Control/ControllerIconsDropdownView")
-saveSettingsButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton")
-returnButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ReturnButton")
+controllerIconsDropdown = NodePath("Container/PanelContainer/Color/ControllerIconsDropdownView")
+saveSettingsButton = NodePath("Container/PanelContainer/Color/ButtonsContainer/SaveSettingsButton")
+returnButton = NodePath("Container/PanelContainer/Color/ButtonsContainer/ReturnButton")
 panel = NodePath("Container/PanelContainer")
 fadeObjectsContainer = NodePath("Container")
-resetButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton")
+resetButton = NodePath("Container/PanelContainer/Color/ButtonsContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1
@@ -43,13 +46,13 @@ text = "Interface settings menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Container"]
+[node name="PanelContainer" type="TextureRect" parent="Container"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.06
+anchor_left = 0.05
 anchor_top = 0.446
-anchor_right = 0.954
+anchor_right = 0.95
 anchor_bottom = 0.927
 offset_left = -0.120033
 offset_top = -0.00778198
@@ -57,36 +60,26 @@ offset_right = -0.00805664
 offset_bottom = 0.303894
 grow_horizontal = 2
 grow_vertical = 2
-mouse_filter = 1
 theme = ExtResource("2_7o5vc")
+texture = SubResource("CanvasTexture_uwy47")
 
-[node name="Margin" type="Control" parent="Container/PanelContainer"]
+[node name="Color" type="TextureRect" parent="Container/PanelContainer"]
+self_modulate = Color(0, 0, 0, 1)
 clip_contents = true
-layout_mode = 2
-mouse_filter = 1
-
-[node name="Control" type="Control" parent="Container/PanelContainer/Margin"]
-custom_minimum_size = Vector2(300, 0)
 layout_mode = 1
-anchor_left = 0.354
-anchor_top = 0.123
-anchor_right = 0.648
-anchor_bottom = 0.315
-offset_left = -0.502472
-offset_right = -0.382507
-focus_mode = 2
-theme = ExtResource("2_2bwi3")
-
-[node name="ControllerIconsDropdownView" parent="Container/PanelContainer/Margin/Control" instance=ExtResource("5_lrjck")]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -171.0
-offset_right = 171.0
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
 grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("2_7o5vc")
+texture = SubResource("CanvasTexture_305pl")
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="Container/PanelContainer/Margin"]
+[node name="ButtonsContainer" type="HBoxContainer" parent="Container/PanelContainer/Color"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.043
@@ -95,31 +88,56 @@ anchor_right = 0.958414
 anchor_bottom = 0.722
 offset_left = 0.139999
 offset_top = -46.0438
-offset_right = 0.41748
+offset_right = 0.417542
 offset_bottom = 45.9562
 theme_override_constants/separation = 10
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="ReturnButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_212i7")]
+[node name="ReturnButton" parent="Container/PanelContainer/Color/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/PanelContainer/Color/ButtonsContainer/ReturnButton/AnimatedButtonView/TextClipper" index="0"]
 text = "RETURN"
 
-[node name="SaveSettingsButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_212i7")]
+[node name="SaveSettingsButton" parent="Container/PanelContainer/Color/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/PanelContainer/Color/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/TextClipper" index="0"]
 text = "SAVE"
 
-[node name="ResetToDefaultButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_212i7")]
+[node name="ResetToDefaultButton" parent="Container/PanelContainer/Color/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/PanelContainer/Color/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/TextClipper" index="0"]
 text = "RESET"
 
-[editable path="Container/PanelContainer/Margin/Control/ControllerIconsDropdownView"]
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton"]
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton"]
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton"]
+[node name="ControllerIconsDropdownView" parent="Container/PanelContainer/Color" instance=ExtResource("5_lrjck")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.946
+offset_top = 37.146
+offset_right = 173.054
+offset_bottom = 127.146
+grow_horizontal = 2
+
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Color/ControllerIconsDropdownView" index="1"]
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -171.0
+offset_right = 171.0
+grow_horizontal = 2
+
+[node name="TextClipper" parent="Container/PanelContainer/Color/ControllerIconsDropdownView/AnimatedButtonView" index="1"]
+offset_left = 0.0
+offset_top = 0.0
+offset_right = 0.0
+offset_bottom = 0.0
+
+[editable path="Container/PanelContainer/Color/ButtonsContainer/ReturnButton"]
+[editable path="Container/PanelContainer/Color/ButtonsContainer/SaveSettingsButton"]
+[editable path="Container/PanelContainer/Color/ButtonsContainer/ResetToDefaultButton"]
+[editable path="Container/PanelContainer/Color/ControllerIconsDropdownView"]

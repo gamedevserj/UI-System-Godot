@@ -13,6 +13,8 @@ namespace UISystem.Common.Transitions;
 public class MainElementDropTransition : IViewTransition
 {
 
+    private const float FadeDuration = 0.1f;
+
     private Vector2 _primaryElementSize;
     private bool _initializedParameters;
     private Dictionary<Control, Vector2> _secondaryElementsPositions = new();
@@ -21,7 +23,8 @@ public class MainElementDropTransition : IViewTransition
     private readonly Control _fadeObjectsContainer;
     private readonly ButtonView _primaryElement;
     private readonly ButtonView[] _secondaryElements;
-    private readonly float _animationDuration;
+    private readonly float _mainElementDuration;
+    private readonly float _secondaryElementDuration;
 
     private SceneTree _sceneTree;
     private SceneTree SceneTree
@@ -34,13 +37,14 @@ public class MainElementDropTransition : IViewTransition
     }
 
     public MainElementDropTransition(Control caller, Control fadeObjectsContainer, ButtonView primaryElement,
-        ButtonView[] secondaryElements, float animationDuration)
+        ButtonView[] secondaryElements, float mainElementDuration, float secondaryElementDuration)
     {
         _caller = caller;
         _fadeObjectsContainer = fadeObjectsContainer;
         _primaryElement = primaryElement;
         _secondaryElements = secondaryElements;
-        _animationDuration = animationDuration;
+        _mainElementDuration = mainElementDuration;
+        _secondaryElementDuration = secondaryElementDuration;
     }
 
     public void Hide(Action onHidden, bool instant)
@@ -59,21 +63,21 @@ public class MainElementDropTransition : IViewTransition
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            tween.Parallel().TweenProperty(_secondaryElements[i], PropertyConstants.Position, Vector2.Zero, _animationDuration);
+            tween.Parallel().TweenProperty(_secondaryElements[i], PropertyConstants.Position, Vector2.Zero, _secondaryElementDuration);
         }
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(false); }));
 
         Vector2 size = new(0, _primaryElement.Size.Y);
-        float duration = _animationDuration * 0.5f;
-        tween.SetEase(Tween.EaseType.Out);
+        tween.SetEase(Tween.EaseType.In);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.TweenControlSize(true, _primaryElement.ResizableizeControl, size, duration);
+        tween.TweenControlSize(false, _primaryElement.ResizableizeControl, size, _mainElementDuration);
         tween.TweenCallback(Callable.From(() =>
         {
             VisibilityManger.HideItem(_primaryElement);
         }));
 
-        tween.TweenProperty(_fadeObjectsContainer, PropertyConstants.Modulate, new Color(_fadeObjectsContainer.Modulate, 0), duration);
+        tween.SetTrans(Tween.TransitionType.Linear);
+        tween.TweenCanvasItemAlpha(false, _fadeObjectsContainer, 0, FadeDuration);
         tween.TweenCallback(Callable.From(() =>
         {
             onHidden?.Invoke();
@@ -107,17 +111,19 @@ public class MainElementDropTransition : IViewTransition
 
         Tween tween = SceneTree.CreateTween();
         tween.SetPauseMode(Tween.TweenPauseMode.Process);
-        tween.Parallel().TweenProperty(_fadeObjectsContainer, PropertyConstants.Modulate, new Color(_fadeObjectsContainer.Modulate, 1), 0.1f);
+
+        tween.SetTrans(Tween.TransitionType.Linear);
+        tween.TweenCanvasItemAlpha(false, _fadeObjectsContainer, 1, FadeDuration);
 
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.TweenControlSize(true, _primaryElement.ResizableizeControl, _primaryElementSize, _animationDuration * 0.5f);
+        tween.TweenControlSize(true, _primaryElement.ResizableizeControl, _primaryElementSize, _mainElementDuration);
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(true); }));
 
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            tween.TweenNode2DPosition(true, _secondaryElements[i], _secondaryElementsPositions[_secondaryElements[i]], _animationDuration);
+            tween.TweenNode2DPosition(true, _secondaryElements[i], _secondaryElementsPositions[_secondaryElements[i]], _secondaryElementDuration);
         }
         tween.TweenCallback(Callable.From(() => { onShown?.Invoke(); }));
     }
