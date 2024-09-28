@@ -1,12 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://bkgi74vea0ofm"]
 
 [ext_resource type="Script" path="res://UISystem/PopupSystem/Popups/YesNoCancelPopup/YesNoCancelPopupView.cs" id="1_r2q6b"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="2_r31ud"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_t1n3v"]
+[ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="3_2uld7"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ulc4q"]
 
-[node name="ConfirmationPopup" type="Control" node_paths=PackedStringArray("cancelButton", "noButton", "message", "yesButton")]
+[node name="ConfirmationPopup" type="Control" node_paths=PackedStringArray("noButton", "cancelButton", "message", "yesButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,23 +14,37 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r2q6b")
-cancelButton = NodePath("ButtonsContainer/CancelButton")
 noButton = NodePath("ButtonsContainer/NoButton")
+cancelButton = NodePath("ButtonsContainer/CancelButton")
 message = NodePath("Message")
 yesButton = NodePath("ButtonsContainer/YesButton")
 
-[node name="Background" type="TextureRect" parent="."]
-modulate = Color(0, 0, 0, 1)
+[node name="Outline" type="TextureRect" parent="."]
 layout_mode = 1
-anchors_preset = 8
-anchor_left = 0.5
-anchor_top = 0.5
-anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -200.0
-offset_top = -150.0
-offset_right = 200.0
-offset_bottom = 150.0
+anchors_preset = -1
+anchor_left = 0.05
+anchor_top = 0.269
+anchor_right = 0.95
+anchor_bottom = 0.731
+offset_left = 0.447998
+offset_top = -0.312012
+offset_right = -0.447998
+offset_bottom = 0.311981
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_ulc4q")
+metadata/_edit_use_anchors_ = true
+
+[node name="Color" type="TextureRect" parent="Outline"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_ulc4q")
@@ -38,10 +52,10 @@ texture = SubResource("CanvasTexture_ulc4q")
 [node name="Message" type="Label" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.35
-anchor_top = 0.3
-anchor_right = 0.65
-anchor_bottom = 0.55
+anchor_left = 0.1
+anchor_top = 0.299383
+anchor_right = 0.9
+anchor_bottom = 0.549383
 offset_left = -3.05176e-05
 grow_horizontal = 2
 grow_vertical = 2
@@ -51,38 +65,66 @@ text = "Message"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
+metadata/_edit_use_anchors_ = true
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="."]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.35
-anchor_top = 0.6
-anchor_right = 0.65
-anchor_bottom = 0.7
+anchor_left = 0.1
+anchor_top = 0.600309
+anchor_right = 0.9
+anchor_bottom = 0.700617
 theme_override_constants/separation = 25
+metadata/_edit_use_anchors_ = true
 
-[node name="YesButton" type="Button" parent="ButtonsContainer"]
-modulate = Color(0, 1, 0, 1)
+[node name="YesButton" parent="ButtonsContainer" instance=ExtResource("3_2uld7")]
 layout_mode = 2
-size_flags_horizontal = 3
-focus_neighbor_right = NodePath("../NoButton")
-theme = ExtResource("2_t1n3v")
-text = "Yes"
-script = ExtResource("2_r31ud")
 
-[node name="NoButton" type="Button" parent="ButtonsContainer"]
-modulate = Color(1, 0, 0, 1)
-layout_mode = 2
-size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../YesButton")
-theme = ExtResource("2_t1n3v")
-text = "No"
-script = ExtResource("2_r31ud")
+[node name="AnimatedButtonView" parent="ButtonsContainer/YesButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
-[node name="CancelButton" type="Button" parent="ButtonsContainer"]
+[node name="Label" parent="ButtonsContainer/YesButton/AnimatedButtonView/TextClipper" index="0"]
+text = "YES"
+
+[node name="NoButton" parent="ButtonsContainer" instance=ExtResource("3_2uld7")]
 layout_mode = 2
-size_flags_horizontal = 3
-focus_neighbor_left = NodePath("../YesButton")
-theme = ExtResource("2_t1n3v")
-text = "Cancel"
-script = ExtResource("2_r31ud")
+
+[node name="AnimatedButtonView" parent="ButtonsContainer/NoButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" parent="ButtonsContainer/NoButton/AnimatedButtonView/TextClipper" index="0"]
+text = "NO"
+
+[node name="CancelButton" parent="ButtonsContainer" instance=ExtResource("3_2uld7")]
+layout_mode = 2
+
+[node name="AnimatedButtonView" parent="ButtonsContainer/CancelButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" parent="ButtonsContainer/CancelButton/AnimatedButtonView/TextClipper" index="0"]
+text = "CANCEL"
+
+[editable path="ButtonsContainer/YesButton"]
+[editable path="ButtonsContainer/NoButton"]
+[editable path="ButtonsContainer/CancelButton"]
