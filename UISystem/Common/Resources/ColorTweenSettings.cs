@@ -20,7 +20,7 @@ public partial class ColorTweenSettings : TweenSettings<Color>
     public ITweener CreateTweener(SceneTree tree, Control target, bool parallel = true)
         => new ColorTweener(tree, target, parallel, this, target.SelfModulate);
 
-    protected partial class ColorTweener : Tweener<Color>, ITweener
+    protected partial class ColorTweener : Tweener<Color>
     {
 
         public ColorTweener(SceneTree tree, Control target, bool parallel, TweenSettings<Color> settings, Color originalValue) : base(tree, target, parallel, settings, originalValue)

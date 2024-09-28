@@ -23,7 +23,7 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
     public ITweener CreateTweener(SceneTree tree, Control target, bool parallel = true) 
         => new SizeTweener(tree, target, parallel, this, Vector2.Zero, target.Size, target.Position, horizontalDirection, verticalDirection);
 
-    private class SizeTweener : Tweener<Vector2>, ITweener
+    private class SizeTweener : Tweener<Vector2>
     {
 
         private Vector2 _originalSize;

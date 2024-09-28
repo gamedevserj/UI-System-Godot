@@ -1,5 +1,6 @@
 ﻿using Godot;
 using UISystem.Common.Enums;
+using UISystem.Common.Interfaces;
 
 namespace UISystem.Common.Resources;
 public abstract partial class TweenSettings<T> : Resource
@@ -19,7 +20,7 @@ public abstract partial class TweenSettings<T> : Resource
     public abstract T DisabledValue { get; }
 
 
-    protected abstract class Tweener<T>
+    protected abstract class Tweener<T> : ITweener
     {
 
         protected Tween _tween;
@@ -40,23 +41,7 @@ public abstract partial class TweenSettings<T> : Resource
         }
 
         protected abstract void Tween(T value);
-
-        public void OnFocusEntered(ControlDrawMode mode)
-        {
-            Tween(SelectValue(mode));
-        }
-
-        public void OnFocusExited(ControlDrawMode mode)
-        {
-            Tween(SelectValue(mode));
-        }
-
-        public void OnMouseEntered(ControlDrawMode mode)
-        {
-            Tween(SelectValue(mode));
-        }
-
-        public void OnMouseExited(ControlDrawMode mode)
+        public void Tween(ControlDrawMode mode)
         {
             Tween(SelectValue(mode));
         }

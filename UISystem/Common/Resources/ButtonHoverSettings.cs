@@ -33,28 +33,34 @@ public partial class ButtonHoverSettings : Resource
             _colorTweener = colorSettings?.CreateTweener(tree, colorTarget, colorParallel);
         }
 
-        public void OnFocusEntered(ControlDrawMode mode)
-        {
-            _sizeTweener?.OnFocusEntered(mode);
-            _colorTweener?.OnFocusEntered(mode);
-        }
+        //public void OnFocusEntered(ControlDrawMode mode)
+        //{
+        //    _sizeTweener?.Tween(mode);
+        //    _colorTweener?.Tween(mode);
+        //}
 
-        public void OnFocusExited(ControlDrawMode mode)
-        {
-            _sizeTweener?.OnFocusExited(mode);
-            _colorTweener?.OnFocusExited(mode);
-        }
+        //public void OnFocusExited(ControlDrawMode mode)
+        //{
+        //    _sizeTweener?.Tween(mode);
+        //    _colorTweener?.Tween(mode);
+        //}
 
-        public void OnMouseEntered(ControlDrawMode mode)
-        {
-            _sizeTweener?.OnMouseEntered(mode);
-            _colorTweener?.OnMouseEntered(mode);
-        }
+        //public void OnMouseEntered(ControlDrawMode mode)
+        //{
+        //    _sizeTweener?.Tween(mode);
+        //    _colorTweener?.Tween(mode);
+        //}
 
-        public void OnMouseExited(ControlDrawMode mode)
+        //public void OnMouseExited(ControlDrawMode mode)
+        //{
+        //    _sizeTweener?.Tween(mode);
+        //    _colorTweener?.Tween(mode);
+        //}
+
+        public void Tween(ControlDrawMode mode)
         {
-            _sizeTweener?.OnMouseExited(mode);
-            _colorTweener?.OnMouseExited(mode);
+            _sizeTweener?.Tween(mode);
+            _colorTweener?.Tween(mode);
         }
     }
 

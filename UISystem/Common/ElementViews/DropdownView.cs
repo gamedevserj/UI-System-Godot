@@ -55,22 +55,16 @@ public partial class DropdownView : OptionButton, IFocusableControl
     private void OnMouseEntered()
     {
         _mouseOver = true;
-        _tweener.OnMouseEntered(GetDrawingMode());
+        _tweener.Tween(GetDrawingMode());
     }
     private void OnMouseExited()
     {
         _mouseOver = false;
-        _tweener.OnMouseExited(GetDrawingMode());
+        _tweener.Tween(GetDrawingMode());
     }
 
-    private void OnFocusEntered()
-    {
-        _tweener.OnFocusEntered(GetDrawingMode());
-    }
-    private void OnFocusExited()
-    {
-        _tweener.OnFocusExited(GetDrawingMode());
-    }
+    private void OnFocusEntered() => _tweener.Tween(GetDrawingMode());
+    private void OnFocusExited() => _tweener.Tween(GetDrawingMode());
 
     private ControlDrawMode GetDrawingMode()
     {
