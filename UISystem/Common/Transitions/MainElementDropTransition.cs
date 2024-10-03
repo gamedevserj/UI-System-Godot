@@ -117,7 +117,7 @@ public class MainElementDropTransition : IViewTransition
 
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.TweenControlSize(true, _mainElement, _mainElementSize, _mainElementDuration);
+        tween.TweenControlSize(false, _mainElement, _mainElementSize, _mainElementDuration);
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(true); }));
 
         tween.SetTrans(Tween.TransitionType.Back);
