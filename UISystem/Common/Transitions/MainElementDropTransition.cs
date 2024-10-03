@@ -15,15 +15,15 @@ public class MainElementDropTransition : IViewTransition
 
     private const float FadeDuration = 0.1f;
 
-    private Vector2 _primaryElementSize;
+    private Vector2 _mainElementSize;
     private bool _initializedParameters;
     private Dictionary<Control, Vector2> _secondaryElementsPositions = new();
     private SceneTree _sceneTree;
 
     private readonly Control _caller;
     private readonly Control _fadeObjectsContainer;
-    private readonly ButtonView _primaryElement;
-    private readonly ButtonView[] _secondaryElements;
+    private readonly Control _mainElement;
+    private readonly Control[] _secondaryElements;
     private readonly float _mainElementDuration;
     private readonly float _secondaryElementDuration;
 
@@ -36,12 +36,12 @@ public class MainElementDropTransition : IViewTransition
         }
     }
 
-    public MainElementDropTransition(Control caller, Control fadeObjectsContainer, ButtonView primaryElement,
-        ButtonView[] secondaryElements, float mainElementDuration, float secondaryElementDuration)
+    public MainElementDropTransition(Control caller, Control fadeObjectsContainer, Control mainResizableControl,
+        Control[] secondaryElements, float mainElementDuration, float secondaryElementDuration)
     {
         _caller = caller;
         _fadeObjectsContainer = fadeObjectsContainer;
-        _primaryElement = primaryElement;
+        _mainElement = mainResizableControl;
         _secondaryElements = secondaryElements;
         _mainElementDuration = mainElementDuration;
         _secondaryElementDuration = secondaryElementDuration;
@@ -67,13 +67,13 @@ public class MainElementDropTransition : IViewTransition
         }
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(false); }));
 
-        Vector2 size = new(0, _primaryElement.Size.Y);
+        Vector2 size = new(0, _mainElementSize.Y);
         tween.SetEase(Tween.EaseType.In);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.TweenControlSize(false, _primaryElement.ResizableizeControl, size, _mainElementDuration);
+        tween.TweenControlSize(false, _mainElement, size, _mainElementDuration);
         tween.TweenCallback(Callable.From(() =>
         {
-            VisibilityManger.HideItem(_primaryElement);
+            VisibilityManger.HideItem(_mainElement);
         }));
 
         tween.SetTrans(Tween.TransitionType.Linear);
@@ -88,22 +88,22 @@ public class MainElementDropTransition : IViewTransition
     {
         if (instant)
         {
-            VisibilityManger.ShowItem(_primaryElement);
+            VisibilityManger.ShowItem(_mainElement);
             VisibilityManger.ShowItem(_fadeObjectsContainer);
             SwitchSecondaryButtonsVisibility(true);
             onShown?.Invoke();
             return;
         }
 
-        VisibilityManger.HideItem(_primaryElement);
+        VisibilityManger.HideItem(_mainElement);
         VisibilityManger.HideItem(_fadeObjectsContainer);
         SwitchSecondaryButtonsVisibility(false);
 
         if (!_initializedParameters)
             await InitElementParameters();
 
-        _primaryElement.ResizableizeControl.Size = new(0, _primaryElement.ResizableizeControl.Size.Y);
-        VisibilityManger.ShowItem(_primaryElement);
+        _mainElement.Size = new(0, _mainElementSize.Y);
+        VisibilityManger.ShowItem(_mainElement);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
             _secondaryElements[i].Position = Vector2.Zero;
@@ -117,7 +117,7 @@ public class MainElementDropTransition : IViewTransition
 
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.TweenControlSize(true, _primaryElement.ResizableizeControl, _primaryElementSize, _mainElementDuration);
+        tween.TweenControlSize(true, _mainElement, _mainElementSize, _mainElementDuration);
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(true); }));
 
         tween.SetTrans(Tween.TransitionType.Back);
@@ -131,7 +131,7 @@ public class MainElementDropTransition : IViewTransition
     private async Task InitElementParameters()
     {
         await _caller.ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
-        _primaryElementSize = _primaryElement.ResizableizeControl.Size;
+        _mainElementSize = _mainElement.Size;
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
             _secondaryElementsPositions.Add(_secondaryElements[i], _secondaryElements[i].Position);
@@ -142,14 +142,14 @@ public class MainElementDropTransition : IViewTransition
 
     private void SetButtonsOrdering()
     {
-        List<ButtonView> buttonsByPosition = _secondaryElements.OrderByDescending(o => o.Position.Y).ToList();
+        List<Control> buttonsByPosition = _secondaryElements.OrderByDescending(o => o.Position.Y).ToList();
         int last = 0;
         for (int i = 0; i < buttonsByPosition.Count; i++)
         {
             buttonsByPosition[i].ZIndex = i;
             last = i;
         }
-        _primaryElement.ZIndex = last + 1;
+        _mainElement.ZIndex = last + 1;
     }
 
     private void SwitchSecondaryButtonsVisibility(bool show)
