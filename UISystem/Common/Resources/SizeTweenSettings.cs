@@ -26,9 +26,7 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
     private class SizeTweener : Tweener<Vector2>
     {
 
-        private readonly Vector2 _originalSize;
-        private readonly Vector2 _originalPosition;
-        private readonly SizeSettings _sizeSettings;
+        private readonly ResizableControlSettings _sizeSettings;
 
         public SizeTweener(SceneTree tree, Control target, bool parallel, TweenSettings<Vector2> settings, Vector2 originalValue, 
             Vector2 originalSize,
@@ -38,9 +36,7 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
             )
             : base(tree, target, parallel, settings, originalValue)
         {
-            _originalSize = originalSize;
-            _originalPosition = originalPosition;
-            _sizeSettings = new SizeSettings(_originalPosition, _originalSize, horizontalDirection, verticalDirection);
+            _sizeSettings = new ResizableControlSettings(originalPosition, originalSize, horizontalDirection, verticalDirection);
         }
 
         protected override void Tween(Vector2 value)
@@ -49,7 +45,7 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
             _tween = _tree.CreateTween();
             _tween.SetEase(_settings.Ease);
             _tween.SetTrans(_settings.Transition);
-            _tween.TweenControlSize(_parallel, _target, _originalSize + value, _settings.Duration, _sizeSettings);
+            _tween.TweenControlSize(_parallel, _target, _sizeSettings.OriginalSize + value, _settings.Duration, _sizeSettings);
         }
     }
     

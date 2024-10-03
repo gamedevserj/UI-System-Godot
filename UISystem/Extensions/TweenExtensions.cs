@@ -8,17 +8,17 @@ public static class TweenExtensions
 {
 
     public static void TweenControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration,
-        SizeSettings sizeSettings = default)
+        ResizableControlSettings settings = default)
     {
         tween.ControlSize(parallel, target, size, duration);
 
-        if (!sizeSettings.IsInitialized)
+        if (!settings.IsInitialized)
             return;
 
-        float multiplierX = GetHorizontalMultiplier(sizeSettings.HorizontalDirection);
-        float multiplierY = GetVerticalMultiplier(sizeSettings.VerticalDirection);
-        Vector2 sizeDifference = size - sizeSettings.OriginalSize;
-        Vector2 position = sizeSettings.OriginalPosition - sizeDifference * new Vector2(multiplierX, multiplierY);
+        float multiplierX = GetHorizontalMultiplier(settings.HorizontalDirection);
+        float multiplierY = GetVerticalMultiplier(settings.VerticalDirection);
+        Vector2 sizeDifference = size - settings.OriginalSize;
+        Vector2 position = settings.OriginalPosition - sizeDifference * new Vector2(multiplierX, multiplierY);
 
         // in order to change size properly when direction is set to center, it needs to be parallel
         tween.TweenNode2DPosition(true, target, position, duration);

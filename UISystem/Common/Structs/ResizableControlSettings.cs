@@ -2,7 +2,7 @@
 using UISystem.Common.Enums;
 
 namespace UISystem.Common.Structs;
-public readonly struct SizeSettings
+public readonly struct ResizableControlSettings
 {
 
     public readonly Vector2 OriginalPosition = Vector2.Zero;
@@ -12,7 +12,7 @@ public readonly struct SizeSettings
     public readonly VerticalControlSizeChangeDirection VerticalDirection = VerticalControlSizeChangeDirection.FromTop;
     public readonly bool IsInitialized = false; // using it to not tween position when settings are default
 
-    public SizeSettings(Vector2 originalPosition, Vector2 originalSize,
+    public ResizableControlSettings(Vector2 originalPosition, Vector2 originalSize,
         HorizontalControlSizeChangeDirection horizontalDirection,
         VerticalControlSizeChangeDirection verticalDirection)
     {

@@ -10,7 +10,7 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
 {
 
     private const float PanelDuration = 0.5f;
-    private const float ElementsDuration = 3.25f;
+    private const float ElementsDuration = 0.25f;
 
     [Export] private DropdownView controllerIconsDropdown;
     [Export] private ButtonView saveSettingsButton;

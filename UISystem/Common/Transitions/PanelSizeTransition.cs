@@ -16,8 +16,8 @@ public class PanelSizeTransition : IViewTransition
     private SceneTree _sceneTree;
     private bool _initializedParameters;
 
-    private SizeSettings _panelSizeSettings;
-    private SizeSettings[] _elementsSizeSettings;
+    private ResizableControlSettings _panelSizeSettings;
+    private ResizableControlSettings[] _elementsSizeSettings;
 
     private readonly Control _caller;
     private readonly Control _fadeObjectsContainer;
@@ -113,7 +113,7 @@ public class PanelSizeTransition : IViewTransition
     {
         await _caller.ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
-        _elementsSizeSettings = new SizeSettings[_elements.Length];
+        _elementsSizeSettings = new ResizableControlSettings[_elements.Length];
         var horizontalDirection = Enums.HorizontalControlSizeChangeDirection.FromCenter;
         var verticalDirection = Enums.VerticalControlSizeChangeDirection.FromCenter;
 
