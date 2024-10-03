@@ -18,6 +18,7 @@ public class MainElementDropTransition : IViewTransition
     private Vector2 _primaryElementSize;
     private bool _initializedParameters;
     private Dictionary<Control, Vector2> _secondaryElementsPositions = new();
+    private SceneTree _sceneTree;
 
     private readonly Control _caller;
     private readonly Control _fadeObjectsContainer;
@@ -26,7 +27,6 @@ public class MainElementDropTransition : IViewTransition
     private readonly float _mainElementDuration;
     private readonly float _secondaryElementDuration;
 
-    private SceneTree _sceneTree;
     private SceneTree SceneTree
     {
         get
@@ -63,7 +63,7 @@ public class MainElementDropTransition : IViewTransition
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            tween.Parallel().TweenProperty(_secondaryElements[i], PropertyConstants.Position, Vector2.Zero, _secondaryElementDuration);
+            tween.TweenNode2DPosition(true, _secondaryElements[i], Vector2.Zero, _secondaryElementDuration);
         }
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(false); }));
 

@@ -96,4 +96,13 @@ public partial class HSliderView : HSlider, IFocusableControl
         sliderFill.Size = new Vector2((sliderBackground.Size.X * (float)Value), sliderFill.Size.Y);
     }
 
+    public void FosucabilitySwitched(bool on)
+    {
+        if (_tweener == null) return;
+
+        if (on)
+            _tweener.Tween(ControlDrawMode.Normal);
+        else
+            _tweener.Tween(ControlDrawMode.Disabled);
+    }
 }

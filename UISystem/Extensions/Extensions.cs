@@ -27,5 +27,11 @@ namespace GodotExtensions
             }
         }
 
+        public static void SetSizeAndPosition(this Control control, Vector2 size, Vector2 position)
+        {
+            control.Size = size;
+            control.Position = position;
+        }
+
     }
 }

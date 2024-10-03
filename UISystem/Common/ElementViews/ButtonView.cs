@@ -16,6 +16,7 @@ public partial class ButtonView : BaseButton, IFocusableControl
 
     public Control ResizableizeControl => animatedButtonView.ResizableControl;
     private Control Border => animatedButtonView.Border;
+    private bool CanAnimateHover => !Disabled && FocusMode == FocusModeEnum.All && MouseFilter == MouseFilterEnum.Stop;
 
     public override async void _EnterTree()
     {
@@ -49,16 +50,22 @@ public partial class ButtonView : BaseButton, IFocusableControl
     private void OnMouseEntered()
     {
         _mouseOver = true;
-        _tweener.Tween(GetDrawingMode());
+        Tween();
     }
     private void OnMouseExited()
     {
         _mouseOver = false;
-        _tweener.Tween(GetDrawingMode());
+        Tween();
     }
 
-    private void OnFocusEntered() => _tweener.Tween(GetDrawingMode());
-    private void OnFocusExited() => _tweener.Tween(GetDrawingMode());
+    private void OnFocusEntered() => Tween();
+    private void OnFocusExited() => Tween();
+
+    private void Tween()
+    {
+        if (!CanAnimateHover) return;
+        _tweener.Tween(GetDrawingMode());
+    }
 
     private ControlDrawMode GetDrawingMode()
     {
@@ -71,4 +78,13 @@ public partial class ButtonView : BaseButton, IFocusableControl
             return _mouseOver ? ControlDrawMode.Hover : ControlDrawMode.Normal;
     }
 
+    public void FosucabilitySwitched(bool on)
+    {
+        if (_tweener == null) return;
+
+        if (on)
+            _tweener.Tween(ControlDrawMode.Normal);
+        else
+            _tweener.Tween(ControlDrawMode.Disabled);
+    }
 }

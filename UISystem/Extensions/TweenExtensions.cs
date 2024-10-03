@@ -45,11 +45,14 @@ public static class TweenExtensions
         tween.TweenProperty(target, PropertyConstants.Modulate, color, duration);
     }
 
-    public static void TweenCanvasItemAlpha(this Tween tween, bool parallel, CanvasItem target, float alpha, float duration)
+    public static void TweenCanvasItemAlpha(this Tween tween, bool parallel, CanvasItem target, float alpha, float duration, bool self = false)
     {
         if (parallel)
             tween.Parallel();
-        tween.TweenProperty(target, PropertyConstants.Modulate, new Color(target.Modulate, alpha), duration);
+        if (!self)
+            tween.TweenProperty(target, PropertyConstants.Modulate, new Color(target.Modulate, alpha), duration);
+        else
+            tween.TweenProperty(target, PropertyConstants.SelfModulate, new Color(target.SelfModulate, alpha), duration);
     }
 
     private static void ControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration)

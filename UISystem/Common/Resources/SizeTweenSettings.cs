@@ -26,11 +26,9 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
     private class SizeTweener : Tweener<Vector2>
     {
 
-        private Vector2 _originalSize;
-        private Vector2 _originalPosition;
-
+        private readonly Vector2 _originalSize;
+        private readonly Vector2 _originalPosition;
         private readonly SizeSettings _sizeSettings;
-
 
         public SizeTweener(SceneTree tree, Control target, bool parallel, TweenSettings<Vector2> settings, Vector2 originalValue, 
             Vector2 originalSize,
