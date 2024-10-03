@@ -28,7 +28,7 @@ public class InterfaceSettingsMenuController : SettingsMenuController<InterfaceS
         SetupControllerIconsDropdown();
         _view.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
         _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
-        DefaultSelectedElement = _view.ControllerIconsDropdown;
+        DefaultSelectedElement = _view.ReturnButton;
     }
 
     private void OnSaveSettingsButtonDown()

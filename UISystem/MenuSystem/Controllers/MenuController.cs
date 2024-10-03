@@ -50,14 +50,6 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
         {
             onComplete?.Invoke();
             SwitchFocusAvailability(true);
-            if (_lastSelectedElement?.IsValidElement() == true)
-            {
-                _lastSelectedElement.SwitchFocus(true);
-            }
-            else if (_defaultSelectedElement?.IsValidElement() == true)
-            {
-                _defaultSelectedElement.SwitchFocus(true);
-            }
         }, instant);
     }
 
@@ -66,7 +58,6 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
         SwitchFocusAvailability(false);
         _view.Hide(() => onComplete?.Invoke(), instant);
     }
-
 
     public virtual void HandleInputPressedWhenActive(InputEvent key)
     {
@@ -97,9 +88,16 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
     protected virtual void SwitchFocusAvailability(bool enable)
     {
         _view.SwitchFocusAwailability(enable);
+        if (!enable) return;
 
-        if (enable && _lastSelectedElement?.IsValidElement() == true)
+        if (_lastSelectedElement?.IsValidElement() == true)
+        {
             _lastSelectedElement.SwitchFocus(true);
+        }
+        else if (_defaultSelectedElement?.IsValidElement() == true)
+        {
+            _defaultSelectedElement.SwitchFocus(true);
+        }
     }
 
     protected abstract void SetupElements();
