@@ -1,4 +1,5 @@
 ﻿using Godot;
+using System;
 using UISystem.Common.Interfaces;
 using UISystem.Extensions;
 
@@ -29,11 +30,14 @@ public partial class ColorTweenSettings : TweenSettings<Color>
 
         protected override void Tween(Color value)
         {
-            _tween?.Kill();
-            _tween = _tree.CreateTween();
-            _tween.SetEase(_settings.Ease);
-            _tween.SetTrans(_settings.Transition);
+            base.Tween(value);
             _tween.TweenCanvasItemSelfModulate(_parallel, _target, value, _settings.Duration);
+        }
+
+        public override void Reset(Action onComplete)
+        {
+            base.Reset(onComplete);
+            _tween.TweenCanvasItemSelfModulate(_parallel, _target, _originalValue, _settings.ResetDuration);
         }
     }
 

@@ -10,5 +10,7 @@ changeSizeHover = Vector2(75, 0)
 changeSizeFocus = Vector2(100, 0)
 changeSizeFocusHover = Vector2(150, 0)
 duration = 1.0
+resetDuration = 0.25
 ease = 1
 transition = 6
+resetTransition = 10

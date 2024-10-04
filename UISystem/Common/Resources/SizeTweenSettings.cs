@@ -1,4 +1,5 @@
 ﻿using Godot;
+using System;
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Structs;
@@ -41,11 +42,14 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
 
         protected override void Tween(Vector2 value)
         {
-            _tween?.Kill();
-            _tween = _tree.CreateTween();
-            _tween.SetEase(_settings.Ease);
-            _tween.SetTrans(_settings.Transition);
+            base.Tween(value);
             _tween.TweenControlSize(_parallel, _target, _sizeSettings.OriginalSize + value, _settings.Duration, _sizeSettings);
+        }
+
+        public override void Reset(Action onComplete)
+        {
+            base.Reset(onComplete);
+            _tween.TweenControlSize(_parallel, _target, _sizeSettings.OriginalSize, _settings.ResetDuration, _sizeSettings);
         }
     }
     

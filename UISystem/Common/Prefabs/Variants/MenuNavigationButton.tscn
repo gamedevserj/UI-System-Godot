@@ -14,13 +14,14 @@ script = ExtResource("1_tsrqv")
 buttonHoverSettings = ExtResource("2_pe4x4")
 animatedButtonView = NodePath("AnimatedButtonView")
 
-[node name="AnimatedButtonView" type="Control" parent="." node_paths=PackedStringArray("border", "inside", "label")]
+[node name="AnimatedButtonView" type="Control" parent="." node_paths=PackedStringArray("hoverResizeControl", "border", "inside", "label")]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 450.0
 offset_bottom = 90.0
 mouse_filter = 2
 script = ExtResource("3_1encd")
+hoverResizeControl = NodePath("")
 border = NodePath("Border")
 inside = NodePath("Border/Control/InsideColor")
 label = NodePath("TextClipper/Label")

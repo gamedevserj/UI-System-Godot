@@ -32,8 +32,8 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
     {
         base.Init();
         _transition = new PanelSizeTransition(this, fadeObjectsContainer, panel,
-            new Control[] { ReturnButton.ResizableizeControl, ControllerIconsDropdown.ResizableizeControl,
-                SaveSettingsButton.ResizableizeControl, ResetButton.ResizableizeControl },
+            new Control[] { ReturnButton.ResizableControl, ControllerIconsDropdown.ResizableizeControl,
+                SaveSettingsButton.ResizableControl, ResetButton.ResizableControl },
             PanelDuration, ElementsDuration);
     }
 

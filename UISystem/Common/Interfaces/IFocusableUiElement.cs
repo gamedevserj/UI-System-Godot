@@ -9,8 +9,6 @@ public interface IFocusableUiElement<T> where T : Control
 
     private T Instance => (T)this;
 
-    void FosucabilitySwitched(bool on);
-
     void SwitchFocus(bool focus)
     {
         if (focus)
@@ -29,8 +27,7 @@ public interface IFocusableUiElement<T> where T : Control
         Instance.FocusMode = focusable ? FocusModeEnum.All : FocusModeEnum.None;
         Instance.MouseFilter = focusable ? MouseFilterEnum.Stop : MouseFilterEnum.Ignore;
 
-        FosucabilitySwitched(focusable);
-        if (!focusable)
+        if (!focusable && Instance.HasFocus())
             SwitchFocus(false);
     }
 

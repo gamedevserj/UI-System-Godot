@@ -77,13 +77,4 @@ public partial class DropdownView : OptionButton, IFocusableControl
             return _mouseOver ? ControlDrawMode.Hover : ControlDrawMode.Normal;
     }
 
-    public void FosucabilitySwitched(bool on)
-    {
-        if (_tweener == null) return;
-
-        if (on)
-            _tweener.Tween(ControlDrawMode.Normal);
-        else
-            _tweener.Tween(ControlDrawMode.Disabled);
-    }
 }

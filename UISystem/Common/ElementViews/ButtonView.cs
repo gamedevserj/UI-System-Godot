@@ -1,22 +1,22 @@
 using Godot;
+using System;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Resources;
 
 namespace UISystem.Common.Elements;
-public partial class ButtonView : BaseButton, IFocusableControl
+public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
 {
 
     [Export] private ButtonHoverSettings buttonHoverSettings;
     [Export] private AnimatedButtonView animatedButtonView;
 
-    private ITweener _tweener;
+    private ITweener _hoverTweener;
     private bool _mouseOver;
 
-    public Control ResizableizeControl => animatedButtonView.ResizableControl;
+    public Control ResizableControl => animatedButtonView.ResizableControl;
     private Control Border => animatedButtonView.Border;
-    private bool CanAnimateHover => !Disabled && FocusMode == FocusModeEnum.All && MouseFilter == MouseFilterEnum.Stop;
 
     public override async void _EnterTree()
     {
@@ -24,7 +24,7 @@ public partial class ButtonView : BaseButton, IFocusableControl
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
         
-        _tweener = buttonHoverSettings.CreateTweener(GetTree(), ResizableizeControl, Border);
+        _hoverTweener = buttonHoverSettings.CreateTweener(GetTree(), animatedButtonView.ResizableControl, Border);
         Subscribe();
     }
 
@@ -36,7 +36,6 @@ public partial class ButtonView : BaseButton, IFocusableControl
         FocusExited += OnFocusExited;
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
-        
     }
 
     private void Unsubscribe()
@@ -50,22 +49,17 @@ public partial class ButtonView : BaseButton, IFocusableControl
     private void OnMouseEntered()
     {
         _mouseOver = true;
-        Tween();
+        HoverTween();
     }
     private void OnMouseExited()
     {
         _mouseOver = false;
-        Tween();
+        HoverTween();
     }
 
-    private void OnFocusEntered() => Tween();
-    private void OnFocusExited() => Tween();
-
-    private void Tween()
-    {
-        if (!CanAnimateHover) return;
-        _tweener.Tween(GetDrawingMode());
-    }
+    private void OnFocusEntered() => HoverTween();
+    private void OnFocusExited() => HoverTween();
+    private void HoverTween() => _hoverTweener.Tween(GetDrawingMode());
 
     private ControlDrawMode GetDrawingMode()
     {
@@ -78,13 +72,8 @@ public partial class ButtonView : BaseButton, IFocusableControl
             return _mouseOver ? ControlDrawMode.Hover : ControlDrawMode.Normal;
     }
 
-    public void FosucabilitySwitched(bool on)
+    public void PrepareForSizeTweening(Action onComplete)
     {
-        if (_tweener == null) return;
-
-        if (on)
-            _tweener.Tween(ControlDrawMode.Normal);
-        else
-            _tweener.Tween(ControlDrawMode.Disabled);
+        _hoverTweener.Reset(onComplete);
     }
 }

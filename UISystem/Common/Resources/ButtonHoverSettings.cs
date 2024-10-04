@@ -1,4 +1,5 @@
 ﻿using Godot;
+using System;
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 
@@ -33,10 +34,22 @@ public partial class ButtonHoverSettings : Resource
             _colorTweener = colorSettings?.CreateTweener(tree, colorTarget, colorParallel);
         }
 
+        public void Reset(Action onComplete)
+        {
+            _sizeTweener?.Reset(onComplete);
+            _colorTweener?.Reset(null);
+        }
+
         public void Tween(ControlDrawMode mode)
         {
             _sizeTweener?.Tween(mode);
             _colorTweener?.Tween(mode);
+        }
+
+        public void Kill()
+        {
+            _sizeTweener?.Kill();
+            _colorTweener?.Kill();
         }
     }
 
