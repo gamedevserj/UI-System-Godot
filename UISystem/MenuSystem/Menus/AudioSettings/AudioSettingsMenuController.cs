@@ -22,8 +22,13 @@ public class AudioSettingsMenuController : SettingsMenuController<AudioSettingsM
         SetupSfxSlider();
         _view.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
         _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
-        _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
+        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
         DefaultSelectedElement = _view.MusicSlider;
+    }
+
+    private void OnReturnButtonDown()
+    {
+        OnReturnToPreviousMenuButtonDown();
     }
 
     private void OnSaveSettingsButtonDown()

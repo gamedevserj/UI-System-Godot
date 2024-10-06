@@ -24,11 +24,16 @@ public class InterfaceSettingsMenuController : SettingsMenuController<InterfaceS
 
     protected override void SetupElements()
     {
-        _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
+        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
         SetupControllerIconsDropdown();
         _view.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
         _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
         DefaultSelectedElement = _view.ReturnButton;
+    }
+
+    private void OnReturnButtonDown()
+    {
+        OnReturnToPreviousMenuButtonDown();
     }
 
     private void OnSaveSettingsButtonDown()

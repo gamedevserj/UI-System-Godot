@@ -64,7 +64,7 @@ public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuVie
 
     protected override void SetupElements()
     {
-        _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
+        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
         _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
 
         _view.MoveLeft.ButtonDown += () =>
@@ -105,5 +105,10 @@ public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuVie
     protected override void ResetViewToDefault()
     {
         UpdateAllButtonViews();
+    }
+
+    private void OnReturnButtonDown()
+    {
+        OnReturnToPreviousMenuButtonDown();
     }
 }

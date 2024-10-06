@@ -79,10 +79,10 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
         menuParent.AddChild(_view);
     }
 
-    protected virtual void OnReturnToPreviousMenuButtonDown()
+    protected virtual void OnReturnToPreviousMenuButtonDown(Action onComplete = null, bool instant = false)
     {
         if (CanReturnToPreviousMenu)
-            _menusManager.ReturnToPreviousMenu();
+            _menusManager.ReturnToPreviousMenu(onComplete, instant);
     }
 
     protected virtual void SwitchFocusAvailability(bool enable)

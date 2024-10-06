@@ -1,4 +1,5 @@
-﻿using UISystem.Constants;
+﻿using System;
+using UISystem.Constants;
 using UISystem.MenuSystem.Interfaces;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
@@ -17,18 +18,19 @@ public abstract class SettingsMenuController<TView, TModel> : MenuController<TVi
 
     protected abstract void ResetViewToDefault();
 
-    protected override void OnReturnToPreviousMenuButtonDown()
+    protected override void OnReturnToPreviousMenuButtonDown(Action onComplete = null, bool instant = false)
     {
         if (_model.HasUnappliedSettings)
         {
             _popupsManager.ShowPopup(PopupType.YesNoCancel, this, PopupMessages.SaveChanges, (result) =>
             {
                 OnReturnToPreviousMenuPopupClosed(result);
+                onComplete?.Invoke();
             });
         }
         else
         {
-            base.OnReturnToPreviousMenuButtonDown();
+            base.OnReturnToPreviousMenuButtonDown(onComplete, instant);
         }
     }
 

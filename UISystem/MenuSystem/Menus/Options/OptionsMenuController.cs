@@ -15,12 +15,17 @@ public partial class OptionsMenuController : MenuController<OptionsMenuView, Opt
 
     protected override void SetupElements()
     {
-        _view.ReturnButton.ButtonDown += OnReturnToPreviousMenuButtonDown;
+        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
         _view.AudioSettingsButton.ButtonDown += OnAudioSettingsButtonDown;
         _view.VideoSettingsButton.ButtonDown += OnVideoSettingsButtonDown;
         _view.RebindKeysButton.ButtonDown += OnRebindKeysButtonDown;
         _view.InterfaceSettingsButton.ButtonDown += OnInterfaceSettingsButtonDown;
         DefaultSelectedElement = _view.InterfaceSettingsButton;
+    }
+
+    private void OnReturnButtonDown()
+    {
+        OnReturnToPreviousMenuButtonDown();
     }
 
     private void OnAudioSettingsButtonDown()

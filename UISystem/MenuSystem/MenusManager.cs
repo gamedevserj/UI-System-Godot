@@ -67,11 +67,11 @@ public partial class MenusManager : Control
         }
     }
 
-    public void ReturnToPreviousMenu(Action onComplete = null)
+    public void ReturnToPreviousMenu(Action onComplete = null, bool instant = false)
     {
         if (_previousMenus.Count > 0)
         {
-            ShowMenu(_previousMenus.Peek().MenuType, MenuStackBehaviourEnum.RemoveFromStack, onComplete);
+            ShowMenu(_previousMenus.Peek().MenuType, MenuStackBehaviourEnum.RemoveFromStack, onComplete, instant);
         }
     }
 

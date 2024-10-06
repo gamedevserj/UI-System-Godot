@@ -52,7 +52,7 @@ public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
         DefaultSelectedElement = _view.PlayButton;
     }
 
-    protected override void OnReturnToPreviousMenuButtonDown()
+    protected override void OnReturnToPreviousMenuButtonDown(Action onComplete, bool instant = false)
     {
         ShowQuitPopup();
     }
