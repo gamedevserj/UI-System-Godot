@@ -5,7 +5,6 @@ using System.Threading.Tasks;
 using UISystem.Common.Structs;
 using UISystem.Common.Transitions.Interfaces;
 using UISystem.Extensions;
-using VisibilityManger = UISystem.Common.Helpers.CanvasItemVisibilityManager;
 
 namespace UISystem.Common.Transitions;
 public class PanelSizeTransition : IViewTransition
@@ -61,7 +60,7 @@ public class PanelSizeTransition : IViewTransition
         {
             for (int i = 0; i < _elements.Length; i++)
             {
-                VisibilityManger.HideItem(_elements[i]);
+                _elements[i].HideItem();
             }
         }));
 
@@ -79,7 +78,7 @@ public class PanelSizeTransition : IViewTransition
 
     public async void Show(Action onShown, bool instant)
     {
-        VisibilityManger.HideItem(_fadeObjectsContainer);
+        _fadeObjectsContainer.HideItem();
 
         if (!_initializedParameters)
             await InitElementParameters();

@@ -1,4 +1,5 @@
 ﻿using Godot;
+using GodotExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -6,7 +7,6 @@ using System.Threading.Tasks;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Transitions.Interfaces;
 using UISystem.Extensions;
-using VisibilityManger = UISystem.Common.Helpers.CanvasItemVisibilityManager;
 
 namespace UISystem.Common.Transitions;
 public class MainElementDropTransition : IViewTransition
@@ -50,7 +50,7 @@ public class MainElementDropTransition : IViewTransition
     {
         if (instant)
         {
-            VisibilityManger.HideItem(_fadeObjectsContainer);
+            _fadeObjectsContainer.HideItem();
             onHidden?.Invoke();
             return;
         }
@@ -83,23 +83,23 @@ public class MainElementDropTransition : IViewTransition
     {
         if (instant)
         {
-            VisibilityManger.ShowItem(_mainElement.ResizableControl);
-            VisibilityManger.ShowItem(_fadeObjectsContainer);
+            _mainElement.ResizableControl.ShowItem();
+            _fadeObjectsContainer.ShowItem();
             SwitchSecondaryButtonsVisibility(true);
             await InitElementParameters();
             onShown?.Invoke();
             return;
         }
 
-        VisibilityManger.HideItem(_mainElement.ResizableControl);
-        VisibilityManger.HideItem(_fadeObjectsContainer);
+        _mainElement.ResizableControl.HideItem();
+        _fadeObjectsContainer.HideItem();
         SwitchSecondaryButtonsVisibility(false);
 
         if (!_initializedParameters)
             await InitElementParameters();
 
         _mainElement.ResizableControl.Size = new(0, _mainElementSize.Y);
-        VisibilityManger.ShowItem(_mainElement.ResizableControl);
+        _mainElement.ResizableControl.ShowItem();
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
             _secondaryElements[i].Position = Vector2.Zero;
@@ -155,9 +155,9 @@ public class MainElementDropTransition : IViewTransition
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
             if (show)
-                VisibilityManger.ShowItem(_secondaryElements[i]);
+                _secondaryElements[i].ShowItem();
             else
-                VisibilityManger.HideItem(_secondaryElements[i]);
+                _secondaryElements[i].HideItem();
         }
     }
 

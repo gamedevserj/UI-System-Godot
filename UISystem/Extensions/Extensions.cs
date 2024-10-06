@@ -33,5 +33,15 @@ namespace GodotExtensions
             control.Position = position;
         }
 
+        public static void HideItem(this CanvasItem item)
+        {
+            item.Modulate = new Color(item.Modulate, 0);
+        }
+
+        public static void ShowItem(this CanvasItem item)
+        {
+            item.Modulate = new Color(item.Modulate, 1);
+        }
+
     }
 }
