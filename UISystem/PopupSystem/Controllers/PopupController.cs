@@ -62,10 +62,10 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
             {
                 _defaultSelectedElement.SwitchFocus(true);
             }
-        });
+        }, instant);
     }
 
-    public void Hide(PopupResult result)
+    public void Hide(PopupResult result, bool instant = false)
     {
         SwitchFocusAvailability(false);
         _view.Hide(() =>
@@ -73,7 +73,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
             _caller.CanReturnToPreviousMenu = true;
             _onHideAction?.Invoke(result);
             DestroyView();
-        });
+        }, instant);
     }
 
     private void SwitchFocusAvailability(bool enable)
