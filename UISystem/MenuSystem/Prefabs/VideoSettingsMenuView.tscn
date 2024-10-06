@@ -1,9 +1,8 @@
-[gd_scene load_steps=6 format=3 uid="uid://2snibql101pc"]
+[gd_scene load_steps=5 format=3 uid="uid://2snibql101pc"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/VideoSettings/VideoSettingsMenuView.cs" id="1_8cb4u"]
 [ext_resource type="Theme" uid="uid://f388f1hm7tv8" path="res://UISystem/Themes/SettingsPanelTheme.tres" id="2_7uov2"]
 [ext_resource type="PackedScene" uid="uid://b02xnc3swcbfg" path="res://UISystem/Common/Prefabs/DropdownView.tscn" id="2_e1dgx"]
-[ext_resource type="Theme" uid="uid://p3e6ki5xgue4" path="res://UISystem/Themes/DropdownButtonTheme.tres" id="3_0vjj5"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_mp8dl"]
 
 [node name="VideoSettingsMenuView" type="Control" node_paths=PackedStringArray("windowModeDropdown", "resolutionDropdown", "saveSettingsButton", "returnButton", "fadeObjectsContainer", "resetButton")]
@@ -14,8 +13,8 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8cb4u")
-windowModeDropdown = NodePath("Container/PanelContainer/Margin/Control/VBoxContainer/WindowModeDropdown")
-resolutionDropdown = NodePath("Container/PanelContainer/Margin/Control/VBoxContainer/ResolutionDropdown")
+windowModeDropdown = NodePath("Container/PanelContainer/Margin/VBoxContainer/WindowModeDropdown")
+resolutionDropdown = NodePath("Container/PanelContainer/Margin/VBoxContainer/ResolutionDropdown")
 saveSettingsButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton")
 returnButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ReturnButton")
 fadeObjectsContainer = NodePath("Container")
@@ -66,38 +65,23 @@ clip_contents = true
 layout_mode = 2
 mouse_filter = 1
 
-[node name="Control" type="Control" parent="Container/PanelContainer/Margin"]
-custom_minimum_size = Vector2(300, 0)
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/PanelContainer/Margin"]
 layout_mode = 1
-anchor_left = 0.354
-anchor_top = 0.123
-anchor_right = 0.648
-anchor_bottom = 0.315
-offset_left = -0.502472
-offset_right = -0.382507
-focus_mode = 2
-theme = ExtResource("3_0vjj5")
-
-[node name="VBoxContainer" type="VBoxContainer" parent="Container/PanelContainer/Margin/Control"]
-layout_mode = 1
-anchors_preset = 8
+anchors_preset = 5
 anchor_left = 0.5
-anchor_top = 0.5
 anchor_right = 0.5
-anchor_bottom = 0.5
-offset_left = -224.0
-offset_top = -88.824
-offset_right = 206.0
-offset_bottom = 130.176
+offset_left = -215.0
+offset_top = 57.0001
+offset_right = 215.0
+offset_bottom = 276.0
 grow_horizontal = 2
-grow_vertical = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="WindowModeDropdown" parent="Container/PanelContainer/Margin/Control/VBoxContainer" instance=ExtResource("2_e1dgx")]
+[node name="WindowModeDropdown" parent="Container/PanelContainer/Margin/VBoxContainer" instance=ExtResource("2_e1dgx")]
 layout_mode = 2
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/Control/VBoxContainer/WindowModeDropdown" index="1"]
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/VBoxContainer/WindowModeDropdown" index="1"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
@@ -105,16 +89,22 @@ offset_left = -171.0
 offset_right = 171.0
 grow_horizontal = 2
 
-[node name="ResolutionDropdown" parent="Container/PanelContainer/Margin/Control/VBoxContainer" instance=ExtResource("2_e1dgx")]
+[node name="TextClipper" parent="Container/PanelContainer/Margin/VBoxContainer/WindowModeDropdown/AnimatedButtonView" index="1"]
+anchors_preset = 15
+
+[node name="ResolutionDropdown" parent="Container/PanelContainer/Margin/VBoxContainer" instance=ExtResource("2_e1dgx")]
 layout_mode = 2
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/Control/VBoxContainer/ResolutionDropdown" index="1"]
+[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/VBoxContainer/ResolutionDropdown" index="1"]
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
 offset_left = -171.0
 offset_right = 171.0
 grow_horizontal = 2
+
+[node name="TextClipper" parent="Container/PanelContainer/Margin/VBoxContainer/ResolutionDropdown/AnimatedButtonView" index="1"]
+anchors_preset = 15
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Container/PanelContainer/Margin"]
 layout_mode = 1
@@ -149,8 +139,8 @@ layout_mode = 2
 [node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/TextClipper" index="0"]
 text = "RESET"
 
-[editable path="Container/PanelContainer/Margin/Control/VBoxContainer/WindowModeDropdown"]
-[editable path="Container/PanelContainer/Margin/Control/VBoxContainer/ResolutionDropdown"]
+[editable path="Container/PanelContainer/Margin/VBoxContainer/WindowModeDropdown"]
+[editable path="Container/PanelContainer/Margin/VBoxContainer/ResolutionDropdown"]
 [editable path="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton"]
 [editable path="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton"]
 [editable path="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton"]

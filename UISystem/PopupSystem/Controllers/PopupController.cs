@@ -48,7 +48,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
             _popupsManager.HidePopup(PressedReturnPopupResult);
     }
 
-    public void Show(IMenuController caller, string message, Action<PopupResult> onHideAction)
+    public void Show(IMenuController caller, string message, Action<PopupResult> onHideAction, bool instant = false)
     {
         _caller = caller;
         _caller.CanReturnToPreviousMenu = false;

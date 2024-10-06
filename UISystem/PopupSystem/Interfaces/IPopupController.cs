@@ -11,6 +11,6 @@ public interface IPopupController
     void Init(Node parent);
     void HandleInputPressedWhenActive(InputEvent key);
     void Hide(PopupResult result);
-    void Show(IMenuController caller, string message, Action<PopupResult> onHideAction);
+    void Show(IMenuController caller, string message, Action<PopupResult> onHideAction, bool instant);
 
 }

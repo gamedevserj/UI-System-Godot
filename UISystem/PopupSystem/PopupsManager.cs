@@ -33,11 +33,11 @@ public partial class PopupsManager : Control
         _currentController?.HandleInputPressedWhenActive(@event);
     }
 
-    public void ShowPopup(PopupType popupType, IMenuController caller, string message, Action<PopupResult> onHideAction = null)
+    public void ShowPopup(PopupType popupType, IMenuController caller, string message, Action<PopupResult> onHideAction = null, bool instant = false)
     {
         _currentController = _controllers[popupType];
         _currentController.Init(this);
-        _currentController.Show(caller, message, onHideAction);
+        _currentController.Show(caller, message, onHideAction, instant);
     }
 
     public void HidePopup(PopupResult result)

@@ -9,7 +9,8 @@ public class InformationPopupController : PopupController<InformationPopupView>
     public override PopupType PopupType => PopupType.Yes;
     public override PopupResult PressedReturnPopupResult => PopupResult.Yes;
 
-    public InformationPopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree) : base(prefab, popupsManager, sceneTree)
+    public InformationPopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree) 
+        : base(prefab, popupsManager, sceneTree)
     {
     }
 
