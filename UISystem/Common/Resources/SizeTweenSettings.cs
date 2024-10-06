@@ -21,35 +21,35 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
     public override Vector2 FocusHoverValue => changeSizeFocusHover;
     public override Vector2 DisabledValue => Vector2.Zero;
 
-    public ITweener CreateTweener(SceneTree tree, Control target, bool parallel = true) 
-        => new SizeTweener(tree, target, parallel, this, Vector2.Zero, target.Size, target.Position, horizontalDirection, verticalDirection);
+    public ITweener CreateTweener(Control target, bool parallel = true) 
+        => new SizeTweener(target, parallel, this, Vector2.Zero, target.Size, target.Position, horizontalDirection, verticalDirection);
 
     private class SizeTweener : Tweener<Vector2>
     {
 
         private readonly ResizableControlSettings _sizeSettings;
 
-        public SizeTweener(SceneTree tree, Control target, bool parallel, TweenSettings<Vector2> settings, Vector2 originalValue, 
+        public SizeTweener(Control target, bool parallel, TweenSettings<Vector2> settings, Vector2 originalValue, 
             Vector2 originalSize,
             Vector2 originalPosition,
             HorizontalControlSizeChangeDirection horizontalDirection,
             VerticalControlSizeChangeDirection verticalDirection
             )
-            : base(tree, target, parallel, settings, originalValue)
+            : base(target, parallel, settings, originalValue)
         {
             _sizeSettings = new ResizableControlSettings(originalPosition, originalSize, horizontalDirection, verticalDirection);
         }
 
-        protected override void Tween(Vector2 value)
+        protected override void Tween(Tween tween, Vector2 value)
         {
-            base.Tween(value);
-            _tween.TweenControlSize(_parallel, _target, _sizeSettings.OriginalSize + value, _settings.Duration, _sizeSettings);
+            base.Tween(tween, value);
+            tween.TweenControlSize(_parallel, _target, _sizeSettings.OriginalSize + value, _settings.Duration, _sizeSettings);
         }
 
-        public override void Reset(Action onComplete)
+        public override void Reset(Tween tween)
         {
-            base.Reset(onComplete);
-            _tween.TweenControlSize(_parallel, _target, _sizeSettings.OriginalSize, _settings.ResetDuration, _sizeSettings);
+            base.Reset(tween);
+            tween.TweenControlSize(_parallel, _target, _sizeSettings.OriginalSize, _settings.ResetDuration, _sizeSettings);
         }
     }
     

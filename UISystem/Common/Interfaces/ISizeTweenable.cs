@@ -1,11 +1,11 @@
 ﻿using Godot;
-using System;
+using System.Threading.Tasks;
 
 namespace UISystem.Common.Interfaces;
 public interface ISizeTweenable
 {
 
     Control ResizableControl { get; }
-    void PrepareForSizeTweening(Action onComplete);
+    Task ResetHover();
 
 }

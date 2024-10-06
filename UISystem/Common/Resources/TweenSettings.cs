@@ -1,5 +1,4 @@
 ﻿using Godot;
-using System;
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 
@@ -25,43 +24,33 @@ public abstract partial class TweenSettings<T> : Resource
     protected abstract class Tweener<T> : ITweener
     {
 
-        protected Tween _tween;
         protected T _originalValue;
 
-        protected readonly SceneTree _tree;
         protected readonly Control _target;
         protected readonly bool _parallel;
         protected readonly TweenSettings<T> _settings;
 
-        public Tweener(SceneTree tree, Control target, bool parallel, TweenSettings<T> settings, T originalValue)
+        public Tweener(Control target, bool parallel, TweenSettings<T> settings, T originalValue)
         {
-            _tree = tree;
             _target = target;
             _parallel = parallel;
             _settings = settings;
             _originalValue = originalValue;
         }
         
-        public void Tween(ControlDrawMode mode)
+        public void Tween(Tween tween, ControlDrawMode mode)
         {
-            Tween(SelectValue(mode));
-        }
-        
-        public void Kill() => _tween?.Kill();
-
-        public virtual void Reset(Action onComplete)
-        {
-            _tween?.Kill();
-            _tween = _tree.CreateTween();
-            _tween.SetEase(_settings.ease).SetTrans(_settings.resetTransition);
-            _tween.Finished += () => onComplete?.Invoke();
+            Tween(tween, SelectValue(mode));
         }
 
-        protected virtual void Tween(T value)
+        public virtual void Reset(Tween tween)
         {
-            _tween?.Kill();
-            _tween = _tree.CreateTween();
-            _tween.SetEase(_settings.ease).SetTrans(_settings.transition);
+            tween.SetEase(_settings.ease).SetTrans(_settings.resetTransition);
+        }
+
+        protected virtual void Tween(Tween tween, T value)
+        {
+            tween.SetEase(_settings.ease).SetTrans(_settings.transition);
         }
 
         private T SelectValue(ControlDrawMode mode) => mode switch

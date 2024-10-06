@@ -1,5 +1,5 @@
 using Godot;
-using System;
+using System.Threading.Tasks;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
@@ -14,6 +14,7 @@ public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
 
     private ITweener _hoverTweener;
     private bool _mouseOver;
+    private Tween _tween;
 
     public Control ResizableControl => animatedButtonView.ResizableControl;
     private Control Border => animatedButtonView.Border;
@@ -24,7 +25,7 @@ public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
         
-        _hoverTweener = buttonHoverSettings.CreateTweener(GetTree(), animatedButtonView.ResizableControl, Border);
+        _hoverTweener = buttonHoverSettings.CreateTweener(animatedButtonView.ResizableControl, Border);
         Subscribe();
     }
 
@@ -59,7 +60,12 @@ public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
 
     private void OnFocusEntered() => HoverTween();
     private void OnFocusExited() => HoverTween();
-    private void HoverTween() => _hoverTweener.Tween(GetDrawingMode());
+    private void HoverTween()
+    {
+        _tween?.Kill();
+        _tween = GetTree().CreateTween();
+        _hoverTweener.Tween(_tween, GetDrawingMode());
+    }
 
     private ControlDrawMode GetDrawingMode()
     {
@@ -72,8 +78,11 @@ public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
             return _mouseOver ? ControlDrawMode.Hover : ControlDrawMode.Normal;
     }
 
-    public void PrepareForSizeTweening(Action onComplete)
+    public async Task ResetHover()
     {
-        _hoverTweener.Reset(onComplete);
+        _tween?.Kill();
+        _tween = GetTree().CreateTween();
+        _hoverTweener.Reset(_tween);
+        await ToSignal(_tween, Tween.SignalName.Finished);
     }
 }

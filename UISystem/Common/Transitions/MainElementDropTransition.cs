@@ -55,9 +55,7 @@ public class MainElementDropTransition : IViewTransition
             return;
         }
 
-        var mainElementIsInNormalState = new TaskCompletionSource<bool>();
-        _mainElement.PrepareForSizeTweening(() => mainElementIsInNormalState.SetResult(true));
-        await mainElementIsInNormalState.Task;
+        await _mainElement.ResetHover();
 
         Tween tween = SceneTree.CreateTween();
         tween.SetPauseMode(Tween.TweenPauseMode.Process);

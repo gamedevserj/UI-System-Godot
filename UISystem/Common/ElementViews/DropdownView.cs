@@ -11,8 +11,9 @@ public partial class DropdownView : OptionButton, IFocusableControl
     [Export] private ButtonHoverSettings buttonHoverSettings;
     [Export] private AnimatedButtonView animatedButtonView;
 
-    private ITweener _tweener;
+    private ITweener _hoverTweener;
     private bool _mouseOver;
+    private Tween _tween;
 
     public Control ResizableizeControl => animatedButtonView.ResizableControl;
     private Control Border => animatedButtonView.Border;
@@ -23,7 +24,7 @@ public partial class DropdownView : OptionButton, IFocusableControl
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
-        _tweener = buttonHoverSettings.CreateTweener(GetTree(), ResizableizeControl, Border);
+        _hoverTweener = buttonHoverSettings.CreateTweener(ResizableizeControl, Border);
         Subscribe();
     }
 
@@ -55,16 +56,23 @@ public partial class DropdownView : OptionButton, IFocusableControl
     private void OnMouseEntered()
     {
         _mouseOver = true;
-        _tweener.Tween(GetDrawingMode());
+        HoverTween();
     }
     private void OnMouseExited()
     {
         _mouseOver = false;
-        _tweener.Tween(GetDrawingMode());
+        HoverTween();
     }
 
-    private void OnFocusEntered() => _tweener.Tween(GetDrawingMode());
-    private void OnFocusExited() => _tweener.Tween(GetDrawingMode());
+    private void OnFocusEntered() => HoverTween();
+    private void OnFocusExited() => HoverTween();
+
+    private void HoverTween()
+    {
+        _tween?.Kill();
+        _tween = GetTree().CreateTween();
+        _hoverTweener.Tween(_tween, GetDrawingMode());
+    }
 
     private ControlDrawMode GetDrawingMode()
     {

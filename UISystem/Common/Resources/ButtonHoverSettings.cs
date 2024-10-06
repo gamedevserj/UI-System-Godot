@@ -1,5 +1,4 @@
 ﻿using Godot;
-using System;
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 
@@ -14,10 +13,10 @@ public partial class ButtonHoverSettings : Resource
     public SizeTweenSettings SizeChangeSettings => sizeChangeSettings;
     public ColorTweenSettings ColorChangeSettings => colorChangeSettings;
 
-    public ITweener CreateTweener(SceneTree tree, Control sizeTarget, Control colorTarget, bool sizeParallel = true, 
+    public ITweener CreateTweener(Control sizeTarget, Control colorTarget, bool sizeParallel = true, 
         bool colorParallel = true)
     {
-        return new SizeAndColorTweenerFacade(tree, sizeTarget, colorTarget, SizeChangeSettings, ColorChangeSettings, 
+        return new SizeAndColorTweenerFacade(sizeTarget, colorTarget, SizeChangeSettings, ColorChangeSettings, 
             sizeParallel, colorParallel);
     }
 
@@ -27,30 +26,25 @@ public partial class ButtonHoverSettings : Resource
         private readonly ITweener _sizeTweener;
         private readonly ITweener _colorTweener;
 
-        public SizeAndColorTweenerFacade(SceneTree tree, Control sizeTarget, Control colorTarget, SizeTweenSettings sizeSettings, 
+        public SizeAndColorTweenerFacade(Control sizeTarget, Control colorTarget, SizeTweenSettings sizeSettings, 
             ColorTweenSettings colorSettings, bool sizeParallel, bool colorParallel)
         {
-            _sizeTweener = sizeSettings?.CreateTweener(tree, sizeTarget, sizeParallel);
-            _colorTweener = colorSettings?.CreateTweener(tree, colorTarget, colorParallel);
+            _sizeTweener = sizeSettings?.CreateTweener(sizeTarget, sizeParallel);
+            _colorTweener = colorSettings?.CreateTweener(colorTarget, colorParallel);
         }
 
-        public void Reset(Action onComplete)
+        public void Reset(Tween tween)
         {
-            _sizeTweener?.Reset(onComplete);
-            _colorTweener?.Reset(null);
+            _sizeTweener?.Reset(tween);
+            _colorTweener?.Reset(tween);
         }
 
-        public void Tween(ControlDrawMode mode)
+        public void Tween(Tween tween, ControlDrawMode mode)
         {
-            _sizeTweener?.Tween(mode);
-            _colorTweener?.Tween(mode);
+            _sizeTweener?.Tween(tween, mode);
+            _colorTweener?.Tween(tween, mode);
         }
 
-        public void Kill()
-        {
-            _sizeTweener?.Kill();
-            _colorTweener?.Kill();
-        }
     }
 
 }

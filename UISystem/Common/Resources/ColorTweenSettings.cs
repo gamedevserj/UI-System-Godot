@@ -18,26 +18,26 @@ public partial class ColorTweenSettings : TweenSettings<Color>
     public override Color FocusHoverValue => focusHoverColor;
     public override Color DisabledValue => disabledColor;
 
-    public ITweener CreateTweener(SceneTree tree, Control target, bool parallel = true)
-        => new ColorTweener(tree, target, parallel, this, target.SelfModulate);
+    public ITweener CreateTweener(Control target, bool parallel = true)
+        => new ColorTweener(target, parallel, this, target.SelfModulate);
 
     protected partial class ColorTweener : Tweener<Color>
     {
 
-        public ColorTweener(SceneTree tree, Control target, bool parallel, TweenSettings<Color> settings, Color originalValue) : base(tree, target, parallel, settings, originalValue)
+        public ColorTweener(Control target, bool parallel, TweenSettings<Color> settings, Color originalValue) : base(target, parallel, settings, originalValue)
         {
         }
 
-        protected override void Tween(Color value)
+        protected override void Tween(Tween tween, Color value)
         {
-            base.Tween(value);
-            _tween.TweenCanvasItemSelfModulate(_parallel, _target, value, _settings.Duration);
+            base.Tween(tween, value);
+            tween.TweenCanvasItemSelfModulate(_parallel, _target, value, _settings.Duration);
         }
 
-        public override void Reset(Action onComplete)
+        public override void Reset(Tween tween)
         {
-            base.Reset(onComplete);
-            _tween.TweenCanvasItemSelfModulate(_parallel, _target, _originalValue, _settings.ResetDuration);
+            base.Reset(tween);
+            tween.TweenCanvasItemSelfModulate(_parallel, _target, _originalValue, _settings.ResetDuration);
         }
     }
 

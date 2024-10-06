@@ -12,9 +12,10 @@ public partial class HSliderView : HSlider, IFocusableControl
     [Export] private Control sliderFill;
     [Export] private Control grabber;
 
-    private ITweener _tweener;
+    private ITweener _hoverTweener;
     private bool _mouseOver;
     private bool _isDragging;
+    private Tween _tween;
 
     public override async void _EnterTree()
     {
@@ -22,7 +23,7 @@ public partial class HSliderView : HSlider, IFocusableControl
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
-        _tweener = hoverSettings.CreateTweener(GetTree(), grabber);
+        _hoverTweener = hoverSettings.CreateTweener(grabber);
         Subscribe();
         UpdateSliderVisual();
     }
@@ -61,16 +62,23 @@ public partial class HSliderView : HSlider, IFocusableControl
     private void OnMouseEntered()
     {
         _mouseOver = true;
-        _tweener.Tween(GetDrawingMode());
+        HoverTween();
     }
     private void OnMouseExited()
     {
         _mouseOver = false;
-        _tweener.Tween(GetDrawingMode());
+        HoverTween();
     }
 
-    private void OnFocusEntered() => _tweener.Tween(GetDrawingMode());
-    private void OnFocusExited() => _tweener.Tween(GetDrawingMode());
+    private void OnFocusEntered() => HoverTween();
+    private void OnFocusExited() => HoverTween();
+
+    private void HoverTween()
+    {
+        _tween?.Kill();
+        _tween = GetTree().CreateTween();
+        _hoverTweener.Tween(_tween, GetDrawingMode());
+    }
 
     private ControlDrawMode GetDrawingMode()
     {
@@ -87,7 +95,7 @@ public partial class HSliderView : HSlider, IFocusableControl
     private void OnDragEnded(bool changed)
     {
         _isDragging = false;
-        _tweener.Tween(GetDrawingMode());
+        HoverTween();
     }
 
     private void UpdateSliderVisual()
