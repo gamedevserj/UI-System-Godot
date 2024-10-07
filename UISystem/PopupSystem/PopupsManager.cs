@@ -22,7 +22,7 @@ public partial class PopupsManager : Control
         _controllers = new Dictionary<PopupType, IPopupController>();
         AddPopups(new IPopupController[]
         {
-            new InformationPopupController(GetPopupPath(PopupType.Yes), this, tree),
+            new YesPopupController(GetPopupPath(PopupType.Yes), this, tree),
             new YesNoPopupController(GetPopupPath(PopupType.YesNo), this, tree),
             new YesNoCancelPopupController(GetPopupPath(PopupType.YesNoCancel), this, tree)
         });

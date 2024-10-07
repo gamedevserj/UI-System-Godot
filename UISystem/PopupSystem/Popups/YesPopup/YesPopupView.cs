@@ -2,8 +2,8 @@
 using UISystem.Common.Helpers;
 using UISystem.PopupSystem.Views;
 
-namespace UISystem.PopupSystem.Popups.InformationPopup;
-public partial class InformationPopupView : PopupView
+namespace UISystem.PopupSystem.Popups.YesPopup;
+public partial class YesPopupView : PopupView
 {
 
     public override void Hide(Action onHidden, bool instant = false)

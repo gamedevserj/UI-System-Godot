@@ -1,21 +1,21 @@
 [gd_scene load_steps=5 format=3 uid="uid://4mgylfwefvrf"]
 
-[ext_resource type="Script" path="res://UISystem/PopupSystem/Popups/InformationPopup/InformationPopupView.cs" id="1_qipf6"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_g8fkn"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="2_vcy83"]
+[ext_resource type="Script" path="res://UISystem/PopupSystem/Popups/YesPopup/YesPopupView.cs" id="4_rbuno"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_guta3"]
 
-[node name="InfoPopup" type="Control" node_paths=PackedStringArray("message", "yesButton")]
+[node name="YesPopup" type="Control" node_paths=PackedStringArray("message", "yesButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-script = ExtResource("1_qipf6")
+script = ExtResource("4_rbuno")
 message = NodePath("Message")
-yesButton = NodePath("ButtonsContainer/OptionButtonView")
+yesButton = NodePath("ButtonsContainer/YesButton")
 
 [node name="Outline" type="TextureRect" parent="."]
 layout_mode = 1
@@ -74,18 +74,18 @@ anchor_right = 0.65
 anchor_bottom = 0.7
 theme_override_constants/separation = 25
 
-[node name="OptionButtonView" parent="ButtonsContainer" instance=ExtResource("2_vcy83")]
+[node name="YesButton" parent="ButtonsContainer" instance=ExtResource("2_vcy83")]
 layout_mode = 2
 
-[node name="ResizableControl" parent="ButtonsContainer/OptionButtonView" index="0"]
+[node name="ResizableControl" parent="ButtonsContainer/YesButton" index="0"]
 offset_right = 576.0
 offset_bottom = 108.0
 
-[node name="Label" parent="ButtonsContainer/OptionButtonView/ResizableControl/ContentClipper" index="0"]
+[node name="Label" parent="ButtonsContainer/YesButton/ResizableControl/ContentClipper" index="0"]
 offset_left = -39.0
 offset_top = -49.0
 offset_right = 39.0
 offset_bottom = 49.0
 text = "OK"
 
-[editable path="ButtonsContainer/OptionButtonView"]
+[editable path="ButtonsContainer/YesButton"]
