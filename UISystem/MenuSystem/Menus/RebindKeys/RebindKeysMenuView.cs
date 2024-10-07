@@ -9,6 +9,9 @@ namespace UISystem.MenuSystem.Views;
 public partial class RebindKeysMenuView : SettingsMenuView
 {
 
+    private const float PanelDuration = 0.5f;
+    private const float ElementsDuration = 0.25f;
+
     [Export] private RebindableKeyButtonView moveLeft;
     [Export] private RebindableKeyButtonView moveLeftJoystick;
     [Export] private RebindableKeyButtonView moveRight;
@@ -16,6 +19,10 @@ public partial class RebindKeysMenuView : SettingsMenuView
     [Export] private RebindableKeyButtonView jump;
     [Export] private RebindableKeyButtonView jumpJoystick;
     [Export] private ButtonView returnButton;
+    [Export] private Control panel;
+    [Export] private Control moveLeftLabelResizableControl;
+    [Export] private Control moveRightLabelResizableControl;
+    [Export] private Control jumpLabelResizableControl;
 
     private IViewTransition _transition;
 
@@ -36,7 +43,14 @@ public partial class RebindKeysMenuView : SettingsMenuView
     public override void Init()
     {
         base.Init();
-        _transition = new FadeTransition(fadeObjectsContainer);
+        _transition = new PanelSizeTransition(this, fadeObjectsContainer, panel,
+            new Control[] { returnButton.ResizableControl, 
+                moveLeft.ResizableControl, moveLeftJoystick.ResizableControl,
+                moveRight.ResizableControl, moveRightJoystick.ResizableControl,
+                jump.ResizableControl, jumpJoystick.ResizableControl,
+                moveLeftLabelResizableControl, moveRightLabelResizableControl, jumpLabelResizableControl,
+                ResetButton.ResizableControl },
+            PanelDuration, ElementsDuration);
     }
 
     public override void Hide(Action onHidden, bool instant)
