@@ -82,9 +82,9 @@ offset_right = 576.0
 offset_bottom = 108.0
 
 [node name="Label" parent="ButtonsContainer/YesButton/ResizableControl/ContentClipper" index="0"]
-offset_left = -39.0
+offset_left = -263.0
 offset_top = -49.0
-offset_right = 39.0
+offset_right = 263.0
 offset_bottom = 49.0
 text = "OK"
 

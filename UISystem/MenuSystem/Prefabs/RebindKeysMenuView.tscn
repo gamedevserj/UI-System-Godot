@@ -227,9 +227,15 @@ textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
 [node name="ResizableControl" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard" index="0"]
 offset_right = 350.0
 
+[node name="ContentClipper" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard/ResizableControl" index="1"]
+offset_left = 140.0
+offset_top = 10.0
+offset_right = -140.0
+offset_bottom = -10.0
+
 [node name="TextureRect" type="TextureRect" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard/ResizableControl/ContentClipper" index="1"]
 layout_mode = 1
-anchors_preset = 8
+anchors_preset = -1
 anchor_left = 0.5
 anchor_top = 0.5
 anchor_right = 0.5
@@ -244,6 +250,20 @@ texture = ExtResource("3_hujmc")
 expand_mode = 1
 stretch_mode = 5
 
+[node name="Control" type="Control" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard/ResizableControl" index="2"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 140.0
+offset_top = 10.0
+offset_right = -140.0
+offset_bottom = -10.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
 [node name="MoveRightKeyboard" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
 layout_mode = 2
 script = ExtResource("2_1gokv")
@@ -251,6 +271,12 @@ textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard" index="0"]
 offset_right = 350.0
+
+[node name="ContentClipper" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard/ResizableControl" index="1"]
+offset_left = 140.0
+offset_top = 10.0
+offset_right = -140.0
+offset_bottom = -10.0
 
 [node name="TextureRect" type="TextureRect" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard/ResizableControl/ContentClipper" index="1"]
 layout_mode = 1
@@ -278,7 +304,10 @@ textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
 offset_right = 350.0
 
 [node name="ContentClipper" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/JumpKeyboard/ResizableControl" index="1"]
-anchors_preset = -1
+offset_left = 140.0
+offset_top = 10.0
+offset_right = -140.0
+offset_bottom = -10.0
 
 [node name="TextureRect" type="TextureRect" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/JumpKeyboard/ResizableControl/ContentClipper" index="1"]
 layout_mode = 1
@@ -311,6 +340,12 @@ textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
 [node name="ResizableControl" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveLeftJoystick" index="0"]
 offset_right = 350.0
 
+[node name="ContentClipper" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveLeftJoystick/ResizableControl" index="1"]
+offset_left = 140.0
+offset_top = 10.0
+offset_right = -140.0
+offset_bottom = -10.0
+
 [node name="TextureRect" type="TextureRect" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveLeftJoystick/ResizableControl/ContentClipper" index="1"]
 layout_mode = 1
 anchors_preset = 8
@@ -335,6 +370,12 @@ textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveRightJoystick" index="0"]
 offset_right = 350.0
+
+[node name="ContentClipper" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveRightJoystick/ResizableControl" index="1"]
+offset_left = 140.0
+offset_top = 10.0
+offset_right = -140.0
+offset_bottom = -10.0
 
 [node name="TextureRect" type="TextureRect" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveRightJoystick/ResizableControl/ContentClipper" index="1"]
 layout_mode = 1
@@ -362,8 +403,10 @@ textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
 offset_right = 350.0
 
 [node name="ContentClipper" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/JumpJoystick/ResizableControl" index="1"]
-offset_top = 6.0
-offset_bottom = -4.00001
+offset_left = 140.0
+offset_top = 10.0
+offset_right = -140.0
+offset_bottom = -10.0
 
 [node name="TextureRect" type="TextureRect" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/JumpJoystick/ResizableControl/ContentClipper" index="1"]
 layout_mode = 1
@@ -413,8 +456,8 @@ grow_vertical = 2
 anchors_preset = -1
 
 [node name="Label" parent="Container/Panel/Border/Color/ButtonsContainer/ReturnButton/ResizableControl/ContentClipper" index="0"]
-offset_left = -108.0
-offset_right = 108.0
+offset_left = -165.0
+offset_right = 165.0
 text = "RETURN"
 
 [node name="ResetToDefaultButton" parent="Container/Panel/Border/Color/ButtonsContainer" instance=ExtResource("8_2psh3")]
@@ -433,8 +476,8 @@ grow_vertical = 2
 anchors_preset = -1
 
 [node name="Label" parent="Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl/ContentClipper" index="0"]
-offset_left = -79.0
-offset_right = 79.0
+offset_left = -165.0
+offset_right = 165.0
 text = "RESET"
 
 [editable path="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard"]

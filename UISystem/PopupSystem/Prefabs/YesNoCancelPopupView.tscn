@@ -90,9 +90,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" parent="ButtonsContainer/YesButton/ResizableControl/ContentClipper" index="0"]
-offset_left = -47.5
+offset_left = -222.5
 offset_top = -49.0
-offset_right = 46.5
+offset_right = 222.5
 offset_bottom = 49.0
 text = "YES"
 
@@ -109,9 +109,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" parent="ButtonsContainer/NoButton/ResizableControl/ContentClipper" index="0"]
-offset_left = -42.5
+offset_left = -222.5
 offset_top = -49.0
-offset_right = 43.5
+offset_right = 222.5
 offset_bottom = 49.0
 text = "NO"
 
@@ -128,9 +128,9 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" parent="ButtonsContainer/CancelButton/ResizableControl/ContentClipper" index="0"]
-offset_left = -105.0
+offset_left = -223.0
 offset_top = -49.0
-offset_right = 105.0
+offset_right = 223.0
 offset_bottom = 49.0
 text = "CANCEL"
 

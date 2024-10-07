@@ -86,10 +86,10 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -200.0
-offset_top = 189.0
-offset_right = 200.0
-offset_bottom = 449.0
+offset_left = -250.0
+offset_top = 190.0
+offset_right = 250.0
+offset_bottom = 450.0
 grow_horizontal = 2
 theme_override_constants/separation = 40
 alignment = 1
@@ -98,13 +98,8 @@ alignment = 1
 layout_mode = 2
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown" index="1"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 500.0
+offset_bottom = 110.0
 
 [node name="Label" parent="Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown/ResizableControl/TextClipper" index="0"]
 offset_left = -63.0
@@ -116,19 +111,15 @@ offset_bottom = 50.0
 layout_mode = 2
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown" index="1"]
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_right = 0.0
-offset_bottom = 0.0
-grow_horizontal = 2
-grow_vertical = 2
+offset_right = 500.0
+offset_bottom = 110.0
 
 [node name="Label" parent="Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown/ResizableControl/TextClipper" index="0"]
-offset_left = -63.0
+offset_left = -245.0
 offset_top = -50.0
-offset_right = 64.0
+offset_right = 245.0
 offset_bottom = 50.0
+text = "1920x1080"
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Container/Panel/Border/Color"]
 layout_mode = 1

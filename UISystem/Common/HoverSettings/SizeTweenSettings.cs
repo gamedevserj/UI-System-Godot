@@ -15,10 +15,10 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
     [Export] private Vector2 changeSizeFocus = new(0, 0);
     [Export] private Vector2 changeSizeFocusHover = new(0, 0);
 
-    public override Vector2 HoverValue => changeSizeHover;
-    public override Vector2 FocusValue => changeSizeFocus;
-    public override Vector2 FocusHoverValue => changeSizeFocusHover;
-    public override Vector2 DisabledValue => Vector2.Zero;
+    protected override Vector2 HoverValue => changeSizeHover;
+    protected override Vector2 FocusValue => changeSizeFocus;
+    protected override Vector2 FocusHoverValue => changeSizeFocusHover;
+    protected override Vector2 DisabledValue => Vector2.Zero;
 
     public ITweener CreateTweener(Control target, bool parallel = true) 
         => new SizeTweener(target, parallel, this, Vector2.Zero, target.Size, target.Position, horizontalDirection, verticalDirection);

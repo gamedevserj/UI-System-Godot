@@ -300,14 +300,20 @@ metadata/_edit_use_anchors_ = true
 layout_mode = 2
 
 [node name="ResizableControl" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton" index="0"]
-offset_right = 450.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ContentClipper" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton/ResizableControl" index="1"]
 anchors_preset = -1
 
 [node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton/ResizableControl/ContentClipper" index="0"]
-offset_left = -108.0
-offset_right = 108.0
+offset_left = -195.0
+offset_right = 195.0
 pivot_offset = Vector2(125, 40)
 text = "RETURN"
 
@@ -315,28 +321,40 @@ text = "RETURN"
 layout_mode = 2
 
 [node name="ResizableControl" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton" index="0"]
-offset_right = 450.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ContentClipper" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton/ResizableControl" index="1"]
 anchors_preset = -1
 
 [node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton/ResizableControl/ContentClipper" index="0"]
-offset_left = -65.0
-offset_right = 66.0
+offset_left = -195.0
+offset_right = 195.0
 text = "SAVE"
 
 [node name="ResetToDefaultButton" parent="Container/Panel/PanelBorder/Color/ButtonsContainer" instance=ExtResource("5_l4qqc")]
 layout_mode = 2
 
 [node name="ResizableControl" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton" index="0"]
-offset_right = 450.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="ContentClipper" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl" index="1"]
 anchors_preset = -1
 
 [node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl/ContentClipper" index="0"]
-offset_left = -79.0
-offset_right = 79.0
+offset_left = -195.0
+offset_right = 195.0
 text = "RESET"
 
 [editable path="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton"]

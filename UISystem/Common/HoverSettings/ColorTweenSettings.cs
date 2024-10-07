@@ -12,10 +12,10 @@ public partial class ColorTweenSettings : TweenSettings<Color>
     [Export] private Color focusHoverColor = new(1, 1, 1, 1);
     [Export] private Color disabledColor = new(0.5f, 0.5f, 0.5f, 1);
 
-    public override Color HoverValue => hoverColor;
-    public override Color FocusValue => focusColor;
-    public override Color FocusHoverValue => focusHoverColor;
-    public override Color DisabledValue => disabledColor;
+    protected override Color HoverValue => hoverColor;
+    protected override Color FocusValue => focusColor;
+    protected override Color FocusHoverValue => focusHoverColor;
+    protected override Color DisabledValue => disabledColor;
 
     public ITweener CreateTweener(Control target, bool parallel = true)
         => new ColorTweener(target, parallel, this, target.SelfModulate);

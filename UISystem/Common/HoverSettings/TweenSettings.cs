@@ -15,10 +15,10 @@ public abstract partial class TweenSettings<T> : Resource
     public float Duration => duration;
     public float ResetDuration => resetDuration;
 
-    public abstract T HoverValue { get; }
-    public abstract T FocusValue { get; }
-    public abstract T FocusHoverValue { get; }
-    public abstract T DisabledValue { get; }
+    protected abstract T HoverValue { get; }
+    protected abstract T FocusValue { get; }
+    protected abstract T FocusHoverValue { get; }
+    protected abstract T DisabledValue { get; }
 
 
     protected abstract class Tweener<T> : ITweener
