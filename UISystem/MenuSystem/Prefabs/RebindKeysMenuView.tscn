@@ -121,7 +121,7 @@ layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard" index="0"]
+[node name="ResizableControl" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -153,7 +153,7 @@ layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard" index="0"]
+[node name="ResizableControl" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -185,7 +185,7 @@ layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/JumpKeyboard" index="0"]
+[node name="ResizableControl" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/JumpKeyboard" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -223,7 +223,7 @@ layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveLeftJoystick" index="0"]
+[node name="ResizableControl" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveLeftJoystick" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -255,7 +255,7 @@ layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveRightJoystick" index="0"]
+[node name="ResizableControl" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/MoveRightJoystick" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -287,10 +287,15 @@ layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("TextureRect")
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/JumpJoystick" index="0"]
+[node name="ResizableControl" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/JumpJoystick" index="0"]
 layout_mode = 1
-offset_right = 236.0
-offset_bottom = 89.0
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="TextureRect" type="TextureRect" parent="Container/PanelContainer/Margin/HBoxContainer/ButtonsJoystick/JumpJoystick"]
 layout_mode = 1
@@ -327,31 +332,23 @@ metadata/_edit_use_anchors_ = true
 [node name="ReturnButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("8_2psh3")]
 layout_mode = 2
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton" index="0"]
+[node name="ResizableControl" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton" index="0"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_right = 150.0
-grow_horizontal = 2
+offset_right = 461.0
+offset_bottom = 92.0
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/ResizableControl/TextClipper" index="0"]
 text = "RETURN"
 
 [node name="ResetToDefaultButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("8_2psh3")]
 layout_mode = 2
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton" index="0"]
+[node name="ResizableControl" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton" index="0"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -150.0
-offset_right = 150.0
-grow_horizontal = 2
+offset_right = 462.0
+offset_bottom = 92.0
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/ResizableControl/TextClipper" index="0"]
 text = "RESET"
 
 [editable path="Container/PanelContainer/Margin/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard"]

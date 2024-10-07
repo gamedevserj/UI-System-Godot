@@ -54,19 +54,19 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayButton" parent="Container/ButtonsContainer" instance=ExtResource("2_ox1c7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/ButtonsContainer/PlayButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/ButtonsContainer/PlayButton/ResizableControl/TextClipper" index="0"]
 text = "PLAY"
 
 [node name="OptionsButton" parent="Container/ButtonsContainer" instance=ExtResource("2_ox1c7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/ButtonsContainer/OptionsButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/ButtonsContainer/OptionsButton/ResizableControl/TextClipper" index="0"]
 text = "OPTIONS"
 
 [node name="QuitButton" parent="Container/ButtonsContainer" instance=ExtResource("2_ox1c7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/ButtonsContainer/QuitButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/ButtonsContainer/QuitButton/ResizableControl/TextClipper" index="0"]
 text = "QUIT"
 
 [editable path="Container/ButtonsContainer/PlayButton"]

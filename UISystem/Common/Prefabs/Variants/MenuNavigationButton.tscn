@@ -1,32 +1,28 @@
-[gd_scene load_steps=6 format=3 uid="uid://ck4an0jqn373h"]
+[gd_scene load_steps=5 format=3 uid="uid://ck4an0jqn373h"]
 
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="1_tsrqv"]
 [ext_resource type="Resource" uid="uid://dj5acww1ovp0b" path="res://UISystem/AnimationSettings/MenuNavigationButtonHoverSettings/MenuNavigationButtonSettings.tres" id="2_pe4x4"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedButtonView.cs" id="3_1encd"]
 [ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="4_6uuwg"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="5_osv58"]
 
-[node name="MenuNavigationButton" type="Button" node_paths=PackedStringArray("animatedButtonView")]
+[node name="MenuNavigationButton" type="Button" node_paths=PackedStringArray("animatedButtonView", "resizableControl", "border")]
 self_modulate = Color(1, 1, 1, 0)
 size_flags_vertical = 3
 flat = true
 script = ExtResource("1_tsrqv")
 buttonHoverSettings = ExtResource("2_pe4x4")
-animatedButtonView = NodePath("AnimatedButtonView")
+animatedButtonView = NodePath("ResizableControl")
+resizableControl = NodePath("ResizableControl")
+border = NodePath("ResizableControl/Border")
 
-[node name="AnimatedButtonView" type="Control" parent="." node_paths=PackedStringArray("hoverResizeControl", "border", "inside", "label")]
+[node name="ResizableControl" type="Control" parent="."]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 450.0
 offset_bottom = 90.0
 mouse_filter = 2
-script = ExtResource("3_1encd")
-hoverResizeControl = NodePath("")
-border = NodePath("Border")
-inside = NodePath("Border/Control/InsideColor")
-label = NodePath("TextClipper/Label")
 
-[node name="Border" type="PanelContainer" parent="AnimatedButtonView"]
+[node name="Border" type="PanelContainer" parent="ResizableControl"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -36,11 +32,11 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("4_6uuwg")
 
-[node name="Control" type="Control" parent="AnimatedButtonView/Border"]
+[node name="Control" type="Control" parent="ResizableControl/Border"]
 layout_mode = 2
 mouse_filter = 2
 
-[node name="InsideColor" type="PanelContainer" parent="AnimatedButtonView/Border/Control"]
+[node name="InsideColor" type="PanelContainer" parent="ResizableControl/Border/Control"]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -55,7 +51,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("4_6uuwg")
 
-[node name="TextClipper" type="Control" parent="AnimatedButtonView"]
+[node name="TextClipper" type="Control" parent="ResizableControl"]
 clip_contents = true
 layout_mode = 1
 anchors_preset = 15
@@ -70,7 +66,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme = ExtResource("5_osv58")
 
-[node name="Label" type="Label" parent="AnimatedButtonView/TextClipper"]
+[node name="Label" type="Label" parent="ResizableControl/TextClipper"]
 layout_mode = 1
 anchors_preset = -1
 anchor_top = 0.5

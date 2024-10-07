@@ -55,31 +55,31 @@ metadata/_edit_use_anchors_ = true
 [node name="InterfaceSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/InterfaceSettingsButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/VBoxContainer/InterfaceSettingsButton/ResizableControl/TextClipper" index="0"]
 text = "INTERFACE"
 
 [node name="AudioSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/AudioSettingsButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/VBoxContainer/AudioSettingsButton/ResizableControl/TextClipper" index="0"]
 text = "AUDIO"
 
 [node name="VideoSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/VideoSettingsButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/VBoxContainer/VideoSettingsButton/ResizableControl/TextClipper" index="0"]
 text = "VIDEO"
 
 [node name="RebindKeysButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/RebindKeysButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/VBoxContainer/RebindKeysButton/ResizableControl/TextClipper" index="0"]
 text = "CONTROLS"
 
 [node name="ReturnButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/ReturnButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/VBoxContainer/ReturnButton/ResizableControl/TextClipper" index="0"]
 text = "RETURN"
 
 [editable path="Container/VBoxContainer/InterfaceSettingsButton"]

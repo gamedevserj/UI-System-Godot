@@ -1,19 +1,14 @@
-[gd_scene load_steps=4 format=3 uid="uid://bvtey7pkj2tdr"]
+[gd_scene load_steps=3 format=3 uid="uid://bvtey7pkj2tdr"]
 
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/AnimatedButtonView.cs" id="2_n2rmi"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="4_sffel"]
 [ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="4_td8np"]
 
-[node name="AnimatedButtonView" type="Control" node_paths=PackedStringArray("border", "inside", "label")]
+[node name="ResizableControl" type="Control"]
 layout_mode = 3
 anchors_preset = 0
 offset_right = 450.0
 offset_bottom = 90.0
 mouse_filter = 2
-script = ExtResource("2_n2rmi")
-border = NodePath("Border")
-inside = NodePath("Border/Control/InsideColor")
-label = NodePath("LabelMask/Label")
 
 [node name="Border" type="PanelContainer" parent="."]
 layout_mode = 1
@@ -47,6 +42,7 @@ theme_override_styles/panel = ExtResource("4_td8np")
 [node name="LabelMask" type="Control" parent="."]
 clip_contents = true
 layout_mode = 1
+anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
 offset_left = 25.0

@@ -80,7 +80,7 @@ metadata/_edit_use_anchors_ = true
 [node name="YesButton" parent="ButtonsContainer" instance=ExtResource("3_2uld7")]
 layout_mode = 2
 
-[node name="AnimatedButtonView" parent="ButtonsContainer/YesButton" index="0"]
+[node name="ResizableControl" parent="ButtonsContainer/YesButton" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -90,13 +90,13 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="ButtonsContainer/YesButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="ButtonsContainer/YesButton/ResizableControl/TextClipper" index="0"]
 text = "YES"
 
 [node name="NoButton" parent="ButtonsContainer" instance=ExtResource("3_2uld7")]
 layout_mode = 2
 
-[node name="AnimatedButtonView" parent="ButtonsContainer/NoButton" index="0"]
+[node name="ResizableControl" parent="ButtonsContainer/NoButton" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -106,13 +106,13 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="ButtonsContainer/NoButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="ButtonsContainer/NoButton/ResizableControl/TextClipper" index="0"]
 text = "NO"
 
 [node name="CancelButton" parent="ButtonsContainer" instance=ExtResource("3_2uld7")]
 layout_mode = 2
 
-[node name="AnimatedButtonView" parent="ButtonsContainer/CancelButton" index="0"]
+[node name="ResizableControl" parent="ButtonsContainer/CancelButton" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -122,7 +122,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="ButtonsContainer/CancelButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="ButtonsContainer/CancelButton/ResizableControl/TextClipper" index="0"]
 text = "CANCEL"
 
 [editable path="ButtonsContainer/YesButton"]

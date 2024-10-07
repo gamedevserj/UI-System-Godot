@@ -52,19 +52,19 @@ metadata/_edit_use_anchors_ = true
 [node name="ResumeButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/ResumeButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/VBoxContainer/ResumeButton/ResizableControl/TextClipper" index="0"]
 text = "RESUME"
 
 [node name="OptionsButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/OptionsButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/VBoxContainer/OptionsButton/ResizableControl/TextClipper" index="0"]
 text = "OPTIONS"
 
 [node name="ReturnToMainMenuButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
 
-[node name="Label" parent="Container/VBoxContainer/ReturnToMainMenuButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/VBoxContainer/ReturnToMainMenuButton/ResizableControl/TextClipper" index="0"]
 text = "MAIN MENU"
 
 [editable path="Container/VBoxContainer/ResumeButton"]

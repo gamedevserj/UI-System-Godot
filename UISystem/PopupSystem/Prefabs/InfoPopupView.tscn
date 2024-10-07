@@ -77,7 +77,7 @@ theme_override_constants/separation = 25
 [node name="OptionButtonView" parent="ButtonsContainer" instance=ExtResource("2_vcy83")]
 layout_mode = 2
 
-[node name="AnimatedButtonView" parent="ButtonsContainer/OptionButtonView" index="0"]
+[node name="ResizableControl" parent="ButtonsContainer/OptionButtonView" index="0"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -87,7 +87,7 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="ButtonsContainer/OptionButtonView/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="ButtonsContainer/OptionButtonView/ResizableControl/TextClipper" index="0"]
 text = "OK"
 
 [editable path="ButtonsContainer/OptionButtonView"]

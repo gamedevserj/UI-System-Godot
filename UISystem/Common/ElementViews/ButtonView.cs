@@ -1,6 +1,5 @@
 using Godot;
 using System.Threading.Tasks;
-using UISystem.Common.ElementViews;
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Resources;
@@ -10,14 +9,14 @@ public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
 {
 
     [Export] private ButtonHoverSettings buttonHoverSettings;
-    [Export] private AnimatedButtonView animatedButtonView;
+    [Export] private Control resizableControl;
+    [Export] private Control border;
 
     private ITweener _hoverTweener;
     private bool _mouseOver;
     private Tween _tween;
 
-    public Control ResizableControl => animatedButtonView.ResizableControl;
-    private Control Border => animatedButtonView.Border;
+    public Control ResizableControl => resizableControl;
 
     public override async void _EnterTree()
     {
@@ -25,7 +24,7 @@ public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
         
-        _hoverTweener = buttonHoverSettings.CreateTweener(animatedButtonView.ResizableControl, Border);
+        _hoverTweener = buttonHoverSettings.CreateTweener(resizableControl, border);
         Subscribe();
     }
 

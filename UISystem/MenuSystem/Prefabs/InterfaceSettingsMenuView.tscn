@@ -89,6 +89,17 @@ grow_vertical = 2
 theme = ExtResource("2_7o5vc")
 texture = SubResource("CanvasTexture_305pl")
 
+[node name="ControllerIconsDropdownView" parent="Container/Panel/PanelBorder/Color" instance=ExtResource("5_lrjck")]
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -168.946
+offset_top = 37.146
+offset_right = 173.054
+offset_bottom = 127.146
+grow_horizontal = 2
+
 [node name="ButtonsContainer" type="HBoxContainer" parent="Container/Panel/PanelBorder/Color"]
 layout_mode = 1
 anchors_preset = -1
@@ -107,36 +118,22 @@ metadata/_edit_use_anchors_ = true
 [node name="ReturnButton" parent="Container/Panel/PanelBorder/Color/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton/ResizableControl/TextClipper" index="0"]
 text = "RETURN"
 
 [node name="SaveSettingsButton" parent="Container/Panel/PanelBorder/Color/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton/ResizableControl/TextClipper" index="0"]
 text = "SAVE"
 
 [node name="ResetToDefaultButton" parent="Container/Panel/PanelBorder/Color/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl/TextClipper" index="0"]
 text = "RESET"
 
-[node name="ControllerIconsDropdownView" parent="Container/Panel/PanelBorder/Color" instance=ExtResource("5_lrjck")]
-layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -168.946
-offset_top = 37.146
-offset_right = 173.054
-offset_bottom = 127.146
-grow_horizontal = 2
-
-[node name="TextClipper" parent="Container/Panel/PanelBorder/Color/ControllerIconsDropdownView/AnimatedButtonView" index="1"]
-anchors_preset = 15
-
+[editable path="Container/Panel/PanelBorder/Color/ControllerIconsDropdownView"]
 [editable path="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton"]
 [editable path="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton"]
 [editable path="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton"]
-[editable path="Container/Panel/PanelBorder/Color/ControllerIconsDropdownView"]

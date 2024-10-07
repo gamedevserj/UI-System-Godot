@@ -81,30 +81,8 @@ alignment = 1
 [node name="WindowModeDropdown" parent="Container/PanelContainer/Margin/VBoxContainer" instance=ExtResource("2_e1dgx")]
 layout_mode = 2
 
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/VBoxContainer/WindowModeDropdown" index="1"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -171.0
-offset_right = 171.0
-grow_horizontal = 2
-
-[node name="TextClipper" parent="Container/PanelContainer/Margin/VBoxContainer/WindowModeDropdown/AnimatedButtonView" index="1"]
-anchors_preset = 15
-
 [node name="ResolutionDropdown" parent="Container/PanelContainer/Margin/VBoxContainer" instance=ExtResource("2_e1dgx")]
 layout_mode = 2
-
-[node name="AnimatedButtonView" parent="Container/PanelContainer/Margin/VBoxContainer/ResolutionDropdown" index="1"]
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -171.0
-offset_right = 171.0
-grow_horizontal = 2
-
-[node name="TextClipper" parent="Container/PanelContainer/Margin/VBoxContainer/ResolutionDropdown/AnimatedButtonView" index="1"]
-anchors_preset = 15
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Container/PanelContainer/Margin"]
 layout_mode = 1
@@ -124,19 +102,19 @@ metadata/_edit_use_anchors_ = true
 [node name="ReturnButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_mp8dl")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/ResizableControl/TextClipper" index="0"]
 text = "RETURN"
 
 [node name="SaveSettingsButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_mp8dl")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/ResizableControl/TextClipper" index="0"]
 text = "SAVE"
 
 [node name="ResetToDefaultButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_mp8dl")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/ResizableControl/TextClipper" index="0"]
 text = "RESET"
 
 [editable path="Container/PanelContainer/Margin/VBoxContainer/WindowModeDropdown"]

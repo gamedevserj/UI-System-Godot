@@ -1,6 +1,5 @@
 ﻿using Godot;
 using System.Threading.Tasks;
-using UISystem.Common.ElementViews;
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Resources;
@@ -10,14 +9,15 @@ public partial class DropdownView : OptionButton, IFocusableControl, ISizeTweena
 {
 
     [Export] private ButtonHoverSettings buttonHoverSettings;
-    [Export] private AnimatedButtonView animatedButtonView;
+    [Export] private Control resizableControl;
+    [Export] private Control border;
+    [Export] private Label label;
 
     private ITweener _hoverTweener;
     private bool _mouseOver;
     private Tween _tween;
 
-    public Control ResizableControl => animatedButtonView.ResizableControl;
-    private Control Border => animatedButtonView.Border;
+    public Control ResizableControl => resizableControl;
 
     public override async void _EnterTree()
     {
@@ -25,7 +25,7 @@ public partial class DropdownView : OptionButton, IFocusableControl, ISizeTweena
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
-        _hoverTweener = buttonHoverSettings.CreateTweener(ResizableControl, Border);
+        _hoverTweener = buttonHoverSettings.CreateTweener(resizableControl, border);
         Subscribe();
     }
 
@@ -60,7 +60,7 @@ public partial class DropdownView : OptionButton, IFocusableControl, ISizeTweena
 
     private void OnItemSelected(long index)
     {
-        animatedButtonView.Label.Text = GetItemText((int)index);
+        label.Text = GetItemText((int)index);
     }
 
     private void OnMouseEntered()
