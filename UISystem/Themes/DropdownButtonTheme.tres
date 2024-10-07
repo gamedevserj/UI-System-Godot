@@ -57,8 +57,6 @@ border_width_bottom = 5
 
 [resource]
 default_font_size = 55
-Button/colors/font_focus_color = Color(0.94902, 0, 0, 1)
-Button/colors/font_hover_color = Color(0.94902, 0, 0, 1)
 Button/styles/disabled = SubResource("StyleBoxFlat_q8loe")
 Button/styles/focus = SubResource("StyleBoxFlat_rei7m")
 Button/styles/hover = SubResource("StyleBoxFlat_5glav")
