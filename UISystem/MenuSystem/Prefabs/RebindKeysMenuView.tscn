@@ -1,10 +1,9 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkc5imtbwisbp"]
+[gd_scene load_steps=8 format=3 uid="uid://bkc5imtbwisbp"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/RebindKeys/RebindKeysMenuView.cs" id="1_53hud"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/RebindableKeyButtonView.cs" id="2_1gokv"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_dyxee"]
 [ext_resource type="Texture2D" uid="uid://fx6gyp2ifiet" path="res://UISystem/Textures/Inputs/ellipsis.png" id="3_hujmc"]
-[ext_resource type="Theme" uid="uid://f388f1hm7tv8" path="res://UISystem/Themes/SettingsPanelTheme.tres" id="6_1qhxh"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="8_2psh3"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_0fftd"]
@@ -69,7 +68,6 @@ offset_bottom = 0.303894
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("6_1qhxh")
 metadata/_edit_use_anchors_ = true
 
 [node name="Border" type="TextureRect" parent="Container/Panel"]

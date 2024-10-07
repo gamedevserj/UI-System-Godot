@@ -1,11 +1,12 @@
 [gd_scene load_steps=5 format=3 uid="uid://2snibql101pc"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/VideoSettings/VideoSettingsMenuView.cs" id="1_8cb4u"]
-[ext_resource type="Theme" uid="uid://f388f1hm7tv8" path="res://UISystem/Themes/SettingsPanelTheme.tres" id="2_7uov2"]
 [ext_resource type="PackedScene" uid="uid://b02xnc3swcbfg" path="res://UISystem/Common/Prefabs/DropdownView.tscn" id="2_e1dgx"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_mp8dl"]
 
-[node name="VideoSettingsMenuView" type="Control" node_paths=PackedStringArray("windowModeDropdown", "resolutionDropdown", "saveSettingsButton", "returnButton", "fadeObjectsContainer", "resetButton")]
+[sub_resource type="CanvasTexture" id="CanvasTexture_wvtwh"]
+
+[node name="VideoSettingsMenuView" type="Control" node_paths=PackedStringArray("windowModeDropdown", "resolutionDropdown", "saveSettingsButton", "returnButton", "panel", "fadeObjectsContainer", "resetButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,12 +14,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_8cb4u")
-windowModeDropdown = NodePath("Container/PanelContainer/Margin/VBoxContainer/WindowModeDropdown")
-resolutionDropdown = NodePath("Container/PanelContainer/Margin/VBoxContainer/ResolutionDropdown")
-saveSettingsButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton")
-returnButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ReturnButton")
+windowModeDropdown = NodePath("Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown")
+resolutionDropdown = NodePath("Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown")
+saveSettingsButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/SaveSettingsButton")
+returnButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/ReturnButton")
+panel = NodePath("Container/Panel")
 fadeObjectsContainer = NodePath("Container")
-resetButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton")
+resetButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1
@@ -42,10 +44,9 @@ text = "Video settings menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Container"]
+[node name="Panel" type="Control" parent="Container"]
 clip_contents = true
 layout_mode = 1
-anchors_preset = -1
 anchor_left = 0.06
 anchor_top = 0.111123
 anchor_right = 0.954
@@ -57,34 +58,81 @@ offset_bottom = 0.303894
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("2_7uov2")
 metadata/_edit_use_anchors_ = true
 
-[node name="Margin" type="Control" parent="Container/PanelContainer"]
-clip_contents = true
-layout_mode = 2
-mouse_filter = 1
+[node name="Border" type="TextureRect" parent="Container/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_wvtwh")
 
-[node name="VBoxContainer" type="VBoxContainer" parent="Container/PanelContainer/Margin"]
+[node name="Color" type="TextureRect" parent="Container/Panel/Border"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_wvtwh")
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Container/Panel/Border/Color"]
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -215.0
-offset_top = 57.0001
-offset_right = 215.0
-offset_bottom = 276.0
+offset_left = -190.0
+offset_top = 79.0
+offset_right = 190.0
+offset_bottom = 288.0
 grow_horizontal = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="WindowModeDropdown" parent="Container/PanelContainer/Margin/VBoxContainer" instance=ExtResource("2_e1dgx")]
+[node name="WindowModeDropdown" parent="Container/Panel/Border/Color/VBoxContainer" instance=ExtResource("2_e1dgx")]
 layout_mode = 2
 
-[node name="ResolutionDropdown" parent="Container/PanelContainer/Margin/VBoxContainer" instance=ExtResource("2_e1dgx")]
+[node name="ResizableControl" parent="Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown" index="1"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" parent="Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown/ResizableControl/TextClipper" index="0"]
+offset_left = -145.0
+offset_top = -44.5
+offset_right = 145.0
+offset_bottom = 44.5
+
+[node name="ResolutionDropdown" parent="Container/Panel/Border/Color/VBoxContainer" instance=ExtResource("2_e1dgx")]
 layout_mode = 2
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="Container/PanelContainer/Margin"]
+[node name="ResizableControl" parent="Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown" index="1"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Label" parent="Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown/ResizableControl/TextClipper" index="0"]
+offset_left = -145.0
+offset_top = -45.0
+offset_right = 145.0
+offset_bottom = 45.0
+
+[node name="ButtonsContainer" type="HBoxContainer" parent="Container/Panel/Border/Color"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.043
@@ -99,26 +147,26 @@ theme_override_constants/separation = 10
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="ReturnButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_mp8dl")]
+[node name="ReturnButton" parent="Container/Panel/Border/Color/ButtonsContainer" instance=ExtResource("5_mp8dl")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/ResizableControl/TextClipper" index="0"]
+[node name="Label" parent="Container/Panel/Border/Color/ButtonsContainer/ReturnButton/ResizableControl/TextClipper" index="0"]
 text = "RETURN"
 
-[node name="SaveSettingsButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_mp8dl")]
+[node name="SaveSettingsButton" parent="Container/Panel/Border/Color/ButtonsContainer" instance=ExtResource("5_mp8dl")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/ResizableControl/TextClipper" index="0"]
+[node name="Label" parent="Container/Panel/Border/Color/ButtonsContainer/SaveSettingsButton/ResizableControl/TextClipper" index="0"]
 text = "SAVE"
 
-[node name="ResetToDefaultButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_mp8dl")]
+[node name="ResetToDefaultButton" parent="Container/Panel/Border/Color/ButtonsContainer" instance=ExtResource("5_mp8dl")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/ResizableControl/TextClipper" index="0"]
+[node name="Label" parent="Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl/TextClipper" index="0"]
 text = "RESET"
 
-[editable path="Container/PanelContainer/Margin/VBoxContainer/WindowModeDropdown"]
-[editable path="Container/PanelContainer/Margin/VBoxContainer/ResolutionDropdown"]
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton"]
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton"]
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton"]
+[editable path="Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown"]
+[editable path="Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown"]
+[editable path="Container/Panel/Border/Color/ButtonsContainer/ReturnButton"]
+[editable path="Container/Panel/Border/Color/ButtonsContainer/SaveSettingsButton"]
+[editable path="Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton"]

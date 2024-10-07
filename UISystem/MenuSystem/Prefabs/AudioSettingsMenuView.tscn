@@ -1,9 +1,8 @@
-[gd_scene load_steps=9 format=3 uid="uid://bx45yom4bi85n"]
+[gd_scene load_steps=8 format=3 uid="uid://bx45yom4bi85n"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/AudioSettings/AudioSettingsMenuView.cs" id="1_ca7ap"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_6en0s"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/HSliderView.cs" id="2_8b7gh"]
-[ext_resource type="Theme" uid="uid://f388f1hm7tv8" path="res://UISystem/Themes/SettingsPanelTheme.tres" id="2_dk510"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_l4qqc"]
 [ext_resource type="Resource" uid="uid://cwy3443w5wlcn" path="res://UISystem/AnimationSettings/ColorHoverSettings.tres" id="5_utyo3"]
 [ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="6_n1bc4"]
@@ -64,7 +63,6 @@ offset_bottom = 0.303894
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("2_dk510")
 metadata/_edit_use_anchors_ = true
 
 [node name="PanelBorder" type="TextureRect" parent="Container/Panel"]

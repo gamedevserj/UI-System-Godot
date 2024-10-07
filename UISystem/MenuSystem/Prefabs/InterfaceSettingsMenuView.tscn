@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://d0lqlkxfi5o25"]
+[gd_scene load_steps=6 format=3 uid="uid://d0lqlkxfi5o25"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/InterfaceSettings/InterfaceSettingsMenuView.cs" id="1_830ao"]
-[ext_resource type="Theme" uid="uid://f388f1hm7tv8" path="res://UISystem/Themes/SettingsPanelTheme.tres" id="2_7o5vc"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_212i7"]
 [ext_resource type="PackedScene" uid="uid://b02xnc3swcbfg" path="res://UISystem/Common/Prefabs/DropdownView.tscn" id="5_lrjck"]
 
@@ -60,7 +59,6 @@ offset_bottom = 0.303894
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
-theme = ExtResource("2_7o5vc")
 
 [node name="PanelBorder" type="TextureRect" parent="Container/Panel"]
 clip_contents = true
@@ -70,7 +68,6 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_7o5vc")
 texture = SubResource("CanvasTexture_uwy47")
 
 [node name="Color" type="TextureRect" parent="Container/Panel/PanelBorder"]
@@ -86,7 +83,6 @@ offset_right = -5.0
 offset_bottom = -5.0
 grow_horizontal = 2
 grow_vertical = 2
-theme = ExtResource("2_7o5vc")
 texture = SubResource("CanvasTexture_305pl")
 
 [node name="ControllerIconsDropdownView" parent="Container/Panel/PanelBorder/Color" instance=ExtResource("5_lrjck")]
