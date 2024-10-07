@@ -2,7 +2,7 @@ using Godot;
 using System.Threading.Tasks;
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
-using UISystem.Common.Resources;
+using UISystem.Common.HoverSettings;
 
 namespace UISystem.Common.Elements;
 public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable

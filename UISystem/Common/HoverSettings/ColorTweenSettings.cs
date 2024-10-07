@@ -2,7 +2,7 @@
 using UISystem.Common.Interfaces;
 using UISystem.Extensions;
 
-namespace UISystem.Common.Resources;
+namespace UISystem.Common.HoverSettings;
 [GlobalClass]
 public partial class ColorTweenSettings : TweenSettings<Color>
 {

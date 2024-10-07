@@ -2,7 +2,7 @@
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 
-namespace UISystem.Common.Resources;
+namespace UISystem.Common.HoverSettings;
 public abstract partial class TweenSettings<T> : Resource
 {
 

@@ -4,16 +4,16 @@ using UISystem.Common.Interfaces;
 using UISystem.Common.Structs;
 using UISystem.Extensions;
 
-namespace UISystem.Common.Resources;
+namespace UISystem.Common.HoverSettings;
 [GlobalClass]
 public partial class SizeTweenSettings : TweenSettings<Vector2>
 {
 
-    [Export] private HorizontalControlSizeChangeDirection horizontalDirection = HorizontalControlSizeChangeDirection.FromLeft;
-    [Export] private VerticalControlSizeChangeDirection verticalDirection = VerticalControlSizeChangeDirection.FromTop;
-    [Export] private Vector2 changeSizeHover = new(75, 0);
-    [Export] private Vector2 changeSizeFocus = new(100, 0);
-    [Export] private Vector2 changeSizeFocusHover = new(150, 0);
+    [Export] private HorizontalDirection horizontalDirection = HorizontalDirection.FromLeft;
+    [Export] private VerticalDirection verticalDirection = VerticalDirection.FromTop;
+    [Export] private Vector2 changeSizeHover = new(0, 0);
+    [Export] private Vector2 changeSizeFocus = new(0, 0);
+    [Export] private Vector2 changeSizeFocusHover = new(0, 0);
 
     public override Vector2 HoverValue => changeSizeHover;
     public override Vector2 FocusValue => changeSizeFocus;
@@ -31,8 +31,8 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
         public SizeTweener(Control target, bool parallel, TweenSettings<Vector2> settings, Vector2 originalValue, 
             Vector2 originalSize,
             Vector2 originalPosition,
-            HorizontalControlSizeChangeDirection horizontalDirection,
-            VerticalControlSizeChangeDirection verticalDirection
+            HorizontalDirection horizontalDirection,
+            VerticalDirection verticalDirection
             )
             : base(target, parallel, settings, originalValue)
         {

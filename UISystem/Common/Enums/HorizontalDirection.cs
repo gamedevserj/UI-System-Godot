@@ -1,5 +1,5 @@
 ﻿namespace UISystem.Common.Enums;
-public enum HorizontalControlSizeChangeDirection
+public enum HorizontalDirection
 {
     FromLeft = 0,
     FromCenter = 1,

@@ -91,5 +91,3 @@ theme = ExtResource("5_1o05n")
 text = "TEXT"
 horizontal_alignment = 1
 vertical_alignment = 1
-clip_text = true
-text_overrun_behavior = 1

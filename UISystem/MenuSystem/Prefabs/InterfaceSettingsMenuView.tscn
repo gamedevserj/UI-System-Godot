@@ -15,6 +15,8 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
 script = ExtResource("1_830ao")
 controllerIconsDropdown = NodePath("Container/Panel/PanelBorder/Color/ControllerIconsDropdownView")
 saveSettingsButton = NodePath("Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton")
@@ -48,17 +50,14 @@ vertical_alignment = 1
 [node name="Panel" type="Control" parent="Container"]
 clip_contents = true
 layout_mode = 1
-anchor_left = 0.05
-anchor_top = 0.446
-anchor_right = 0.95
-anchor_bottom = 0.927
-offset_left = -0.120033
-offset_top = -0.00778198
-offset_right = -0.00805664
-offset_bottom = 0.303894
+anchor_left = 0.1
+anchor_top = 0.1
+anchor_right = 0.9
+anchor_bottom = 0.9
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 1
+metadata/_edit_use_anchors_ = true
 
 [node name="PanelBorder" type="TextureRect" parent="Container/Panel"]
 clip_contents = true
@@ -90,43 +89,71 @@ layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
 anchor_right = 0.5
-offset_left = -168.946
-offset_top = 37.146
-offset_right = 173.054
-offset_bottom = 127.146
+offset_left = -200.0
+offset_top = 235.0
+offset_right = 200.0
+offset_bottom = 325.0
 grow_horizontal = 2
+
+[node name="ResizableControl" parent="Container/Panel/PanelBorder/Color/ControllerIconsDropdownView" index="1"]
+offset_right = 400.0
+
+[node name="Label" parent="Container/Panel/PanelBorder/Color/ControllerIconsDropdownView/ResizableControl/TextClipper" index="0"]
+offset_left = -63.5
+offset_right = 63.5
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Container/Panel/PanelBorder/Color"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.043
-anchor_top = 0.722
-anchor_right = 0.958414
-anchor_bottom = 0.722
-offset_left = 0.139999
-offset_top = -46.0438
-offset_right = 0.417542
-offset_bottom = 45.9562
-theme_override_constants/separation = 10
+anchor_left = 0.5
+anchor_top = 0.82
+anchor_right = 0.5
+anchor_bottom = 0.82
+offset_left = -700.0
+offset_top = -0.279968
+offset_right = 700.0
+offset_bottom = 89.72
+theme_override_constants/separation = 40
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ReturnButton" parent="Container/Panel/PanelBorder/Color/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton/ResizableControl/TextClipper" index="0"]
+[node name="ResizableControl" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton" index="0"]
+offset_right = 450.0
+
+[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton/ResizableControl/ContentClipper" index="0"]
+anchors_preset = 8
+offset_left = -108.0
+offset_right = 108.0
+offset_bottom = 36.0
 text = "RETURN"
 
 [node name="SaveSettingsButton" parent="Container/Panel/PanelBorder/Color/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton/ResizableControl/TextClipper" index="0"]
+[node name="ResizableControl" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton" index="0"]
+offset_right = 450.0
+
+[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton/ResizableControl/ContentClipper" index="0"]
+anchors_preset = 8
+offset_left = -65.0
+offset_right = 66.0
+offset_bottom = 36.0
 text = "SAVE"
 
 [node name="ResetToDefaultButton" parent="Container/Panel/PanelBorder/Color/ButtonsContainer" instance=ExtResource("5_212i7")]
 layout_mode = 2
 
-[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl/TextClipper" index="0"]
+[node name="ResizableControl" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton" index="0"]
+offset_right = 450.0
+
+[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl/ContentClipper" index="0"]
+anchors_preset = 8
+offset_left = -79.0
+offset_right = 79.0
+offset_bottom = 36.0
 text = "RESET"
 
 [editable path="Container/Panel/PanelBorder/Color/ControllerIconsDropdownView"]

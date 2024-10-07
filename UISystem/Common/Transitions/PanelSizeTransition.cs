@@ -113,8 +113,8 @@ public class PanelSizeTransition : IViewTransition
         await _caller.ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
         _elementsSizeSettings = new ResizableControlSettings[_elements.Length];
-        var horizontalDirection = Enums.HorizontalControlSizeChangeDirection.FromCenter;
-        var verticalDirection = Enums.VerticalControlSizeChangeDirection.FromCenter;
+        var horizontalDirection = Enums.HorizontalDirection.FromCenter;
+        var verticalDirection = Enums.VerticalDirection.FromCenter;
 
         _panelSizeSettings = new(_panel.Position, _panel.Size, horizontalDirection, verticalDirection);
         for (int i = 0; i < _elements.Length; i++)

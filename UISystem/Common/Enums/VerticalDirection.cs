@@ -1,5 +1,5 @@
 ﻿namespace UISystem.Common.Enums;
-public enum VerticalControlSizeChangeDirection
+public enum VerticalDirection
 {
     FromTop = 0,
     FromCenter = 1,

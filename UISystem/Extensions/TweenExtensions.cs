@@ -62,19 +62,19 @@ public static class TweenExtensions
         tween.TweenProperty(target, PropertyConstants.Size, size, duration);
     }
 
-    private static float GetHorizontalMultiplier(HorizontalControlSizeChangeDirection direction) => direction switch
+    private static float GetHorizontalMultiplier(HorizontalDirection direction) => direction switch
     {
-        HorizontalControlSizeChangeDirection.FromLeft => 0,
-        HorizontalControlSizeChangeDirection.FromCenter => 0.5f,
-        HorizontalControlSizeChangeDirection.FromRight => 1,
+        HorizontalDirection.FromLeft => 0,
+        HorizontalDirection.FromCenter => 0.5f,
+        HorizontalDirection.FromRight => 1,
         _ => 0,
     };
 
-    private static float GetVerticalMultiplier(VerticalControlSizeChangeDirection direction) => direction switch
+    private static float GetVerticalMultiplier(VerticalDirection direction) => direction switch
     {
-        VerticalControlSizeChangeDirection.FromTop => 0,
-        VerticalControlSizeChangeDirection.FromCenter => 0.5f,
-        VerticalControlSizeChangeDirection.FromBottom => 1,
+        VerticalDirection.FromTop => 0,
+        VerticalDirection.FromCenter => 0.5f,
+        VerticalDirection.FromBottom => 1,
         _ => 0,
     };
 

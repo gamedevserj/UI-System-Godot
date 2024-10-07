@@ -2,7 +2,7 @@
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 
-namespace UISystem.Common.Resources;
+namespace UISystem.Common.HoverSettings;
 [GlobalClass]
 public partial class ButtonHoverSettings : Resource
 {
@@ -10,13 +10,10 @@ public partial class ButtonHoverSettings : Resource
     [Export] private SizeTweenSettings sizeChangeSettings;
     [Export] private ColorTweenSettings colorChangeSettings;
 
-    public SizeTweenSettings SizeChangeSettings => sizeChangeSettings;
-    public ColorTweenSettings ColorChangeSettings => colorChangeSettings;
-
     public ITweener CreateTweener(Control sizeTarget, Control colorTarget, bool sizeParallel = true, 
         bool colorParallel = true)
     {
-        return new SizeAndColorTweenerFacade(sizeTarget, colorTarget, SizeChangeSettings, ColorChangeSettings, 
+        return new SizeAndColorTweenerFacade(sizeTarget, colorTarget, sizeChangeSettings, colorChangeSettings, 
             sizeParallel, colorParallel);
     }
 

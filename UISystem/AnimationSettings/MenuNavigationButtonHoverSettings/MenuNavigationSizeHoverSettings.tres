@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="SizeTweenSettings" load_steps=2 format=3 uid="uid://biq2cqekjljck"]
 
-[ext_resource type="Script" path="res://UISystem/Common/Resources/SizeTweenSettings.cs" id="1_wjher"]
+[ext_resource type="Script" path="res://UISystem/Common/HoverSettings/SizeTweenSettings.cs" id="1_iik5o"]
 
 [resource]
-script = ExtResource("1_wjher")
+script = ExtResource("1_iik5o")
 horizontalDirection = 0
 verticalDirection = 0
 changeSizeHover = Vector2(75, 0)
