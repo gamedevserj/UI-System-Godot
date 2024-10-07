@@ -31,6 +31,14 @@ public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
 
     public override void _ExitTree() => Unsubscribe();
 
+    public async Task ResetHover()
+    {
+        _tween?.Kill();
+        _tween = GetTree().CreateTween();
+        _hoverTweener.Reset(_tween);
+        await ToSignal(_tween, Tween.SignalName.Finished);
+    }
+
     private void Subscribe()
     {
         FocusEntered += OnFocusEntered;
@@ -78,11 +86,4 @@ public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
             return _mouseOver ? ControlDrawMode.Hover : ControlDrawMode.Normal;
     }
 
-    public async Task ResetHover()
-    {
-        _tween?.Kill();
-        _tween = GetTree().CreateTween();
-        _hoverTweener.Reset(_tween);
-        await ToSignal(_tween, Tween.SignalName.Finished);
-    }
 }

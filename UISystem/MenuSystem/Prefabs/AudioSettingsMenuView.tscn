@@ -1,4 +1,4 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx45yom4bi85n"]
+[gd_scene load_steps=9 format=3 uid="uid://bx45yom4bi85n"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/AudioSettings/AudioSettingsMenuView.cs" id="1_ca7ap"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_6en0s"]
@@ -8,7 +8,9 @@
 [ext_resource type="Resource" uid="uid://cwy3443w5wlcn" path="res://UISystem/AnimationSettings/ColorHoverSettings.tres" id="5_utyo3"]
 [ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="6_n1bc4"]
 
-[node name="AudioSettingsMenuView" type="Control" node_paths=PackedStringArray("musicSlider", "sfxSlider", "saveSettingsButton", "returnButton", "fadeObjectsContainer", "resetButton")]
+[sub_resource type="CanvasTexture" id="CanvasTexture_runyc"]
+
+[node name="AudioSettingsMenuView" type="Control" node_paths=PackedStringArray("resizableControlMusic", "musicSlider", "resizableControlSfx", "sfxSlider", "saveSettingsButton", "returnButton", "panel", "fadeObjectsContainer", "resetButton")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -16,12 +18,15 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_ca7ap")
-musicSlider = NodePath("Container/PanelContainer/Margin/VBoxContainer2/MusicSlider")
-sfxSlider = NodePath("Container/PanelContainer/Margin/VBoxContainer2/SfxSlider")
-saveSettingsButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton")
-returnButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ReturnButton")
+resizableControlMusic = NodePath("Container/Panel/PanelBorder/Color/VBoxContainer2/MusicLabelContainer/ResizableControlMusic")
+musicSlider = NodePath("Container/Panel/PanelBorder/Color/VBoxContainer2/MusicSlider")
+resizableControlSfx = NodePath("Container/Panel/PanelBorder/Color/VBoxContainer2/SfxLabelContainer/ResizableControlSfx")
+sfxSlider = NodePath("Container/Panel/PanelBorder/Color/VBoxContainer2/SfxSlider")
+saveSettingsButton = NodePath("Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton")
+returnButton = NodePath("Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton")
+panel = NodePath("Container/Panel")
 fadeObjectsContainer = NodePath("Container")
-resetButton = NodePath("Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton")
+resetButton = NodePath("Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]
 layout_mode = 1
@@ -45,10 +50,9 @@ text = "Audio settings menu"
 horizontal_alignment = 1
 vertical_alignment = 1
 
-[node name="PanelContainer" type="PanelContainer" parent="Container"]
+[node name="Panel" type="Control" parent="Container"]
 clip_contents = true
 layout_mode = 1
-anchors_preset = -1
 anchor_left = 0.06
 anchor_top = 0.111123
 anchor_right = 0.954
@@ -63,12 +67,30 @@ mouse_filter = 1
 theme = ExtResource("2_dk510")
 metadata/_edit_use_anchors_ = true
 
-[node name="Margin" type="Control" parent="Container/PanelContainer"]
-clip_contents = true
-layout_mode = 2
-mouse_filter = 1
+[node name="PanelBorder" type="TextureRect" parent="Container/Panel"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_runyc")
 
-[node name="VBoxContainer2" type="VBoxContainer" parent="Container/PanelContainer/Margin"]
+[node name="Color" type="TextureRect" parent="Container/Panel/PanelBorder"]
+self_modulate = Color(0, 0, 0, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = 5.0
+offset_top = 5.0
+offset_right = -5.0
+offset_bottom = -5.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = SubResource("CanvasTexture_runyc")
+
+[node name="VBoxContainer2" type="VBoxContainer" parent="Container/Panel/PanelBorder/Color"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -82,14 +104,37 @@ grow_horizontal = 2
 theme_override_constants/separation = 10
 alignment = 1
 
-[node name="MusicVolumeLabel" type="Label" parent="Container/PanelContainer/Margin/VBoxContainer2"]
+[node name="MusicLabelContainer" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ResizableControlMusic" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicLabelContainer"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="MusicVolumeLabel" type="Label" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicLabelContainer/ResizableControlMusic"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 theme = ExtResource("2_6en0s")
 text = "Music volume"
 horizontal_alignment = 1
 
-[node name="MusicSlider" type="HSlider" parent="Container/PanelContainer/Margin/VBoxContainer2" node_paths=PackedStringArray("sliderBackground", "sliderFill", "grabber")]
+[node name="MusicSlider" type="HSlider" parent="Container/Panel/PanelBorder/Color/VBoxContainer2" node_paths=PackedStringArray("grabber", "background", "fill", "resizableControl")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 1.0
@@ -97,11 +142,12 @@ step = 0.01
 value = 0.5
 script = ExtResource("2_8b7gh")
 hoverSettings = ExtResource("5_utyo3")
-sliderBackground = NodePath("ResizableControl/SliderBackground")
-sliderFill = NodePath("ResizableControl/SliderFill")
 grabber = NodePath("ResizableControl/Grabber")
+background = NodePath("ResizableControl/Background")
+fill = NodePath("ResizableControl/Fill")
+resizableControl = NodePath("ResizableControl")
 
-[node name="ResizableControl" type="Control" parent="Container/PanelContainer/Margin/VBoxContainer2/MusicSlider"]
+[node name="ResizableControl" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicSlider"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -110,8 +156,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="SliderBackground" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/MusicSlider/ResizableControl"]
-self_modulate = Color(0.596078, 0.596078, 0.596078, 1)
+[node name="Background" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicSlider/ResizableControl"]
+self_modulate = Color(0.552941, 0.552941, 0.552941, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -123,7 +169,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("6_n1bc4")
 
-[node name="SliderFill" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/MusicSlider/ResizableControl"]
+[node name="Fill" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicSlider/ResizableControl"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -135,30 +181,51 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("6_n1bc4")
 
-[node name="Grabber" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/MusicSlider/ResizableControl"]
+[node name="Grabber" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicSlider/ResizableControl"]
 self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
-layout_mode = 2
-anchor_left = 0.035
-anchor_top = 0.5
-anchor_right = 0.035
-anchor_bottom = 0.5
-offset_left = -12.845
-offset_top = -24.5
-offset_right = 13.155
-offset_bottom = 25.5
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_right = -341.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("6_n1bc4")
 
-[node name="SfxVolumeLabel" type="Label" parent="Container/PanelContainer/Margin/VBoxContainer2"]
+[node name="SfxLabelContainer" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2"]
 layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+
+[node name="ResizableControlSfx" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxLabelContainer"]
+clip_contents = true
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="SfxVolumeLabel" type="Label" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxLabelContainer/ResizableControlSfx"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = -2.0
+offset_bottom = 2.0
+grow_horizontal = 2
+grow_vertical = 2
 size_flags_vertical = 3
 theme = ExtResource("2_6en0s")
 text = "SFX volume"
 horizontal_alignment = 1
 
-[node name="SfxSlider" type="HSlider" parent="Container/PanelContainer/Margin/VBoxContainer2" node_paths=PackedStringArray("sliderBackground", "sliderFill", "grabber")]
+[node name="SfxSlider" type="HSlider" parent="Container/Panel/PanelBorder/Color/VBoxContainer2" node_paths=PackedStringArray("grabber", "background", "fill", "resizableControl")]
+self_modulate = Color(1, 1, 1, 0)
 layout_mode = 2
 size_flags_vertical = 3
 max_value = 1.0
@@ -166,11 +233,12 @@ step = 0.01
 value = 0.5
 script = ExtResource("2_8b7gh")
 hoverSettings = ExtResource("5_utyo3")
-sliderBackground = NodePath("ResizableControl2/SliderBackground")
-sliderFill = NodePath("ResizableControl2/SliderFill")
-grabber = NodePath("ResizableControl2/Grabber")
+grabber = NodePath("ResizableControl/Grabber")
+background = NodePath("ResizableControl/Background")
+fill = NodePath("ResizableControl/Fill")
+resizableControl = NodePath("ResizableControl")
 
-[node name="ResizableControl2" type="Control" parent="Container/PanelContainer/Margin/VBoxContainer2/SfxSlider"]
+[node name="ResizableControl" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxSlider"]
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -179,8 +247,8 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="SliderBackground" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/SfxSlider/ResizableControl2"]
-self_modulate = Color(0.596078, 0.596078, 0.596078, 1)
+[node name="Background" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxSlider/ResizableControl"]
+self_modulate = Color(0.552941, 0.552941, 0.552941, 1)
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -192,7 +260,7 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("6_n1bc4")
 
-[node name="SliderFill" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/SfxSlider/ResizableControl2"]
+[node name="Fill" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxSlider/ResizableControl"]
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -204,23 +272,21 @@ grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("6_n1bc4")
 
-[node name="Grabber" type="PanelContainer" parent="Container/PanelContainer/Margin/VBoxContainer2/SfxSlider/ResizableControl2"]
+[node name="Grabber" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxSlider/ResizableControl"]
 self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
-layout_mode = 2
-anchor_left = 0.035
-anchor_top = 0.5
-anchor_right = 0.035
-anchor_bottom = 0.5
-offset_left = -12.845
-offset_top = -24.5
-offset_right = 13.155
-offset_bottom = 25.5
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_right = -341.0
+offset_bottom = -9.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 theme_override_styles/panel = ExtResource("6_n1bc4")
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="Container/PanelContainer/Margin"]
+[node name="ButtonsContainer" type="HBoxContainer" parent="Container/Panel/PanelBorder/Color"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.043
@@ -235,24 +301,24 @@ theme_override_constants/separation = 10
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="ReturnButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_l4qqc")]
+[node name="ReturnButton" parent="Container/Panel/PanelBorder/Color/ButtonsContainer" instance=ExtResource("5_l4qqc")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton/AnimatedButtonView/TextClipper" index="0"]
 text = "RETURN"
 
-[node name="SaveSettingsButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_l4qqc")]
+[node name="SaveSettingsButton" parent="Container/Panel/PanelBorder/Color/ButtonsContainer" instance=ExtResource("5_l4qqc")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton/AnimatedButtonView/TextClipper" index="0"]
 text = "SAVE"
 
-[node name="ResetToDefaultButton" parent="Container/PanelContainer/Margin/ButtonsContainer" instance=ExtResource("5_l4qqc")]
+[node name="ResetToDefaultButton" parent="Container/Panel/PanelBorder/Color/ButtonsContainer" instance=ExtResource("5_l4qqc")]
 layout_mode = 2
 
-[node name="Label" parent="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/TextClipper" index="0"]
+[node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton/AnimatedButtonView/TextClipper" index="0"]
 text = "RESET"
 
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/ReturnButton"]
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/SaveSettingsButton"]
-[editable path="Container/PanelContainer/Margin/ButtonsContainer/ResetToDefaultButton"]
+[editable path="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton"]
+[editable path="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton"]
+[editable path="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton"]

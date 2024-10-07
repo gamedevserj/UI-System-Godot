@@ -1,11 +1,12 @@
 ﻿using Godot;
+using System.Threading.Tasks;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Resources;
 
 namespace UISystem.Common.Elements;
-public partial class DropdownView : OptionButton, IFocusableControl
+public partial class DropdownView : OptionButton, IFocusableControl, ISizeTweenable
 {
 
     [Export] private ButtonHoverSettings buttonHoverSettings;
@@ -15,7 +16,7 @@ public partial class DropdownView : OptionButton, IFocusableControl
     private bool _mouseOver;
     private Tween _tween;
 
-    public Control ResizableizeControl => animatedButtonView.ResizableControl;
+    public Control ResizableControl => animatedButtonView.ResizableControl;
     private Control Border => animatedButtonView.Border;
 
     public override async void _EnterTree()
@@ -24,11 +25,19 @@ public partial class DropdownView : OptionButton, IFocusableControl
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
-        _hoverTweener = buttonHoverSettings.CreateTweener(ResizableizeControl, Border);
+        _hoverTweener = buttonHoverSettings.CreateTweener(ResizableControl, Border);
         Subscribe();
     }
 
     public override void _ExitTree() => Unsubscribe();
+
+    public async Task ResetHover()
+    {
+        _tween?.Kill();
+        _tween = GetTree().CreateTween();
+        _hoverTweener.Reset(_tween);
+        await ToSignal(_tween, Tween.SignalName.Finished);
+    }
 
     private void Subscribe()
     {
@@ -46,6 +55,7 @@ public partial class DropdownView : OptionButton, IFocusableControl
         FocusExited -= OnFocusExited;
         MouseEntered -= OnMouseEntered;
         MouseExited -= OnMouseExited;
+        ItemSelected -= OnItemSelected;
     }
 
     private void OnItemSelected(long index)
@@ -84,5 +94,7 @@ public partial class DropdownView : OptionButton, IFocusableControl
         else
             return _mouseOver ? ControlDrawMode.Hover : ControlDrawMode.Normal;
     }
+
+    
 
 }

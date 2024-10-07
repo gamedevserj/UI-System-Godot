@@ -1,21 +1,25 @@
 ﻿using Godot;
+using System.Threading.Tasks;
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Resources;
 
 namespace UISystem.Common.Elements;
-public partial class HSliderView : HSlider, IFocusableControl
+public partial class HSliderView : HSlider, IFocusableControl, ISizeTweenable
 {
 
     [Export] private ColorTweenSettings hoverSettings;
-    [Export] private Control sliderBackground;
-    [Export] private Control sliderFill;
     [Export] private Control grabber;
+    [Export] private Control background;
+    [Export] private Control fill;
+    [Export] private Control resizableControl;
 
     private ITweener _hoverTweener;
     private bool _mouseOver;
     private bool _isDragging;
     private Tween _tween;
+
+    public Control ResizableControl => resizableControl;
 
     public override async void _EnterTree()
     {
@@ -34,9 +38,15 @@ public partial class HSliderView : HSlider, IFocusableControl
     {
         if (hoverSettings == null) return;
         if (_isDragging)
-        {
             UpdateSliderVisual();
-        }
+    }
+
+    public async Task ResetHover()
+    {
+        _tween?.Kill();
+        _tween = GetTree().CreateTween();
+        _hoverTweener.Reset(_tween);
+        await ToSignal(_tween, Tween.SignalName.Finished);
     }
 
     private void Subscribe()
@@ -100,8 +110,9 @@ public partial class HSliderView : HSlider, IFocusableControl
 
     private void UpdateSliderVisual()
     {
-        grabber.Position = new Vector2((sliderBackground.Size.X * (float)Value) - grabber.Size.X * 0.5f, grabber.Position.Y);
-        sliderFill.Size = new Vector2((sliderBackground.Size.X * (float)Value), sliderFill.Size.Y);
+        float value = (float)Value;
+        fill.SetAnchor(Side.Right, value, true);
+        grabber.Position = new Vector2((background.Size.X * value) - grabber.Size.X * 0.5f, grabber.Position.Y);
     }
 
 }
