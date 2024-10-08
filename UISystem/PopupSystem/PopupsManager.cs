@@ -1,7 +1,7 @@
 ﻿using Godot;
 using System.Collections.Generic;
-using UISystem.Core.PopupSystem.Enums;
 using UISystem.Core.PopupSystem.Interfaces;
+using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
 using UISystem.PopupSystem.Controllers;
 
@@ -13,7 +13,7 @@ public partial class PopupsManager
     {
         SceneTree tree = GetTree();
 
-        _controllers = new Dictionary<PopupType, IPopupController>();
+        _controllers = new Dictionary<int, IPopupController>();
         AddPopups(new IPopupController[]
         {
             new YesPopupController(GetPopupPath(PopupType.Yes), this, tree),
@@ -22,7 +22,7 @@ public partial class PopupsManager
         });
     }
 
-    private static string GetPopupPath(PopupType type)
+    private static string GetPopupPath(int type)
     {
         return PopupViewsPaths.Paths[type];
     }

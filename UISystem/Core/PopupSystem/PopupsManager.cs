@@ -11,14 +11,14 @@ public partial class PopupsManager : Control
 
     private IPopupController _currentController;
 
-    private Dictionary<PopupType, IPopupController> _controllers;
+    private Dictionary<int, IPopupController> _controllers;
 
     public override void _Input(InputEvent @event)
     {
         _currentController?.HandleInputPressedWhenActive(@event);
     }
 
-    public void ShowPopup(PopupType popupType, IMenuController caller, string message, Action<PopupResult> onHideAction = null, bool instant = false)
+    public void ShowPopup(int popupType, IMenuController caller, string message, Action<PopupResult> onHideAction = null, bool instant = false)
     {
         _currentController = _controllers[popupType];
         _currentController.Init(this);
@@ -35,7 +35,7 @@ public partial class PopupsManager : Control
     {
         for (int i = 0; i < popupControllers.Length; i++)
         {
-            _controllers.Add(popupControllers[i].PopupType, popupControllers[i]);
+            _controllers.Add(popupControllers[i].Popup, popupControllers[i]);
         }
     }
 

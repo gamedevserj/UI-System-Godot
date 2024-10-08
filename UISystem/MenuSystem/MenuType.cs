@@ -1,5 +1,5 @@
 ﻿namespace UISystem.MenuSystem;
-public class MenuType
+internal class MenuType
 {
 
     public const int Main = 0;
