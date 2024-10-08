@@ -1,12 +1,12 @@
 ﻿using Godot;
 using System;
+using UISystem.Common.ElementViews;
 using UISystem.Common.Helpers;
-using UISystem.Core.Common.ElementViews;
 using UISystem.Core.Common.Interfaces;
-using UISystem.Core.PopupSystem.Views;
+using UISystem.PopupSystem.Popups.YesPopup;
 
 namespace UISystem.PopupSystem.Views;
-public partial class YesNoCancelPopupView : PopupView
+public partial class YesNoCancelPopupView : YesPopupView
 {
 
     [Export] private ButtonView noButton;

@@ -2,9 +2,10 @@
 using UISystem.Common.Enums;
 using UISystem.Common.HoverSettings;
 using UISystem.Common.Interfaces;
+using UISystem.Core.Common.Interfaces;
 
-namespace UISystem.Core.Common.ElementViews;
-public partial class DropdownView
+namespace UISystem.Common.ElementViews;
+public partial class DropdownView : OptionButton, IFocusableControl
 {
 
     [Export] private ButtonHoverSettings buttonHoverSettings;

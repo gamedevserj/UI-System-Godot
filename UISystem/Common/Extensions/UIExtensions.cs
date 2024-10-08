@@ -1,6 +1,6 @@
 ﻿using Godot;
+using UISystem.Common.ElementViews;
 using UISystem.Common.Structs;
-using UISystem.Core.Common.ElementViews;
 
 namespace UISystem.Common.Extensions;
 internal static class UIExtensions

@@ -3,7 +3,6 @@ using System;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Transitions;
 using UISystem.Common.Transitions.Interfaces;
-using UISystem.Core.Common.ElementViews;
 using UISystem.Core.Common.Interfaces;
 using UISystem.Core.MenuSystem.Views;
 

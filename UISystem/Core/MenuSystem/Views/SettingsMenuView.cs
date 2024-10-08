@@ -1,6 +1,6 @@
 ﻿using Godot;
 using System;
-using UISystem.Core.Common.ElementViews;
+using UISystem.Common.ElementViews;
 
 namespace UISystem.Core.MenuSystem.Views;
 public partial class SettingsMenuView : MenuView

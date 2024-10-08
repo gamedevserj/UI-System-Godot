@@ -3,9 +3,10 @@ using System.Threading.Tasks;
 using UISystem.Common.Enums;
 using UISystem.Common.HoverSettings;
 using UISystem.Common.Interfaces;
+using UISystem.Core.Common.Interfaces;
 
-namespace UISystem.Core.Common.ElementViews;
-public partial class ButtonView : ISizeTweenable
+namespace UISystem.Common.ElementViews;
+public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
 {
 
     [Export] private ButtonHoverSettings buttonHoverSettings;
