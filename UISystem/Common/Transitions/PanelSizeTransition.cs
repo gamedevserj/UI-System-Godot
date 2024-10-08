@@ -3,7 +3,7 @@ using System;
 using System.Threading.Tasks;
 using UISystem.Common.Extensions;
 using UISystem.Common.Structs;
-using UISystem.Common.Transitions.Interfaces;
+using UISystem.Core.Transitions.Interfaces;
 
 namespace UISystem.Common.Transitions;
 public class PanelSizeTransition : IViewTransition

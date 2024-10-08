@@ -1,10 +1,8 @@
 ﻿using Godot;
-using System;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Transitions;
-using UISystem.Common.Transitions.Interfaces;
-using UISystem.Core.Common.Interfaces;
 using UISystem.Core.MenuSystem.Views;
+using UISystem.Core.Elements.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
 public partial class AudioSettingsMenuView : SettingsMenuView
@@ -20,8 +18,6 @@ public partial class AudioSettingsMenuView : SettingsMenuView
     [Export] private ButtonView saveSettingsButton;
     [Export] private ButtonView returnButton;
     [Export] private Control panel;
-
-    private IViewTransition _transition;
 
     public HSliderView MusicSlider => musicSlider;
     public HSliderView SfxSlider => sfxSlider;
@@ -40,16 +36,6 @@ public partial class AudioSettingsMenuView : SettingsMenuView
             new Control[] { ReturnButton.ResizableControl, SaveSettingsButton.ResizableControl, ResetButton.ResizableControl,
             MusicSlider.ResizableControl, SfxSlider.ResizableControl, resizableControlMusic, resizableControlSfx },
             PanelDuration, ElementsDuration);
-    }
-
-    public override void Hide(Action onHidden, bool instant)
-    {
-        _transition.Hide(onHidden, instant);
-    }
-
-    public override void Show(Action onShown, bool instant)
-    {
-        _transition.Show(onShown, instant);
     }
 
 }

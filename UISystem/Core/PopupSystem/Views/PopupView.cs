@@ -1,7 +1,6 @@
 ﻿using Godot;
-using System;
-using UISystem.Core.Common;
-using UISystem.Core.Common.Interfaces;
+using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.Views;
 
 namespace UISystem.Core.PopupSystem.Views;
 public abstract partial class PopupView : BaseInteractableWindow
@@ -11,8 +10,5 @@ public abstract partial class PopupView : BaseInteractableWindow
 
     public Label Message { get => message; set => message = value; }
     public abstract IFocusableControl DefaultSelectedElement { get; }
-
-    public abstract void Show(Action onShown, bool instant = false);
-    public abstract void Hide(Action onHidden, bool instant = false);
 
 }

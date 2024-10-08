@@ -2,7 +2,7 @@
 using UISystem.Core.Extensions;
 using static Godot.Control;
 
-namespace UISystem.Core.Common.Interfaces;
+namespace UISystem.Core.Elements.Interfaces;
 public interface IFocusableUiElement<T> where T : Control
 {
 

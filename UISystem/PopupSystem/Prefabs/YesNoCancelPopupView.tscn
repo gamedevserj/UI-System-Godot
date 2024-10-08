@@ -6,7 +6,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ulc4q"]
 
-[node name="ConfirmationPopup" type="Control" node_paths=PackedStringArray("noButton", "cancelButton", "message", "yesButton")]
+[node name="YesNoCancelPopup" type="Control" node_paths=PackedStringArray("noButton", "cancelButton", "fadeObjectsContainer", "yesButton", "message")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -14,12 +14,21 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r2q6b")
-noButton = NodePath("ButtonsContainer/NoButton")
-cancelButton = NodePath("ButtonsContainer/CancelButton")
-message = NodePath("Message")
-yesButton = NodePath("ButtonsContainer/YesButton")
+noButton = NodePath("FadeObjectContainer/ButtonsContainer/NoButton")
+cancelButton = NodePath("FadeObjectContainer/ButtonsContainer/CancelButton")
+fadeObjectsContainer = NodePath("FadeObjectContainer")
+yesButton = NodePath("FadeObjectContainer/ButtonsContainer/YesButton")
+message = NodePath("FadeObjectContainer/Message")
 
-[node name="Outline" type="TextureRect" parent="."]
+[node name="FadeObjectContainer" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Outline" type="TextureRect" parent="FadeObjectContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.05
@@ -29,13 +38,13 @@ anchor_bottom = 0.731
 offset_left = 0.447998
 offset_top = -0.312012
 offset_right = -0.447998
-offset_bottom = 0.311981
+offset_bottom = 0.311951
 grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_ulc4q")
 metadata/_edit_use_anchors_ = true
 
-[node name="Color" type="TextureRect" parent="Outline"]
+[node name="Color" type="TextureRect" parent="FadeObjectContainer/Outline"]
 self_modulate = Color(0, 0, 0, 1)
 layout_mode = 1
 anchors_preset = -1
@@ -49,7 +58,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_ulc4q")
 
-[node name="Message" type="Label" parent="."]
+[node name="Message" type="Label" parent="FadeObjectContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -67,7 +76,7 @@ vertical_alignment = 1
 autowrap_mode = 2
 metadata/_edit_use_anchors_ = true
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="."]
+[node name="ButtonsContainer" type="HBoxContainer" parent="FadeObjectContainer"]
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.1
@@ -77,10 +86,10 @@ anchor_bottom = 0.700617
 theme_override_constants/separation = 25
 metadata/_edit_use_anchors_ = true
 
-[node name="YesButton" parent="ButtonsContainer" instance=ExtResource("3_2uld7")]
+[node name="YesButton" parent="FadeObjectContainer/ButtonsContainer" instance=ExtResource("3_2uld7")]
 layout_mode = 2
 
-[node name="ResizableControl" parent="ButtonsContainer/YesButton" index="0"]
+[node name="ResizableControl" parent="FadeObjectContainer/ButtonsContainer/YesButton" index="0"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -89,17 +98,17 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="ButtonsContainer/YesButton/ResizableControl/ContentClipper" index="0"]
+[node name="Label" parent="FadeObjectContainer/ButtonsContainer/YesButton/ResizableControl/ContentClipper" index="0"]
 offset_left = -222.5
 offset_top = -49.0
 offset_right = 222.5
 offset_bottom = 49.0
 text = "YES"
 
-[node name="NoButton" parent="ButtonsContainer" instance=ExtResource("3_2uld7")]
+[node name="NoButton" parent="FadeObjectContainer/ButtonsContainer" instance=ExtResource("3_2uld7")]
 layout_mode = 2
 
-[node name="ResizableControl" parent="ButtonsContainer/NoButton" index="0"]
+[node name="ResizableControl" parent="FadeObjectContainer/ButtonsContainer/NoButton" index="0"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -108,17 +117,17 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="ButtonsContainer/NoButton/ResizableControl/ContentClipper" index="0"]
+[node name="Label" parent="FadeObjectContainer/ButtonsContainer/NoButton/ResizableControl/ContentClipper" index="0"]
 offset_left = -222.5
 offset_top = -49.0
 offset_right = 222.5
 offset_bottom = 49.0
 text = "NO"
 
-[node name="CancelButton" parent="ButtonsContainer" instance=ExtResource("3_2uld7")]
+[node name="CancelButton" parent="FadeObjectContainer/ButtonsContainer" instance=ExtResource("3_2uld7")]
 layout_mode = 2
 
-[node name="ResizableControl" parent="ButtonsContainer/CancelButton" index="0"]
+[node name="ResizableControl" parent="FadeObjectContainer/ButtonsContainer/CancelButton" index="0"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -127,13 +136,13 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="ButtonsContainer/CancelButton/ResizableControl/ContentClipper" index="0"]
+[node name="Label" parent="FadeObjectContainer/ButtonsContainer/CancelButton/ResizableControl/ContentClipper" index="0"]
 offset_left = -223.0
 offset_top = -49.0
 offset_right = 223.0
 offset_bottom = 49.0
 text = "CANCEL"
 
-[editable path="ButtonsContainer/YesButton"]
-[editable path="ButtonsContainer/NoButton"]
-[editable path="ButtonsContainer/CancelButton"]
+[editable path="FadeObjectContainer/ButtonsContainer/YesButton"]
+[editable path="FadeObjectContainer/ButtonsContainer/NoButton"]
+[editable path="FadeObjectContainer/ButtonsContainer/CancelButton"]

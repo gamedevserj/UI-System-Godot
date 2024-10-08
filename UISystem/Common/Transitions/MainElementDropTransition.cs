@@ -5,7 +5,7 @@ using System.Linq;
 using System.Threading.Tasks;
 using UISystem.Common.Extensions;
 using UISystem.Common.Interfaces;
-using UISystem.Common.Transitions.Interfaces;
+using UISystem.Core.Transitions.Interfaces;
 
 namespace UISystem.Common.Transitions;
 public class MainElementDropTransition : IViewTransition

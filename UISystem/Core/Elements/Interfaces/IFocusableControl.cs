@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace UISystem.Core.Common.Interfaces;
+namespace UISystem.Core.Elements.Interfaces;
 public interface IFocusableControl : IFocusableUiElement<Control>
 {
 

@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace UISystem.Common.Transitions.Interfaces;
+namespace UISystem.Core.Transitions.Interfaces;
 public interface IViewTransition
 {
 

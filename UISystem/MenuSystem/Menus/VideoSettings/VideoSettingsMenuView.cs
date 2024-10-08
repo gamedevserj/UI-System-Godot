@@ -1,9 +1,7 @@
 ﻿using Godot;
-using System;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Transitions;
-using UISystem.Common.Transitions.Interfaces;
-using UISystem.Core.Common.Interfaces;
+using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Views;
@@ -18,8 +16,6 @@ public partial class VideoSettingsMenuView : SettingsMenuView
     [Export] private ButtonView saveSettingsButton;
     [Export] private ButtonView returnButton;
     [Export] private Control panel;
-
-    private IViewTransition _transition;
 
     public DropdownView WindowModeDropdown => windowModeDropdown;
     public DropdownView ResolutionDropdown => resolutionDropdown;
@@ -40,16 +36,6 @@ public partial class VideoSettingsMenuView : SettingsMenuView
                 ResolutionDropdown.ResizableControl, WindowModeDropdown.ResizableControl,
                 SaveSettingsButton.ResizableControl, ResetButton.ResizableControl },
             PanelDuration, ElementsDuration);
-    }
-
-    public override void Hide(Action onHidden, bool instant)
-    {
-        _transition.Hide(onHidden, instant);
-    }
-
-    public override void Show(Action onShown, bool instant)
-    {
-        _transition.Show(onShown, instant);
     }
 
 }

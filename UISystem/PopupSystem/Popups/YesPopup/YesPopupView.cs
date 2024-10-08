@@ -1,14 +1,14 @@
 ﻿using Godot;
-using System;
 using UISystem.Common.ElementViews;
-using UISystem.Common.Helpers;
-using UISystem.Core.Common.Interfaces;
+using UISystem.Common.Transitions;
+using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.PopupSystem.Views;
 
 namespace UISystem.PopupSystem.Popups.YesPopup;
 public partial class YesPopupView : PopupView
 {
 
+    [Export] private Control fadeObjectsContainer;
     [Export] protected ButtonView yesButton;
 
     public ButtonView YesButton => yesButton;
@@ -19,14 +19,10 @@ public partial class YesPopupView : PopupView
         _focusableElements = new IFocusableControl[] { YesButton };
     }
 
-    public override void Hide(Action onHidden, bool instant = false)
+    public override void Init()
     {
-        Fader.Hide(GetTree(), this, onHidden, instant);
-    }
-
-    public override void Show(Action onShown, bool instant = false)
-    {
-        Fader.Show(GetTree(), this, onShown, instant);
+        base.Init();
+        _transition = new FadeTransition(fadeObjectsContainer);
     }
 
 }

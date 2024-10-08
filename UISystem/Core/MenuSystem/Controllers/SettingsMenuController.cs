@@ -23,9 +23,10 @@ public abstract class SettingsMenuController<TView, TModel> : MenuController<TVi
     {
         if (_model.HasUnappliedSettings)
         {
+            SwitchFocusAvailability(false);
             _popupsManager.ShowPopup(PopupType.YesNoCancel, this, PopupMessages.SaveChanges, (result) =>
             {
-                OnReturnToPreviousMenuPopupClosed(result);
+                OnReturnToPreviousMenuPopupClosed(result, onComplete, instant);
                 onComplete?.Invoke();
             });
         }
@@ -35,17 +36,17 @@ public abstract class SettingsMenuController<TView, TModel> : MenuController<TVi
         }
     }
 
-    protected void OnReturnToPreviousMenuPopupClosed(PopupResult result)
+    protected void OnReturnToPreviousMenuPopupClosed(PopupResult result, Action onComplete = null, bool instant = false)
     {
         switch (result)
         {
             case PopupResult.No:
                 _model.DiscardChanges();
-                base.OnReturnToPreviousMenuButtonDown();
+                base.OnReturnToPreviousMenuButtonDown(onComplete, instant);
                 break;
             case PopupResult.Yes:
                 _model.SaveSettings();
-                base.OnReturnToPreviousMenuButtonDown();
+                base.OnReturnToPreviousMenuButtonDown(onComplete, instant);
                 break;
             case PopupResult.Cancel:
                 SwitchFocusAvailability(true);

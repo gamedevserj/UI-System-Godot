@@ -1,10 +1,8 @@
 ﻿using Godot;
-using System;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Transitions;
-using UISystem.Common.Transitions.Interfaces;
-using UISystem.Core.Common.Interfaces;
 using UISystem.Core.MenuSystem.Views;
+using UISystem.Core.Elements.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
 public partial class InterfaceSettingsMenuView : SettingsMenuView
@@ -17,8 +15,6 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
     [Export] private ButtonView saveSettingsButton;
     [Export] private ButtonView returnButton;
     [Export] private Control panel;
-
-    private IViewTransition _transition;
 
     public ButtonView SaveSettingsButton => saveSettingsButton;
     public ButtonView ReturnButton => returnButton;
@@ -36,16 +32,6 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
             new Control[] { ReturnButton.ResizableControl, ControllerIconsDropdown.ResizableControl,
                 SaveSettingsButton.ResizableControl, ResetButton.ResizableControl },
             PanelDuration, ElementsDuration);
-    }
-
-    public override void Hide(Action onHidden, bool instant)
-    {
-        _transition.Hide(onHidden, instant);
-    }
-
-    public override void Show(Action onShown, bool instant)
-    {
-        _transition.Show(onShown, instant);
     }
 
 }

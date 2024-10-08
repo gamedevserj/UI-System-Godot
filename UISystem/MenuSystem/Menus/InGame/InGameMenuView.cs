@@ -1,28 +1,30 @@
 using Godot;
 using System;
-using UISystem.Common.Helpers;
-using UISystem.Core.MenuSystem.Views;
+using UISystem.Common.Transitions;
+using UISystem.Core.Views;
 
 namespace UISystem.MenuSystem.Views;
-public partial class InGameMenuView : MenuView
+public partial class InGameMenuView : BaseWindowView
 {
 
     [Export] private Control fadeObjectsContainer;
 
     public override void Init()
     {
-        base.Init();
-        Fader.Init(fadeObjectsContainer);
+        _transition = new FadeTransition(fadeObjectsContainer);
     }
 
-    public override void Hide(Action onHidden, bool instant)
+    public override void Show(Action onShown, bool instant = false)
     {
-        Fader.Hide(GetTree(), fadeObjectsContainer, onHidden, instant);
+        _transition.Show(onShown, instant);
     }
-
-    public override void Show(Action onShown, bool instant)
+    public override void Hide(Action onHidden, bool instant = false)
     {
-        Fader.Show(GetTree(), fadeObjectsContainer, onShown, instant);
+        _transition.Hide(onHidden, instant);
     }
 
+    public override void SwitchFocusAwailability(bool enable)
+    {
+        
+    }
 }

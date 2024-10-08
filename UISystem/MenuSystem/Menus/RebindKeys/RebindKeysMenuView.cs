@@ -1,9 +1,7 @@
 ﻿using Godot;
-using System;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Transitions;
-using UISystem.Common.Transitions.Interfaces;
-using UISystem.Core.Common.Interfaces;
+using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Views;
@@ -24,8 +22,6 @@ public partial class RebindKeysMenuView : SettingsMenuView
     [Export] private Control moveLeftLabelResizableControl;
     [Export] private Control moveRightLabelResizableControl;
     [Export] private Control jumpLabelResizableControl;
-
-    private IViewTransition _transition;
 
     public RebindableKeyButtonView MoveLeft => moveLeft;
     public RebindableKeyButtonView MoveLeftJoystick => moveLeftJoystick;
@@ -52,16 +48,6 @@ public partial class RebindKeysMenuView : SettingsMenuView
                 moveLeftLabelResizableControl, moveRightLabelResizableControl, jumpLabelResizableControl,
                 ResetButton.ResizableControl },
             PanelDuration, ElementsDuration);
-    }
-
-    public override void Hide(Action onHidden, bool instant)
-    {
-        _transition.Hide(onHidden, instant);
-    }
-
-    public override void Show(Action onShown, bool instant)
-    {
-        _transition.Show(onShown, instant);
     }
 
 }

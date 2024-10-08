@@ -16,11 +16,9 @@ public class YesNoPopupController : PopupController<YesNoPopupView>
 
     }
 
-    public override void Init(Node popupParent)
+    protected override void SetupElements()
     {
-        base.Init(popupParent);
         _view.YesButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.Yes);
         _view.NoButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.No);
     }
-
 }

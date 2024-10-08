@@ -1,13 +1,11 @@
 using Godot;
-using System;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Transitions;
-using UISystem.Common.Transitions.Interfaces;
-using UISystem.Core.Common.Interfaces;
-using UISystem.Core.MenuSystem.Views;
+using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.Views;
 
 namespace UISystem.MenuSystem.Views;
-public partial class MainMenuView : MenuView
+public partial class MainMenuView : BaseInteractableWindow
 {
 
     private const float MainElementAnimationDuration = 0.25f;
@@ -17,8 +15,6 @@ public partial class MainMenuView : MenuView
     [Export] private ButtonView optionsButton;
     [Export] private ButtonView quitButton;
     [Export] private Control fadeObjectsContainer;
-
-    private IViewTransition _transition;
 
     public ButtonView PlayButton => playButton;
     public ButtonView OptionsButton => optionsButton;
@@ -35,16 +31,6 @@ public partial class MainMenuView : MenuView
         _transition = new MainElementDropTransition(this, fadeObjectsContainer, playButton,
             new[] { optionsButton, quitButton },
             MainElementAnimationDuration, SecondaryElementAnimationDuration);
-    }
-
-    public override void Hide(Action onHidden, bool instant)
-    {
-        _transition.Hide(onHidden, instant);
-    }
-
-    public override void Show(Action onShown, bool instant)
-    {
-        _transition.Show(onShown, instant);
     }
 
 }

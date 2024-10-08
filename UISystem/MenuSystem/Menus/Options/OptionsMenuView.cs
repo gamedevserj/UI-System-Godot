@@ -1,13 +1,11 @@
 using Godot;
-using System;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Transitions;
-using UISystem.Common.Transitions.Interfaces;
-using UISystem.Core.Common.Interfaces;
-using UISystem.Core.MenuSystem.Views;
+using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.Views;
 
 namespace UISystem.MenuSystem.Views;
-public partial class OptionsMenuView : MenuView
+public partial class OptionsMenuView : BaseInteractableWindow
 {
 
     private const float MainElementAnimationDuration = 0.25f;
@@ -19,8 +17,6 @@ public partial class OptionsMenuView : MenuView
     [Export] private ButtonView rebindKeysButton;
     [Export] private ButtonView returnButton;
     [Export] private Control fadeObjectsContainer;
-
-    private IViewTransition _transition;
 
     public ButtonView ReturnButton => returnButton;
     public ButtonView InterfaceSettingsButton => interfaceSettingsButton;
@@ -41,16 +37,6 @@ public partial class OptionsMenuView : MenuView
             new[] { ReturnButton, AudioSettingsButton, VideoSettingsButton, RebindKeysButton },
             MainElementAnimationDuration,
             SecondaryElementAnimationDuration);
-    }
-
-    public override void Hide(Action onHidden, bool instant)
-    {
-        _transition.Hide(onHidden, instant);
-    }
-
-    public override void Show(Action onShown, bool instant)
-    {
-        _transition.Show(onShown, instant);
     }
 
 }

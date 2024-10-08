@@ -1,14 +1,14 @@
 ﻿using Godot;
 using System;
-using UISystem.Core.Common.Interfaces;
 using UISystem.Core.Constants;
+using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
-using UISystem.Core.MenuSystem.Views;
+using UISystem.Core.Views;
 
 namespace UISystem.Core.MenuSystem.Controllers;
-public abstract class MenuController<TView, TModel> : IMenuController where TView : MenuView where TModel : IMenuModel
+public abstract class MenuController<TView, TModel> : IMenuController where TView : BaseWindowView where TModel : IMenuModel
 {
 
     protected TView _view;
@@ -45,17 +45,15 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
 
     public virtual void Show(Action onComplete = null, bool instant = false)
     {
-        SwitchFocusAvailability(false);
         _view.Show(() =>
         {
             onComplete?.Invoke();
-            SwitchFocusAvailability(true);
+            FocusElement();
         }, instant);
     }
 
     public virtual void Hide(MenuStackBehaviourEnum stackBehaviour, Action onComplete = null, bool instant = false)
     {
-        SwitchFocusAvailability(false);
         _view.Hide(() => onComplete?.Invoke(), instant);
     }
 
@@ -70,13 +68,10 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
         _view.SafeQueueFree();
     }
 
-    protected virtual void CreateView(Node menuParent)
+    // when showing popups
+    protected void SwitchFocusAvailability(bool enable)
     {
-        PackedScene loadedPrefab = ResourceLoader.Load<PackedScene>(_prefab);
-        _view = loadedPrefab.Instantiate() as TView;
-        _view.Init();
-        SetupElements();
-        menuParent.AddChild(_view);
+        _view.SwitchFocusAwailability(enable);
     }
 
     protected virtual void OnReturnToPreviousMenuButtonDown(Action onComplete = null, bool instant = false)
@@ -85,11 +80,17 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
             _menusManager.ReturnToPreviousMenu(onComplete, instant);
     }
 
-    protected virtual void SwitchFocusAvailability(bool enable)
+    private void CreateView(Node menuParent)
     {
-        _view.SwitchFocusAwailability(enable);
-        if (!enable) return;
+        PackedScene loadedPrefab = ResourceLoader.Load<PackedScene>(_prefab);
+        _view = loadedPrefab.Instantiate() as TView;
+        _view.Init();
+        SetupElements();
+        menuParent.AddChild(_view);
+    }
 
+    private void FocusElement()
+    {
         if (_lastSelectedElement?.IsValidElement() == true)
         {
             _lastSelectedElement.SwitchFocus(true);

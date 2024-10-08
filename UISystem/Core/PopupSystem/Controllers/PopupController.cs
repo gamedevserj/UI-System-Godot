@@ -1,7 +1,7 @@
 ﻿using Godot;
 using System;
-using UISystem.Core.Common.Interfaces;
 using UISystem.Core.Constants;
+using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Enums;
@@ -54,10 +54,8 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         _caller.CanReturnToPreviousMenu = false;
         _view.Message.Text = message;
         _onHideAction = onHideAction;
-        SwitchFocusAvailability(false);
         _view.Show(() =>
         {
-            SwitchFocusAvailability(true);
             if (_defaultSelectedElement?.IsValidElement() == true)
             {
                 _defaultSelectedElement.SwitchFocus(true);
@@ -67,7 +65,6 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
 
     public void Hide(PopupResult result, bool instant = false)
     {
-        SwitchFocusAvailability(false);
         _view.Hide(() =>
         {
             _caller.CanReturnToPreviousMenu = true;
@@ -76,23 +73,20 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         }, instant);
     }
 
-    private void SwitchFocusAvailability(bool enable)
-    {
-        _view.SwitchFocusAwailability(enable);
-    }
-
-    private void CreateView(Node menuParent)
+    private void CreateView(Node parent)
     {
         PackedScene obj = ResourceLoader.Load<PackedScene>(_prefab);
         _view = obj.Instantiate() as T;
         _view.Init();
-        menuParent.AddChild(_view);
-        _view.Modulate = new Color(_view.Modulate.R, _view.Modulate.G, _view.Modulate.B, 0);
+        SetupElements();
+        parent.AddChild(_view);
     }
 
     private void DestroyView()
     {
         _view.SafeQueueFree();
     }
+
+    protected abstract void SetupElements();
 
 }

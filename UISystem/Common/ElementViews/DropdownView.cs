@@ -2,7 +2,7 @@
 using UISystem.Common.Enums;
 using UISystem.Common.HoverSettings;
 using UISystem.Common.Interfaces;
-using UISystem.Core.Common.Interfaces;
+using UISystem.Core.Elements.Interfaces;
 
 namespace UISystem.Common.ElementViews;
 public partial class DropdownView : OptionButton, IFocusableControl
