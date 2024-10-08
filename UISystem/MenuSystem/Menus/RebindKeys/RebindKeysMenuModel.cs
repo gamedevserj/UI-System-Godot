@@ -1,7 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 using System;
-using UISystem.Common.Constants;
+using UISystem.Core.Constants;
 using UISystem.Core.MenuSystem.Interfaces;
 
 namespace UISystem.MenuSystem.Models;

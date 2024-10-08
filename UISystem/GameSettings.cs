@@ -1,9 +1,9 @@
 ﻿using Godot;
 using System;
 using System.Linq;
-using UISystem.Common.Constants;
 using UISystem.Common.Enums;
 using UISystem.Constants;
+using UISystem.Core.Constants;
 using static Godot.DisplayServer;
 
 namespace UISystem;

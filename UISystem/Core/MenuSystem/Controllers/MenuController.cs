@@ -1,7 +1,7 @@
 ﻿using Godot;
 using System;
-using UISystem.Common.Constants;
 using UISystem.Core.Common.Interfaces;
+using UISystem.Core.Constants;
 using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
