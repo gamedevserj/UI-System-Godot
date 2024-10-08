@@ -119,7 +119,6 @@ offset_left = -245.0
 offset_top = -50.0
 offset_right = 245.0
 offset_bottom = 50.0
-text = "1920x1080"
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Container/Panel/Border/Color"]
 layout_mode = 1
