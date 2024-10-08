@@ -42,11 +42,13 @@ vertical_alignment = 1
 [node name="ButtonsContainer" type="VBoxContainer" parent="Container"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.091
-anchor_top = 0.461
-anchor_right = 0.482208
-anchor_bottom = 0.897
-offset_left = 0.167992
+anchor_left = 0.0910583
+anchor_top = 0.530556
+anchor_right = 0.404
+anchor_bottom = 0.882
+offset_left = 0.167999
+offset_right = -0.680054
+offset_bottom = 0.439941
 grow_horizontal = 2
 theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
@@ -54,17 +56,47 @@ metadata/_edit_use_anchors_ = true
 [node name="PlayButton" parent="Container/ButtonsContainer" instance=ExtResource("2_ox1c7")]
 layout_mode = 2
 
+[node name="ResizableControl" parent="Container/ButtonsContainer/PlayButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Label" parent="Container/ButtonsContainer/PlayButton/ResizableControl/TextClipper" index="0"]
 text = "PLAY"
 
 [node name="OptionsButton" parent="Container/ButtonsContainer" instance=ExtResource("2_ox1c7")]
 layout_mode = 2
 
+[node name="ResizableControl" parent="Container/ButtonsContainer/OptionsButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Label" parent="Container/ButtonsContainer/OptionsButton/ResizableControl/TextClipper" index="0"]
 text = "OPTIONS"
 
 [node name="QuitButton" parent="Container/ButtonsContainer" instance=ExtResource("2_ox1c7")]
 layout_mode = 2
+
+[node name="ResizableControl" parent="Container/ButtonsContainer/QuitButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" parent="Container/ButtonsContainer/QuitButton/ResizableControl/TextClipper" index="0"]
 text = "QUIT"

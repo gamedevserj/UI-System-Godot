@@ -6,9 +6,9 @@
 script = ExtResource("1_iv4uf")
 horizontalDirection = 1
 verticalDirection = 1
-changeSizeHover = Vector2(8, 8)
-changeSizeFocus = Vector2(16, 16)
-changeSizeFocusHover = Vector2(24, 24)
+changeSizeHover = Vector2(10, 10)
+changeSizeFocus = Vector2(20, 20)
+changeSizeFocusHover = Vector2(26, 26)
 duration = 1.0
 resetDuration = 0.25
 ease = 1

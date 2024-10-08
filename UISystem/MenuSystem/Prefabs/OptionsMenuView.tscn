@@ -45,9 +45,11 @@ vertical_alignment = 1
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.0503472
-anchor_top = 0.177469
-anchor_right = 0.440972
+anchor_top = 0.31
+anchor_right = 0.441
 anchor_bottom = 0.902778
+offset_top = -0.133484
+offset_right = -0.0534058
 grow_horizontal = 2
 theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
@@ -55,11 +57,31 @@ metadata/_edit_use_anchors_ = true
 [node name="InterfaceSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
+[node name="ResizableControl" parent="Container/VBoxContainer/InterfaceSettingsButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Label" parent="Container/VBoxContainer/InterfaceSettingsButton/ResizableControl/TextClipper" index="0"]
 text = "INTERFACE"
 
 [node name="AudioSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
+
+[node name="ResizableControl" parent="Container/VBoxContainer/AudioSettingsButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" parent="Container/VBoxContainer/AudioSettingsButton/ResizableControl/TextClipper" index="0"]
 text = "AUDIO"
@@ -67,17 +89,47 @@ text = "AUDIO"
 [node name="VideoSettingsButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
+[node name="ResizableControl" parent="Container/VBoxContainer/VideoSettingsButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Label" parent="Container/VBoxContainer/VideoSettingsButton/ResizableControl/TextClipper" index="0"]
 text = "VIDEO"
 
 [node name="RebindKeysButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
 
+[node name="ResizableControl" parent="Container/VBoxContainer/RebindKeysButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Label" parent="Container/VBoxContainer/RebindKeysButton/ResizableControl/TextClipper" index="0"]
 text = "CONTROLS"
 
 [node name="ReturnButton" parent="Container/VBoxContainer" instance=ExtResource("2_arv6h")]
 layout_mode = 2
+
+[node name="ResizableControl" parent="Container/VBoxContainer/ReturnButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" parent="Container/VBoxContainer/ReturnButton/ResizableControl/TextClipper" index="0"]
 text = "RETURN"

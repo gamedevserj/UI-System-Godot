@@ -41,10 +41,13 @@ vertical_alignment = 1
 [node name="VBoxContainer" type="VBoxContainer" parent="Container"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.0703125
-anchor_top = 0.442901
-anchor_right = 0.460938
-anchor_bottom = 0.871914
+anchor_left = 0.0910583
+anchor_top = 0.530556
+anchor_right = 0.404
+anchor_bottom = 0.882
+offset_left = 0.167999
+offset_right = -0.680054
+offset_bottom = 0.439941
 grow_horizontal = 2
 theme_override_constants/separation = 10
 metadata/_edit_use_anchors_ = true
@@ -52,17 +55,47 @@ metadata/_edit_use_anchors_ = true
 [node name="ResumeButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
 
+[node name="ResizableControl" parent="Container/VBoxContainer/ResumeButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Label" parent="Container/VBoxContainer/ResumeButton/ResizableControl/TextClipper" index="0"]
 text = "RESUME"
 
 [node name="OptionsButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
 
+[node name="ResizableControl" parent="Container/VBoxContainer/OptionsButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
+
 [node name="Label" parent="Container/VBoxContainer/OptionsButton/ResizableControl/TextClipper" index="0"]
 text = "OPTIONS"
 
 [node name="ReturnToMainMenuButton" parent="Container/VBoxContainer" instance=ExtResource("2_gndws")]
 layout_mode = 2
+
+[node name="ResizableControl" parent="Container/VBoxContainer/ReturnToMainMenuButton" index="0"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = 0.0
+offset_bottom = 0.0
+grow_horizontal = 2
+grow_vertical = 2
 
 [node name="Label" parent="Container/VBoxContainer/ReturnToMainMenuButton/ResizableControl/TextClipper" index="0"]
 text = "MAIN MENU"
