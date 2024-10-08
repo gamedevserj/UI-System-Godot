@@ -1,8 +1,8 @@
 [gd_resource type="Resource" script_class="ButtonHoverSettings" load_steps=4 format=3 uid="uid://pxdlfq08bkq1"]
 
 [ext_resource type="Script" path="res://UISystem/Common/HoverSettings/ButtonHoverSettings.cs" id="1_2gyji"]
-[ext_resource type="Resource" uid="uid://cwy3443w5wlcn" path="res://UISystem/AnimationSettings/ColorHoverSettings.tres" id="1_eufcn"]
-[ext_resource type="Resource" uid="uid://3df6yhpcwabx" path="res://UISystem/AnimationSettings/OptionsButtonHoverSettings/OptionsButtonSizeHoverSettings.tres" id="2_35i6l"]
+[ext_resource type="Resource" uid="uid://cwy3443w5wlcn" path="res://UISystem/Common/ElementsHoverSettings/ColorHoverSettings.tres" id="1_eufcn"]
+[ext_resource type="Resource" uid="uid://3df6yhpcwabx" path="res://UISystem/Common/ElementsHoverSettings/OptionsButton/OptionsButtonSizeSettings.tres" id="2_35i6l"]
 
 [resource]
 script = ExtResource("1_2gyji")

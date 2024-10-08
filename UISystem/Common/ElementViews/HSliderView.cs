@@ -1,15 +1,15 @@
 ﻿using Godot;
-using System.Threading.Tasks;
 using UISystem.Common.Enums;
-using UISystem.Common.Interfaces;
 using UISystem.Common.HoverSettings;
+using UISystem.Common.Interfaces;
 
 namespace UISystem.Common.Elements;
-public partial class HSliderView : HSlider, IFocusableControl, ISizeTweenable
+public partial class HSliderView : HSlider, IFocusableControl
 {
 
-    [Export] private ColorTweenSettings hoverSettings;
+    [Export] private HSliderHoverSettings hoverSettings;
     [Export] private Control grabber;
+    [Export] private Control grabberResizableControl;
     [Export] private Control background;
     [Export] private Control fill;
     [Export] private Control resizableControl;
@@ -27,7 +27,7 @@ public partial class HSliderView : HSlider, IFocusableControl, ISizeTweenable
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
-        _hoverTweener = hoverSettings.CreateTweener(grabber);
+        _hoverTweener = hoverSettings.CreateTweener(grabberResizableControl, background, fill);
         Subscribe();
         UpdateSliderVisual();
     }
@@ -39,14 +39,6 @@ public partial class HSliderView : HSlider, IFocusableControl, ISizeTweenable
         if (hoverSettings == null) return;
         if (_isDragging)
             UpdateSliderVisual();
-    }
-
-    public async Task ResetHover()
-    {
-        _tween?.Kill();
-        _tween = GetTree().CreateTween();
-        _hoverTweener.Reset(_tween);
-        await ToSignal(_tween, Tween.SignalName.Finished);
     }
 
     private void Subscribe()

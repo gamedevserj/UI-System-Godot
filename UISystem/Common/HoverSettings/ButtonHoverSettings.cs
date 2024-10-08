@@ -20,28 +20,32 @@ public partial class ButtonHoverSettings : Resource
     private class SizeAndColorTweenerFacade : ITweener
     {
 
-        private readonly ITweener _sizeTweener;
-        private readonly ITweener _colorTweener;
+        private readonly ITweener[] _tweeners;
 
         public SizeAndColorTweenerFacade(Control sizeTarget, Control colorTarget, SizeTweenSettings sizeSettings, 
             ColorTweenSettings colorSettings, bool sizeParallel, bool colorParallel)
         {
-            _sizeTweener = sizeSettings?.CreateTweener(sizeTarget, sizeParallel);
-            _colorTweener = colorSettings?.CreateTweener(colorTarget, colorParallel);
+            _tweeners = new ITweener[] {
+                sizeSettings?.CreateTweener(sizeTarget, sizeParallel),
+                colorSettings?.CreateTweener(colorTarget, colorParallel),
+            };
         }
 
         public void Reset(Tween tween)
         {
-            _sizeTweener?.Reset(tween);
-            _colorTweener?.Reset(tween);
+            for (int i = 0; i < _tweeners.Length; i++)
+            {
+                _tweeners[i]?.Reset(tween);
+            }
         }
 
         public void Tween(Tween tween, ControlDrawMode mode)
         {
-            _sizeTweener?.Tween(tween, mode);
-            _colorTweener?.Tween(tween, mode);
+            for (int i = 0; i < _tweeners.Length; i++)
+            {
+                _tweeners[i]?.Tween(tween, mode);
+            }
         }
-
     }
 
 }
