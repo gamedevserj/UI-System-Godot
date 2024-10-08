@@ -55,7 +55,7 @@ public class MainElementDropTransition : IViewTransition
             return;
         }
 
-        await _mainElement.ResetHover();
+        await _mainElement.ResetHover(); // is for resetting the first element after it calls to change menu, i.e. pressing "interface" button to go to the interface menu
 
         Tween tween = SceneTree.CreateTween();
         tween.SetPauseMode(Tween.TweenPauseMode.Process);
