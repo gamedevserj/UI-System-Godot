@@ -15,7 +15,7 @@ namespace UISystem.MenuSystem.Controllers;
 public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
 {
 
-    public override MenuType MenuType => MenuType.Pause;
+    public override int Menu => MenuType.Pause;
 
     private readonly PopupsManager _popupsManager;
     private readonly ScreenFadeManager _screenFadeManager;

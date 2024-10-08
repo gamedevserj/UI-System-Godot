@@ -10,7 +10,7 @@ public partial class MenusManager : Control
 
     private IMenuController _currentController;
     private Stack<IMenuController> _previousMenus = new();
-    private Dictionary<MenuType, IMenuController> _controllers = new();
+    private Dictionary<int, IMenuController> _controllers = new();
 
     public override void _Input(InputEvent @event)
     {
@@ -22,10 +22,10 @@ public partial class MenusManager : Control
     /// </summary>
     /// <param name="menuType"></param>
     /// <param name="stackBehaviour"></param>
-    public void ShowMenu(MenuType menuType, MenuStackBehaviourEnum stackBehaviour,
+    public void ShowMenu(int menuType, MenuStackBehaviourEnum stackBehaviour,
         Action onNewMenuShown = null, bool instant = false)
     {
-        if (_currentController?.MenuType == menuType)
+        if (_currentController?.Menu == menuType)
             return;
 
         if (_currentController != null)
@@ -45,11 +45,11 @@ public partial class MenusManager : Control
     {
         if (_previousMenus.Count > 0)
         {
-            ShowMenu(_previousMenus.Peek().MenuType, MenuStackBehaviourEnum.RemoveFromStack, onComplete, instant);
+            ShowMenu(_previousMenus.Peek().Menu, MenuStackBehaviourEnum.RemoveFromStack, onComplete, instant);
         }
     }
 
-    private void ChangeMenu(MenuType menuType, MenuStackBehaviourEnum stackBehaviour,
+    private void ChangeMenu(int menuType, MenuStackBehaviourEnum stackBehaviour,
         Action onNewMenuShown = null, bool instant = false)
     {
         IMenuController controller = _controllers[menuType];

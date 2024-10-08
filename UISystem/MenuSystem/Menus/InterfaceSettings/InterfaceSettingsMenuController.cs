@@ -1,13 +1,12 @@
 ﻿using System;
 using UISystem.Common.Enums;
+using UISystem.Core.Common.Structs;
 using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Controllers;
-using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.PopupSystem;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
-using UISystem.Core.Common.Structs;
 
 namespace UISystem.MenuSystem.Controllers;
 public class InterfaceSettingsMenuController : SettingsMenuController<InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
@@ -15,7 +14,7 @@ public class InterfaceSettingsMenuController : SettingsMenuController<InterfaceS
 
     private readonly int _controllerIconsNumber;
 
-    public override MenuType MenuType => MenuType.InterfaceSettings;
+    public override int Menu => MenuType.InterfaceSettings;
 
 
     public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, MenusManager menusManager, PopupsManager popupsManager) : 

@@ -1,7 +1,7 @@
 ﻿using Godot;
-using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem;
+using UISystem.MenuSystem;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Controllers;
 using UISystem.MenuSystem.Models;
@@ -29,11 +29,11 @@ public partial class MenusManager : Control
 
         for (int i = 0; i < controllers.Length; i++)
         {
-            _controllers.Add(controllers[i].MenuType, controllers[i]);
+            _controllers.Add(controllers[i].Menu, controllers[i]);
         }
     }
 
-    private static string GetMenuView(MenuType menuType)
+    private static string GetMenuView(int menuType)
     {
         return MenuViewsPaths.Paths[menuType];
     }

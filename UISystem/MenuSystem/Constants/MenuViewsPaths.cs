@@ -1,5 +1,4 @@
 ﻿using System.Collections.Generic;
-using UISystem.Core.MenuSystem.Enums;
 
 namespace UISystem.MenuSystem.Constants;
 internal partial class MenuViewsPaths
@@ -16,7 +15,7 @@ internal partial class MenuViewsPaths
     private const string RebindKeys = Folder + "RebindKeysMenuView.tscn";
     private const string InterfaceSettings = Folder + "InterfaceSettingsMenuView.tscn";
 
-    public static readonly Dictionary<MenuType, string> Paths = new()
+    public static readonly Dictionary<int, string> Paths = new()
     {
         { MenuType.Main, Main },
         { MenuType.InGame, InGame },

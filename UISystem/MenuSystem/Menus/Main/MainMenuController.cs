@@ -14,7 +14,7 @@ namespace UISystem.MenuSystem.Controllers;
 public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
 {
 
-    public override MenuType MenuType => MenuType.Main;
+    public override int Menu => MenuType.Main;
 
     private readonly SceneTree _sceneTree;
     private readonly PopupsManager _popupsManager;

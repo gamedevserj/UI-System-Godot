@@ -5,7 +5,6 @@ using UISystem.Constants;
 using UISystem.Core.Common.Interfaces;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Controllers;
-using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.PopupSystem;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
@@ -14,7 +13,7 @@ namespace UISystem.MenuSystem.Controllers;
 public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuView, RebindKeysMenuModel>
 {
 
-    public override MenuType MenuType => MenuType.RebindKeys;
+    public override int Menu => MenuType.RebindKeys;
 
     public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, MenusManager menusManager,
         PopupsManager popupsManager) : base(prefab, model, menusManager, popupsManager)

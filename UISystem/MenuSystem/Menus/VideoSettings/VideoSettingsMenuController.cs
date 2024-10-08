@@ -7,11 +7,12 @@ using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.PopupSystem;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
+using UISystem.MenuSystem;
 
 namespace UISystem.MenuSystem.Controllers;
 public class VideoSettingsMenuController : SettingsMenuController<VideoSettingsMenuView, VideoSettingsMenuModel>
 {
-    public override MenuType MenuType => MenuType.VideoSettings;
+    public override int Menu => MenuType.VideoSettings;
 
     public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, MenusManager menusManager, PopupsManager popupsManager) 
         : base(prefab, model, menusManager, popupsManager)

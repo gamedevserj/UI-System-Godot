@@ -8,7 +8,7 @@ namespace UISystem.MenuSystem.Controllers;
 public partial class OptionsMenuController : MenuController<OptionsMenuView, OptionsMenuModel>
 {
 
-    public override MenuType MenuType => MenuType.Options;
+    public override int Menu => MenuType.Options;
 
     public OptionsMenuController(string prefab, OptionsMenuModel model, MenusManager menusManager) 
         : base(prefab, model, menusManager)

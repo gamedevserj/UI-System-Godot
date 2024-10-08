@@ -10,7 +10,7 @@ namespace UISystem.MenuSystem.Controllers;
 public class InGameMenuController : MenuController<InGameMenuView, InGameMenuModel>
 {
 
-    public override MenuType MenuType => MenuType.InGame;
+    public override int Menu => MenuType.InGame;
 
     public InGameMenuController(string prefab, InGameMenuModel model, MenusManager menusManager) : base(prefab, model, menusManager)
     {
