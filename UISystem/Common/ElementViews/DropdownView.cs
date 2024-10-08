@@ -1,11 +1,10 @@
 ﻿using Godot;
-using System.Threading.Tasks;
 using UISystem.Common.Enums;
-using UISystem.Common.Interfaces;
 using UISystem.Common.HoverSettings;
+using UISystem.Common.Interfaces;
 
 namespace UISystem.Common.Elements;
-public partial class DropdownView : OptionButton, IFocusableControl, ISizeTweenable
+public partial class DropdownView : OptionButton, IFocusableControl
 {
 
     [Export] private ButtonHoverSettings buttonHoverSettings;
@@ -30,14 +29,6 @@ public partial class DropdownView : OptionButton, IFocusableControl, ISizeTweena
     }
 
     public override void _ExitTree() => Unsubscribe();
-
-    public async Task ResetHover()
-    {
-        _tween?.Kill();
-        _tween = GetTree().CreateTween();
-        _hoverTweener.Reset(_tween);
-        await ToSignal(_tween, Tween.SignalName.Finished);
-    }
 
     private void Subscribe()
     {
