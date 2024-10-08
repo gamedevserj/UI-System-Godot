@@ -342,7 +342,9 @@ anchors_preset = -1
 
 [node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton/ResizableControl/ContentClipper" index="0"]
 offset_left = -195.0
+offset_top = -39.5
 offset_right = 195.0
+offset_bottom = 40.5
 pivot_offset = Vector2(125, 40)
 text = "RETURN"
 
@@ -363,7 +365,9 @@ anchors_preset = -1
 
 [node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/SaveSettingsButton/ResizableControl/ContentClipper" index="0"]
 offset_left = -195.0
+offset_top = -39.5
 offset_right = 195.0
+offset_bottom = 40.5
 text = "SAVE"
 
 [node name="ResetToDefaultButton" parent="Container/Panel/PanelBorder/Color/ButtonsContainer" instance=ExtResource("5_l4qqc")]
@@ -383,7 +387,9 @@ anchors_preset = -1
 
 [node name="Label" parent="Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl/ContentClipper" index="0"]
 offset_left = -195.0
+offset_top = -39.5
 offset_right = 195.0
+offset_bottom = 40.5
 text = "RESET"
 
 [editable path="Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton"]
