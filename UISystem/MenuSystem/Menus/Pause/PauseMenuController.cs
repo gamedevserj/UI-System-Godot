@@ -2,11 +2,13 @@
 using System;
 using UISystem.Common.Constants;
 using UISystem.Constants;
-using UISystem.MenuSystem.Enums;
+using UISystem.Core.MenuSystem;
+using UISystem.Core.MenuSystem.Controllers;
+using UISystem.Core.MenuSystem.Enums;
+using UISystem.Core.PopupSystem;
+using UISystem.Core.PopupSystem.Enums;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
-using UISystem.PopupSystem;
-using UISystem.PopupSystem.Enums;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;

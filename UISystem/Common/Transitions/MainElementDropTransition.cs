@@ -1,12 +1,11 @@
 ﻿using Godot;
-using GodotExtensions;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Transitions.Interfaces;
-using UISystem.Extensions;
+using UISystem.Core.Extensions;
 
 namespace UISystem.Common.Transitions;
 public class MainElementDropTransition : IViewTransition

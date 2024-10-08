@@ -1,7 +1,9 @@
-﻿using UISystem.MenuSystem.Enums;
+﻿using UISystem.Core.MenuSystem;
+using UISystem.Core.MenuSystem.Controllers;
+using UISystem.Core.MenuSystem.Enums;
+using UISystem.Core.PopupSystem;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
-using UISystem.PopupSystem;
 
 namespace UISystem.MenuSystem.Controllers;
 public class AudioSettingsMenuController : SettingsMenuController<AudioSettingsMenuView, AudioSettingsMenuModel>

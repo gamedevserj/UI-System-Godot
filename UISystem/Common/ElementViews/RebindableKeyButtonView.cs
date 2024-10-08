@@ -1,8 +1,8 @@
 ﻿using Godot;
-using UISystem.Common.Interfaces;
+using UISystem.Core.Common.ElementViews;
 
-namespace UISystem.Common.Elements;
-public partial class RebindableKeyButtonView : ButtonView, IFocusableControl
+namespace UISystem.Common.ElementViews;
+public partial class RebindableKeyButtonView : ButtonView
 {
 
     [Export] private TextureRect textureRect;

@@ -1,6 +1,8 @@
 ﻿using Godot;
 using UISystem.Common.Constants;
-using UISystem.MenuSystem.Enums;
+using UISystem.Core.MenuSystem;
+using UISystem.Core.MenuSystem.Controllers;
+using UISystem.Core.MenuSystem.Enums;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 

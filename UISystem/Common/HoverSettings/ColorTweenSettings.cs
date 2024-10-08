@@ -1,6 +1,6 @@
 ﻿using Godot;
 using UISystem.Common.Interfaces;
-using UISystem.Extensions;
+using UISystem.Core.Extensions;
 
 namespace UISystem.Common.HoverSettings;
 [GlobalClass]

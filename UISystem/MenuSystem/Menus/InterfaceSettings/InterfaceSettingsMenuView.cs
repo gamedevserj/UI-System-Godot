@@ -1,9 +1,10 @@
 ﻿using Godot;
 using System;
-using UISystem.Common.Elements;
-using UISystem.Common.Interfaces;
+using UISystem.Core.Common.ElementViews;
 using UISystem.Common.Transitions;
 using UISystem.Common.Transitions.Interfaces;
+using UISystem.Core.MenuSystem.Views;
+using UISystem.Core.Common.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
 public partial class InterfaceSettingsMenuView : SettingsMenuView

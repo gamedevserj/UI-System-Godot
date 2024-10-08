@@ -1,10 +1,9 @@
 ﻿using Godot;
-using GodotExtensions;
 using System;
 using System.Threading.Tasks;
 using UISystem.Common.Structs;
 using UISystem.Common.Transitions.Interfaces;
-using UISystem.Extensions;
+using UISystem.Core.Extensions;
 
 namespace UISystem.Common.Transitions;
 public class PanelSizeTransition : IViewTransition

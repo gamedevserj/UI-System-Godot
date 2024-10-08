@@ -1,6 +1,6 @@
 ﻿using System;
 using UISystem.Common.Helpers;
-using UISystem.PopupSystem.Views;
+using UISystem.Core.PopupSystem.Views;
 
 namespace UISystem.PopupSystem.Popups.YesPopup;
 public partial class YesPopupView : PopupView

@@ -1,8 +1,8 @@
 [gd_scene load_steps=7 format=3 uid="uid://cv5bjtd0iw8pd"]
 
 [ext_resource type="Script" path="res://UISystem/UiInstaller.cs" id="1_rgp7s"]
-[ext_resource type="Script" path="res://UISystem/MenuSystem/MenusManager.cs" id="2_kes4k"]
-[ext_resource type="Script" path="res://UISystem/PopupSystem/PopupsManager.cs" id="3_7s7bm"]
+[ext_resource type="Script" path="res://UISystem/Core/MenuSystem/MenusManager.cs" id="2_s2qqy"]
+[ext_resource type="Script" path="res://UISystem/Core/PopupSystem/PopupsManager.cs" id="3_l8ydi"]
 [ext_resource type="Script" path="res://UISystem/ScreenFade/ScreenFadeManager.cs" id="4_mlvp7"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_w1hrq"]
@@ -42,7 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("2_kes4k")
+script = ExtResource("2_s2qqy")
 
 [node name="PopupsManager" type="Control" parent="CanvasLayer"]
 z_index = 90
@@ -53,7 +53,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_7s7bm")
+script = ExtResource("3_l8ydi")
 
 [node name="ScreenFadeManager" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(0, 0, 0, 0)

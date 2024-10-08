@@ -1,5 +1,7 @@
 ﻿using Godot;
-using UISystem.PopupSystem.Enums;
+using UISystem.Core.PopupSystem;
+using UISystem.Core.PopupSystem.Controllers;
+using UISystem.Core.PopupSystem.Enums;
 using UISystem.PopupSystem.Views;
 
 namespace UISystem.PopupSystem.Controllers;

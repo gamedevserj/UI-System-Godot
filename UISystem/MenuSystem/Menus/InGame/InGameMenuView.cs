@@ -1,6 +1,7 @@
 using Godot;
 using System;
 using UISystem.Common.Helpers;
+using UISystem.Core.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Views;
 public partial class InGameMenuView : MenuView

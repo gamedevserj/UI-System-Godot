@@ -2,7 +2,7 @@
 using UISystem.Common.Enums;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Structs;
-using UISystem.Extensions;
+using UISystem.Core.Extensions;
 
 namespace UISystem.Common.HoverSettings;
 [GlobalClass]

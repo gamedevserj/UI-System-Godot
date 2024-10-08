@@ -1,12 +1,14 @@
 ﻿using Godot;
 using UISystem.Common.Constants;
-using UISystem.Common.Elements;
-using UISystem.Common.Interfaces;
+using UISystem.Common.ElementViews;
 using UISystem.Constants;
-using UISystem.MenuSystem.Enums;
+using UISystem.Core.Common.Interfaces;
+using UISystem.Core.MenuSystem;
+using UISystem.Core.MenuSystem.Controllers;
+using UISystem.Core.MenuSystem.Enums;
+using UISystem.Core.PopupSystem;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
-using UISystem.PopupSystem;
 
 namespace UISystem.MenuSystem.Controllers;
 public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuView, RebindKeysMenuModel>

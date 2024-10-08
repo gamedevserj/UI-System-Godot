@@ -1,8 +1,8 @@
 ﻿using System.Collections.Generic;
-using UISystem.MenuSystem.Enums;
+using UISystem.Core.MenuSystem.Enums;
 
 namespace UISystem.MenuSystem.Constants;
-internal static class MenuViewsPaths
+internal partial class MenuViewsPaths
 {
 
     private const string Folder = "res://UISystem/MenuSystem/Prefabs/";

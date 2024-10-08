@@ -2,8 +2,7 @@
 using Godot.Collections;
 using System;
 using UISystem.Common.Constants;
-using UISystem.MenuSystem.Interfaces;
-using UISystem.PopupSystem.Enums;
+using UISystem.Core.MenuSystem.Interfaces;
 
 namespace UISystem.MenuSystem.Models;
 public class RebindKeysMenuModel : ISettingsMenuModel

@@ -2,9 +2,10 @@
 using UISystem.Common.Enums;
 using UISystem.Common.HoverSettings;
 using UISystem.Common.Interfaces;
+using UISystem.Core.Common.Interfaces;
 
-namespace UISystem.Common.Elements;
-public partial class HSliderView : HSlider, IFocusableControl
+namespace UISystem.Core.Common.ElementViews;
+public partial class HSliderView
 {
 
     [Export] private HSliderHoverSettings hoverSettings;

@@ -1,0 +1,7 @@
+﻿using Godot;
+using UISystem.Core.Common.Interfaces;
+
+namespace UISystem.Core.Common.ElementViews;
+public partial class HSliderView : HSlider, IFocusableControl
+{
+}

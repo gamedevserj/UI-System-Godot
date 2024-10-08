@@ -1,5 +1,5 @@
 ﻿using System.Collections.Generic;
-using UISystem.PopupSystem.Enums;
+using UISystem.Core.PopupSystem.Enums;
 
 namespace UISystem.PopupSystem.Constants;
 public static class PopupViewsPaths
