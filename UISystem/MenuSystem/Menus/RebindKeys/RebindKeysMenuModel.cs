@@ -21,7 +21,7 @@ public class RebindKeysMenuModel : ISettingsMenuModel
     public RebindKeysMenuModel(GameSettings settings)
     {
         _settings = settings;
-    }    
+    }
 
     public void ResetToDefault()
     {
@@ -111,7 +111,7 @@ public class RebindKeysMenuModel : ISettingsMenuModel
     {
         bool result = true;
         var eventToCheck = currentEvents[_currentlyRebindingEventIndex];
-        
+
         for (int i = 0; i < currentEvents.Count; i++)
         {
             if (key.IsMatch(eventToCheck)) // the same key that was before rebinding

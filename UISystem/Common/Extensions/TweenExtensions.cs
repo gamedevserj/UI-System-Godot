@@ -3,7 +3,7 @@ using UISystem.Common.Enums;
 using UISystem.Common.Structs;
 using UISystem.Constants;
 
-namespace UISystem.Core.Extensions;
+namespace UISystem.Common.Extensions;
 public static class TweenExtensions
 {
 

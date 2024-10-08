@@ -11,7 +11,7 @@ public class YesPopupController : PopupController<YesPopupView>
     public override int Popup => PopupType.Yes;
     public override PopupResult PressedReturnPopupResult => PopupResult.Yes;
 
-    public YesPopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree) 
+    public YesPopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree)
         : base(prefab, popupsManager, sceneTree)
     {
     }

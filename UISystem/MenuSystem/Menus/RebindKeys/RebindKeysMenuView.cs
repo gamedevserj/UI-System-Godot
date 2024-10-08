@@ -31,14 +31,14 @@ public partial class RebindKeysMenuView : SettingsMenuView
     public RebindableKeyButtonView MoveLeft => moveLeft;
     public RebindableKeyButtonView MoveLeftJoystick => moveLeftJoystick;
     public RebindableKeyButtonView MoveRight => moveRight;
-    public RebindableKeyButtonView MoveRightJoystick=> moveRightJoystick;
+    public RebindableKeyButtonView MoveRightJoystick => moveRightJoystick;
     public RebindableKeyButtonView Jump => jump;
     public RebindableKeyButtonView JumpJoystick => jumpJoystick;
     public ButtonView ReturnButton => returnButton;
 
     protected override void PopulateFocusableElements()
     {
-        _focusableElements = new IFocusableControl[] 
+        _focusableElements = new IFocusableControl[]
         { MoveLeft, MoveLeftJoystick, MoveRight, MoveRightJoystick, Jump, JumpJoystick, ResetButton, ReturnButton };
     }
 
@@ -46,7 +46,7 @@ public partial class RebindKeysMenuView : SettingsMenuView
     {
         base.Init();
         _transition = new PanelSizeTransition(this, fadeObjectsContainer, panel,
-            new Control[] { returnButton.ResizableControl, 
+            new Control[] { returnButton.ResizableControl,
                 moveLeft.ResizableControl, moveLeftJoystick.ResizableControl,
                 moveRight.ResizableControl, moveRightJoystick.ResizableControl,
                 jump.ResizableControl, jumpJoystick.ResizableControl,

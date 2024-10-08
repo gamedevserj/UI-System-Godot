@@ -30,7 +30,7 @@ public partial class OptionsMenuView : MenuView
 
     protected override void PopulateFocusableElements()
     {
-        _focusableElements = new IFocusableControl[] { ReturnButton, AudioSettingsButton, VideoSettingsButton, 
+        _focusableElements = new IFocusableControl[] { ReturnButton, AudioSettingsButton, VideoSettingsButton,
             RebindKeysButton, InterfaceSettingsButton };
     }
 
@@ -38,7 +38,7 @@ public partial class OptionsMenuView : MenuView
     {
         base.Init();
         _transition = new MainElementDropTransition(this, fadeObjectsContainer, InterfaceSettingsButton,
-            new[] { ReturnButton, AudioSettingsButton, VideoSettingsButton, RebindKeysButton }, 
+            new[] { ReturnButton, AudioSettingsButton, VideoSettingsButton, RebindKeysButton },
             MainElementAnimationDuration,
             SecondaryElementAnimationDuration);
     }

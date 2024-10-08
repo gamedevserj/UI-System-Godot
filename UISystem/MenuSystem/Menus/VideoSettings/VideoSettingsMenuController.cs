@@ -1,23 +1,21 @@
 ﻿using System.Text.RegularExpressions;
-using UISystem.Core.Common.Structs;
-using UISystem.Core.Extensions;
+using UISystem.Common.Extensions;
+using UISystem.Common.Structs;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Controllers;
-using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.PopupSystem;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
-using UISystem.MenuSystem;
 
 namespace UISystem.MenuSystem.Controllers;
 public class VideoSettingsMenuController : SettingsMenuController<VideoSettingsMenuView, VideoSettingsMenuModel>
 {
     public override int Menu => MenuType.VideoSettings;
 
-    public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, MenusManager menusManager, PopupsManager popupsManager) 
+    public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, MenusManager menusManager, PopupsManager popupsManager)
         : base(prefab, model, menusManager, popupsManager)
     {
-        
+
     }
 
     protected override void SetupElements()
@@ -57,7 +55,7 @@ public class VideoSettingsMenuController : SettingsMenuController<VideoSettingsM
         {
             items[i] = new OptionButtonItem(resolutionNames[i], i);
         }
-        
+
         _view.ResolutionDropdown.AddMultipleItems(items);
         _view.ResolutionDropdown.Select(_model.CurrentResolutionIndex);
         _view.ResolutionDropdown.ItemSelected += OnResolutionDropdownSelect;

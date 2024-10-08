@@ -16,11 +16,12 @@ public partial class ScreenFadeManager : TextureRect
         _isFading = true;
         MouseFilter = MouseFilterEnum.Stop;
 
-        Fader.Show(GetTree(), this, ()=>
+        Fader.Show(GetTree(), this, () =>
         {
             onFadeOutComplete?.Invoke();
 
-            Fader.Hide(GetTree(), this, () => {
+            Fader.Hide(GetTree(), this, () =>
+            {
                 _isFading = false;
                 MouseFilter = MouseFilterEnum.Ignore;
             });

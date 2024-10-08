@@ -10,7 +10,7 @@ public partial class OptionsMenuController : MenuController<OptionsMenuView, Opt
 
     public override int Menu => MenuType.Options;
 
-    public OptionsMenuController(string prefab, OptionsMenuModel model, MenusManager menusManager) 
+    public OptionsMenuController(string prefab, OptionsMenuModel model, MenusManager menusManager)
         : base(prefab, model, menusManager)
     {
     }

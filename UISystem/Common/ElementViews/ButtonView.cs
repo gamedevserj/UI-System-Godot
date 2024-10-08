@@ -23,7 +23,7 @@ public partial class ButtonView : ISizeTweenable
         if (buttonHoverSettings == null) return;
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
-        
+
         _hoverTweener = buttonHoverSettings.CreateTweener(resizableControl, border);
         Subscribe();
     }

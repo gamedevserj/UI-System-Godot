@@ -83,4 +83,4 @@ public partial class MenusManager : Control
         }, instant);
     }
 
-} 
+}

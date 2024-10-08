@@ -10,10 +10,10 @@ public partial class ButtonHoverSettings : Resource
     [Export] private SizeTweenSettings sizeChangeSettings;
     [Export] private ColorTweenSettings colorChangeSettings;
 
-    public ITweener CreateTweener(Control sizeTarget, Control colorTarget, bool sizeParallel = true, 
+    public ITweener CreateTweener(Control sizeTarget, Control colorTarget, bool sizeParallel = true,
         bool colorParallel = true)
     {
-        return new SizeAndColorTweenerFacade(sizeTarget, colorTarget, sizeChangeSettings, colorChangeSettings, 
+        return new SizeAndColorTweenerFacade(sizeTarget, colorTarget, sizeChangeSettings, colorChangeSettings,
             sizeParallel, colorParallel);
     }
 
@@ -22,7 +22,7 @@ public partial class ButtonHoverSettings : Resource
 
         private readonly ITweener[] _tweeners;
 
-        public SizeAndColorTweenerFacade(Control sizeTarget, Control colorTarget, SizeTweenSettings sizeSettings, 
+        public SizeAndColorTweenerFacade(Control sizeTarget, Control colorTarget, SizeTweenSettings sizeSettings,
             ColorTweenSettings colorSettings, bool sizeParallel, bool colorParallel)
         {
             _tweeners = new ITweener[] {

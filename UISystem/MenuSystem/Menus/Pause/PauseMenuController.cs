@@ -22,8 +22,8 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
-    public PauseMenuController(string prefab, PauseMenuModel model, MenusManager menusManager, 
-        PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
+    public PauseMenuController(string prefab, PauseMenuModel model, MenusManager menusManager,
+        PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
         : base(prefab, model, menusManager)
     {
         _popupsManager = popupsManager;
@@ -50,7 +50,7 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
 
     public override void Hide(MenuStackBehaviourEnum stackBehaviour, Action onComplete = null, bool instant = false)
     {
-        base.Hide(stackBehaviour, ()=> 
+        base.Hide(stackBehaviour, () =>
         {
             if (stackBehaviour != MenuStackBehaviourEnum.AddToStack)
                 _menuBackgroundController.HideBackground(instant);
@@ -86,17 +86,17 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
         {
             if (result == PopupResult.Yes)
             {
-                _screenFadeManager.FadeOut(() => 
+                _screenFadeManager.FadeOut(() =>
                 {
                     _menusManager.ShowMenu(MenuType.Main, MenuStackBehaviourEnum.ClearStack, null, true);
                 });
-                
+
             }
-            else if (result == PopupResult.No) 
+            else if (result == PopupResult.No)
             {
                 SwitchFocusAvailability(true);
             }
         });
-        
+
     }
 }

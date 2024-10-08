@@ -86,6 +86,6 @@ public partial class DropdownView
             return _mouseOver ? ControlDrawMode.Hover : ControlDrawMode.Normal;
     }
 
-    
+
 
 }

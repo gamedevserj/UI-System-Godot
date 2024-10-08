@@ -37,7 +37,7 @@ public abstract partial class TweenSettings<T> : Resource
             _settings = settings;
             _originalValue = originalValue;
         }
-        
+
         public void Tween(Tween tween, ControlDrawMode mode)
         {
             Tween(tween, SelectValue(mode));

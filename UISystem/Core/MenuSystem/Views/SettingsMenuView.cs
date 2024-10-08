@@ -13,12 +13,12 @@ public partial class SettingsMenuView : MenuView
 
     public override void Hide(Action onHidden, bool instant = false)
     {
-        
+
     }
 
     public override void Show(Action onShown, bool instant = false)
     {
-        
+
     }
 
 }

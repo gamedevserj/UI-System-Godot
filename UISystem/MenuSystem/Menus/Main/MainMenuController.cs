@@ -23,7 +23,7 @@ public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
     private readonly ScreenFadeManager _screenFadeManager;
 
     public MainMenuController(string prefab, MainMenuModel model, MenusManager menusManager, SceneTree sceneTree,
-        PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) : 
+        PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) :
         base(prefab, model, menusManager)
     {
         _sceneTree = sceneTree;

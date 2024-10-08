@@ -11,10 +11,10 @@ public class AudioSettingsMenuController : SettingsMenuController<AudioSettingsM
     public override int Menu => MenuType.AudioSettings;
 
     public AudioSettingsMenuController(string prefab, AudioSettingsMenuModel model, MenusManager menusManager,
-        PopupsManager popupsManager) 
+        PopupsManager popupsManager)
         : base(prefab, model, menusManager, popupsManager)
-    { 
-        
+    {
+
     }
 
     protected override void SetupElements()

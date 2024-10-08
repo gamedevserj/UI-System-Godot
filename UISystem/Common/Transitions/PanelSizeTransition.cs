@@ -1,9 +1,9 @@
 ﻿using Godot;
 using System;
 using System.Threading.Tasks;
+using UISystem.Common.Extensions;
 using UISystem.Common.Structs;
 using UISystem.Common.Transitions.Interfaces;
-using UISystem.Core.Extensions;
 
 namespace UISystem.Common.Transitions;
 public class PanelSizeTransition : IViewTransition
@@ -31,7 +31,7 @@ public class PanelSizeTransition : IViewTransition
             _sceneTree ??= _caller.GetTree();
             return _sceneTree;
         }
-    } 
+    }
 
     public PanelSizeTransition(Control caller, Control fadeObjectsContainer, Control panel, Control[] resizableControls, float panelDuration,
         float elementsDuration)

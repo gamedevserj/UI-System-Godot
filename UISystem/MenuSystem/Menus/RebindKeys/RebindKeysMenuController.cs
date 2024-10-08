@@ -18,7 +18,7 @@ public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuVie
     public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, MenusManager menusManager,
         PopupsManager popupsManager) : base(prefab, model, menusManager, popupsManager)
     {
-        
+
     }
 
     public override void HandleInputPressedWhenActive(InputEvent key)

@@ -3,9 +3,9 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using UISystem.Common.Extensions;
 using UISystem.Common.Interfaces;
 using UISystem.Common.Transitions.Interfaces;
-using UISystem.Core.Extensions;
 
 namespace UISystem.Common.Transitions;
 public class MainElementDropTransition : IViewTransition
@@ -75,7 +75,7 @@ public class MainElementDropTransition : IViewTransition
         tween.SetTrans(Tween.TransitionType.Linear);
         tween.TweenCanvasItemAlpha(false, _fadeObjectsContainer, 0, FadeDuration);
 
-        tween.Finished += ()=> onHidden?.Invoke();
+        tween.Finished += () => onHidden?.Invoke();
     }
 
     public async void Show(Action onShown, bool instant)

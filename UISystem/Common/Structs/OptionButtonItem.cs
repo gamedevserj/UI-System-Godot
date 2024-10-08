@@ -1,4 +1,4 @@
-﻿namespace UISystem.Core.Common.Structs;
+﻿namespace UISystem.Common.Structs;
 public struct OptionButtonItem
 {
     public string Label;

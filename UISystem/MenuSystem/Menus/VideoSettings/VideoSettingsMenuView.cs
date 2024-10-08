@@ -28,7 +28,7 @@ public partial class VideoSettingsMenuView : SettingsMenuView
 
     protected override void PopulateFocusableElements()
     {
-        _focusableElements = new IFocusableControl[] 
+        _focusableElements = new IFocusableControl[]
         { WindowModeDropdown, ResolutionDropdown, SaveSettingsButton, ResetButton, ReturnButton };
     }
 
@@ -36,7 +36,7 @@ public partial class VideoSettingsMenuView : SettingsMenuView
     {
         base.Init();
         _transition = new PanelSizeTransition(this, fadeObjectsContainer, panel,
-            new Control[] { ReturnButton.ResizableControl, 
+            new Control[] { ReturnButton.ResizableControl,
                 ResolutionDropdown.ResizableControl, WindowModeDropdown.ResizableControl,
                 SaveSettingsButton.ResizableControl, ResetButton.ResizableControl },
             PanelDuration, ElementsDuration);

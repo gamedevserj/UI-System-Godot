@@ -1,5 +1,4 @@
-﻿using Godot;
-using System;
+﻿using System;
 
 namespace UISystem.Core.MenuSystem.Interfaces;
 public interface IMenuView

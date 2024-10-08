@@ -35,6 +35,6 @@ public class InGameMenuController : MenuController<InGameMenuView, InGameMenuMod
 
     protected override void SetupElements()
     {
-        
+
     }
 }
