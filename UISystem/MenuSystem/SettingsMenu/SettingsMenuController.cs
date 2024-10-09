@@ -1,12 +1,13 @@
 ﻿using System;
 using UISystem.Constants;
+using UISystem.Core.MenuSystem;
+using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
-using UISystem.Core.MenuSystem.Views;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.PopupSystem.Enums;
 using UISystem.PopupSystem;
 
-namespace UISystem.Core.MenuSystem.Controllers;
+namespace UISystem.MenuSystem.SettingsMenu;
 public abstract class SettingsMenuController<TView, TModel> : MenuController<TView, TModel> where TView : SettingsMenuView where TModel : ISettingsMenuModel
 {
 

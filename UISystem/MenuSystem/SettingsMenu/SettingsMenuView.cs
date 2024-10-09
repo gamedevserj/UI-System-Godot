@@ -2,7 +2,7 @@
 using UISystem.Common.ElementViews;
 using UISystem.Core.Views;
 
-namespace UISystem.Core.MenuSystem.Views;
+namespace UISystem.MenuSystem.SettingsMenu;
 public abstract partial class SettingsMenuView : BaseInteractableWindow
 {
 

@@ -4,9 +4,9 @@ using UISystem.Constants;
 using UISystem.Core.Constants;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.MenuSystem;
-using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.PopupSystem;
 using UISystem.MenuSystem.Models;
+using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;

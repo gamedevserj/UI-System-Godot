@@ -1,15 +1,15 @@
 ﻿using Godot;
 using UISystem.Common.ElementViews;
 using UISystem.Common.Transitions;
-using UISystem.Core.MenuSystem.Views;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.MenuSystem.SettingsMenu;
 
 namespace UISystem.MenuSystem.Views;
 public partial class AudioSettingsMenuView : SettingsMenuView
 {
 
     private const float PanelDuration = 0.5f;
-    private const float ElementsDuration = 0.25f;
+    private const float ElementsDuration = 3.25f;
 
     [Export] private Control resizableControlMusic;
     [Export] private HSliderView musicSlider;

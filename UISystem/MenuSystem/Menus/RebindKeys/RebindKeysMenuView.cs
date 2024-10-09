@@ -2,7 +2,7 @@
 using UISystem.Common.ElementViews;
 using UISystem.Common.Transitions;
 using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.MenuSystem.Views;
+using UISystem.MenuSystem.SettingsMenu;
 
 namespace UISystem.MenuSystem.Views;
 public partial class RebindKeysMenuView : SettingsMenuView
