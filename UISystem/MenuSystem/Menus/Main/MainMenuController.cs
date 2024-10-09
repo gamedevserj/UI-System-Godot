@@ -6,6 +6,7 @@ using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.PopupSystem.Enums;
+using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
@@ -15,7 +16,7 @@ namespace UISystem.MenuSystem.Controllers;
 public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
 {
 
-    public override int Menu => MenuType.Main;
+    public override int Type => MenuType.Main;
 
     private readonly SceneTree _sceneTree;
     private readonly PopupsManager _popupsManager;

@@ -3,6 +3,7 @@ using UISystem.Common.Extensions;
 using UISystem.Common.Structs;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
+using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
@@ -10,7 +11,7 @@ using UISystem.MenuSystem.Views;
 namespace UISystem.MenuSystem.Controllers;
 public class VideoSettingsMenuController : SettingsMenuController<VideoSettingsMenuView, VideoSettingsMenuModel>
 {
-    public override int Menu => MenuType.VideoSettings;
+    public override int Type => MenuType.VideoSettings;
 
     public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, MenusManager menusManager, PopupsManager popupsManager)
         : base(prefab, model, menusManager, popupsManager)

@@ -7,6 +7,7 @@ using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.PopupSystem.Enums;
+using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
@@ -16,7 +17,7 @@ namespace UISystem.MenuSystem.Controllers;
 public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
 {
 
-    public override int Menu => MenuType.Pause;
+    public override int Type => MenuType.Pause;
 
     private readonly PopupsManager _popupsManager;
     private readonly ScreenFadeManager _screenFadeManager;

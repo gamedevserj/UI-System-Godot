@@ -21,7 +21,7 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
     protected readonly MenusManager _menusManager;
 
     public virtual bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
-    public abstract int Menu { get; }
+    public abstract int Type { get; }
     protected IFocusableControl DefaultSelectedElement
     {
         get => _defaultSelectedElement;

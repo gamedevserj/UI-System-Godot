@@ -25,7 +25,7 @@ public partial class MenusManager : Control
     public void ShowMenu(int menuType, MenuStackBehaviourEnum stackBehaviour,
         Action onNewMenuShown = null, bool instant = false)
     {
-        if (_currentController?.Menu == menuType)
+        if (_currentController?.Type == menuType)
             return;
 
         if (_currentController != null)
@@ -45,7 +45,7 @@ public partial class MenusManager : Control
     {
         if (_previousMenus.Count > 0)
         {
-            ShowMenu(_previousMenus.Peek().Menu, MenuStackBehaviourEnum.RemoveFromStack, onComplete, instant);
+            ShowMenu(_previousMenus.Peek().Type, MenuStackBehaviourEnum.RemoveFromStack, onComplete, instant);
         }
     }
 

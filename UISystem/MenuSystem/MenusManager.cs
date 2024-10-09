@@ -29,7 +29,7 @@ public partial class MenusManager : Control
 
         for (int i = 0; i < controllers.Length; i++)
         {
-            _controllers.Add(controllers[i].Menu, controllers[i]);
+            _controllers.Add(controllers[i].Type, controllers[i]);
         }
     }
 

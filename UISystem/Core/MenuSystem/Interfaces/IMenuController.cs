@@ -6,7 +6,7 @@ namespace UISystem.Core.MenuSystem.Interfaces;
 public interface IMenuController
 {
 
-    int Menu { get; }
+    int Type { get; }
     bool CanReturnToPreviousMenu { get; set; }
 
     void Init(Node parent);

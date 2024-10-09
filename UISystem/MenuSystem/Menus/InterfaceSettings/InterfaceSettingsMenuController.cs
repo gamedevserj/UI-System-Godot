@@ -4,6 +4,7 @@ using UISystem.Common.Extensions;
 using UISystem.Common.Structs;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
+using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
@@ -14,7 +15,7 @@ public class InterfaceSettingsMenuController : SettingsMenuController<InterfaceS
 
     private readonly int _controllerIconsNumber;
 
-    public override int Menu => MenuType.InterfaceSettings;
+    public override int Type => MenuType.InterfaceSettings;
 
 
     public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, MenusManager menusManager, PopupsManager popupsManager) :

@@ -1,6 +1,7 @@
 using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Enums;
+using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 
@@ -8,7 +9,7 @@ namespace UISystem.MenuSystem.Controllers;
 public partial class OptionsMenuController : MenuController<OptionsMenuView, OptionsMenuModel>
 {
 
-    public override int Menu => MenuType.Options;
+    public override int Type => MenuType.Options;
 
     public OptionsMenuController(string prefab, OptionsMenuModel model, MenusManager menusManager)
         : base(prefab, model, menusManager)
