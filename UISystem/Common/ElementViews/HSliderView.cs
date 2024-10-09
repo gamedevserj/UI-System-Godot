@@ -1,11 +1,12 @@
 ﻿using Godot;
+using System.Threading.Tasks;
 using UISystem.Common.Enums;
 using UISystem.Common.HoverSettings;
 using UISystem.Common.Interfaces;
 using UISystem.Core.Elements.Interfaces;
 
 namespace UISystem.Common.ElementViews;
-public partial class HSliderView : HSlider, IFocusableControl
+public partial class HSliderView : HSlider, IFocusableControl, ITweenableMenuElement
 {
 
     [Export] private HSliderHoverSettings hoverSettings;
@@ -20,6 +21,7 @@ public partial class HSliderView : HSlider, IFocusableControl
     private bool _isDragging;
     private Tween _tween;
 
+    public Control PositionControl => this;
     public Control ResizableControl => resizableControl;
 
     public override async void _EnterTree()
@@ -34,6 +36,14 @@ public partial class HSliderView : HSlider, IFocusableControl
     }
 
     public override void _ExitTree() => Unsubscribe();
+
+    public async Task ResetHover()
+    {
+        _tween?.Kill();
+        _tween = GetTree().CreateTween();
+        _hoverTweener.Reset(_tween);
+        await ToSignal(_tween, Tween.SignalName.Finished);
+    }
 
     public override void _Process(double delta)
     {

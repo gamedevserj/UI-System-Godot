@@ -2,6 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using UISystem.Common.Extensions;
+using UISystem.Common.Interfaces;
 using UISystem.Common.Structs;
 using UISystem.Core.Transitions.Interfaces;
 
@@ -20,7 +21,7 @@ public class PanelSizeTransition : IViewTransition
     private readonly Control _caller;
     private readonly Control _fadeObjectsContainer;
     private readonly Control _panel;
-    private readonly Control[] _elements;
+    private readonly ITweenableMenuElement[] _elements;
     private readonly float _panelDuration;
     private readonly float _elementsDuration;
 
@@ -33,7 +34,7 @@ public class PanelSizeTransition : IViewTransition
         }
     }
 
-    public PanelSizeTransition(Control caller, Control fadeObjectsContainer, Control panel, Control[] resizableControls, float panelDuration,
+    public PanelSizeTransition(Control caller, Control fadeObjectsContainer, Control panel, ITweenableMenuElement[] resizableControls, float panelDuration,
         float elementsDuration)
     {
         _caller = caller;
@@ -44,8 +45,15 @@ public class PanelSizeTransition : IViewTransition
         _elementsDuration = elementsDuration;
     }
 
-    public void Hide(Action onHidden, bool instant)
+    public async void Hide(Action onHidden, bool instant)
     {
+        var tasks = new Task[_elements.Length];
+        for (int i = 0; i < tasks.Length; i++)
+        {
+            tasks[i] = _elements[i].ResetHover();
+        }
+        await Task.WhenAll(tasks);
+
         Tween tween = SceneTree.CreateTween();
         tween.SetPauseMode(Tween.TweenPauseMode.Process);
 
@@ -53,13 +61,13 @@ public class PanelSizeTransition : IViewTransition
         tween.SetTrans(Tween.TransitionType.Linear);
         for (int i = 0; i < _elements.Length; i++)
         {
-            tween.TweenControlSize(true, _elements[i], Vector2.Zero, _elementsDuration, _elementsSizeSettings[i]);
+            tween.TweenControlSize(true, _elements[i].ResizableControl, Vector2.Zero, _elementsDuration, _elementsSizeSettings[i]);
         }
         tween.TweenCallback(Callable.From(() =>
         {
             for (int i = 0; i < _elements.Length; i++)
             {
-                _elements[i].HideItem();
+                _elements[i].ResizableControl.HideItem();
             }
         }));
 
@@ -85,7 +93,7 @@ public class PanelSizeTransition : IViewTransition
         _panel.SetSizeAndPosition(Vector2.Zero, _panelSizeSettings.CenterPosition);
         for (int i = 0; i < _elements.Length; i++)
         {
-            _elements[i].SetSizeAndPosition(Vector2.Zero, _elementsSizeSettings[i].CenterPosition);
+            _elements[i].ResizableControl.SetSizeAndPosition(Vector2.Zero, _elementsSizeSettings[i].CenterPosition);
         }
 
         Tween tween = SceneTree.CreateTween();
@@ -99,7 +107,7 @@ public class PanelSizeTransition : IViewTransition
         for (int i = 0; i < _elements.Length; i++)
         {
             bool parallel = i != 0;
-            tween.TweenControlSize(parallel, _elements[i], _elementsSizeSettings[i].OriginalSize, _elementsDuration, _elementsSizeSettings[i]);
+            tween.TweenControlSize(parallel, _elements[i].ResizableControl, _elementsSizeSettings[i].OriginalSize, _elementsDuration, _elementsSizeSettings[i]);
         }
         tween.TweenCallback(Callable.From(() =>
         {
@@ -118,7 +126,7 @@ public class PanelSizeTransition : IViewTransition
         _panelSizeSettings = new(_panel.Position, _panel.Size, horizontalDirection, verticalDirection);
         for (int i = 0; i < _elements.Length; i++)
         {
-            _elementsSizeSettings[i] = new(_elements[i].Position, _elements[i].Size, horizontalDirection, verticalDirection);
+            _elementsSizeSettings[i] = new(_elements[i].ResizableControl.Position, _elements[i].ResizableControl.Size, horizontalDirection, verticalDirection);
         }
         _initializedParameters = true;
 

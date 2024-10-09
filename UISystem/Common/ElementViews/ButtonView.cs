@@ -6,7 +6,7 @@ using UISystem.Common.Interfaces;
 using UISystem.Core.Elements.Interfaces;
 
 namespace UISystem.Common.ElementViews;
-public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
+public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuElement
 {
 
     [Export] private ButtonHoverSettings buttonHoverSettings;
@@ -17,6 +17,7 @@ public partial class ButtonView : BaseButton, IFocusableControl, ISizeTweenable
     private bool _mouseOver;
     private Tween _tween;
 
+    public Control PositionControl => this;
     public Control ResizableControl => resizableControl;
 
     public override async void _EnterTree()

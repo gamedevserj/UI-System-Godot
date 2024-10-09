@@ -20,8 +20,8 @@ public class MainElementDropTransition : IViewTransition
 
     private readonly Control _caller;
     private readonly Control _fadeObjectsContainer;
-    private readonly ISizeTweenable _mainElement;
-    private readonly Control[] _secondaryElements;
+    private readonly ITweenableMenuElement _mainElement;
+    private readonly ITweenableMenuElement[] _secondaryElements;
     private readonly float _mainElementDuration;
     private readonly float _secondaryElementDuration;
 
@@ -34,8 +34,8 @@ public class MainElementDropTransition : IViewTransition
         }
     }
 
-    public MainElementDropTransition(Control caller, Control fadeObjectsContainer, ISizeTweenable mainResizableControl,
-        Control[] secondaryElements, float mainElementDuration, float secondaryElementDuration)
+    public MainElementDropTransition(Control caller, Control fadeObjectsContainer, ITweenableMenuElement mainResizableControl,
+        ITweenableMenuElement[] secondaryElements, float mainElementDuration, float secondaryElementDuration)
     {
         _caller = caller;
         _fadeObjectsContainer = fadeObjectsContainer;
@@ -54,7 +54,13 @@ public class MainElementDropTransition : IViewTransition
             return;
         }
 
-        await _mainElement.ResetHover(); // is for resetting the first element after it calls to change menu, i.e. pressing "interface" button to go to the interface menu
+        var tasks = new Task[_secondaryElements.Length + 1];
+        for (int i = 0; i < _secondaryElements.Length; i++)
+        {
+            tasks[i] = _secondaryElements[i].ResetHover();
+        }
+        tasks[_secondaryElements.Length] = _mainElement.ResetHover();
+        await Task.WhenAll(tasks);
 
         Tween tween = SceneTree.CreateTween();
         tween.SetPauseMode(Tween.TweenPauseMode.Process);
@@ -63,7 +69,7 @@ public class MainElementDropTransition : IViewTransition
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            tween.TweenNode2DPosition(true, _secondaryElements[i], Vector2.Zero, _secondaryElementDuration);
+            tween.TweenNode2DPosition(true, _secondaryElements[i].PositionControl, Vector2.Zero, _secondaryElementDuration);
         }
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(false); }));
 
@@ -101,7 +107,7 @@ public class MainElementDropTransition : IViewTransition
         _mainElement.ResizableControl.ShowItem();
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            _secondaryElements[i].Position = Vector2.Zero;
+            _secondaryElements[i].PositionControl.Position = Vector2.Zero;
         }
 
         Tween tween = SceneTree.CreateTween();
@@ -118,7 +124,7 @@ public class MainElementDropTransition : IViewTransition
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            tween.TweenNode2DPosition(true, _secondaryElements[i], _secondaryElementsPositions[_secondaryElements[i]], _secondaryElementDuration);
+            tween.TweenNode2DPosition(true, _secondaryElements[i].PositionControl, _secondaryElementsPositions[_secondaryElements[i].PositionControl], _secondaryElementDuration);
         }
 
         tween.Finished += () => onShown?.Invoke();
@@ -131,7 +137,7 @@ public class MainElementDropTransition : IViewTransition
         _mainElementSize = _mainElement.ResizableControl.Size;
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            _secondaryElementsPositions.Add(_secondaryElements[i], _secondaryElements[i].Position);
+            _secondaryElementsPositions.Add(_secondaryElements[i].PositionControl, _secondaryElements[i].PositionControl.Position);
         }
         SetButtonsOrdering();
         _initializedParameters = true;
@@ -139,14 +145,14 @@ public class MainElementDropTransition : IViewTransition
 
     private void SetButtonsOrdering()
     {
-        List<Control> buttonsByPosition = _secondaryElements.OrderByDescending(o => o.Position.Y).ToList();
+        List<ITweenableMenuElement> buttonsByPosition = _secondaryElements.OrderByDescending(o => o.PositionControl.Position.Y).ToList();
         int last = 0;
         for (int i = 0; i < buttonsByPosition.Count; i++)
         {
-            buttonsByPosition[i].ZIndex = i;
+            buttonsByPosition[i].PositionControl.ZIndex = i;
             last = i;
         }
-        _mainElement.ResizableControl.ZIndex = last + 1;
+        _mainElement.PositionControl.ZIndex = last + 1;
     }
 
     private void SwitchSecondaryButtonsVisibility(bool show)
@@ -154,9 +160,9 @@ public class MainElementDropTransition : IViewTransition
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
             if (show)
-                _secondaryElements[i].ShowItem();
+                _secondaryElements[i].ResizableControl.ShowItem();
             else
-                _secondaryElements[i].HideItem();
+                _secondaryElements[i].ResizableControl.HideItem();
         }
     }
 

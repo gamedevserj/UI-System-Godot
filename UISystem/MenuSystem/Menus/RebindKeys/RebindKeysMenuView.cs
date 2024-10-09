@@ -1,8 +1,10 @@
 ﻿using Godot;
 using UISystem.Common.ElementViews;
+using UISystem.Common.Interfaces;
 using UISystem.Common.Transitions;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.MenuSystem.SettingsMenu;
+using UISystem.UISystem.Common.ElementViews;
 
 namespace UISystem.MenuSystem.Views;
 public partial class RebindKeysMenuView : SettingsMenuView
@@ -19,9 +21,9 @@ public partial class RebindKeysMenuView : SettingsMenuView
     [Export] private RebindableKeyButtonView jumpJoystick;
     [Export] private ButtonView returnButton;
     [Export] private Control panel;
-    [Export] private Control moveLeftLabelResizableControl;
-    [Export] private Control moveRightLabelResizableControl;
-    [Export] private Control jumpLabelResizableControl;
+    [Export] private ResizableControlView moveLeftLabelResizableControl;
+    [Export] private ResizableControlView moveRightLabelResizableControl;
+    [Export] private ResizableControlView jumpLabelResizableControl;
 
     public RebindableKeyButtonView MoveLeft => moveLeft;
     public RebindableKeyButtonView MoveLeftJoystick => moveLeftJoystick;
@@ -41,12 +43,9 @@ public partial class RebindKeysMenuView : SettingsMenuView
     {
         base.Init();
         _transition = new PanelSizeTransition(this, fadeObjectsContainer, panel,
-            new Control[] { returnButton.ResizableControl,
-                moveLeft.ResizableControl, moveLeftJoystick.ResizableControl,
-                moveRight.ResizableControl, moveRightJoystick.ResizableControl,
-                jump.ResizableControl, jumpJoystick.ResizableControl,
-                moveLeftLabelResizableControl, moveRightLabelResizableControl, jumpLabelResizableControl,
-                ResetButton.ResizableControl },
+            new ITweenableMenuElement[] { returnButton, ResetButton,
+                moveLeft, moveLeftJoystick, moveRight, moveRightJoystick, jump, jumpJoystick,
+                moveLeftLabelResizableControl, moveRightLabelResizableControl, jumpLabelResizableControl},
             PanelDuration, ElementsDuration);
     }
 

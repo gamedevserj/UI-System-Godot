@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bx45yom4bi85n"]
+[gd_scene load_steps=9 format=3 uid="uid://bx45yom4bi85n"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/AudioSettings/AudioSettingsMenuView.cs" id="1_ca7ap"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_6en0s"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/HSliderView.cs" id="2_8b7gh"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ResizableControlView.cs" id="2_gm07w"]
 [ext_resource type="Resource" uid="uid://b85wtfltfajj" path="res://UISystem/Common/ElementsHoverSettings/HSlider/HSliderHoverSettings.tres" id="4_n0yio"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_l4qqc"]
 [ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="6_n1bc4"]
@@ -113,6 +114,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("2_gm07w")
 
 [node name="MusicVolumeLabel" type="Label" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicLabelContainer/ResizableControlMusic"]
 layout_mode = 1
@@ -218,6 +220,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("2_gm07w")
 
 [node name="SfxVolumeLabel" type="Label" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxLabelContainer/ResizableControlSfx"]
 layout_mode = 1

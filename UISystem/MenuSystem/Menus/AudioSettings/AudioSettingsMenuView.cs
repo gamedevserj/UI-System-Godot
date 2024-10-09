@@ -1,19 +1,21 @@
 ﻿using Godot;
 using UISystem.Common.ElementViews;
+using UISystem.Common.Interfaces;
 using UISystem.Common.Transitions;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.MenuSystem.SettingsMenu;
+using UISystem.UISystem.Common.ElementViews;
 
 namespace UISystem.MenuSystem.Views;
 public partial class AudioSettingsMenuView : SettingsMenuView
 {
 
     private const float PanelDuration = 0.5f;
-    private const float ElementsDuration = 3.25f;
+    private const float ElementsDuration = 0.25f;
 
-    [Export] private Control resizableControlMusic;
+    [Export] private ResizableControlView resizableControlMusic;
     [Export] private HSliderView musicSlider;
-    [Export] private Control resizableControlSfx;
+    [Export] private ResizableControlView resizableControlSfx;
     [Export] private HSliderView sfxSlider;
     [Export] private ButtonView saveSettingsButton;
     [Export] private ButtonView returnButton;
@@ -33,8 +35,8 @@ public partial class AudioSettingsMenuView : SettingsMenuView
     {
         base.Init();
         _transition = new PanelSizeTransition(this, fadeObjectsContainer, panel,
-            new Control[] { ReturnButton.ResizableControl, SaveSettingsButton.ResizableControl, ResetButton.ResizableControl,
-            MusicSlider.ResizableControl, SfxSlider.ResizableControl, resizableControlMusic, resizableControlSfx },
+            new ITweenableMenuElement[] { ReturnButton, SaveSettingsButton, ResetButton,
+            MusicSlider, SfxSlider, resizableControlMusic, resizableControlSfx },
             PanelDuration, ElementsDuration);
     }
 

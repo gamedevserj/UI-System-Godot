@@ -1,8 +1,9 @@
-[gd_scene load_steps=8 format=3 uid="uid://bkc5imtbwisbp"]
+[gd_scene load_steps=9 format=3 uid="uid://bkc5imtbwisbp"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/RebindKeys/RebindKeysMenuView.cs" id="1_53hud"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/RebindableKeyButtonView.cs" id="2_1gokv"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_dyxee"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ResizableControlView.cs" id="2_tg1hn"]
 [ext_resource type="Texture2D" uid="uid://fx6gyp2ifiet" path="res://UISystem/Textures/Inputs/ellipsis.png" id="3_hujmc"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="8_2psh3"]
 
@@ -122,6 +123,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("2_tg1hn")
 
 [node name="MoveLeftLabel" type="Label" parent="Container/Panel/Border/Color/HBoxContainer/Labels/MoveLeftContainer/ResizableControl"]
 layout_mode = 1
@@ -157,6 +159,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("2_tg1hn")
 
 [node name="MoveRightLabel" type="Label" parent="Container/Panel/Border/Color/HBoxContainer/Labels/MoveRightContainer/ResizableControl"]
 layout_mode = 1
@@ -192,6 +195,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
+script = ExtResource("2_tg1hn")
 
 [node name="JumpLabel" type="Label" parent="Container/Panel/Border/Color/HBoxContainer/Labels/JumpContainer/ResizableControl"]
 layout_mode = 1
