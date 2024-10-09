@@ -30,6 +30,7 @@ public class VideoSettingsMenuController : SettingsMenuController<VideoSettingsM
 
     private void OnReturnButtonDown()
     {
+        _lastSelectedElement = _view.ReturnButton;
         OnReturnToPreviousMenuButtonDown();
     }
 

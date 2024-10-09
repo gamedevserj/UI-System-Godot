@@ -34,6 +34,7 @@ public class InterfaceSettingsMenuController : SettingsMenuController<InterfaceS
 
     private void OnReturnButtonDown()
     {
+        _lastSelectedElement = _view.ReturnButton;
         OnReturnToPreviousMenuButtonDown();
     }
 

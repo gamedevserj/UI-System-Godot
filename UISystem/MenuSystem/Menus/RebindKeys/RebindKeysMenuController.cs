@@ -110,6 +110,7 @@ public class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuVie
 
     private void OnReturnButtonDown()
     {
+        _lastSelectedElement = _view.ReturnButton;
         OnReturnToPreviousMenuButtonDown();
     }
 }

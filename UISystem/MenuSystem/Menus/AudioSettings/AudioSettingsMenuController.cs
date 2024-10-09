@@ -29,6 +29,7 @@ public class AudioSettingsMenuController : SettingsMenuController<AudioSettingsM
 
     private void OnReturnButtonDown()
     {
+        _lastSelectedElement = _view.ReturnButton;
         OnReturnToPreviousMenuButtonDown();
     }
 
