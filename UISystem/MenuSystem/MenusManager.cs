@@ -1,4 +1,5 @@
 ﻿using Godot;
+using System;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem;
 using UISystem.MenuSystem;
@@ -31,6 +32,66 @@ public partial class MenusManager : Control
         {
             _controllers.Add(controllers[i].Type, controllers[i]);
         }
+    }
+
+    /// <summary>
+    /// </summary>
+    /// <param name="menuType"></param>
+    /// <param name="menuChangeType">Is used to show/hide background</param>
+    public void ShowMenu(int menuType, int menuChangeType = MenuChangeType.AddToStack, Action onNewMenuShown = null, bool instant = false)
+    {
+        if (_currentController?.Type == menuType)
+            return;
+
+        if (_currentController != null)
+        {
+            _currentController.Hide(menuChangeType, () => ChangeMenu(menuType, menuChangeType, onNewMenuShown, instant), instant);
+        }
+        else
+        {
+            ChangeMenu(menuType, menuChangeType, onNewMenuShown, instant);
+        }
+    }
+
+    public void ReturnToPreviousMenu(Action onComplete = null, bool instant = false)
+    {
+        if (_previousMenus.Count > 0)
+        {
+            ShowMenu(_previousMenus.Peek().Type, MenuChangeType.RemoveFromStack, onComplete, instant);
+        }
+    }
+
+    private void ChangeMenu(int menuType, int menuChangeType,
+        Action onNewMenuShown = null, bool instant = false)
+    {
+        IMenuController controller = _controllers[menuType];
+        controller.Init(this);
+
+        if (menuChangeType == MenuChangeType.AddToStack)
+        {
+            _previousMenus.Push(_currentController);
+        }
+        else if (menuChangeType == MenuChangeType.RemoveFromStack)
+        {
+            _currentController.DestroyView();
+            _previousMenus.Pop();
+        }
+        else if (menuChangeType == MenuChangeType.ClearStack)
+        {
+            foreach (var menuController in _previousMenus)
+            {
+                menuController.DestroyView();
+            }
+            _previousMenus.Clear();
+            _currentController?.DestroyView();
+        }
+
+        _currentController = controller;
+
+        _currentController.Show(() =>
+        {
+            onNewMenuShown?.Invoke();
+        }, instant);
     }
 
     private static string GetMenuView(int menuType)

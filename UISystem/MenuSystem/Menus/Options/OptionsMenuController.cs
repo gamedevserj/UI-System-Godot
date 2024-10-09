@@ -1,6 +1,5 @@
 using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Controllers;
-using UISystem.Core.MenuSystem.Enums;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
@@ -34,25 +33,25 @@ public partial class OptionsMenuController : MenuController<OptionsMenuView, Opt
     private void OnAudioSettingsButtonDown()
     {
         _lastSelectedElement = _view.AudioSettingsButton;
-        _menusManager.ShowMenu(MenuType.AudioSettings, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.AudioSettings);
     }
 
     private void OnVideoSettingsButtonDown()
     {
         _lastSelectedElement = _view.VideoSettingsButton;
-        _menusManager.ShowMenu(MenuType.VideoSettings, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.VideoSettings);
     }
 
     private void OnRebindKeysButtonDown()
     {
         _lastSelectedElement = _view.RebindKeysButton;
-        _menusManager.ShowMenu(MenuType.RebindKeys, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.RebindKeys);
     }
 
     private void OnInterfaceSettingsButtonDown()
     {
         _lastSelectedElement = _view.InterfaceSettingsButton;
-        _menusManager.ShowMenu(MenuType.InterfaceSettings, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.InterfaceSettings);
     }
 
 }

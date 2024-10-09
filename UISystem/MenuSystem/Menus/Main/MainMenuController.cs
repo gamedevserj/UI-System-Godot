@@ -3,7 +3,6 @@ using System;
 using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Controllers;
-using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.PopupSystem.Enums;
 using UISystem.MenuSystem.Constants;
@@ -39,10 +38,10 @@ public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
         _menuBackgroundController.ShowBackground(instant);
     }
 
-    public override void Hide(MenuStackBehaviourEnum stackBehaviour, Action onComplete = null, bool instant = false)
+    public override void Hide(int menuChangeType, Action onComplete = null, bool instant = false)
     {
-        base.Hide(stackBehaviour, onComplete, instant);
-        if (stackBehaviour != MenuStackBehaviourEnum.AddToStack)
+        base.Hide(menuChangeType, onComplete, instant);
+        if (menuChangeType != MenuChangeType.AddToStack)
         {
             _menuBackgroundController.HideBackground(instant);
         }
@@ -66,14 +65,14 @@ public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
         _lastSelectedElement = _view.PlayButton;
         _screenFadeManager.FadeOut(() =>
         {
-            _menusManager.ShowMenu(MenuType.InGame, MenuStackBehaviourEnum.ClearStack, null, true);
+            _menusManager.ShowMenu(MenuType.InGame, MenuChangeType.ClearStack, null, true);
         });
     }
 
     private void PressedOptions()
     {
         _lastSelectedElement = _view.OptionsButton;
-        _menusManager.ShowMenu(MenuType.Options, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.Options);
     }
 
     private void PressedQuit()

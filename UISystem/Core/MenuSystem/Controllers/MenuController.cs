@@ -3,7 +3,6 @@ using System;
 using UISystem.Core.Constants;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.Extensions;
-using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Views;
 
@@ -52,7 +51,7 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
         }, instant);
     }
 
-    public virtual void Hide(MenuStackBehaviourEnum stackBehaviour, Action onComplete = null, bool instant = false)
+    public virtual void Hide(int menuChangeType, Action onComplete = null, bool instant = false)
     {
         _view.Hide(() => onComplete?.Invoke(), instant);
     }

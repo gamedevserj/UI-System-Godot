@@ -1,6 +1,5 @@
 ﻿using Godot;
 using UISystem.Core.MenuSystem;
-using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.PopupSystem;
 using UISystem.MenuSystem;
 using UISystem.MenuSystem.Constants;
@@ -26,7 +25,7 @@ public partial class UiInstaller : Control
     {
         popupsManager.Init();
         menusManager.Init(settings, popupsManager, screenFadeManager, new MenuBackgroundController(GetTree(), menuBackground));
-        menusManager.ShowMenu(MenuType.Main, MenuStackBehaviourEnum.ClearStack);
+        menusManager.ShowMenu(MenuType.Main, MenuChangeType.ClearStack);
     }
 
 }

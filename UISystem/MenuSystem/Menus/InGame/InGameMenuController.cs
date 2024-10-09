@@ -2,7 +2,6 @@
 using UISystem.Core.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Controllers;
-using UISystem.Core.MenuSystem.Enums;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
@@ -31,7 +30,7 @@ public class InGameMenuController : MenuController<InGameMenuView, InGameMenuMod
 
     private void PauseGame()
     {
-        _menusManager.ShowMenu(MenuType.Pause, MenuStackBehaviourEnum.AddToStack);
+        _menusManager.ShowMenu(MenuType.Pause);
     }
 
     protected override void SetupElements()
