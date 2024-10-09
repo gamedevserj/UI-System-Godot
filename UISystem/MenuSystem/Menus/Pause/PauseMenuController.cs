@@ -5,11 +5,11 @@ using UISystem.Core.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.PopupSystem;
-using UISystem.Core.PopupSystem.Enums;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
+using UISystem.PopupSystem.Constants;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
@@ -91,7 +91,6 @@ public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
                 {
                     _menusManager.ShowMenu(MenuType.Main, MenuChangeType.ClearStack, null, true);
                 });
-
             }
             else if (result == PopupResult.No)
             {

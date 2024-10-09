@@ -3,9 +3,9 @@ using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.PopupSystem;
-using UISystem.Core.PopupSystem.Enums;
-using UISystem.PopupSystem;
 using UISystem.MenuSystem.SettingsMenu.Interfaces;
+using UISystem.PopupSystem;
+using UISystem.PopupSystem.Constants;
 
 namespace UISystem.MenuSystem.SettingsMenu;
 public abstract class SettingsMenuController<TView, TModel> : MenuController<TView, TModel> where TView : SettingsMenuView where TModel : ISettingsMenuModel
@@ -37,7 +37,7 @@ public abstract class SettingsMenuController<TView, TModel> : MenuController<TVi
         }
     }
 
-    protected void OnReturnToPreviousMenuPopupClosed(PopupResult result, Action onComplete = null, bool instant = false)
+    protected void OnReturnToPreviousMenuPopupClosed(int result, Action onComplete = null, bool instant = false)
     {
         switch (result)
         {

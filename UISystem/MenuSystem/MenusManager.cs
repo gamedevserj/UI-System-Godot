@@ -9,7 +9,7 @@ using UISystem.MenuSystem.Models;
 using UISystem.ScreenFade;
 
 namespace UISystem.Core.MenuSystem;
-public partial class MenusManager : Control
+public partial class MenusManager
 {
 
     public void Init(GameSettings settings, PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
@@ -67,25 +67,26 @@ public partial class MenusManager : Control
         IMenuController controller = _controllers[menuType];
         controller.Init(this);
 
-        if (menuChangeType == MenuChangeType.AddToStack)
+        switch (menuChangeType)
         {
-            _previousMenus.Push(_currentController);
+            case MenuChangeType.AddToStack:
+                _previousMenus.Push(_currentController);
+                break;
+            case MenuChangeType.RemoveFromStack:
+                _currentController.DestroyView();
+                _previousMenus.Pop();
+                break;
+            case MenuChangeType.ClearStack:
+                foreach (var menuController in _previousMenus)
+                {
+                    menuController.DestroyView();
+                }
+                _previousMenus.Clear();
+                _currentController?.DestroyView();
+                break;
+            default:
+                break;
         }
-        else if (menuChangeType == MenuChangeType.RemoveFromStack)
-        {
-            _currentController.DestroyView();
-            _previousMenus.Pop();
-        }
-        else if (menuChangeType == MenuChangeType.ClearStack)
-        {
-            foreach (var menuController in _previousMenus)
-            {
-                menuController.DestroyView();
-            }
-            _previousMenus.Clear();
-            _currentController?.DestroyView();
-        }
-
         _currentController = controller;
 
         _currentController.Show(() =>

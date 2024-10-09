@@ -4,7 +4,6 @@ using UISystem.Core.Constants;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem.Interfaces;
-using UISystem.Core.PopupSystem.Enums;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.Core.PopupSystem.Views;
 
@@ -16,15 +15,15 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
 
     protected T _view;
     protected IFocusableControl _defaultSelectedElement;
-    protected Action<PopupResult> _onHideAction;
+    protected Action<int> _onHideAction;
     private IMenuController _caller;
 
     protected readonly string _prefab;
     protected readonly PopupsManager _popupsManager;
     protected readonly SceneTree _sceneTree;
 
-    public abstract int Popup { get; }
-    public abstract PopupResult PressedReturnPopupResult { get; }
+    public abstract int Type { get; }
+    public abstract int PressedReturnPopupResult { get; }
 
     public PopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree)
     {
@@ -48,7 +47,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
             _popupsManager.HidePopup(PressedReturnPopupResult);
     }
 
-    public void Show(IMenuController caller, string message, Action<PopupResult> onHideAction, bool instant = false)
+    public void Show(IMenuController caller, string message, Action<int> onHideAction, bool instant = false)
     {
         _caller = caller;
         _caller.CanReturnToPreviousMenu = false;
@@ -63,7 +62,7 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
         }, instant);
     }
 
-    public void Hide(PopupResult result, bool instant = false)
+    public void Hide(int result, bool instant = false)
     {
         _view.Hide(() =>
         {
