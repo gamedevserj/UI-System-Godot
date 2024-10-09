@@ -1,5 +1,5 @@
 ﻿using UISystem.Constants;
-using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.MenuSystem.SettingsMenu.Interfaces;
 
 namespace UISystem.MenuSystem.Models;
 public class AudioSettingsMenuModel : ISettingsMenuModel

@@ -1,4 +1,6 @@
-﻿namespace UISystem.Core.MenuSystem.Interfaces;
+﻿using UISystem.Core.MenuSystem.Interfaces;
+
+namespace UISystem.MenuSystem.SettingsMenu.Interfaces;
 public interface ISettingsMenuModel : IMenuModel
 {
 

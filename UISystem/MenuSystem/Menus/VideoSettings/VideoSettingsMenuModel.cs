@@ -1,6 +1,6 @@
 ﻿using Godot;
 using UISystem.Constants;
-using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.MenuSystem.SettingsMenu.Interfaces;
 using static Godot.DisplayServer;
 
 namespace UISystem.MenuSystem.Models;
