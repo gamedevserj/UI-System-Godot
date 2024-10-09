@@ -72,6 +72,8 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
     protected void SwitchFocusAvailability(bool enable)
     {
         _view.SwitchFocusAwailability(enable);
+        if (enable)
+            FocusElement();
     }
 
     protected virtual void OnReturnToPreviousMenuButtonDown(Action onComplete = null, bool instant = false)
