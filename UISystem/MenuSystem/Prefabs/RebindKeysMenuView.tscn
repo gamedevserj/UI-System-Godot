@@ -106,7 +106,7 @@ theme_override_constants/separation = 75
 [node name="Labels" type="VBoxContainer" parent="Container/Panel/Border/Color/HBoxContainer"]
 layout_mode = 2
 size_flags_horizontal = 3
-theme_override_constants/separation = 10
+theme_override_constants/separation = 90
 alignment = 1
 
 [node name="MoveLeftContainer" type="Control" parent="Container/Panel/Border/Color/HBoxContainer/Labels"]
