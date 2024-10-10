@@ -1,10 +1,14 @@
 [gd_resource type="Resource" script_class="ButtonHoverSettings" load_steps=4 format=3 uid="uid://dj5acww1ovp0b"]
 
-[ext_resource type="Script" path="res://UISystem/Common/HoverSettings/ButtonHoverSettings.cs" id="1_8waot"]
 [ext_resource type="Resource" uid="uid://cwy3443w5wlcn" path="res://UISystem/Common/ElementsHoverSettings/ColorHoverSettings.tres" id="1_txyhs"]
-[ext_resource type="Resource" uid="uid://biq2cqekjljck" path="res://UISystem/Common/ElementsHoverSettings/MenuNavigationButton/MenuNavigationSizeSettings.tres" id="3_ew1m4"]
+[ext_resource type="Script" path="res://UISystem/Common/HoverSettings/ElementHoverSettings/ButtonHoverSettings.cs" id="2_a0w8y"]
+[ext_resource type="Resource" uid="uid://biq2cqekjljck" path="res://UISystem/Common/ElementsHoverSettings/MenuNavigationButton/MenuNavigationButtonSizeSettings.tres" id="4_krqu8"]
 
 [resource]
-script = ExtResource("1_8waot")
-sizeChangeSettings = ExtResource("3_ew1m4")
-colorChangeSettings = ExtResource("1_txyhs")
+script = ExtResource("2_a0w8y")
+ease = 1
+resetEase = 1
+transition = 6
+resetTransition = 10
+sizeChangeSettings = ExtResource("4_krqu8")
+borderColorChangeSettings = ExtResource("1_txyhs")

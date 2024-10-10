@@ -1,13 +1,13 @@
 [gd_resource type="Resource" script_class="HSliderHoverSettings" load_steps=6 format=3 uid="uid://b85wtfltfajj"]
 
-[ext_resource type="Script" path="res://UISystem/Common/HoverSettings/HSliderHoverSettings.cs" id="1_2er0f"]
+[ext_resource type="Script" path="res://UISystem/Common/HoverSettings/ElementHoverSettings/HSliderHoverSettings.cs" id="1_gp87c"]
 [ext_resource type="Resource" uid="uid://bfwyewcy7iqck" path="res://UISystem/Common/ElementsHoverSettings/HSlider/HSliderBackgroundColorSettings.tres" id="1_ltgc1"]
 [ext_resource type="Resource" uid="uid://b4o1g3t6ls11m" path="res://UISystem/Common/ElementsHoverSettings/HSlider/HSliderFillColorSettings.tres" id="2_fymas"]
 [ext_resource type="Resource" uid="uid://bq67mkdlssxod" path="res://UISystem/Common/ElementsHoverSettings/HSlider/HSliderGrabberColorSettings.tres" id="3_q2fvo"]
 [ext_resource type="Resource" uid="uid://u66f3lgv02n7" path="res://UISystem/Common/ElementsHoverSettings/HSlider/HSliderGrabberSizeSettings.tres" id="4_4npvv"]
 
 [resource]
-script = ExtResource("1_2er0f")
+script = ExtResource("1_gp87c")
 grabberSizeSettings = ExtResource("4_4npvv")
 grabberColorSettings = ExtResource("3_q2fvo")
 backgroundColorSettings = ExtResource("1_ltgc1")

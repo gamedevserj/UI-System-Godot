@@ -7,10 +7,11 @@ namespace UISystem.Common.Extensions;
 public static class TweenExtensions
 {
 
+    // for transitions that scale object to center
     public static void TweenControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration,
         ResizableControlSettings settings = default)
     {
-        tween.ControlSize(parallel, target, size, duration);
+        tween.TweenControlSize(parallel, target, size, duration);
 
         if (!settings.IsInitialized)
             return;
@@ -21,10 +22,10 @@ public static class TweenExtensions
         Vector2 position = settings.OriginalPosition - sizeDifference * new Vector2(multiplierX, multiplierY);
 
         // in order to change size properly when direction is set to center, it needs to be parallel
-        tween.TweenNode2DPosition(true, target, position, duration);
+        tween.TweenControlPosition(true, target, position, duration);
     }
 
-    public static void TweenNode2DPosition(this Tween tween, bool parallel, Control target, Vector2 position, float duration)
+    public static void TweenControlPosition(this Tween tween, bool parallel, Control target, Vector2 position, float duration)
     {
         if (parallel)
             tween.Parallel();
@@ -55,7 +56,7 @@ public static class TweenExtensions
             tween.TweenProperty(target, PropertyConstants.SelfModulate, new Color(target.SelfModulate, alpha), duration);
     }
 
-    private static void ControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration)
+    public static void TweenControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration)
     {
         if (parallel)
             tween.Parallel();

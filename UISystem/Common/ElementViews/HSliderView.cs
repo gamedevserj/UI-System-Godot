@@ -1,7 +1,7 @@
 ﻿using Godot;
 using System.Threading.Tasks;
 using UISystem.Common.Enums;
-using UISystem.Common.HoverSettings;
+using UISystem.Common.HoverSettings.ElementHoverSettings;
 using UISystem.Common.Interfaces;
 using UISystem.Core.Elements.Interfaces;
 
@@ -39,6 +39,8 @@ public partial class HSliderView : HSlider, IFocusableControl, ITweenableMenuEle
 
     public async Task ResetHover()
     {
+        if (_hoverTweener == null) await Task.CompletedTask;
+
         _tween?.Kill();
         _tween = GetTree().CreateTween();
         _hoverTweener.Reset(_tween);
@@ -88,6 +90,8 @@ public partial class HSliderView : HSlider, IFocusableControl, ITweenableMenuEle
 
     private void HoverTween()
     {
+        if (_hoverTweener == null) return;
+
         _tween?.Kill();
         _tween = GetTree().CreateTween();
         _hoverTweener.Tween(_tween, GetDrawingMode());

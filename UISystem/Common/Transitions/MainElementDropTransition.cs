@@ -69,7 +69,7 @@ public class MainElementDropTransition : IViewTransition
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            tween.TweenNode2DPosition(true, _secondaryElements[i].PositionControl, Vector2.Zero, _secondaryElementDuration);
+            tween.TweenControlPosition(true, _secondaryElements[i].PositionControl, Vector2.Zero, _secondaryElementDuration);
         }
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(false); }));
 
@@ -124,7 +124,7 @@ public class MainElementDropTransition : IViewTransition
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            tween.TweenNode2DPosition(true, _secondaryElements[i].PositionControl, _secondaryElementsPositions[_secondaryElements[i].PositionControl], _secondaryElementDuration);
+            tween.TweenControlPosition(true, _secondaryElements[i].PositionControl, _secondaryElementsPositions[_secondaryElements[i].PositionControl], _secondaryElementDuration);
         }
 
         tween.Finished += () => onShown?.Invoke();
