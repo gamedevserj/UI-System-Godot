@@ -22,7 +22,7 @@ public partial class HSliderHoverSettings : Resource
     public ITweener CreateTweener(Control grabberResizableControl, Control background, Control fill, bool sizeParallel = true,
         bool colorParallel = true)
     {
-        return new HSliderTweenerFacade(new TransitionAndEaseSettings(duration, resetDuration, ease, resetEase, transition, resetTransition),
+        return new HSliderTweenerFacade(new TweeningSettings(duration, resetDuration, ease, resetEase, transition, resetTransition),
             grabberResizableControl, background, fill,
             grabberSizeSettings, grabberColorSettings, grabberPositionsSettings, backgroundColorSettings, fillColorSettings,
             sizeParallel, colorParallel);
@@ -33,7 +33,7 @@ public partial class HSliderHoverSettings : Resource
 
         private readonly ITweener[] _tweeners;
 
-        public HSliderTweenerFacade(TransitionAndEaseSettings transitionAndEaseSettings, Control grabberResizableControl, Control background, Control fill,
+        public HSliderTweenerFacade(TweeningSettings transitionAndEaseSettings, Control grabberResizableControl, Control background, Control fill,
             SizeTweenSettings grabberSizeSettings, ColorTweenSettings grabberColorSettings, PositionTweenSettings grabberPositionsSettings,
             ColorTweenSettings backgroundColorSettings, ColorTweenSettings fillColorSettings,
             bool sizeParallel = true, bool colorParallel = true)

@@ -20,7 +20,7 @@ public partial class ButtonHoverSettings : Resource
     public ITweener CreateTweener(Control sizeTarget, Control borderColorTarget, Control positionTarget, bool sizeParallel = true,
         bool colorParallel = true)
     {
-        return new ButtonTweenerFacade(new TransitionAndEaseSettings(duration, resetDuration, ease, resetEase, transition, resetTransition),
+        return new ButtonTweenerFacade(new TweeningSettings(duration, resetDuration, ease, resetEase, transition, resetTransition),
             sizeTarget, borderColorTarget, 
             sizeChangeSettings, borderColorChangeSettings, positionTarget, positionChangeSettings,
             sizeParallel, colorParallel);
@@ -31,7 +31,7 @@ public partial class ButtonHoverSettings : Resource
 
         private readonly ITweener[] _tweeners;
 
-        public ButtonTweenerFacade(TransitionAndEaseSettings transitionAndEaseSettings, Control sizeTarget, Control colorTarget, 
+        public ButtonTweenerFacade(TweeningSettings transitionAndEaseSettings, Control sizeTarget, Control colorTarget, 
             SizeTweenSettings sizeSettings, ColorTweenSettings colorSettings, Control positionTarget, PositionTweenSettings positionSettings, bool sizeParallel, bool colorParallel)
         {
             _tweeners = new ITweener[] {

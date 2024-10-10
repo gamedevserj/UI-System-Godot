@@ -17,7 +17,7 @@ public partial class PositionTweenSettings : TweenSettings<Vector2>
     protected override Vector2 FocusHoverValue => changePositionFocusHover;
     protected override Vector2 DisabledValue => Vector2.Zero;
 
-    public ITweener CreateTweener(Control target, TransitionAndEaseSettings transitionAndEaseSettings, bool parallel = true) =>
+    public ITweener CreateTweener(Control target, TweeningSettings transitionAndEaseSettings, bool parallel = true) =>
         new PositionTweener(target, target.Position, transitionAndEaseSettings, this, parallel);
 
     private class PositionTweener : Tweener<Vector2>
@@ -25,7 +25,7 @@ public partial class PositionTweenSettings : TweenSettings<Vector2>
 
         private Vector2 _originalValue;
 
-        public PositionTweener(Control target, Vector2 originalValue, TransitionAndEaseSettings transitionAndEaseSettings,
+        public PositionTweener(Control target, Vector2 originalValue, TweeningSettings transitionAndEaseSettings,
             TweenSettings<Vector2> settings, bool parallel)
             : base(target, transitionAndEaseSettings, settings, parallel)
         {

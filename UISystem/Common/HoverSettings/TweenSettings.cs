@@ -6,7 +6,7 @@ namespace UISystem.Common.HoverSettings;
 public abstract partial class TweenSettings<T> : Resource
 {
 
-    protected abstract T NormalValue { get; }
+    protected virtual T NormalValue { get; }
     protected abstract T HoverValue { get; }
     protected abstract T FocusValue { get; }
     protected abstract T FocusHoverValue { get; }
@@ -21,9 +21,9 @@ public abstract partial class TweenSettings<T> : Resource
         protected readonly Control _target;
         protected readonly bool _parallel;
         protected readonly TweenSettings<T> _settings;
-        protected readonly TransitionAndEaseSettings _transitionAndEaseSettings;
+        protected readonly TweeningSettings _transitionAndEaseSettings;
 
-        public Tweener(Control target, TransitionAndEaseSettings transitionAndEaseSettings, TweenSettings<T> settings,
+        public Tweener(Control target, TweeningSettings transitionAndEaseSettings, TweenSettings<T> settings,
             bool parallel)
         {
             _target = target;

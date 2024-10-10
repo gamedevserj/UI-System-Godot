@@ -18,7 +18,7 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
     protected override Vector2 DisabledValue => Vector2.Zero;
 
 
-    public ITweener CreateTweener(Control target, TransitionAndEaseSettings transitionAndEaseSettings, bool parallel = true)
+    public ITweener CreateTweener(Control target, TweeningSettings transitionAndEaseSettings, bool parallel = true)
         => new SizeTweener(target, target.Size, transitionAndEaseSettings, this, parallel);
 
     private class SizeTweener : Tweener<Vector2>
@@ -26,7 +26,7 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
 
         private Vector2 _originalValue;
 
-        public SizeTweener(Control target, Vector2 originalSize, TransitionAndEaseSettings transitionAndEaseSettings,
+        public SizeTweener(Control target, Vector2 originalSize, TweeningSettings transitionAndEaseSettings,
             TweenSettings<Vector2> settings, bool parallel)
             : base(target, transitionAndEaseSettings, settings, parallel)
         {

@@ -1,7 +1,7 @@
 ﻿using static Godot.Tween;
 
 namespace UISystem.Common.HoverSettings;
-public struct TransitionAndEaseSettings
+public struct TweeningSettings
 {
 
     public float Duration = 1f;
@@ -11,7 +11,7 @@ public struct TransitionAndEaseSettings
     public TransitionType Transition = TransitionType.Elastic;
     public TransitionType ResetTransition = TransitionType.Back;
 
-    public TransitionAndEaseSettings(float duration, float resetDuration,
+    public TweeningSettings(float duration, float resetDuration,
         EaseType ease, EaseType resetEase, TransitionType transition, TransitionType resetTransition)
     {
         Duration = duration;
