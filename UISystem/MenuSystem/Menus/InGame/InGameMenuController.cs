@@ -7,7 +7,7 @@ using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-public class InGameMenuController : MenuController<InGameMenuView, InGameMenuModel>
+internal class InGameMenuController : MenuController<InGameMenuView, InGameMenuModel>
 {
 
     public override int Type => MenuType.InGame;

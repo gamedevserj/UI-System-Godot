@@ -13,7 +13,7 @@ using UISystem.PopupSystem.Constants;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
-public class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
+internal class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
 {
 
     public override int Type => MenuType.Pause;

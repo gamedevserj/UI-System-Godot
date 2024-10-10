@@ -6,7 +6,7 @@ using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-public class AudioSettingsMenuController : SettingsMenuController<AudioSettingsMenuView, AudioSettingsMenuModel>
+internal class AudioSettingsMenuController : SettingsMenuController<AudioSettingsMenuView, AudioSettingsMenuModel>
 {
 
     public override int Type => MenuType.AudioSettings;

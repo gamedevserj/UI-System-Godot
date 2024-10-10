@@ -5,7 +5,7 @@ using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-public partial class OptionsMenuController : MenuController<OptionsMenuView, OptionsMenuModel>
+internal class OptionsMenuController : MenuController<OptionsMenuView, OptionsMenuModel>
 {
 
     public override int Type => MenuType.Options;

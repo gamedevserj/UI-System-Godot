@@ -8,7 +8,7 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
 
 namespace UISystem.MenuSystem.SettingsMenu;
-public abstract class SettingsMenuController<TView, TModel> : MenuController<TView, TModel> where TView : SettingsMenuView where TModel : ISettingsMenuModel
+internal abstract class SettingsMenuController<TView, TModel> : MenuController<TView, TModel> where TView : SettingsMenuView where TModel : ISettingsMenuModel
 {
 
     protected readonly PopupsManager _popupsManager;

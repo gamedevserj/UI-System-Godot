@@ -12,7 +12,7 @@ using UISystem.PopupSystem.Constants;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
-public class MainMenuController : MenuController<MainMenuView, MainMenuModel>
+internal class MainMenuController : MenuController<MainMenuView, MainMenuModel>
 {
 
     public override int Type => MenuType.Main;

@@ -7,7 +7,7 @@ using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Views;
 
 namespace UISystem.Core.MenuSystem.Controllers;
-public abstract class MenuController<TView, TModel> : IMenuController where TView : BaseWindowView where TModel : IMenuModel
+internal abstract class MenuController<TView, TModel> : IMenuController where TView : BaseWindowView where TModel : IMenuModel
 {
 
     protected TView _view;
@@ -17,7 +17,7 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
     private IFocusableControl _defaultSelectedElement;
 
     protected readonly string _prefab;
-    protected readonly MenusManager _menusManager;
+    protected readonly IMenusManager _menusManager;
 
     public virtual bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
     public abstract int Type { get; }
@@ -27,7 +27,7 @@ public abstract class MenuController<TView, TModel> : IMenuController where TVie
         set => _defaultSelectedElement = _lastSelectedElement = value;
     }
 
-    public MenuController(string prefab, TModel model, MenusManager menusManager)
+    public MenuController(string prefab, TModel model, IMenusManager menusManager)
     {
         _prefab = prefab;
         _model = model;

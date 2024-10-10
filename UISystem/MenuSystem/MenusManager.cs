@@ -1,16 +1,25 @@
 ﻿using Godot;
 using System;
+using System.Collections.Generic;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem;
-using UISystem.MenuSystem;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Controllers;
 using UISystem.MenuSystem.Models;
 using UISystem.ScreenFade;
 
-namespace UISystem.Core.MenuSystem;
-public partial class MenusManager
+namespace UISystem.MenuSystem;
+public partial class MenusManager : Control, IMenusManager
 {
+
+    private IMenuController _currentController;
+    private Stack<IMenuController> _previousMenus = new();
+    private Dictionary<int, IMenuController> _controllers = new();
+
+    public override void _Input(InputEvent @event)
+    {
+        _currentController?.HandleInputPressedWhenActive(@event);
+    }
 
     public void Init(GameSettings settings, PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
     {
