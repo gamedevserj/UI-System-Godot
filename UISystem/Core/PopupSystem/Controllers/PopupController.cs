@@ -8,7 +8,7 @@ using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.Core.PopupSystem.Views;
 
 namespace UISystem.Core.PopupSystem.Controllers;
-public abstract class PopupController<T> : IPopupController where T : PopupView
+internal abstract class PopupController<T> : IPopupController where T : PopupView
 {
 
     protected const float fadeDuration = 0.25f;
@@ -19,13 +19,13 @@ public abstract class PopupController<T> : IPopupController where T : PopupView
     private IMenuController _caller;
 
     protected readonly string _prefab;
-    protected readonly PopupsManager _popupsManager;
+    protected readonly IPopupsManager _popupsManager;
     protected readonly SceneTree _sceneTree;
 
     public abstract int Type { get; }
     public abstract int PressedReturnPopupResult { get; }
 
-    public PopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree)
+    public PopupController(string prefab, IPopupsManager popupsManager, SceneTree sceneTree)
     {
         _prefab = prefab;
         _popupsManager = popupsManager;

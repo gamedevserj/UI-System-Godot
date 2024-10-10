@@ -4,6 +4,7 @@ using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.PopupSystem;
+using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
@@ -18,12 +19,12 @@ internal class MainMenuController : MenuController<MainMenuView, MainMenuModel>
     public override int Type => MenuType.Main;
 
     private readonly SceneTree _sceneTree;
-    private readonly PopupsManager _popupsManager;
+    private readonly IPopupsManager _popupsManager;
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
     public MainMenuController(string prefab, MainMenuModel model, MenusManager menusManager, SceneTree sceneTree,
-        PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) :
+        IPopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) :
         base(prefab, model, menusManager)
     {
         _sceneTree = sceneTree;

@@ -1,8 +1,7 @@
 ﻿using Godot;
-using UISystem.Core.MenuSystem;
-using UISystem.Core.PopupSystem;
 using UISystem.MenuSystem;
 using UISystem.MenuSystem.Constants;
+using UISystem.PopupSystem;
 using UISystem.ScreenFade;
 
 namespace UISystem;

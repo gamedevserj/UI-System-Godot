@@ -1,11 +1,10 @@
 ﻿using Godot;
-using UISystem.Core.PopupSystem;
 using UISystem.Core.PopupSystem.Controllers;
 using UISystem.PopupSystem.Constants;
 using UISystem.PopupSystem.Popups.YesPopup;
 
 namespace UISystem.PopupSystem.Controllers;
-public class YesPopupController : PopupController<YesPopupView>
+internal class YesPopupController : PopupController<YesPopupView>
 {
 
     public override int Type => PopupType.Yes;

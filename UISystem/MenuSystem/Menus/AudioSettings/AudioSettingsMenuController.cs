@@ -1,5 +1,4 @@
-﻿using UISystem.Core.MenuSystem;
-using UISystem.Core.PopupSystem;
+﻿using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
@@ -12,7 +11,7 @@ internal class AudioSettingsMenuController : SettingsMenuController<AudioSetting
     public override int Type => MenuType.AudioSettings;
 
     public AudioSettingsMenuController(string prefab, AudioSettingsMenuModel model, MenusManager menusManager,
-        PopupsManager popupsManager)
+        IPopupsManager popupsManager)
         : base(prefab, model, menusManager, popupsManager)
     {
 

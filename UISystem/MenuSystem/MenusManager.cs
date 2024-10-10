@@ -2,7 +2,7 @@
 using System;
 using System.Collections.Generic;
 using UISystem.Core.MenuSystem.Interfaces;
-using UISystem.Core.PopupSystem;
+using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Controllers;
 using UISystem.MenuSystem.Models;
@@ -21,7 +21,7 @@ public partial class MenusManager : Control, IMenusManager
         _currentController?.HandleInputPressedWhenActive(@event);
     }
 
-    public void Init(GameSettings settings, PopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
+    public void Init(GameSettings settings, IPopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
     {
         SceneTree tree = GetTree();
 

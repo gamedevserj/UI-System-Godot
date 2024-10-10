@@ -2,8 +2,7 @@
 using UISystem.Common.Enums;
 using UISystem.Common.Extensions;
 using UISystem.Common.Structs;
-using UISystem.Core.MenuSystem;
-using UISystem.Core.PopupSystem;
+using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
@@ -18,7 +17,7 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<Interfac
     public override int Type => MenuType.InterfaceSettings;
 
 
-    public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, MenusManager menusManager, PopupsManager popupsManager) :
+    public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, MenusManager menusManager, IPopupsManager popupsManager) :
         base(prefab, model, menusManager, popupsManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;
