@@ -1,9 +1,9 @@
 [gd_resource type="Resource" script_class="PositionTweenSettings" load_steps=2 format=3 uid="uid://btl2lnwld7ovl"]
 
-[ext_resource type="Script" path="res://UISystem/Common/HoverSettings/PositionTweenSettings.cs" id="1_88gio"]
+[ext_resource type="Script" path="res://UISystem/Core/Hovering/PositionTweenSettings.cs" id="1_yp8n7"]
 
 [resource]
-script = ExtResource("1_88gio")
+script = ExtResource("1_yp8n7")
 changePositionHover = Vector2(-4, -4)
 changePositionFocus = Vector2(-8, -8)
 changePositionFocusHover = Vector2(-12, -12)

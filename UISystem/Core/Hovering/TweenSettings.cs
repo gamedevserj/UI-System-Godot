@@ -1,8 +1,8 @@
 ﻿using Godot;
-using UISystem.Common.Enums;
-using UISystem.Common.Interfaces;
+using UISystem.Core.Enums;
+using UISystem.Core.Interfaces;
 
-namespace UISystem.Common.HoverSettings;
+namespace UISystem.Core.Hovering;
 public abstract partial class TweenSettings<T> : Resource
 {
 
@@ -12,7 +12,7 @@ public abstract partial class TweenSettings<T> : Resource
     protected abstract T FocusHoverValue { get; }
     protected abstract T DisabledValue { get; }
 
-    protected abstract class Tweener<T> : ITweener
+    protected abstract class Tweener<T> : IHoverTweener
     {
 
         protected virtual T NormalValue => _settings.NormalValue;

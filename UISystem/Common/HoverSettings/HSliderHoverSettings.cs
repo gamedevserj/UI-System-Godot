@@ -1,8 +1,9 @@
 ﻿using Godot;
-using UISystem.Common.Enums;
-using UISystem.Common.Interfaces;
+using UISystem.Core.Enums;
+using UISystem.Core.Hovering;
+using UISystem.Core.Interfaces;
 
-namespace UISystem.Common.HoverSettings.ElementHoverSettings;
+namespace UISystem.Common.HoverSettings;
 [GlobalClass]
 public partial class HSliderHoverSettings : Resource
 {
@@ -19,7 +20,7 @@ public partial class HSliderHoverSettings : Resource
     [Export] private ColorTweenSettings backgroundColorSettings;
     [Export] private ColorTweenSettings fillColorSettings;
 
-    public ITweener CreateTweener(Control grabberResizableControl, Control background, Control fill)
+    public IHoverTweener CreateTweener(Control grabberResizableControl, Control background, Control fill)
     {
         return new HSliderTweenerFacade(new TweeningSettings(duration, resetDuration, ease, resetEase, transition, resetTransition),
             grabberResizableControl, grabberSizeSettings, grabberPositionsSettings, grabberColorSettings,
@@ -27,17 +28,17 @@ public partial class HSliderHoverSettings : Resource
             fill, fillColorSettings);
     }
 
-    private class HSliderTweenerFacade : ITweener
+    private class HSliderTweenerFacade : IHoverTweener
     {
 
-        private readonly ITweener[] _tweeners;
+        private readonly IHoverTweener[] _tweeners;
 
         public HSliderTweenerFacade(TweeningSettings transitionAndEaseSettings, 
             Control grabberResizableControl, SizeTweenSettings grabberSizeSettings, PositionTweenSettings grabberPositionsSettings, ColorTweenSettings grabberColorSettings,
             Control background, ColorTweenSettings backgroundColorSettings,
             Control fill, ColorTweenSettings fillColorSettings)
         {
-            _tweeners = new ITweener[] {
+            _tweeners = new IHoverTweener[] {
                 grabberSizeSettings?.CreateTweener(grabberResizableControl, transitionAndEaseSettings),
                 grabberPositionsSettings?.CreateTweener(grabberResizableControl, transitionAndEaseSettings),
                 grabberColorSettings?.CreateTweener(grabberResizableControl, transitionAndEaseSettings),

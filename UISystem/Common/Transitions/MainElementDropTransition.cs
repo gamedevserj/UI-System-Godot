@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UISystem.Common.Extensions;
-using UISystem.Common.Interfaces;
+using UISystem.Common.Transitions.Interfaces;
+using UISystem.Core.Extensions;
 using UISystem.Core.Transitions.Interfaces;
 
 namespace UISystem.Common.Transitions;
@@ -79,7 +79,7 @@ public class MainElementDropTransition : IViewTransition
         tween.TweenControlSize(false, _mainElement.ResizableControl, size, _mainElementDuration);
 
         tween.SetTrans(Tween.TransitionType.Linear);
-        tween.TweenCanvasItemAlpha(false, _fadeObjectsContainer, 0, FadeDuration);
+        tween.TweenAlpha(false, _fadeObjectsContainer, 0, FadeDuration);
 
         tween.Finished += () => onHidden?.Invoke();
     }
@@ -114,7 +114,7 @@ public class MainElementDropTransition : IViewTransition
         tween.SetPauseMode(Tween.TweenPauseMode.Process);
 
         tween.SetTrans(Tween.TransitionType.Linear);
-        tween.TweenCanvasItemAlpha(false, _fadeObjectsContainer, 1, FadeDuration);
+        tween.TweenAlpha(false, _fadeObjectsContainer, 1, FadeDuration);
 
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);

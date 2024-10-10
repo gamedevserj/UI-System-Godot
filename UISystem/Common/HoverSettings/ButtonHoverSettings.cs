@@ -1,8 +1,9 @@
 ﻿using Godot;
-using UISystem.Common.Enums;
-using UISystem.Common.Interfaces;
+using UISystem.Core.Enums;
+using UISystem.Core.Hovering;
+using UISystem.Core.Interfaces;
 
-namespace UISystem.Common.HoverSettings.ElementHoverSettings;
+namespace UISystem.Common.HoverSettings;
 [GlobalClass]
 public partial class ButtonHoverSettings : Resource
 {
@@ -19,7 +20,7 @@ public partial class ButtonHoverSettings : Resource
     [Export] private ColorTweenSettings colorChangeSettings;
     [Export] private ColorTweenSettings labelColorChangeSettings;
 
-    public ITweener CreateTweener(Control resizableControl, Control colorTarget, Control borderColorTarget,
+    public IHoverTweener CreateTweener(Control resizableControl, Control colorTarget, Control borderColorTarget,
         Control labelColorTarget)
     {
         return new ButtonTweenerFacade(new TweeningSettings(duration, resetDuration, ease, resetEase, transition, resetTransition),
@@ -30,10 +31,10 @@ public partial class ButtonHoverSettings : Resource
             labelColorTarget, labelColorChangeSettings);
     }
 
-    private class ButtonTweenerFacade : ITweener
+    private class ButtonTweenerFacade : IHoverTweener
     {
 
-        private readonly ITweener[] _tweeners;
+        private readonly IHoverTweener[] _tweeners;
 
         public ButtonTweenerFacade(TweeningSettings transitionAndEaseSettings, 
             Control sizeTarget, SizeTweenSettings sizeSettings,
@@ -42,7 +43,7 @@ public partial class ButtonHoverSettings : Resource
             Control borderColorTarget, ColorTweenSettings borderColorSettings,
             Control labelColorTarget, ColorTweenSettings labelColorSettings)
         {
-            _tweeners = new ITweener[] {
+            _tweeners = new IHoverTweener[] {
                 sizeSettings?.CreateTweener(sizeTarget, transitionAndEaseSettings),
                 positionSettings?.CreateTweener(positionTarget, transitionAndEaseSettings),
                 colorSettings?.CreateTweener(colorTarget, transitionAndEaseSettings),

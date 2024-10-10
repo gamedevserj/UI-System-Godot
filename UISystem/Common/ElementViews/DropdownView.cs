@@ -1,9 +1,10 @@
 ﻿using Godot;
 using System.Threading.Tasks;
-using UISystem.Common.Enums;
-using UISystem.Common.HoverSettings.ElementHoverSettings;
-using UISystem.Common.Interfaces;
+using UISystem.Common.HoverSettings;
+using UISystem.Common.Transitions.Interfaces;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.Enums;
+using UISystem.Core.Interfaces;
 
 namespace UISystem.Common.ElementViews;
 public partial class DropdownView : OptionButton, IFocusableControl, ITweenableMenuElement
@@ -15,7 +16,7 @@ public partial class DropdownView : OptionButton, IFocusableControl, ITweenableM
     [Export] private Control border;
     [Export] private Label label;
 
-    private ITweener _hoverTweener;
+    private IHoverTweener _hoverTweener;
     private bool _mouseOver;
     private Tween _tween;
 

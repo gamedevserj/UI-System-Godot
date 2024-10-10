@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://dhxdq3yb0u7i7"]
 
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/HSliderView.cs" id="1_yxgxr"]
-[ext_resource type="Resource" uid="uid://b85wtfltfajj" path="res://UISystem/Common/ElementsHoverSettings/HSlider/HSliderHoverSettings.tres" id="2_yxxn5"]
+[ext_resource type="Resource" uid="uid://b85wtfltfajj" path="res://UISystem/Common/ElementsHoverSettings/HSlider/HoverSettings.tres" id="2_yxxn5"]
 [ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="3_igwht"]
 
 [node name="HSlider" type="HSlider" node_paths=PackedStringArray("grabber", "grabberResizableControl", "background", "fill", "resizableControl")]

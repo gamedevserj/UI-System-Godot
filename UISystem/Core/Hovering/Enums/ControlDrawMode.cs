@@ -1,4 +1,4 @@
-﻿namespace UISystem.Common.Enums;
+﻿namespace UISystem.Core.Enums;
 public enum ControlDrawMode
 {
     Normal = 0,

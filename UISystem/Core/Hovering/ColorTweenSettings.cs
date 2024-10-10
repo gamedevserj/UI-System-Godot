@@ -1,6 +1,7 @@
 ﻿using Godot;
-using UISystem.Common.Extensions;
-using UISystem.Common.Interfaces;
+using UISystem.Core.Extensions;
+using UISystem.Core.Hovering;
+using UISystem.Core.Interfaces;
 
 namespace UISystem.Common.HoverSettings;
 [GlobalClass]
@@ -17,7 +18,7 @@ public partial class ColorTweenSettings : TweenSettings<Color>
     protected override Color FocusHoverValue => focusHoverColor;
     protected override Color DisabledValue => disabledColor;
 
-    public ITweener CreateTweener(Control target, TweeningSettings transitionAndEaseSettings, bool parallel = true)
+    public IHoverTweener CreateTweener(Control target, TweeningSettings transitionAndEaseSettings, bool parallel = true)
         => new ColorTweener(target, target.SelfModulate, transitionAndEaseSettings, this, parallel);
 
     protected partial class ColorTweener : Tweener<Color>
@@ -36,13 +37,13 @@ public partial class ColorTweenSettings : TweenSettings<Color>
         protected override void Tween(Tween tween, Color value)
         {
             base.Tween(tween, value);
-            tween.TweenCanvasItemSelfModulate(_parallel, _target, value, _transitionAndEaseSettings.Duration);
+            tween.TweenSelfModulate(_parallel, _target, value, _transitionAndEaseSettings.Duration);
         }
 
         public override void Reset(Tween tween)
         {
             base.Reset(tween);
-            tween.TweenCanvasItemSelfModulate(_parallel, _target, _originalValue, _transitionAndEaseSettings.ResetDuration);
+            tween.TweenSelfModulate(_parallel, _target, _originalValue, _transitionAndEaseSettings.ResetDuration);
         }
 
     }

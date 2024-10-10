@@ -1,16 +1,9 @@
 [gd_resource type="Resource" script_class="SizeTweenSettings" load_steps=2 format=3 uid="uid://3df6yhpcwabx"]
 
-[ext_resource type="Script" path="res://UISystem/Common/HoverSettings/SizeTweenSettings.cs" id="1_iv4uf"]
+[ext_resource type="Script" path="res://UISystem/Core/Hovering/SizeTweenSettings.cs" id="1_5p1ew"]
 
 [resource]
-script = ExtResource("1_iv4uf")
-horizontalDirection = 1
-verticalDirection = 1
+script = ExtResource("1_5p1ew")
 changeSizeHover = Vector2(10, 10)
 changeSizeFocus = Vector2(20, 20)
 changeSizeFocusHover = Vector2(26, 26)
-duration = 1.0
-resetDuration = 0.25
-ease = 1
-transition = 6
-resetTransition = 10

@@ -1,10 +1,9 @@
 ﻿using Godot;
 using UISystem.Common.ElementViews;
-using UISystem.Common.Interfaces;
 using UISystem.Common.Transitions;
+using UISystem.Common.Transitions.Interfaces;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.MenuSystem.SettingsMenu;
-using UISystem.UISystem.Common.ElementViews;
 
 namespace UISystem.MenuSystem.Views;
 public partial class AudioSettingsMenuView : SettingsMenuView

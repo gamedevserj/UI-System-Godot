@@ -1,7 +1,7 @@
 ﻿using Godot;
 using System.Threading.Tasks;
 
-namespace UISystem.Common.Interfaces;
+namespace UISystem.Common.Transitions.Interfaces;
 public interface ITweenableMenuElement
 {
 

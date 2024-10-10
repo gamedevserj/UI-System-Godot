@@ -1,8 +1,8 @@
 ﻿using Godot;
-using UISystem.Common.Enums;
+using UISystem.Core.Enums;
 
-namespace UISystem.Common.Interfaces;
-public interface ITweener
+namespace UISystem.Core.Interfaces;
+public interface IHoverTweener
 {
 
     void Tween(Tween tween, ControlDrawMode mode);

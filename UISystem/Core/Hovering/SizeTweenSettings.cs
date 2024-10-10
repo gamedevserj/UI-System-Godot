@@ -1,8 +1,8 @@
 ﻿using Godot;
-using UISystem.Common.Extensions;
-using UISystem.Common.Interfaces;
+using UISystem.Core.Extensions;
+using UISystem.Core.Interfaces;
 
-namespace UISystem.Common.HoverSettings;
+namespace UISystem.Core.Hovering;
 [GlobalClass]
 public partial class SizeTweenSettings : TweenSettings<Vector2>
 {
@@ -18,7 +18,7 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
     protected override Vector2 DisabledValue => Vector2.Zero;
 
 
-    public ITweener CreateTweener(Control target, TweeningSettings transitionAndEaseSettings, bool parallel = true)
+    public IHoverTweener CreateTweener(Control target, TweeningSettings transitionAndEaseSettings, bool parallel = true)
         => new SizeTweener(target, target.Size, transitionAndEaseSettings, this, parallel);
 
     private class SizeTweener : Tweener<Vector2>

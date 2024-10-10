@@ -1,8 +1,8 @@
 ﻿using Godot;
-using UISystem.Common.Extensions;
-using UISystem.Common.Interfaces;
+using UISystem.Core.Extensions;
+using UISystem.Core.Interfaces;
 
-namespace UISystem.Common.HoverSettings;
+namespace UISystem.Core.Hovering;
 [GlobalClass]
 public partial class PositionTweenSettings : TweenSettings<Vector2>
 {
@@ -17,7 +17,7 @@ public partial class PositionTweenSettings : TweenSettings<Vector2>
     protected override Vector2 FocusHoverValue => changePositionFocusHover;
     protected override Vector2 DisabledValue => Vector2.Zero;
 
-    public ITweener CreateTweener(Control target, TweeningSettings transitionAndEaseSettings, bool parallel = true) =>
+    public IHoverTweener CreateTweener(Control target, TweeningSettings transitionAndEaseSettings, bool parallel = true) =>
         new PositionTweener(target, target.Position, transitionAndEaseSettings, this, parallel);
 
     private class PositionTweener : Tweener<Vector2>

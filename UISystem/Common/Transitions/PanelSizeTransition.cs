@@ -2,8 +2,9 @@
 using System;
 using System.Threading.Tasks;
 using UISystem.Common.Extensions;
-using UISystem.Common.Interfaces;
 using UISystem.Common.Structs;
+using UISystem.Common.Transitions.Interfaces;
+using UISystem.Core.Extensions;
 using UISystem.Core.Transitions.Interfaces;
 
 namespace UISystem.Common.Transitions;
@@ -76,7 +77,7 @@ public class PanelSizeTransition : IViewTransition
         tween.TweenControlSize(false, _panel, Vector2.Zero, _panelDuration, _panelSizeSettings);
 
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.TweenCanvasItemAlpha(false, _fadeObjectsContainer, 0, FadeDuration);
+        tween.TweenAlpha(false, _fadeObjectsContainer, 0, FadeDuration);
         tween.TweenCallback(Callable.From(() =>
         {
             onHidden?.Invoke();
@@ -102,7 +103,7 @@ public class PanelSizeTransition : IViewTransition
         tween.SetEase(Tween.EaseType.In);
         tween.SetTrans(Tween.TransitionType.Linear);
 
-        tween.TweenCanvasItemAlpha(false, _fadeObjectsContainer, 1, FadeDuration);
+        tween.TweenAlpha(false, _fadeObjectsContainer, 1, FadeDuration);
         tween.TweenControlSize(false, _panel, _panelSizeSettings.OriginalSize, _panelDuration, _panelSizeSettings);
         for (int i = 0; i < _elements.Length; i++)
         {
