@@ -11,7 +11,9 @@ public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuE
 
     [Export] private ButtonHoverSettings buttonHoverSettings;
     [Export] private Control resizableControl;
+    [Export] private Control innerColor;
     [Export] private Control border;
+    [Export] private Label label;
 
     private ITweener _hoverTweener;
     private bool _mouseOver;
@@ -26,7 +28,7 @@ public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuE
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
-        _hoverTweener = buttonHoverSettings.CreateTweener(resizableControl, border, resizableControl);
+        _hoverTweener = buttonHoverSettings.CreateTweener(resizableControl, innerColor, border, label);
         Subscribe();
     }
 

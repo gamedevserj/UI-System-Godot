@@ -43,6 +43,6 @@ public partial class PositionTweenSettings : TweenSettings<Vector2>
             base.Reset(tween);
             tween.TweenControlPosition(_parallel, _target, _originalValue, _transitionAndEaseSettings.ResetDuration);
         }
-    }
 
+    }
 }

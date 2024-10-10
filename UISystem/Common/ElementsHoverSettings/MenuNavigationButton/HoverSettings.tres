@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ButtonHoverSettings" load_steps=4 format=3 uid="uid://dj5acww1ovp0b"]
+
+[ext_resource type="Resource" uid="uid://cwy3443w5wlcn" path="res://UISystem/Common/ElementsHoverSettings/Dropdown/BorderColor.tres" id="1_es2oe"]
+[ext_resource type="Script" path="res://UISystem/Common/HoverSettings/ElementHoverSettings/ButtonHoverSettings.cs" id="2_1ml7h"]
+[ext_resource type="Resource" uid="uid://biq2cqekjljck" path="res://UISystem/Common/ElementsHoverSettings/MenuNavigationButton/Size.tres" id="5_1uo6a"]
+
+[resource]
+script = ExtResource("2_1ml7h")
+duration = 1.0
+resetDuration = 0.25
+ease = 1
+resetEase = 1
+transition = 6
+resetTransition = 10
+sizeChangeSettings = ExtResource("5_1uo6a")
+borderColorChangeSettings = ExtResource("1_es2oe")

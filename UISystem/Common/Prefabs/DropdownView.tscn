@@ -2,11 +2,11 @@
 
 [ext_resource type="Theme" uid="uid://p3e6ki5xgue4" path="res://UISystem/Themes/DropdownButtonTheme.tres" id="1_1jsjw"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/DropdownView.cs" id="1_623xw"]
-[ext_resource type="Resource" uid="uid://b01oed40pvom6" path="res://UISystem/Common/ElementsHoverSettings/Dropdown/DropdownHoverSettings.tres" id="2_6eh7u"]
+[ext_resource type="Resource" uid="uid://b01oed40pvom6" path="res://UISystem/Common/ElementsHoverSettings/Dropdown/HoverSettings.tres" id="2_6eh7u"]
 [ext_resource type="StyleBox" uid="uid://nqg1m8r4efan" path="res://UISystem/Styles/DropdownShape.tres" id="4_uw6i0"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="5_1o05n"]
 
-[node name="DropdownView" type="OptionButton" node_paths=PackedStringArray("resizableControl", "border", "label")]
+[node name="DropdownView" type="OptionButton" node_paths=PackedStringArray("resizableControl", "innerColor", "border", "label")]
 self_modulate = Color(1, 1, 1, 0)
 custom_minimum_size = Vector2(300, 0)
 offset_right = 342.0
@@ -21,6 +21,7 @@ fit_to_longest_item = false
 script = ExtResource("1_623xw")
 buttonHoverSettings = ExtResource("2_6eh7u")
 resizableControl = NodePath("ResizableControl")
+innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
 border = NodePath("ResizableControl/Border")
 label = NodePath("ResizableControl/TextClipper/Label")
 

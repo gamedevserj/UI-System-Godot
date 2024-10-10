@@ -12,7 +12,6 @@ public abstract partial class TweenSettings<T> : Resource
     protected abstract T FocusHoverValue { get; }
     protected abstract T DisabledValue { get; }
 
-
     protected abstract class Tweener<T> : ITweener
     {
 
@@ -58,5 +57,4 @@ public abstract partial class TweenSettings<T> : Resource
         };
         
     }
-
 }

@@ -46,6 +46,5 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
         }
 
     }
-
 }
 

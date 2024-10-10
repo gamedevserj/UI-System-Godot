@@ -11,6 +11,7 @@ public partial class DropdownView : OptionButton, IFocusableControl, ITweenableM
 
     [Export] private ButtonHoverSettings buttonHoverSettings;
     [Export] private Control resizableControl;
+    [Export] private Control innerColor;
     [Export] private Control border;
     [Export] private Label label;
 
@@ -27,7 +28,7 @@ public partial class DropdownView : OptionButton, IFocusableControl, ITweenableM
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
-        _hoverTweener = buttonHoverSettings.CreateTweener(resizableControl, border, resizableControl);
+        _hoverTweener = buttonHoverSettings.CreateTweener(resizableControl, innerColor, border, label);
         Subscribe();
     }
 

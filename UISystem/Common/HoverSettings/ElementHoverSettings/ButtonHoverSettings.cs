@@ -14,16 +14,20 @@ public partial class ButtonHoverSettings : Resource
     [Export] private Tween.TransitionType transition = Tween.TransitionType.Elastic;
     [Export] private Tween.TransitionType resetTransition = Tween.TransitionType.Back;
     [Export] private SizeTweenSettings sizeChangeSettings;
-    [Export] private ColorTweenSettings borderColorChangeSettings;
     [Export] private PositionTweenSettings positionChangeSettings;
+    [Export] private ColorTweenSettings borderColorChangeSettings;
+    [Export] private ColorTweenSettings colorChangeSettings;
+    [Export] private ColorTweenSettings labelColorChangeSettings;
 
-    public ITweener CreateTweener(Control sizeTarget, Control borderColorTarget, Control positionTarget, bool sizeParallel = true,
-        bool colorParallel = true)
+    public ITweener CreateTweener(Control resizableControl, Control colorTarget, Control borderColorTarget,
+        Control labelColorTarget)
     {
         return new ButtonTweenerFacade(new TweeningSettings(duration, resetDuration, ease, resetEase, transition, resetTransition),
-            sizeTarget, borderColorTarget, 
-            sizeChangeSettings, borderColorChangeSettings, positionTarget, positionChangeSettings,
-            sizeParallel, colorParallel);
+            resizableControl, sizeChangeSettings,
+            resizableControl, positionChangeSettings,
+            colorTarget, colorChangeSettings,
+            borderColorTarget, borderColorChangeSettings,
+            labelColorTarget, labelColorChangeSettings);
     }
 
     private class ButtonTweenerFacade : ITweener
@@ -31,13 +35,19 @@ public partial class ButtonHoverSettings : Resource
 
         private readonly ITweener[] _tweeners;
 
-        public ButtonTweenerFacade(TweeningSettings transitionAndEaseSettings, Control sizeTarget, Control colorTarget, 
-            SizeTweenSettings sizeSettings, ColorTweenSettings colorSettings, Control positionTarget, PositionTweenSettings positionSettings, bool sizeParallel, bool colorParallel)
+        public ButtonTweenerFacade(TweeningSettings transitionAndEaseSettings, 
+            Control sizeTarget, SizeTweenSettings sizeSettings,
+            Control positionTarget, PositionTweenSettings positionSettings,
+            Control colorTarget, ColorTweenSettings colorSettings,
+            Control borderColorTarget, ColorTweenSettings borderColorSettings,
+            Control labelColorTarget, ColorTweenSettings labelColorSettings)
         {
             _tweeners = new ITweener[] {
-                sizeSettings?.CreateTweener(sizeTarget, transitionAndEaseSettings, sizeParallel),
-                colorSettings?.CreateTweener(colorTarget, transitionAndEaseSettings, colorParallel),
-                positionSettings?.CreateTweener(positionTarget, transitionAndEaseSettings, true),
+                sizeSettings?.CreateTweener(sizeTarget, transitionAndEaseSettings),
+                positionSettings?.CreateTweener(positionTarget, transitionAndEaseSettings),
+                colorSettings?.CreateTweener(colorTarget, transitionAndEaseSettings),
+                borderColorSettings?.CreateTweener(borderColorTarget, transitionAndEaseSettings),
+                labelColorSettings?.CreateTweener(labelColorTarget, transitionAndEaseSettings),
             };
         }
 

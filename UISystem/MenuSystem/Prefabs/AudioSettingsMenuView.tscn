@@ -1,12 +1,10 @@
-[gd_scene load_steps=9 format=3 uid="uid://bx45yom4bi85n"]
+[gd_scene load_steps=7 format=3 uid="uid://bx45yom4bi85n"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/AudioSettings/AudioSettingsMenuView.cs" id="1_ca7ap"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_6en0s"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/HSliderView.cs" id="2_8b7gh"]
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ResizableControlView.cs" id="2_gm07w"]
-[ext_resource type="Resource" uid="uid://b85wtfltfajj" path="res://UISystem/Common/ElementsHoverSettings/HSlider/HSliderHoverSettings.tres" id="4_n0yio"]
+[ext_resource type="PackedScene" uid="uid://dhxdq3yb0u7i7" path="res://UISystem/Common/Prefabs/HSlider.tscn" id="4_ge6q5"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_l4qqc"]
-[ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="6_n1bc4"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_runyc"]
 
@@ -134,77 +132,8 @@ theme = ExtResource("2_6en0s")
 text = "Music volume"
 horizontal_alignment = 1
 
-[node name="MusicSlider" type="HSlider" parent="Container/Panel/PanelBorder/Color/VBoxContainer2" node_paths=PackedStringArray("grabber", "grabberResizableControl", "background", "fill", "resizableControl")]
-self_modulate = Color(1, 1, 1, 0)
+[node name="MusicSlider" parent="Container/Panel/PanelBorder/Color/VBoxContainer2" instance=ExtResource("4_ge6q5")]
 layout_mode = 2
-size_flags_vertical = 3
-max_value = 1.0
-step = 0.01
-value = 0.5
-script = ExtResource("2_8b7gh")
-hoverSettings = ExtResource("4_n0yio")
-grabber = NodePath("ResizableControl/GraberPosition")
-grabberResizableControl = NodePath("ResizableControl/GraberPosition/GrabberResizableControl")
-background = NodePath("ResizableControl/Background")
-fill = NodePath("ResizableControl/Fill")
-resizableControl = NodePath("ResizableControl")
-
-[node name="ResizableControl" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicSlider"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Background" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicSlider/ResizableControl"]
-self_modulate = Color(0.552941, 0.552941, 0.552941, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = ExtResource("6_n1bc4")
-
-[node name="Fill" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicSlider/ResizableControl"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = ExtResource("6_n1bc4")
-
-[node name="GraberPosition" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicSlider/ResizableControl"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 10.0
-offset_right = -589.0
-offset_bottom = -9.00001
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="GrabberResizableControl" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/MusicSlider/ResizableControl/GraberPosition"]
-self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = ExtResource("6_n1bc4")
 
 [node name="SfxLabelContainer" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2"]
 layout_mode = 2
@@ -240,78 +169,8 @@ theme = ExtResource("2_6en0s")
 text = "SFX volume"
 horizontal_alignment = 1
 
-[node name="SfxSlider" type="HSlider" parent="Container/Panel/PanelBorder/Color/VBoxContainer2" node_paths=PackedStringArray("grabber", "grabberResizableControl", "background", "fill", "resizableControl")]
-self_modulate = Color(1, 1, 1, 0)
+[node name="SfxSlider" parent="Container/Panel/PanelBorder/Color/VBoxContainer2" instance=ExtResource("4_ge6q5")]
 layout_mode = 2
-size_flags_vertical = 3
-max_value = 1.0
-step = 0.01
-value = 0.5
-script = ExtResource("2_8b7gh")
-hoverSettings = ExtResource("4_n0yio")
-grabber = NodePath("ResizableControl/GrabberPosition")
-grabberResizableControl = NodePath("ResizableControl/GrabberPosition/GrabberResizableControl")
-background = NodePath("ResizableControl/Background")
-fill = NodePath("ResizableControl/Fill")
-resizableControl = NodePath("ResizableControl")
-
-[node name="ResizableControl" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxSlider"]
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="Background" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxSlider/ResizableControl"]
-self_modulate = Color(0.552941, 0.552941, 0.552941, 1)
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = ExtResource("6_n1bc4")
-
-[node name="Fill" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxSlider/ResizableControl"]
-layout_mode = 1
-anchors_preset = -1
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 20.0
-offset_bottom = -20.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = ExtResource("6_n1bc4")
-
-[node name="GrabberPosition" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxSlider/ResizableControl"]
-self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_top = 10.0
-offset_right = -589.0
-offset_bottom = -9.00001
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-
-[node name="GrabberResizableControl" type="PanelContainer" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxSlider/ResizableControl/GrabberPosition"]
-self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
-grow_horizontal = 2
-grow_vertical = 2
-mouse_filter = 2
-theme_override_styles/panel = ExtResource("6_n1bc4")
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Container/Panel/PanelBorder/Color"]
 layout_mode = 1

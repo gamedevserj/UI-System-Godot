@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="ColorTweenSettings" load_steps=2 format=3 uid="uid://dxu5vjhfpd8gb"]
+
+[ext_resource type="Script" path="res://UISystem/Common/HoverSettings/ColorTweenSettings.cs" id="1_pro6a"]
+
+[resource]
+script = ExtResource("1_pro6a")
+hoverColor = Color(1, 1, 1, 1)
+focusColor = Color(1, 1, 1, 1)
+focusHoverColor = Color(1, 1, 1, 1)
+disabledColor = Color(0.5, 0.5, 0.5, 1)

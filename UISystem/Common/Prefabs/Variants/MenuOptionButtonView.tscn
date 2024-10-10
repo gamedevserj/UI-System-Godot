@@ -1,11 +1,11 @@
 [gd_scene load_steps=5 format=3 uid="uid://b0ifhq3dslldh"]
 
 [ext_resource type="Script" path="res://UISystem/Common/ElementViews/ButtonView.cs" id="1_8a4pk"]
-[ext_resource type="Resource" uid="uid://pxdlfq08bkq1" path="res://UISystem/Common/ElementsHoverSettings/OptionsButton/OptionsButtonHoverSettings.tres" id="2_wpts1"]
+[ext_resource type="Resource" uid="uid://pxdlfq08bkq1" path="res://UISystem/Common/ElementsHoverSettings/OptionsButton/HoverSettings.tres" id="2_wpts1"]
 [ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="4_e2svh"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="5_ru2ho"]
 
-[node name="OptionButtonView" type="Button" node_paths=PackedStringArray("resizableControl", "border")]
+[node name="OptionButtonView" type="Button" node_paths=PackedStringArray("resizableControl", "innerColor", "border", "label")]
 self_modulate = Color(1, 1, 1, 0)
 offset_right = 300.0
 offset_bottom = 90.0
@@ -15,7 +15,9 @@ flat = true
 script = ExtResource("1_8a4pk")
 buttonHoverSettings = ExtResource("2_wpts1")
 resizableControl = NodePath("ResizableControl")
+innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
 border = NodePath("ResizableControl/Border")
+label = NodePath("ResizableControl/ContentClipper/Label")
 
 [node name="ResizableControl" type="Control" parent="."]
 layout_mode = 1

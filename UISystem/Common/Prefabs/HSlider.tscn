@@ -1,0 +1,77 @@
+[gd_scene load_steps=4 format=3 uid="uid://dhxdq3yb0u7i7"]
+
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/HSliderView.cs" id="1_yxgxr"]
+[ext_resource type="Resource" uid="uid://b85wtfltfajj" path="res://UISystem/Common/ElementsHoverSettings/HSlider/HSliderHoverSettings.tres" id="2_yxxn5"]
+[ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="3_igwht"]
+
+[node name="HSlider" type="HSlider" node_paths=PackedStringArray("grabber", "grabberResizableControl", "background", "fill", "resizableControl")]
+self_modulate = Color(1, 1, 1, 0)
+size_flags_vertical = 3
+max_value = 1.0
+step = 0.01
+value = 0.5
+script = ExtResource("1_yxgxr")
+hoverSettings = ExtResource("2_yxxn5")
+grabber = NodePath("ResizableControl/GrabberPosition")
+grabberResizableControl = NodePath("ResizableControl/GrabberPosition/GrabberResizableControl")
+background = NodePath("ResizableControl/Background")
+fill = NodePath("ResizableControl/Fill")
+resizableControl = NodePath("ResizableControl")
+
+[node name="ResizableControl" type="Control" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="Background" type="PanelContainer" parent="ResizableControl"]
+self_modulate = Color(0.552941, 0.552941, 0.552941, 1)
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_igwht")
+
+[node name="Fill" type="PanelContainer" parent="ResizableControl"]
+layout_mode = 1
+anchors_preset = -1
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 20.0
+offset_bottom = -20.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_igwht")
+
+[node name="GrabberPosition" type="Control" parent="ResizableControl"]
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_top = 10.0
+offset_right = -589.0
+offset_bottom = -9.00001
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+
+[node name="GrabberResizableControl" type="PanelContainer" parent="ResizableControl/GrabberPosition"]
+self_modulate = Color(0.592157, 0.592157, 0.592157, 1)
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+theme_override_styles/panel = ExtResource("3_igwht")

@@ -44,6 +44,6 @@ public partial class ColorTweenSettings : TweenSettings<Color>
             base.Reset(tween);
             tween.TweenCanvasItemSelfModulate(_parallel, _target, _originalValue, _transitionAndEaseSettings.ResetDuration);
         }
-    }
 
+    }
 }
