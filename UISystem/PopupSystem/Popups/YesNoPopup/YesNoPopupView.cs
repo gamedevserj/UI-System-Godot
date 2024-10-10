@@ -4,7 +4,7 @@ using UISystem.Core.Elements.Interfaces;
 using UISystem.PopupSystem.Popups.YesPopup;
 
 namespace UISystem.PopupSystem.Views;
-public partial class YesNoPopupView : YesPopupView
+internal partial class YesNoPopupView : YesPopupView
 {
 
     [Export] private ButtonView noButton;

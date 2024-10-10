@@ -5,7 +5,7 @@ using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.PopupSystem.Views;
 
 namespace UISystem.PopupSystem.Popups.YesPopup;
-public partial class YesPopupView : PopupView
+internal partial class YesPopupView : PopupView
 {
 
     [Export] private Control fadeObjectsContainer;
