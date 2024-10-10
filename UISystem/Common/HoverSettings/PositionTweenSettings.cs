@@ -11,7 +11,7 @@ public partial class PositionTweenSettings : TweenSettings<Vector2>
     [Export] private Vector2 changePositionFocus = new(0, 0);
     [Export] private Vector2 changePositionFocusHover = new(0, 0);
 
-    public override Vector2 NormalValue => Vector2.Zero;
+    protected override Vector2 NormalValue => Vector2.Zero;
     protected override Vector2 HoverValue => changePositionHover;
     protected override Vector2 FocusValue => changePositionFocus;
     protected override Vector2 FocusHoverValue => changePositionFocusHover;
@@ -35,13 +35,13 @@ public partial class PositionTweenSettings : TweenSettings<Vector2>
         protected override void Tween(Tween tween, Vector2 value)
         {
             base.Tween(tween, value);
-            tween.TweenControlPosition(_parallel, _target, _originalValue + value, _settings.Duration);
+            tween.TweenControlPosition(_parallel, _target, _originalValue + value, _transitionAndEaseSettings.Duration);
         }
 
         public override void Reset(Tween tween)
         {
             base.Reset(tween);
-            tween.TweenControlPosition(_parallel, _target, _originalValue, _settings.ResetDuration);
+            tween.TweenControlPosition(_parallel, _target, _originalValue, _transitionAndEaseSettings.ResetDuration);
         }
     }
 

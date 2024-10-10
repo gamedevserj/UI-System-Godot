@@ -6,13 +6,7 @@ namespace UISystem.Common.HoverSettings;
 public abstract partial class TweenSettings<T> : Resource
 {
 
-    [Export] private float duration = 1;
-    [Export] private float resetDuration = 0.25f;
-
-    public float Duration => duration;
-    public float ResetDuration => resetDuration;
-
-    public abstract T NormalValue { get; }
+    protected abstract T NormalValue { get; }
     protected abstract T HoverValue { get; }
     protected abstract T FocusValue { get; }
     protected abstract T FocusHoverValue { get; }
@@ -21,6 +15,8 @@ public abstract partial class TweenSettings<T> : Resource
 
     protected abstract class Tweener<T> : ITweener
     {
+
+        protected virtual T NormalValue => _settings.NormalValue;
 
         protected readonly Control _target;
         protected readonly bool _parallel;
@@ -51,15 +47,16 @@ public abstract partial class TweenSettings<T> : Resource
             tween.SetEase(_transitionAndEaseSettings.Ease).SetTrans(_transitionAndEaseSettings.Transition);
         }
 
-        protected virtual T SelectValue(ControlDrawMode mode) => mode switch
+        private T SelectValue(ControlDrawMode mode) => mode switch
         {
-            ControlDrawMode.Normal => _settings.NormalValue,
+            ControlDrawMode.Normal => NormalValue,
             ControlDrawMode.Hover => _settings.HoverValue,
             ControlDrawMode.Focus => _settings.FocusValue,
             ControlDrawMode.HoverFocus => _settings.FocusHoverValue,
             ControlDrawMode.Disabled => _settings.DisabledValue,
             _ => _settings.NormalValue,
         };
+        
     }
 
 }

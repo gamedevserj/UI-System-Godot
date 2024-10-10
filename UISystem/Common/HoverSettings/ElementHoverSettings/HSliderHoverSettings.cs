@@ -7,11 +7,14 @@ namespace UISystem.Common.HoverSettings.ElementHoverSettings;
 public partial class HSliderHoverSettings : Resource
 {
 
+    [Export] private float duration = 1;
+    [Export] private float resetDuration = 0.25f;
     [Export] private Tween.EaseType ease = Tween.EaseType.Out;
     [Export] private Tween.EaseType resetEase = Tween.EaseType.Out;
     [Export] private Tween.TransitionType transition = Tween.TransitionType.Elastic;
     [Export] private Tween.TransitionType resetTransition = Tween.TransitionType.Back;
     [Export] private SizeTweenSettings grabberSizeSettings;
+    [Export] private PositionTweenSettings grabberPositionsSettings;
     [Export] private ColorTweenSettings grabberColorSettings;
     [Export] private ColorTweenSettings backgroundColorSettings;
     [Export] private ColorTweenSettings fillColorSettings;
@@ -19,9 +22,9 @@ public partial class HSliderHoverSettings : Resource
     public ITweener CreateTweener(Control grabberResizableControl, Control background, Control fill, bool sizeParallel = true,
         bool colorParallel = true)
     {
-        return new HSliderTweenerFacade(new TransitionAndEaseSettings(ease, resetEase, transition, resetTransition),
+        return new HSliderTweenerFacade(new TransitionAndEaseSettings(duration, resetDuration, ease, resetEase, transition, resetTransition),
             grabberResizableControl, background, fill,
-            grabberSizeSettings, grabberColorSettings, backgroundColorSettings, fillColorSettings,
+            grabberSizeSettings, grabberColorSettings, grabberPositionsSettings, backgroundColorSettings, fillColorSettings,
             sizeParallel, colorParallel);
     }
 
@@ -31,12 +34,13 @@ public partial class HSliderHoverSettings : Resource
         private readonly ITweener[] _tweeners;
 
         public HSliderTweenerFacade(TransitionAndEaseSettings transitionAndEaseSettings, Control grabberResizableControl, Control background, Control fill,
-            SizeTweenSettings grabberSizeSettings, ColorTweenSettings grabberColorSettings,
+            SizeTweenSettings grabberSizeSettings, ColorTweenSettings grabberColorSettings, PositionTweenSettings grabberPositionsSettings,
             ColorTweenSettings backgroundColorSettings, ColorTweenSettings fillColorSettings,
             bool sizeParallel = true, bool colorParallel = true)
         {
             _tweeners = new ITweener[] {
                 grabberSizeSettings?.CreateTweener(grabberResizableControl, transitionAndEaseSettings, sizeParallel),
+                grabberPositionsSettings?.CreateTweener(grabberResizableControl, transitionAndEaseSettings, true),
                 grabberColorSettings?.CreateTweener(grabberResizableControl, transitionAndEaseSettings, colorParallel),
                 backgroundColorSettings?.CreateTweener(background, transitionAndEaseSettings, colorParallel),
                 fillColorSettings?.CreateTweener(fill, transitionAndEaseSettings, colorParallel)

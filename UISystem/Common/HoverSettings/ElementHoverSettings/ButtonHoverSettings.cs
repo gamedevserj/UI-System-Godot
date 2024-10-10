@@ -7,6 +7,8 @@ namespace UISystem.Common.HoverSettings.ElementHoverSettings;
 public partial class ButtonHoverSettings : Resource
 {
 
+    [Export] private float duration = 1;
+    [Export] private float resetDuration = 0.25f;
     [Export] private Tween.EaseType ease = Tween.EaseType.Out;
     [Export] private Tween.EaseType resetEase = Tween.EaseType.Out;
     [Export] private Tween.TransitionType transition = Tween.TransitionType.Elastic;
@@ -18,7 +20,7 @@ public partial class ButtonHoverSettings : Resource
     public ITweener CreateTweener(Control sizeTarget, Control borderColorTarget, Control positionTarget, bool sizeParallel = true,
         bool colorParallel = true)
     {
-        return new ButtonTweenerFacade(new TransitionAndEaseSettings(ease, resetEase, transition, resetTransition),
+        return new ButtonTweenerFacade(new TransitionAndEaseSettings(duration, resetDuration, ease, resetEase, transition, resetTransition),
             sizeTarget, borderColorTarget, 
             sizeChangeSettings, borderColorChangeSettings, positionTarget, positionChangeSettings,
             sizeParallel, colorParallel);
