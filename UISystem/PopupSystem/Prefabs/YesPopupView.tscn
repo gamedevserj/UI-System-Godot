@@ -1,12 +1,13 @@
-[gd_scene load_steps=5 format=3 uid="uid://4mgylfwefvrf"]
+[gd_scene load_steps=6 format=3 uid="uid://4mgylfwefvrf"]
 
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_g8fkn"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="2_vcy83"]
+[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ResizableControlView.cs" id="3_7xdby"]
 [ext_resource type="Script" path="res://UISystem/PopupSystem/Popups/YesPopup/YesPopupView.cs" id="4_rbuno"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_guta3"]
 
-[node name="YesPopup" type="Control" node_paths=PackedStringArray("fadeObjectsContainer", "yesButton", "message")]
+[node name="YesPopup" type="Control" node_paths=PackedStringArray("fadeObjectsContainer", "panel", "yesButton", "messageMask", "message")]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -15,8 +16,10 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_rbuno")
 fadeObjectsContainer = NodePath("FadeObjectContainer")
-yesButton = NodePath("FadeObjectContainer/ButtonsContainer/YesButton")
-message = NodePath("FadeObjectContainer/Message")
+panel = NodePath("FadeObjectContainer/Outline")
+yesButton = NodePath("FadeObjectContainer/Outline/Color/ButtonsContainer/YesButton")
+messageMask = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask")
+message = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask/Message")
 
 [node name="FadeObjectContainer" type="Control" parent="."]
 layout_mode = 1
@@ -44,6 +47,7 @@ metadata/_edit_use_anchors_ = true
 
 [node name="Color" type="TextureRect" parent="FadeObjectContainer/Outline"]
 self_modulate = Color(0, 0, 0, 1)
+clip_contents = true
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -56,15 +60,34 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_guta3")
 
-[node name="Message" type="Label" parent="FadeObjectContainer"]
+[node name="VBoxContainer" type="VBoxContainer" parent="FadeObjectContainer/Outline/Color"]
+clip_contents = true
+offset_left = 91.0
+offset_top = 28.0
+offset_right = 1626.0
+offset_bottom = 298.0
+mouse_filter = 2
+theme = ExtResource("2_g8fkn")
+metadata/_edit_use_anchors_ = true
+
+[node name="TextMask" type="Control" parent="FadeObjectContainer/Outline/Color/VBoxContainer"]
+clip_contents = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+script = ExtResource("3_7xdby")
+
+[node name="Message" type="Label" parent="FadeObjectContainer/Outline/Color/VBoxContainer/TextMask"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.1
-anchor_top = 0.299383
-anchor_right = 0.9
-anchor_bottom = 0.549383
-offset_left = -3.05176e-05
-offset_right = 0.00012207
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -767.5
+offset_top = -135.0
+offset_right = 767.5
+offset_bottom = 135.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 0
@@ -73,24 +96,24 @@ text = "Message"
 horizontal_alignment = 1
 vertical_alignment = 1
 autowrap_mode = 2
-metadata/_edit_use_anchors_ = true
 
-[node name="ButtonsContainer" type="HBoxContainer" parent="FadeObjectContainer"]
+[node name="ButtonsContainer" type="HBoxContainer" parent="FadeObjectContainer/Outline/Color"]
 layout_mode = 1
 anchors_preset = -1
-anchor_left = 0.371
-anchor_top = 0.6
-anchor_right = 0.629
-anchor_bottom = 0.7
-offset_left = -0.320068
-offset_right = -0.680054
-offset_bottom = -6.10352e-05
+anchor_left = 0.356
+anchor_top = 0.721
+anchor_right = 0.644
+anchor_bottom = 0.941
+offset_left = -0.289063
+offset_top = -0.990051
+offset_right = -0.815063
+offset_bottom = -0.698517
 theme_override_constants/separation = 25
 
-[node name="YesButton" parent="FadeObjectContainer/ButtonsContainer" instance=ExtResource("2_vcy83")]
+[node name="YesButton" parent="FadeObjectContainer/Outline/Color/ButtonsContainer" instance=ExtResource("2_vcy83")]
 layout_mode = 2
 
-[node name="ResizableControl" parent="FadeObjectContainer/ButtonsContainer/YesButton" index="0"]
+[node name="ResizableControl" parent="FadeObjectContainer/Outline/Color/ButtonsContainer/YesButton" index="0"]
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -99,11 +122,11 @@ offset_bottom = 0.0
 grow_horizontal = 2
 grow_vertical = 2
 
-[node name="Label" parent="FadeObjectContainer/ButtonsContainer/YesButton/ResizableControl/ContentClipper" index="0"]
+[node name="Label" parent="FadeObjectContainer/Outline/Color/ButtonsContainer/YesButton/ResizableControl/ContentClipper" index="0"]
 offset_left = -222.5
 offset_top = -48.5
 offset_right = 222.5
 offset_bottom = 49.5
 text = "OK"
 
-[editable path="FadeObjectContainer/ButtonsContainer/YesButton"]
+[editable path="FadeObjectContainer/Outline/Color/ButtonsContainer/YesButton"]

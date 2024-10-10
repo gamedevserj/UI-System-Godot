@@ -87,13 +87,15 @@ texture = SubResource("CanvasTexture_runyc")
 
 [node name="VBoxContainer2" type="VBoxContainer" parent="Container/Panel/PanelBorder/Color"]
 layout_mode = 1
-anchors_preset = 5
-anchor_left = 0.5
-anchor_right = 0.5
-offset_left = -307.0
-offset_top = 152.0
-offset_right = 308.0
-offset_bottom = 509.0
+anchors_preset = -1
+anchor_left = 0.299
+anchor_top = 0.178
+anchor_right = 0.702
+anchor_bottom = 0.596
+offset_left = -0.274048
+offset_top = -0.0120087
+offset_right = -0.252075
+offset_bottom = 0.0159912
 grow_horizontal = 2
 theme_override_constants/separation = 10
 alignment = 1
@@ -111,6 +113,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("2_gm07w")
 
@@ -142,12 +145,14 @@ mouse_filter = 2
 
 [node name="ResizableControlSfx" type="Control" parent="Container/Panel/PanelBorder/Color/VBoxContainer2/SfxLabelContainer"]
 clip_contents = true
-layout_mode = 1
-anchors_preset = 15
-anchor_right = 1.0
-anchor_bottom = 1.0
+layout_mode = 2
+anchors_preset = 0
+offset_top = -5.0
+offset_right = 615.0
+offset_bottom = 77.0
 grow_horizontal = 2
 grow_vertical = 2
+size_flags_vertical = 3
 mouse_filter = 2
 script = ExtResource("2_gm07w")
 
