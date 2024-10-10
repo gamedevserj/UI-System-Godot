@@ -51,7 +51,8 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
         }, instant);
     }
 
-    public virtual void Hide(int menuChangeType, Action onComplete = null, bool instant = false)
+    // menuChangeType is used to Hide background when necessary
+    public virtual void Hide(int menuChangeType, Action onComplete = null, bool instant = false) 
     {
         _view.Hide(() => onComplete?.Invoke(), instant);
     }

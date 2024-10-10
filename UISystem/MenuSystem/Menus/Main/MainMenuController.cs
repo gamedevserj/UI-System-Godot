@@ -1,9 +1,7 @@
 using Godot;
 using System;
 using UISystem.Constants;
-using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Controllers;
-using UISystem.Core.PopupSystem;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
