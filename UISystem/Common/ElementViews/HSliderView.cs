@@ -33,7 +33,7 @@ public partial class HSliderView : HSlider, IFocusableControl, ITweenableMenuEle
 
         _hoverTweener = hoverSettings.CreateTweener(grabberResizableControl, background, fill);
         Subscribe();
-        UpdateSliderVisual();
+        UpdateSliderVisual(Value);
     }
 
     public override void _ExitTree() => Unsubscribe();
@@ -48,11 +48,11 @@ public partial class HSliderView : HSlider, IFocusableControl, ITweenableMenuEle
         await ToSignal(_tween, Tween.SignalName.Finished);
     }
 
-    public override void _Process(double delta)
+    public override void _ValueChanged(double newValue)
     {
         if (hoverSettings == null) return;
-        if (_isDragging)
-            UpdateSliderVisual();
+        
+        UpdateSliderVisual(newValue);
     }
 
     private void Subscribe()
@@ -116,9 +116,9 @@ public partial class HSliderView : HSlider, IFocusableControl, ITweenableMenuEle
         HoverTween();
     }
 
-    private void UpdateSliderVisual()
+    private void UpdateSliderVisual(double newValue)
     {
-        float value = (float)Value;
+        float value = (float)newValue;
         fill.SetAnchor(Side.Right, value, true);
         grabber.Position = new Vector2((background.Size.X * value) - grabber.Size.X * 0.5f, grabber.Position.Y);
     }

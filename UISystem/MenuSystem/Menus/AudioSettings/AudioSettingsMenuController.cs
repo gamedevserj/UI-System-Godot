@@ -79,8 +79,8 @@ internal class AudioSettingsMenuController : SettingsMenuController<AudioSetting
 
     protected override void ResetViewToDefault()
     {
-        _view.MusicSlider.SetValueNoSignal(_model.MusicVolume);
-        _view.SfxSlider.SetValueNoSignal(_model.SfxVolume);
+        _view.MusicSlider.SetValue(_model.MusicVolume);
+        _view.SfxSlider.SetValue(_model.SfxVolume);
         _lastSelectedElement = _view.ResetButton;
     }
 }
