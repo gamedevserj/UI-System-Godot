@@ -1,8 +1,8 @@
 using Godot;
-using UISystem.Common.ElementViews;
-using UISystem.Common.Transitions;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.Views;
+using UISystem.Elements.ElementViews;
+using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Views;
 public partial class PauseMenuView : BaseInteractableWindow

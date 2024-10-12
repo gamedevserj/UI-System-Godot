@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/AudioSettings/AudioSettingsMenuView.cs" id="1_ca7ap"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_6en0s"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ResizableControlView.cs" id="2_gm07w"]
+[ext_resource type="Script" path="res://UISystem/Elements/ElementViews/ResizableControlView.cs" id="2_gm07w"]
 [ext_resource type="PackedScene" uid="uid://dhxdq3yb0u7i7" path="res://UISystem/Common/Prefabs/HSlider.tscn" id="4_ge6q5"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="5_l4qqc"]
 

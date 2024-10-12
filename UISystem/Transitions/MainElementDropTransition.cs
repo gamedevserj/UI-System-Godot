@@ -3,11 +3,11 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UISystem.Common.Transitions.Interfaces;
 using UISystem.Core.Extensions;
 using UISystem.Core.Transitions.Interfaces;
+using UISystem.Transitions.Interfaces;
 
-namespace UISystem.Common.Transitions;
+namespace UISystem.Transitions;
 public class MainElementDropTransition : IViewTransition
 {
 

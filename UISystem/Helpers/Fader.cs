@@ -2,7 +2,7 @@
 using System;
 using UISystem.Constants;
 
-namespace UISystem.Common.Helpers;
+namespace UISystem.Helpers;
 public static class Fader
 {
 

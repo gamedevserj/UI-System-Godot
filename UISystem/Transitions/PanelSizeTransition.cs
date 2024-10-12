@@ -1,13 +1,14 @@
 ﻿using Godot;
 using System;
 using System.Threading.Tasks;
-using UISystem.Common.Extensions;
-using UISystem.Common.Structs;
-using UISystem.Common.Transitions.Interfaces;
 using UISystem.Core.Extensions;
 using UISystem.Core.Transitions.Interfaces;
+using UISystem.Transitions.Enums;
+using UISystem.Transitions.Extensions;
+using UISystem.Transitions.Interfaces;
+using UISystem.Transitions.Structs;
 
-namespace UISystem.Common.Transitions;
+namespace UISystem.Transitions;
 public class PanelSizeTransition : IViewTransition
 {
 
@@ -107,7 +108,7 @@ public class PanelSizeTransition : IViewTransition
             bool parallel = i != 0;
             tween.TweenControlSize(parallel, _elements[i].ResizableControl, _elementsSizeSettings[i].OriginalSize, _elementsDuration, _elementsSizeSettings[i]);
         }
-        tween.Finished += ()=> onShown?.Invoke();
+        tween.Finished += () => onShown?.Invoke();
     }
 
     private async Task InitElementParameters()
@@ -115,8 +116,8 @@ public class PanelSizeTransition : IViewTransition
         await _caller.ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
         _elementsSizeSettings = new ResizableControlSettings[_elements.Length];
-        var horizontalDirection = Enums.HorizontalDirection.FromCenter;
-        var verticalDirection = Enums.VerticalDirection.FromCenter;
+        var horizontalDirection = HorizontalDirection.FromCenter;
+        var verticalDirection = VerticalDirection.FromCenter;
 
         _panelSizeSettings = new(_panel.Position, _panel.Size, horizontalDirection, verticalDirection);
         for (int i = 0; i < _elements.Length; i++)

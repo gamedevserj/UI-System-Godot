@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="HSliderHoverSettings" load_steps=7 format=3 uid="uid://b85wtfltfajj"]
 
-[ext_resource type="Script" path="res://UISystem/Common/HoverSettings/HSliderHoverSettings.cs" id="1_bv111"]
+[ext_resource type="Script" path="res://UISystem/Elements/HoverSettings/HSliderHoverSettings.cs" id="1_bv111"]
 [ext_resource type="Resource" uid="uid://bfwyewcy7iqck" path="res://UISystem/Common/ElementsHoverSettings/HSlider/BackgroundColor.tres" id="1_js4mv"]
 [ext_resource type="Resource" uid="uid://b4o1g3t6ls11m" path="res://UISystem/Common/ElementsHoverSettings/HSlider/FillColor.tres" id="2_0vjce"]
 [ext_resource type="Resource" uid="uid://bq67mkdlssxod" path="res://UISystem/Common/ElementsHoverSettings/HSlider/GrabberColor.tres" id="3_y7pgs"]

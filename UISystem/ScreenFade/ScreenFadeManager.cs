@@ -1,6 +1,6 @@
 using Godot;
 using System;
-using UISystem.Common.Helpers;
+using UISystem.Helpers;
 
 namespace UISystem.ScreenFade;
 public partial class ScreenFadeManager : TextureRect

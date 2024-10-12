@@ -3,7 +3,7 @@ using UISystem.Core.Enums;
 using UISystem.Core.Hovering;
 using UISystem.Core.Interfaces;
 
-namespace UISystem.Common.HoverSettings;
+namespace UISystem.Elements.HoverSettings;
 [GlobalClass]
 public partial class HSliderHoverSettings : Resource
 {

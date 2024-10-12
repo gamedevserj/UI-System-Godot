@@ -1,9 +1,9 @@
 ﻿using Godot;
-using UISystem.Common.ElementViews;
-using UISystem.Common.Transitions;
-using UISystem.Common.Transitions.Interfaces;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Elements.ElementViews;
 using UISystem.MenuSystem.SettingsMenu;
+using UISystem.Transitions;
+using UISystem.Transitions.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
 public partial class VideoSettingsMenuView : SettingsMenuView

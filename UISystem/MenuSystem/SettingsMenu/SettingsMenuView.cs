@@ -1,6 +1,6 @@
 ﻿using Godot;
-using UISystem.Common.ElementViews;
 using UISystem.Core.Views;
+using UISystem.Elements.ElementViews;
 
 namespace UISystem.MenuSystem.SettingsMenu;
 public abstract partial class SettingsMenuView : BaseInteractableWindow

@@ -1,6 +1,6 @@
 ﻿using System.Text.RegularExpressions;
-using UISystem.Common.Extensions;
-using UISystem.Common.Structs;
+using UISystem.Core.Elements.Structs;
+using UISystem.Core.Extensions;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;

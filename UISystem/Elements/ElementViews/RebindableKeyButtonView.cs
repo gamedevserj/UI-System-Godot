@@ -1,6 +1,6 @@
 ﻿using Godot;
 
-namespace UISystem.Common.ElementViews;
+namespace UISystem.Elements.ElementViews;
 public partial class RebindableKeyButtonView : ButtonView
 {
 

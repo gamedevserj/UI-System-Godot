@@ -1,4 +1,5 @@
 using Godot;
+using UISystem.Core.Elements.Structs;
 
 namespace UISystem.Core.Extensions
 {
@@ -15,6 +16,14 @@ namespace UISystem.Core.Extensions
         public static void SafeQueueFree(this Node node)
         {
             if (node.IsValid()) node.QueueFree();
+        }
+
+        public static void AddMultipleItems(this OptionButton optionButton, OptionButtonItem[] items)
+        {
+            for (int i = 0; i < items.Length; i++)
+            {
+                optionButton.AddItem(items[i].Label, items[i].Id);
+            }
         }
 
         public static void SetSizeAndPosition(this Control control, Vector2 size, Vector2 position)

@@ -1,4 +1,4 @@
-﻿namespace UISystem.Common.Enums;
+﻿namespace UISystem.Transitions.Enums;
 public enum VerticalDirection
 {
     FromTop = 0,

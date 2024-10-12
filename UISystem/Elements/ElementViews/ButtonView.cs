@@ -1,12 +1,12 @@
 using Godot;
 using System.Threading.Tasks;
-using UISystem.Common.HoverSettings;
-using UISystem.Common.Transitions.Interfaces;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.Enums;
 using UISystem.Core.Interfaces;
+using UISystem.Elements.HoverSettings;
+using UISystem.Transitions.Interfaces;
 
-namespace UISystem.Common.ElementViews;
+namespace UISystem.Elements.ElementViews;
 public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuElement
 {
 

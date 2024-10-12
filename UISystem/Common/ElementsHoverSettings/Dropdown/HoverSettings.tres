@@ -1,12 +1,12 @@
 [gd_resource type="Resource" script_class="ButtonHoverSettings" load_steps=5 format=3 uid="uid://b01oed40pvom6"]
 
 [ext_resource type="Resource" uid="uid://cwy3443w5wlcn" path="res://UISystem/Common/ElementsHoverSettings/Dropdown/BorderColor.tres" id="1_28e0n"]
-[ext_resource type="Script" path="res://UISystem/Common/HoverSettings/ButtonHoverSettings.cs" id="1_y6icr"]
+[ext_resource type="Script" path="res://UISystem/Elements/HoverSettings/ButtonHoverSettings.cs" id="1_hmipj"]
 [ext_resource type="Resource" uid="uid://btl2lnwld7ovl" path="res://UISystem/Common/ElementsHoverSettings/Dropdown/Position.tres" id="2_th2t6"]
 [ext_resource type="Resource" uid="uid://cv8ab1b50yhh6" path="res://UISystem/Common/ElementsHoverSettings/Dropdown/Size.tres" id="4_4u5j5"]
 
 [resource]
-script = ExtResource("1_y6icr")
+script = ExtResource("1_hmipj")
 duration = 1.0
 resetDuration = 0.25
 ease = 1

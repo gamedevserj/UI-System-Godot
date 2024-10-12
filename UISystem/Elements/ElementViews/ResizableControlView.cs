@@ -1,8 +1,8 @@
 ﻿using Godot;
 using System.Threading.Tasks;
-using UISystem.Common.Transitions.Interfaces;
+using UISystem.Transitions.Interfaces;
 
-namespace UISystem.Common.ElementViews;
+namespace UISystem.Elements.ElementViews;
 /// <summary>
 /// Is used to pass controls containing labels to PanelSizeTransition 
 /// </summary>

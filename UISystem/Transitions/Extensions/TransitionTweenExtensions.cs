@@ -1,10 +1,11 @@
 ﻿using Godot;
-using UISystem.Common.Enums;
-using UISystem.Common.Structs;
 using UISystem.Core.Extensions;
+using UISystem.Transitions.Enums;
+using UISystem.Transitions.Extensions;
+using UISystem.Transitions.Structs;
 
-namespace UISystem.Common.Extensions;
-public static class TweenExtensions
+namespace UISystem.Transitions.Extensions;
+public static class TransitionTweenExtensions
 {
 
     // for transitions that scale object to center
@@ -21,7 +22,7 @@ public static class TweenExtensions
         Vector2 sizeDifference = size - settings.OriginalSize;
         Vector2 position = settings.OriginalPosition - sizeDifference * new Vector2(multiplierX, multiplierY);
 
-        // in order to change size properly when direction is set to center, it needs to be parallel
+        // in order to change size properly when direction is set to center or bottom/right, it needs to be parallel
         tween.Parallel().TweenControlPosition(target, position, duration);
     }
 

@@ -1,9 +1,8 @@
 ﻿using Godot;
 using UISystem.Core.Extensions;
-using UISystem.Core.Hovering;
 using UISystem.Core.Interfaces;
 
-namespace UISystem.Common.HoverSettings;
+namespace UISystem.Core.Hovering;
 [GlobalClass]
 public partial class ColorTweenSettings : TweenSettings<Color>
 {

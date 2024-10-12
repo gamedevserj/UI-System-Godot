@@ -1,7 +1,7 @@
 ﻿using Godot;
-using UISystem.Common.Enums;
+using UISystem.Transitions.Enums;
 
-namespace UISystem.Common.Structs;
+namespace UISystem.Transitions.Structs;
 public readonly struct ResizableControlSettings
 {
 

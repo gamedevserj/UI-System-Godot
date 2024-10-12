@@ -1,23 +1,25 @@
 ﻿using Godot;
 using System.Threading.Tasks;
-using UISystem.Common.HoverSettings;
-using UISystem.Common.Transitions.Interfaces;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.Enums;
 using UISystem.Core.Interfaces;
+using UISystem.Elements.HoverSettings;
+using UISystem.Transitions.Interfaces;
 
-namespace UISystem.Common.ElementViews;
-public partial class DropdownView : OptionButton, IFocusableControl, ITweenableMenuElement
+namespace UISystem.Elements.ElementViews;
+public partial class HSliderView : HSlider, IFocusableControl, ITweenableMenuElement
 {
 
-    [Export] private ButtonHoverSettings buttonHoverSettings;
+    [Export] private HSliderHoverSettings hoverSettings;
+    [Export] private Control grabber;
+    [Export] private Control grabberResizableControl;
+    [Export] private Control background;
+    [Export] private Control fill;
     [Export] private Control resizableControl;
-    [Export] private Control innerColor;
-    [Export] private Control border;
-    [Export] private Label label;
 
     private IHoverTweener _hoverTweener;
     private bool _mouseOver;
+    private bool _isDragging;
     private Tween _tween;
 
     public Control PositionControl => this;
@@ -25,12 +27,13 @@ public partial class DropdownView : OptionButton, IFocusableControl, ITweenableM
 
     public override async void _EnterTree()
     {
-        if (buttonHoverSettings == null) return;
+        if (hoverSettings == null) return;
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
-        _hoverTweener = buttonHoverSettings.CreateTweener(resizableControl, innerColor, border, label);
+        _hoverTweener = hoverSettings.CreateTweener(grabberResizableControl, background, fill);
         Subscribe();
+        UpdateSliderVisual(Value);
     }
 
     public override void _ExitTree() => Unsubscribe();
@@ -45,11 +48,11 @@ public partial class DropdownView : OptionButton, IFocusableControl, ITweenableM
         await ToSignal(_tween, Tween.SignalName.Finished);
     }
 
-    // there is no OnDisabled event in BaseButton, so it should be disabled via this method to change appearance
-    public void SwitchButton(bool disable)
+    public override void _ValueChanged(double newValue)
     {
-        Disabled = disable;
-        HoverTween();
+        if (hoverSettings == null) return;
+        
+        UpdateSliderVisual(newValue);
     }
 
     private void Subscribe()
@@ -58,8 +61,8 @@ public partial class DropdownView : OptionButton, IFocusableControl, ITweenableM
         FocusExited += OnFocusExited;
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
-        ItemSelected += OnItemSelected;
-        OnItemSelected(GetSelectedId());
+        DragStarted += OnDragStarted;
+        DragEnded += OnDragEnded;
     }
 
     private void Unsubscribe()
@@ -68,12 +71,8 @@ public partial class DropdownView : OptionButton, IFocusableControl, ITweenableM
         FocusExited -= OnFocusExited;
         MouseEntered -= OnMouseEntered;
         MouseExited -= OnMouseExited;
-        ItemSelected -= OnItemSelected;
-    }
-
-    private void OnItemSelected(long index)
-    {
-        label.Text = GetItemText((int)index);
+        DragStarted -= OnDragStarted;
+        DragEnded -= OnDragEnded;
     }
 
     private void OnMouseEntered()
@@ -101,15 +100,27 @@ public partial class DropdownView : OptionButton, IFocusableControl, ITweenableM
 
     private ControlDrawMode GetDrawingMode()
     {
-        if (Disabled) return ControlDrawMode.Disabled;
         if (HasFocus())
         {
-            return _mouseOver ? ControlDrawMode.HoverFocus : ControlDrawMode.Focus;
+            return _mouseOver ? ControlDrawMode.HoverFocus : _isDragging ? ControlDrawMode.HoverFocus : ControlDrawMode.Focus;
         }
         else
             return _mouseOver ? ControlDrawMode.Hover : ControlDrawMode.Normal;
     }
 
+    private void OnDragStarted() => _isDragging = true;
 
+    private void OnDragEnded(bool changed)
+    {
+        _isDragging = false;
+        HoverTween();
+    }
+
+    private void UpdateSliderVisual(double newValue)
+    {
+        float value = (float)newValue;
+        fill.SetAnchor(Side.Right, value, true);
+        grabber.Position = new Vector2((background.Size.X * value) - grabber.Size.X * 0.5f, grabber.Position.Y);
+    }
 
 }

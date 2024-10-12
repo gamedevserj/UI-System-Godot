@@ -1,9 +1,9 @@
 ﻿using Godot;
-using UISystem.Common.ElementViews;
-using UISystem.Common.Transitions;
-using UISystem.Common.Transitions.Interfaces;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.PopupSystem.Views;
+using UISystem.Elements.ElementViews;
+using UISystem.Transitions;
+using UISystem.Transitions.Interfaces;
 
 namespace UISystem.PopupSystem.Popups.YesPopup;
 internal partial class YesPopupView : PopupView

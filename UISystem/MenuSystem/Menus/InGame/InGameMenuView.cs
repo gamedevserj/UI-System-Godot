@@ -1,7 +1,7 @@
 using Godot;
 using System;
-using UISystem.Common.Transitions;
 using UISystem.Core.Views;
+using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Views;
 public partial class InGameMenuView : BaseWindowView
