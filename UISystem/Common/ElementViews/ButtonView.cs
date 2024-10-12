@@ -45,6 +45,13 @@ public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuE
         await ToSignal(_tween, Tween.SignalName.Finished);
     }
 
+    // there is no OnDisabled event in BaseButton, so it should be disabled via this method to change appearance
+    public void SwitchButton(bool disable)
+    {
+        Disabled = disable;
+        HoverTween();
+    }
+
     private void Subscribe()
     {
         FocusEntered += OnFocusEntered;
