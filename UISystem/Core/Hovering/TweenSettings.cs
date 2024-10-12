@@ -15,12 +15,12 @@ public abstract partial class TweenSettings<T> : Resource
     protected abstract class Tweener<T> : IHoverTweener
     {
 
-        protected virtual T NormalValue => _settings.NormalValue;
-
         protected readonly Control _target;
         protected readonly bool _parallel;
         protected readonly TweenSettings<T> _settings;
         protected readonly TweeningSettings _transitionAndEaseSettings;
+
+        protected virtual T NormalValue => _settings.NormalValue;
 
         public Tweener(Control target, TweeningSettings transitionAndEaseSettings, TweenSettings<T> settings,
             bool parallel)

@@ -77,7 +77,7 @@ public class PanelSizeTransition : IViewTransition
         tween.TweenControlSize(false, _panel, Vector2.Zero, _panelDuration, _panelSizeSettings);
 
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.TweenAlpha(false, _fadeObjectsContainer, 0, FadeDuration);
+        tween.TweenAlpha(_fadeObjectsContainer, 0, FadeDuration);
         tween.Finished += () => onHidden?.Invoke();
     }
 
@@ -100,7 +100,7 @@ public class PanelSizeTransition : IViewTransition
         tween.SetEase(Tween.EaseType.In);
         tween.SetTrans(Tween.TransitionType.Linear);
 
-        tween.TweenAlpha(false, _fadeObjectsContainer, 1, FadeDuration);
+        tween.TweenAlpha(_fadeObjectsContainer, 1, FadeDuration);
         tween.TweenControlSize(false, _panel, _panelSizeSettings.OriginalSize, _panelDuration, _panelSizeSettings);
         for (int i = 0; i < _elements.Length; i++)
         {

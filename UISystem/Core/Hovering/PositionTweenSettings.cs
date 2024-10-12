@@ -1,4 +1,5 @@
 ﻿using Godot;
+using UISystem.Core.Enums;
 using UISystem.Core.Extensions;
 using UISystem.Core.Interfaces;
 
@@ -35,13 +36,19 @@ public partial class PositionTweenSettings : TweenSettings<Vector2>
         protected override void Tween(Tween tween, Vector2 value)
         {
             base.Tween(tween, value);
-            tween.TweenControlPosition(_parallel, _target, _originalValue + value, _transitionAndEaseSettings.Duration);
+            if (_parallel) 
+                tween.Parallel().TweenControlPosition(_target, _originalValue + value, _transitionAndEaseSettings.Duration);
+            else
+                tween.TweenControlPosition(_target, _originalValue + value, _transitionAndEaseSettings.Duration);
         }
 
         public override void Reset(Tween tween)
         {
             base.Reset(tween);
-            tween.TweenControlPosition(_parallel, _target, _originalValue, _transitionAndEaseSettings.ResetDuration);
+            if (_parallel)
+                tween.Parallel().TweenControlPosition(_target, _originalValue, _transitionAndEaseSettings.ResetDuration);
+            else
+                tween.TweenControlPosition(_target, _originalValue, _transitionAndEaseSettings.ResetDuration);
         }
 
     }

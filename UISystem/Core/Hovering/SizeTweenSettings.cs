@@ -36,13 +36,19 @@ public partial class SizeTweenSettings : TweenSettings<Vector2>
         protected override void Tween(Tween tween, Vector2 value)
         {
             base.Tween(tween, value);
-            tween.TweenControlSize(_parallel, _target, _originalValue + value, _transitionAndEaseSettings.Duration);
+            if (_parallel)
+                tween.Parallel().TweenControlSize(_target, _originalValue + value, _transitionAndEaseSettings.Duration);
+            else
+                tween.TweenControlSize(_target, _originalValue + value, _transitionAndEaseSettings.Duration);
         }
 
         public override void Reset(Tween tween)
         {
             base.Reset(tween);
-            tween.TweenControlSize(_parallel, _target, _originalValue, _transitionAndEaseSettings.ResetDuration);
+            if (_parallel)
+                tween.Parallel().TweenControlSize(_target, _originalValue, _transitionAndEaseSettings.ResetDuration);
+            else
+                tween.TweenControlSize(_target, _originalValue, _transitionAndEaseSettings.ResetDuration);
         }
 
     }

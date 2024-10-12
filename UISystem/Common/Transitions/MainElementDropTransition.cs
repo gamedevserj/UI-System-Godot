@@ -69,17 +69,17 @@ public class MainElementDropTransition : IViewTransition
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            tween.TweenControlPosition(true, _secondaryElements[i].PositionControl, Vector2.Zero, _secondaryElementDuration);
+            tween.Parallel().TweenControlPosition(_secondaryElements[i].PositionControl, Vector2.Zero, _secondaryElementDuration);
         }
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(false); }));
 
         Vector2 size = new(0, _mainElementSize.Y);
         tween.SetEase(Tween.EaseType.In);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.TweenControlSize(false, _mainElement.ResizableControl, size, _mainElementDuration);
+        tween.TweenControlSize(_mainElement.ResizableControl, size, _mainElementDuration);
 
         tween.SetTrans(Tween.TransitionType.Linear);
-        tween.TweenAlpha(false, _fadeObjectsContainer, 0, FadeDuration);
+        tween.TweenAlpha(_fadeObjectsContainer, 0, FadeDuration);
 
         tween.Finished += () => onHidden?.Invoke();
     }
@@ -114,17 +114,17 @@ public class MainElementDropTransition : IViewTransition
         tween.SetPauseMode(Tween.TweenPauseMode.Process);
 
         tween.SetTrans(Tween.TransitionType.Linear);
-        tween.TweenAlpha(false, _fadeObjectsContainer, 1, FadeDuration);
+        tween.TweenAlpha(_fadeObjectsContainer, 1, FadeDuration);
 
         tween.SetEase(Tween.EaseType.Out);
         tween.SetTrans(Tween.TransitionType.Quad);
-        tween.TweenControlSize(false, _mainElement.ResizableControl, _mainElementSize, _mainElementDuration);
+        tween.TweenControlSize(_mainElement.ResizableControl, _mainElementSize, _mainElementDuration);
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(true); }));
 
         tween.SetTrans(Tween.TransitionType.Back);
         for (int i = 0; i < _secondaryElements.Length; i++)
         {
-            tween.TweenControlPosition(true, _secondaryElements[i].PositionControl, _secondaryElementsPositions[_secondaryElements[i].PositionControl], _secondaryElementDuration);
+            tween.Parallel().TweenControlPosition(_secondaryElements[i].PositionControl, _secondaryElementsPositions[_secondaryElements[i].PositionControl], _secondaryElementDuration);
         }
 
         tween.Finished += () => onShown?.Invoke();

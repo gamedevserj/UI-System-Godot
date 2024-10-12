@@ -4,39 +4,33 @@ using UISystem.Constants;
 namespace UISystem.Core.Extensions;
 internal static class TweenExtensions
 {
-    public static void TweenControlPosition(this Tween tween, bool parallel, Control target, Vector2 position, float duration)
+    public static Tween TweenControlPosition(this Tween tween, Control target, Vector2 position, float duration)
     {
-        if (parallel)
-            tween.Parallel();
         tween.TweenProperty(target, PropertyConstants.Position, position, duration);
+        return tween;
     }
 
-    public static void TweenModulate(this Tween tween, bool parallel, CanvasItem target, Color color, float duration, bool self = false)
+    public static void TweenModulate(this Tween tween, CanvasItem target, Color color, float duration, bool self = false)
     {
-        if (parallel)
-            tween.Parallel();
-        tween.TweenProperty(target, PropertyConstants.SelfModulate, color, duration);
         if (!self)
             tween.TweenProperty(target, PropertyConstants.Modulate, color, duration);
         else
             tween.TweenProperty(target, PropertyConstants.SelfModulate, color, duration);
     }
 
-    public static void TweenAlpha(this Tween tween, bool parallel, CanvasItem target, float alpha, float duration, bool self = false)
+    public static Tween TweenAlpha(this Tween tween, CanvasItem target, float alpha, float duration, bool self = false)
     {
-        if (parallel)
-            tween.Parallel();
         if (!self)
             tween.TweenProperty(target, PropertyConstants.Modulate, new Color(target.Modulate, alpha), duration);
         else
             tween.TweenProperty(target, PropertyConstants.SelfModulate, new Color(target.SelfModulate, alpha), duration);
+        return tween;
     }
 
-    public static void TweenControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration)
+    public static Tween TweenControlSize(this Tween tween, Control target, Vector2 size, float duration)
     {
-        if (parallel)
-            tween.Parallel();
         tween.TweenProperty(target, PropertyConstants.Size, size, duration);
+        return tween;
     }
 
 }
