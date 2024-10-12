@@ -37,13 +37,13 @@ public partial class ColorTweenSettings : TweenSettings<Color>
         protected override void Tween(Tween tween, Color value)
         {
             base.Tween(tween, value);
-            tween.TweenSelfModulate(_parallel, _target, value, _transitionAndEaseSettings.Duration);
+            tween.TweenModulate(_parallel, _target, value, _transitionAndEaseSettings.Duration, true);
         }
 
         public override void Reset(Tween tween)
         {
             base.Reset(tween);
-            tween.TweenSelfModulate(_parallel, _target, _originalValue, _transitionAndEaseSettings.ResetDuration);
+            tween.TweenModulate(_parallel, _target, _originalValue, _transitionAndEaseSettings.ResetDuration, true);
         }
 
     }

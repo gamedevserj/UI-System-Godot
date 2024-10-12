@@ -78,10 +78,7 @@ public class PanelSizeTransition : IViewTransition
 
         tween.SetTrans(Tween.TransitionType.Quad);
         tween.TweenAlpha(false, _fadeObjectsContainer, 0, FadeDuration);
-        tween.TweenCallback(Callable.From(() =>
-        {
-            onHidden?.Invoke();
-        }));
+        tween.Finished += () => onHidden?.Invoke();
     }
 
     public async void Show(Action onShown, bool instant)
@@ -110,10 +107,7 @@ public class PanelSizeTransition : IViewTransition
             bool parallel = i != 0;
             tween.TweenControlSize(parallel, _elements[i].ResizableControl, _elementsSizeSettings[i].OriginalSize, _elementsDuration, _elementsSizeSettings[i]);
         }
-        tween.TweenCallback(Callable.From(() =>
-        {
-            onShown?.Invoke();
-        }));
+        tween.Finished += ()=> onShown?.Invoke();
     }
 
     private async Task InitElementParameters()

@@ -11,18 +11,15 @@ internal static class TweenExtensions
         tween.TweenProperty(target, PropertyConstants.Position, position, duration);
     }
 
-    public static void TweenSelfModulate(this Tween tween, bool parallel, CanvasItem target, Color color, float duration)
+    public static void TweenModulate(this Tween tween, bool parallel, CanvasItem target, Color color, float duration, bool self = false)
     {
         if (parallel)
             tween.Parallel();
         tween.TweenProperty(target, PropertyConstants.SelfModulate, color, duration);
-    }
-
-    public static void TweenModulate(this Tween tween, bool parallel, CanvasItem target, Color color, float duration)
-    {
-        if (parallel)
-            tween.Parallel();
-        tween.TweenProperty(target, PropertyConstants.Modulate, color, duration);
+        if (!self)
+            tween.TweenProperty(target, PropertyConstants.Modulate, color, duration);
+        else
+            tween.TweenProperty(target, PropertyConstants.SelfModulate, color, duration);
     }
 
     public static void TweenAlpha(this Tween tween, bool parallel, CanvasItem target, float alpha, float duration, bool self = false)
