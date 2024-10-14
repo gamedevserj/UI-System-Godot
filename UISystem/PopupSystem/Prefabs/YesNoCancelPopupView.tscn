@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UISystem/PopupSystem/Popups/YesNoCancelPopup/YesNoCancelPopupView.cs" id="1_r2q6b"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_t1n3v"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="3_2uld7"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ResizableControlView.cs" id="3_lnvft"]
+[ext_resource type="Script" path="res://UISystem/Elements/ElementViews/ResizableControlView.cs" id="3_lnvft"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ulc4q"]
 

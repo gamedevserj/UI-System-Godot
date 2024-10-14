@@ -1,6 +1,5 @@
 ﻿using System;
 using UISystem.Core.MenuSystem.Enums;
-using UISystem.MenuSystem.Constants;
 
 namespace UISystem.Core.MenuSystem.Interfaces;
 internal interface IMenusManager

@@ -2,7 +2,7 @@
 
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_g8fkn"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="2_vcy83"]
-[ext_resource type="Script" path="res://UISystem/Common/ElementViews/ResizableControlView.cs" id="3_7xdby"]
+[ext_resource type="Script" path="res://UISystem/Elements/ElementViews/ResizableControlView.cs" id="3_7xdby"]
 [ext_resource type="Script" path="res://UISystem/PopupSystem/Popups/YesPopup/YesPopupView.cs" id="4_rbuno"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_guta3"]
