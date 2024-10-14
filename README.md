@@ -45,4 +45,11 @@ A simple script that controls fading, call FadeOut() with an optional action as 
 Transition control the way view is shown/hidden. The repo includes few transitions as example. Menu elements should implement ITweenableMenuElement to reset hover before starting transition if transition changes are modifying the same properties as hovering tween.
 
 ## Hovering  
-Menu elements have settings resources that allow to customize the way element is displayed when hovered over/focused. 
+Menu elements have settings resources that allow to customize the way element is displayed when hovered over/focused.  
+
+Follow these steps if text/icons on your buttons jitter when you change size from center
+1. Set content to be in the center and make sure the position is an integer, it is best to have position to be at 0. The easies way to do that - set anchors using the "Full rect" preset, and then move them to center manually
+2. In your size hover settings set values to be even numbers. This is required since resizing from center moves the control by half of the increased size
+3. ResizableControlView needs to be parented to object that is parented to BoxContainer if its global transition is not from top left, otherwise it doesn't behave correctly.
+
+Use example prfabs in UISystem/Common/Prefabs as a guide for your elements.
