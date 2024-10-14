@@ -3,6 +3,7 @@ using System;
 using UISystem.Constants;
 using UISystem.Core.Constants;
 using UISystem.Core.MenuSystem.Controllers;
+using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
@@ -47,11 +48,11 @@ internal class PauseMenuController : MenuController<PauseMenuView, PauseMenuMode
         _menuBackgroundController.ShowBackground(instant);
     }
 
-    public override void Hide(int menuChangeType, Action onComplete = null, bool instant = false)
+    public override void Hide(StackingType stackingType, Action onComplete = null, bool instant = false)
     {
-        base.Hide(menuChangeType, () =>
+        base.Hide(stackingType, () =>
         {
-            if (menuChangeType != MenuChangeType.AddToStack)
+            if (stackingType != StackingType.Add)
                 _menuBackgroundController.HideBackground(instant);
 
             onComplete?.Invoke();
@@ -88,7 +89,7 @@ internal class PauseMenuController : MenuController<PauseMenuView, PauseMenuMode
             {
                 _screenFadeManager.FadeOut(() =>
                 {
-                    _menusManager.ShowMenu(MenuType.Main, MenuChangeType.ClearStack, null, true);
+                    _menusManager.ShowMenu(MenuType.Main, StackingType.Clear, null, true);
                 });
             }
             else if (result == PopupResult.No)

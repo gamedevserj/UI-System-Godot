@@ -3,6 +3,7 @@ using System;
 using UISystem.Core.Constants;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.Extensions;
+using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Views;
 
@@ -51,8 +52,8 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
         }, instant);
     }
 
-    // menuChangeType is used to Hide background when necessary
-    public virtual void Hide(int menuChangeType, Action onComplete = null, bool instant = false) 
+    // stackingType is used to Hide background when necessary
+    public virtual void Hide(StackingType stackingType, Action onComplete = null, bool instant = false) 
     {
         _view.Hide(() => onComplete?.Invoke(), instant);
     }

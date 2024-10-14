@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using UISystem.Core.MenuSystem.Enums;
 
 namespace UISystem.Core.MenuSystem.Interfaces;
 public interface IMenuController
@@ -9,7 +10,7 @@ public interface IMenuController
     bool CanReturnToPreviousMenu { get; set; }
 
     void Init(Node parent);
-    void Hide(int menuChangeType, Action onComplete = null, bool instant = false);
+    void Hide(StackingType stackingType, Action onComplete = null, bool instant = false);
     void Show(Action onComplete = null, bool instant = false);
 
     void HandleInputPressedWhenActive(InputEvent key);

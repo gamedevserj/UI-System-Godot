@@ -1,6 +1,7 @@
 ﻿using Godot;
 using System;
 using System.Collections.Generic;
+using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
@@ -47,18 +48,18 @@ public partial class MenusManager : Control, IMenusManager
     /// </summary>
     /// <param name="menuType"></param>
     /// <param name="menuChangeType">Is used to show/hide background</param>
-    public void ShowMenu(int menuType, int menuChangeType = MenuChangeType.AddToStack, Action onNewMenuShown = null, bool instant = false)
+    public void ShowMenu(int menuType, StackingType stackingType = StackingType.Add, Action onNewMenuShown = null, bool instant = false)
     {
         if (_currentController?.Type == menuType)
             return;
 
         if (_currentController != null)
         {
-            _currentController.Hide(menuChangeType, () => ChangeMenu(menuType, menuChangeType, onNewMenuShown, instant), instant);
+            _currentController.Hide(stackingType, () => ChangeMenu(menuType, stackingType, onNewMenuShown, instant), instant);
         }
         else
         {
-            ChangeMenu(menuType, menuChangeType, onNewMenuShown, instant);
+            ChangeMenu(menuType, stackingType, onNewMenuShown, instant);
         }
     }
 
@@ -66,26 +67,25 @@ public partial class MenusManager : Control, IMenusManager
     {
         if (_previousMenus.Count > 0)
         {
-            ShowMenu(_previousMenus.Peek().Type, MenuChangeType.RemoveFromStack, onComplete, instant);
+            ShowMenu(_previousMenus.Peek().Type, StackingType.Remove, onComplete, instant);
         }
     }
 
-    private void ChangeMenu(int menuType, int menuChangeType,
-        Action onNewMenuShown = null, bool instant = false)
+    private void ChangeMenu(int menuType, StackingType stackingType, Action onNewMenuShown = null, bool instant = false)
     {
         IMenuController controller = _controllers[menuType];
         controller.Init(this);
 
-        switch (menuChangeType)
+        switch (stackingType)
         {
-            case MenuChangeType.AddToStack:
+            case StackingType.Add:
                 _previousMenus.Push(_currentController);
                 break;
-            case MenuChangeType.RemoveFromStack:
+            case StackingType.Remove:
                 _currentController.DestroyView();
                 _previousMenus.Pop();
                 break;
-            case MenuChangeType.ClearStack:
+            case StackingType.Clear:
                 foreach (var menuController in _previousMenus)
                 {
                     menuController.DestroyView();
