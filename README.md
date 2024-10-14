@@ -2,23 +2,21 @@
 
 UI system for Godot that uses Dependency Injection and MVC patterns.  
 
-![Example](https://raw.githubusercontent.com/gamedevserj/Images-For-Repo/main/UiSystemGodot/UISystemGodot.gif)  
+![Example](https://raw.githubusercontent.com/gamedevserj/Images-For-Repo/refs/heads/main/UiSystemGodot/UISystemGodotAnimated.mp4)  
 
 ## Menu system
 The repo has some menus created: **Main, Options, Pause, Audio/Video settings, Interface settings, Key rebinding**   
 
 To add new menu:
-1. Add your menu type to the MenuType enum
-2. Create your menu view script that either inherits from MenuView or from SettingsMenuView (it has functionality to reset setting to default via model and reset view to default)
+1. Add your menu type to the MenuType class
+2. Create your menu view script that either inherits from BaseWindowView or from SettingsMenuView (it has functionality to reset setting to default via model and reset view to default)
 3. If your view has interactable elements (buttons, sliders, etc.), they should have scripts attached to them that implement IFocusableControl to disable elements during menu transitions. Some of the elements already included in the repo at UISystem/Common/Elements, there are also prefabs for them in the UISystem/Common/Prefabs, so you can use those
 4. Create your menu model script that implements IMenuModel interface (it is just a marker interface) or ISettingsMenuModel (which has methods to save, discard and reset to default)
-5. Create your menu controller sctipt that inherits from MenuController providing your view and model
+5. Create your menu controller script that inherits from MenuController providing your view and model
 6. In your menu controller implement the MenuType property by providing your menu type and implement SetupElements()
 7. Create path to your view prefab in MenuViewsPaths
-8. In MenusManager Init() create your menu controller and add it to the array that is passed to the AddControllers()
+8. In MenusManager Init() create your menu controller
 9. After that you should be able to call _menusManager.ShowMenu(...) to show your new menu
-
-The repo contains a helper Fader class to make simple fading transitions. 
 
 ### Menu background controller
 A simple script that handles menu's background, look at MainMenu and PauseMenu controllers for example.
@@ -41,4 +39,10 @@ If you want to show a popup when some event occurs you can either create an even
 #### ⚠️ If you have interactable elements in your popup they should also implement IFocusableControl to disable them during transition
 
 ## Screen fade
-A simple script that controls fading, call FadeOut() with an optional action as a prarmeter that you want to happen when screen is completely black.
+A simple script that controls fading, call FadeOut() with an optional action as a prarmeter that you want to happen when screen is completely black.  
+
+## Transitions  
+Transition control the way view is shown/hidden. The repo includes few transitions as example. Menu elements should implement ITweenableMenuElement to reset hover before starting transition if transition changes are modifying the same properties as hovering tween.
+
+## Hovering  
+Menu elements have settings resources that allow to customize the way element is displayed when hovered over/focused. 
