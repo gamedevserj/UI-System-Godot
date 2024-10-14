@@ -52,4 +52,4 @@ Follow these steps if text/icons on your buttons jitter when you change size fro
 2. In your size hover settings set values to be even numbers. This is required since resizing from center moves the control by half of the increased size
 3. ResizableControlView needs to be parented to object that is parented to BoxContainer if its global transition is not from top left, otherwise it doesn't behave correctly.
 
-Use example prfabs in UISystem/Common/Prefabs as a guide for your elements.
+Use example prefabs in UISystem/Common/Prefabs as a guide for your elements.
