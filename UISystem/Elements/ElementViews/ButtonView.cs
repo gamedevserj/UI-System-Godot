@@ -62,6 +62,7 @@ public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuE
 
     private void Unsubscribe()
     {
+        if (buttonHoverSettings == null) return;
         FocusEntered -= OnFocusEntered;
         FocusExited -= OnFocusExited;
         MouseEntered -= OnMouseEntered;

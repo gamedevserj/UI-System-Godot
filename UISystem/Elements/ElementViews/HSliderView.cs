@@ -67,6 +67,7 @@ public partial class HSliderView : HSlider, IFocusableControl, ITweenableMenuEle
 
     private void Unsubscribe()
     {
+        if (hoverSettings == null) return;
         FocusEntered -= OnFocusEntered;
         FocusExited -= OnFocusExited;
         MouseEntered -= OnMouseEntered;

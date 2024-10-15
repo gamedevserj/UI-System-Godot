@@ -64,6 +64,7 @@ public partial class DropdownView : OptionButton, IFocusableControl, ITweenableM
 
     private void Unsubscribe()
     {
+        if (buttonHoverSettings == null) return;
         FocusEntered -= OnFocusEntered;
         FocusExited -= OnFocusExited;
         MouseEntered -= OnMouseEntered;
