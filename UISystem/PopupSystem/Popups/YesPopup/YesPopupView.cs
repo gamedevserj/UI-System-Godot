@@ -5,7 +5,7 @@ using UISystem.Elements.ElementViews;
 using UISystem.Transitions;
 using UISystem.Transitions.Interfaces;
 
-namespace UISystem.PopupSystem.Popups.YesPopup;
+namespace UISystem.PopupSystem.Views;
 internal partial class YesPopupView : PopupView
 {
 

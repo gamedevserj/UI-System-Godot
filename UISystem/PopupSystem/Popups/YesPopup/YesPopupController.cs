@@ -1,7 +1,7 @@
 ﻿using Godot;
 using UISystem.Core.PopupSystem.Controllers;
 using UISystem.PopupSystem.Constants;
-using UISystem.PopupSystem.Popups.YesPopup;
+using UISystem.PopupSystem.Views;
 
 namespace UISystem.PopupSystem.Controllers;
 internal class YesPopupController : PopupController<YesPopupView>
