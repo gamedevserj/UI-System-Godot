@@ -80,18 +80,19 @@ public class MainElementDropTransition : IViewTransition
 
         tween.SetTrans(Tween.TransitionType.Linear);
         tween.TweenAlpha(_fadeObjectsContainer, 0, FadeDuration);
-
         tween.Finished += () => onHidden?.Invoke();
     }
 
     public async void Show(Action onShown, bool instant)
     {
+        if (!_initializedParameters)
+            await InitElementParameters();
+
         if (instant)
         {
             _mainElement.ResizableControl.ShowItem();
             _fadeObjectsContainer.ShowItem();
             SwitchSecondaryButtonsVisibility(true);
-            await InitElementParameters();
             onShown?.Invoke();
             return;
         }
@@ -99,9 +100,6 @@ public class MainElementDropTransition : IViewTransition
         _mainElement.ResizableControl.HideItem();
         _fadeObjectsContainer.HideItem();
         SwitchSecondaryButtonsVisibility(false);
-
-        if (!_initializedParameters)
-            await InitElementParameters();
 
         _mainElement.ResizableControl.Size = new(0, _mainElementSize.Y);
         _mainElement.ResizableControl.ShowItem();
@@ -126,7 +124,6 @@ public class MainElementDropTransition : IViewTransition
         {
             tween.Parallel().TweenControlPosition(_secondaryElements[i].PositionControl, _secondaryElementsPositions[_secondaryElements[i].PositionControl], _secondaryElementDuration);
         }
-
         tween.Finished += () => onShown?.Invoke();
     }
 

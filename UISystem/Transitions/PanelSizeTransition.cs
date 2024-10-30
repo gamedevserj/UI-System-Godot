@@ -49,6 +49,13 @@ public class PanelSizeTransition : IViewTransition
 
     public async void Hide(Action onHidden, bool instant)
     {
+        if (instant)
+        {
+            _fadeObjectsContainer.HideItem();
+            onHidden?.Invoke();
+            return;
+        }
+
         var tasks = new Task[_elements.Length];
         for (int i = 0; i < tasks.Length; i++)
         {
@@ -84,11 +91,23 @@ public class PanelSizeTransition : IViewTransition
 
     public async void Show(Action onShown, bool instant)
     {
-        _fadeObjectsContainer.HideItem();
-
         if (!_initializedParameters)
             await InitElementParameters();
 
+        if (instant)
+        {
+            _panel.Size = _panelSizeSettings.OriginalSize;
+            for (int i = 0; i < _elements.Length; i++)
+            {
+                _elements[i].ResizableControl.Size = _elementsSizeSettings[i].OriginalSize;
+                _elements[i].ResizableControl.Position = _elementsSizeSettings[i].OriginalPosition;
+            }
+            _fadeObjectsContainer.ShowItem();
+            onShown?.Invoke();
+            return;
+        }
+
+        _fadeObjectsContainer.HideItem();
         _panel.SetSizeAndPosition(Vector2.Zero, _panelSizeSettings.CenterPosition);
         for (int i = 0; i < _elements.Length; i++)
         {
