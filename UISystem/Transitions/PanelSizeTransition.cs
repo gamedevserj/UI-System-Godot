@@ -91,6 +91,9 @@ public class PanelSizeTransition : IViewTransition
 
     public async void Show(Action onShown, bool instant)
     {
+        // should always hide before showing because awaiting for parameters shows menu for a split second
+        _fadeObjectsContainer.HideItem();
+
         if (!_initializedParameters)
             await InitElementParameters();
 
@@ -106,8 +109,7 @@ public class PanelSizeTransition : IViewTransition
             onShown?.Invoke();
             return;
         }
-
-        _fadeObjectsContainer.HideItem();
+        
         _panel.SetSizeAndPosition(Vector2.Zero, _panelSizeSettings.CenterPosition);
         for (int i = 0; i < _elements.Length; i++)
         {

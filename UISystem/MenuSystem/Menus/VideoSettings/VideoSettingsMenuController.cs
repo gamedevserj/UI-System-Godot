@@ -1,6 +1,7 @@
 ﻿using System.Text.RegularExpressions;
 using UISystem.Core.Elements.Structs;
 using UISystem.Core.Extensions;
+using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
@@ -12,7 +13,7 @@ internal class VideoSettingsMenuController : SettingsMenuController<VideoSetting
 {
     public override int Type => MenuType.VideoSettings;
 
-    public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, MenusManager menusManager, IPopupsManager popupsManager)
+    public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, IMenusManager menusManager, IPopupsManager popupsManager)
         : base(prefab, model, menusManager, popupsManager)
     {
 

@@ -2,6 +2,7 @@
 using UISystem.Constants;
 using UISystem.Core.Constants;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.Elements.ElementViews;
 using UISystem.MenuSystem.Constants;
@@ -15,7 +16,7 @@ internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuV
 
     public override int Type => MenuType.RebindKeys;
 
-    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, MenusManager menusManager,
+    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, IMenusManager menusManager,
         IPopupsManager popupsManager) : base(prefab, model, menusManager, popupsManager)
     {
 

@@ -85,6 +85,11 @@ public class MainElementDropTransition : IViewTransition
 
     public async void Show(Action onShown, bool instant)
     {
+        // should always hide before showing because awaiting for parameters shows menu for a split second
+        _mainElement.ResizableControl.HideItem();
+        _fadeObjectsContainer.HideItem();
+        SwitchSecondaryButtonsVisibility(false);
+
         if (!_initializedParameters)
             await InitElementParameters();
 
@@ -96,10 +101,6 @@ public class MainElementDropTransition : IViewTransition
             onShown?.Invoke();
             return;
         }
-
-        _mainElement.ResizableControl.HideItem();
-        _fadeObjectsContainer.HideItem();
-        SwitchSecondaryButtonsVisibility(false);
 
         _mainElement.ResizableControl.Size = new(0, _mainElementSize.Y);
         _mainElement.ResizableControl.ShowItem();

@@ -3,6 +3,7 @@ using System;
 using UISystem.Constants;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Enums;
+using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
@@ -22,7 +23,7 @@ internal class MainMenuController : MenuController<MainMenuView, MainMenuModel>
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(string prefab, MainMenuModel model, MenusManager menusManager, SceneTree sceneTree,
+    public MainMenuController(string prefab, MainMenuModel model, IMenusManager menusManager, SceneTree sceneTree,
         IPopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) :
         base(prefab, model, menusManager)
     {

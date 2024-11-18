@@ -3,13 +3,9 @@ using System;
 using System.Collections.Generic;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
-using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
-using UISystem.MenuSystem.Controllers;
-using UISystem.MenuSystem.Models;
-using UISystem.ScreenFade;
 
-namespace UISystem.MenuSystem;
+namespace UISystem.Core.MenuSystem;
 public partial class MenusManager : Control, IMenusManager
 {
 
@@ -22,22 +18,8 @@ public partial class MenusManager : Control, IMenusManager
         _currentController?.HandleInputPressedWhenActive(@event);
     }
 
-    public void Init(GameSettings settings, IPopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
+    public void Init(IMenuController[] controllers)
     {
-        SceneTree tree = GetTree();
-
-        var controllers = new IMenuController[]
-        {
-            new MainMenuController(GetMenuView(MenuType.Main), new MainMenuModel(), this, tree, popupsManager, screenFadeManager, menuBackgroundController),
-            new InGameMenuController(GetMenuView(MenuType.InGame), new InGameMenuModel(), this),
-            new PauseMenuController(GetMenuView(MenuType.Pause), new PauseMenuModel(), this, popupsManager, screenFadeManager, menuBackgroundController),
-            new OptionsMenuController(GetMenuView(MenuType.Options), new OptionsMenuModel(), this),
-            new AudioSettingsMenuController(GetMenuView(MenuType.AudioSettings), new AudioSettingsMenuModel(settings), this, popupsManager),
-            new VideoSettingsMenuController(GetMenuView(MenuType.VideoSettings), new VideoSettingsMenuModel(settings), this, popupsManager),
-            new RebindKeysMenuController(GetMenuView(MenuType.RebindKeys), new RebindKeysMenuModel(settings), this, popupsManager),
-            new InterfaceSettingsMenuController(GetMenuView(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(settings), this, popupsManager)
-        };
-
         for (int i = 0; i < controllers.Length; i++)
         {
             _controllers.Add(controllers[i].Type, controllers[i]);

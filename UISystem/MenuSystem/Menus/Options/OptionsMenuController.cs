@@ -1,4 +1,5 @@
 using UISystem.Core.MenuSystem.Controllers;
+using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
@@ -9,7 +10,7 @@ internal class OptionsMenuController : MenuController<OptionsMenuView, OptionsMe
 
     public override int Type => MenuType.Options;
 
-    public OptionsMenuController(string prefab, OptionsMenuModel model, MenusManager menusManager)
+    public OptionsMenuController(string prefab, OptionsMenuModel model, IMenusManager menusManager)
         : base(prefab, model, menusManager)
     {
     }

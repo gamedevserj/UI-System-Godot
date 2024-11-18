@@ -1,7 +1,7 @@
 [gd_scene load_steps=7 format=3 uid="uid://cv5bjtd0iw8pd"]
 
 [ext_resource type="Script" path="res://UISystem/UiInstaller.cs" id="1_rgp7s"]
-[ext_resource type="Script" path="res://UISystem/MenuSystem/MenusManager.cs" id="2_huai7"]
+[ext_resource type="Script" path="res://UISystem/Core/MenuSystem/MenusManager.cs" id="2_l6nlf"]
 [ext_resource type="Script" path="res://UISystem/PopupSystem/PopupsManager.cs" id="3_jyojy"]
 [ext_resource type="Script" path="res://UISystem/ScreenFade/ScreenFadeManager.cs" id="4_mlvp7"]
 
@@ -42,7 +42,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("2_huai7")
+script = ExtResource("2_l6nlf")
 
 [node name="PopupsManager" type="Control" parent="CanvasLayer"]
 z_index = 90

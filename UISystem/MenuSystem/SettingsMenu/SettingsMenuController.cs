@@ -1,6 +1,7 @@
 ﻿using System;
 using UISystem.Constants;
 using UISystem.Core.MenuSystem.Controllers;
+using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.SettingsMenu.Interfaces;
 using UISystem.PopupSystem;
@@ -12,7 +13,7 @@ internal abstract class SettingsMenuController<TView, TModel> : MenuController<T
 
     protected readonly IPopupsManager _popupsManager;
 
-    protected SettingsMenuController(string prefab, TModel model, MenusManager menusManager, IPopupsManager popupsManager) : base(prefab, model, menusManager)
+    protected SettingsMenuController(string prefab, TModel model, IMenusManager menusManager, IPopupsManager popupsManager) : base(prefab, model, menusManager)
     {
         _popupsManager = popupsManager;
     }
