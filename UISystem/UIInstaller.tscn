@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" path="res://UISystem/UiInstaller.cs" id="1_rgp7s"]
 [ext_resource type="Script" path="res://UISystem/Core/MenuSystem/MenusManager.cs" id="2_l6nlf"]
-[ext_resource type="Script" path="res://UISystem/PopupSystem/PopupsManager.cs" id="3_jyojy"]
+[ext_resource type="Script" path="res://UISystem/Core/PopupSystem/PopupsManager.cs" id="3_2pm43"]
 [ext_resource type="Script" path="res://UISystem/ScreenFade/ScreenFadeManager.cs" id="4_mlvp7"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_w1hrq"]
@@ -53,7 +53,7 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_jyojy")
+script = ExtResource("3_2pm43")
 
 [node name="ScreenFadeManager" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(0, 0, 0, 0)

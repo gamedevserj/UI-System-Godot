@@ -1,5 +1,6 @@
 ﻿using Godot;
 using UISystem.Core.PopupSystem.Controllers;
+using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.PopupSystem.Constants;
 using UISystem.PopupSystem.Views;
 
@@ -10,7 +11,7 @@ internal class YesNoCancelPopupController : PopupController<YesNoCancelPopupView
     public override int Type => PopupType.YesNoCancel;
     public override int PressedReturnPopupResult => PopupResult.Cancel;
 
-    public YesNoCancelPopupController(string prefab, PopupsManager popupsManager, SceneTree sceneTree) : base(prefab, popupsManager, sceneTree)
+    public YesNoCancelPopupController(string prefab, IPopupsManager popupsManager, SceneTree sceneTree) : base(prefab, popupsManager, sceneTree)
     {
     }
 

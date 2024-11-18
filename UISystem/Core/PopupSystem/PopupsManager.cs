@@ -4,31 +4,25 @@ using System.Collections.Generic;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.PopupSystem.Constants;
-using UISystem.PopupSystem.Controllers;
 
-namespace UISystem.PopupSystem;
+namespace UISystem.Core.PopupSystem;
 public partial class PopupsManager : Control, IPopupsManager
 {
 
     private IPopupController _currentController;
-    private Dictionary<int, IPopupController> _controllers;
+    private Dictionary<int, IPopupController> _controllers = new();
 
     public override void _Input(InputEvent @event)
     {
         _currentController?.HandleInputPressedWhenActive(@event);
     }
 
-    public void Init()
+    public void Init(IPopupController[] controllers)
     {
-        SceneTree tree = GetTree();
-
-        _controllers = new Dictionary<int, IPopupController>();
-        AddPopups(new IPopupController[]
+        for (int i = 0; i < controllers.Length; i++)
         {
-            new YesPopupController(GetPopupPath(PopupType.Yes), this, tree),
-            new YesNoPopupController(GetPopupPath(PopupType.YesNo), this, tree),
-            new YesNoCancelPopupController(GetPopupPath(PopupType.YesNoCancel), this, tree)
-        });
+            _controllers.Add(controllers[i].Type, controllers[i]);
+        }
     }
 
     public void ShowPopup(int popupType, IMenuController caller, string message, Action<int> onHideAction = null, bool instant = false)

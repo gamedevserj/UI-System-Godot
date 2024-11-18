@@ -1,12 +1,16 @@
 ﻿using Godot;
+using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
-using UISystem.Core.MenuSystem;
+using UISystem.Core.PopupSystem;
+using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Controllers;
 using UISystem.MenuSystem.Models;
 using UISystem.PopupSystem;
+using UISystem.PopupSystem.Constants;
+using UISystem.PopupSystem.Controllers;
 using UISystem.ScreenFade;
 
 namespace UISystem;
@@ -27,28 +31,40 @@ public partial class UiInstaller : Control
 
     public void Init(GameSettings settings)
     {
-        popupsManager.Init();
+        SceneTree tree = GetTree();
+
+        var popups = new IPopupController[]
+        {
+            new YesPopupController(GetPopupPath(PopupType.Yes), popupsManager, tree),
+            new YesNoPopupController(GetPopupPath(PopupType.YesNo), popupsManager, tree),
+            new YesNoCancelPopupController(GetPopupPath(PopupType.YesNoCancel), popupsManager, tree)
+        };
+        popupsManager.Init(popups);
 
         var backgroundController = new MenuBackgroundController(GetTree(), menuBackground);
-        SceneTree tree = GetTree();
-        var controllers = new IMenuController[]
+        var menus = new IMenuController[]
         {
-            new MainMenuController(GetMenuView(MenuType.Main), new MainMenuModel(), menusManager, tree, popupsManager, screenFadeManager, backgroundController),
-            new InGameMenuController(GetMenuView(MenuType.InGame), new InGameMenuModel(), menusManager),
-            new PauseMenuController(GetMenuView(MenuType.Pause), new PauseMenuModel(), menusManager, popupsManager, screenFadeManager, backgroundController),
-            new OptionsMenuController(GetMenuView(MenuType.Options), new OptionsMenuModel(), menusManager),
-            new AudioSettingsMenuController(GetMenuView(MenuType.AudioSettings), new AudioSettingsMenuModel(settings), menusManager, popupsManager),
-            new VideoSettingsMenuController(GetMenuView(MenuType.VideoSettings), new VideoSettingsMenuModel(settings), menusManager, popupsManager),
-            new RebindKeysMenuController(GetMenuView(MenuType.RebindKeys), new RebindKeysMenuModel(settings), menusManager, popupsManager),
-            new InterfaceSettingsMenuController(GetMenuView(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(settings), menusManager, popupsManager)
+            new MainMenuController(GetMenuPath(MenuType.Main), new MainMenuModel(), menusManager, tree, popupsManager, screenFadeManager, backgroundController),
+            new InGameMenuController(GetMenuPath(MenuType.InGame), new InGameMenuModel(), menusManager),
+            new PauseMenuController(GetMenuPath(MenuType.Pause), new PauseMenuModel(), menusManager, popupsManager, screenFadeManager, backgroundController),
+            new OptionsMenuController(GetMenuPath(MenuType.Options), new OptionsMenuModel(), menusManager),
+            new AudioSettingsMenuController(GetMenuPath(MenuType.AudioSettings), new AudioSettingsMenuModel(settings), menusManager, popupsManager),
+            new VideoSettingsMenuController(GetMenuPath(MenuType.VideoSettings), new VideoSettingsMenuModel(settings), menusManager, popupsManager),
+            new RebindKeysMenuController(GetMenuPath(MenuType.RebindKeys), new RebindKeysMenuModel(settings), menusManager, popupsManager),
+            new InterfaceSettingsMenuController(GetMenuPath(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(settings), menusManager, popupsManager)
         };
-        menusManager.Init(controllers);
+        menusManager.Init(menus);
         menusManager.ShowMenu(MenuType.Main, StackingType.Clear);
     }
 
-    private static string GetMenuView(int menuType)
+    private static string GetMenuPath(int menuType)
     {
         return MenuViewsPaths.Paths[menuType];
+    }
+
+    private static string GetPopupPath(int type)
+    {
+        return PopupViewsPaths.Paths[type];
     }
 
 }
