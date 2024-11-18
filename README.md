@@ -15,7 +15,7 @@ To add new menu:
 5. Create your menu controller script that inherits from MenuController providing your view and model
 6. In your menu controller implement the MenuType property by providing your menu type and implement SetupElements()
 7. Create path to your view prefab in MenuViewsPaths
-8. In MenusManager Init() create your menu controller
+8. Add your menus to the menus array created in the UiInstaller that passes them to the MenusManager
 9. After that you should be able to call _menusManager.ShowMenu(...) to show your new menu
 
 ### Menu background controller
