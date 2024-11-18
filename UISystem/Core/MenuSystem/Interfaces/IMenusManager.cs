@@ -1,9 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using UISystem.Core.MenuSystem.Enums;
 
 namespace UISystem.Core.MenuSystem.Interfaces;
-internal interface IMenusManager
+public partial interface IMenusManager
 {
 
     void Init(IMenuController[] controllers);

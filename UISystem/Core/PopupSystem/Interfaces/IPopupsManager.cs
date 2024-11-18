@@ -2,7 +2,7 @@
 using UISystem.Core.MenuSystem.Interfaces;
 
 namespace UISystem.Core.PopupSystem.Interfaces;
-public interface IPopupsManager
+public partial interface IPopupsManager
 {
 
     void Init(IPopupController[] controllers);

@@ -3,7 +3,7 @@ using System;
 using UISystem.Core.MenuSystem.Interfaces;
 
 namespace UISystem.Core.PopupSystem.Interfaces;
-public interface IPopupController
+public partial interface IPopupController
 {
 
     int Type { get; }

@@ -3,7 +3,7 @@ using System;
 using UISystem.Core.MenuSystem.Enums;
 
 namespace UISystem.Core.MenuSystem.Interfaces;
-public interface IMenuController
+public partial interface IMenuController
 {
 
     int Type { get; }
