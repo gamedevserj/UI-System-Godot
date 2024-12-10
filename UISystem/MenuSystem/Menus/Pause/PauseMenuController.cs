@@ -14,7 +14,7 @@ using UISystem.PopupSystem.Constants;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class PauseMenuController : MenuController<PauseMenuView, PauseMenuModel>
+internal class PauseMenuController : MenuController<PauseMenuView, IMenuModel>
 {
 
     public override int Type => MenuType.Pause;
@@ -23,7 +23,7 @@ internal class PauseMenuController : MenuController<PauseMenuView, PauseMenuMode
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
-    public PauseMenuController(string prefab, PauseMenuModel model, IMenusManager menusManager,
+    public PauseMenuController(string prefab, IMenuModel model, IMenusManager menusManager,
         IPopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
         : base(prefab, model, menusManager)
     {

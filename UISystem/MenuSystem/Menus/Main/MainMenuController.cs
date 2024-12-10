@@ -6,14 +6,13 @@ using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
-using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class MainMenuController : MenuController<MainMenuView, MainMenuModel>
+internal class MainMenuController : MenuController<MainMenuView, IMenuModel>
 {
 
     public override int Type => MenuType.Main;
@@ -23,7 +22,7 @@ internal class MainMenuController : MenuController<MainMenuView, MainMenuModel>
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(string prefab, MainMenuModel model, IMenusManager menusManager, SceneTree sceneTree,
+    public MainMenuController(string prefab, IMenuModel model, IMenusManager menusManager, SceneTree sceneTree,
         IPopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) :
         base(prefab, model, menusManager)
     {
