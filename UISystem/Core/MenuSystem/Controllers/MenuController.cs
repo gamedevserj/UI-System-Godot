@@ -28,7 +28,7 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
         set => _defaultSelectedElement = _lastSelectedElement = value;
     }
 
-    public MenuController(string prefab, TModel model, IMenusManager menusManager)
+    public MenuController(string prefab, IMenusManager menusManager, TModel model = default)
     {
         _prefab = prefab;
         _model = model;

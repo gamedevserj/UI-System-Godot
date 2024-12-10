@@ -5,15 +5,14 @@ using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class OptionsMenuController : MenuController<OptionsMenuView, OptionsMenuModel>
+internal class OptionsMenuController : MenuController<OptionsMenuView, IMenuModel>
 {
 
     public override int Type => MenuType.Options;
 
-    public OptionsMenuController(string prefab, OptionsMenuModel model, IMenusManager menusManager)
-        : base(prefab, model, menusManager)
-    {
-    }
+    public OptionsMenuController(string prefab, IMenusManager menusManager, IMenuModel model = null)
+        : base(prefab, menusManager, model)
+    { }
 
     protected override void SetupElements()
     {

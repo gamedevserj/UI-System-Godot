@@ -18,8 +18,8 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<Interfac
     public override int Type => MenuType.InterfaceSettings;
 
 
-    public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, IMenusManager menusManager, IPopupsManager popupsManager) :
-        base(prefab, model, menusManager, popupsManager)
+    public InterfaceSettingsMenuController(string prefab, IMenusManager menusManager, InterfaceSettingsMenuModel model, 
+        IPopupsManager popupsManager) : base(prefab, menusManager, model, popupsManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;
     }

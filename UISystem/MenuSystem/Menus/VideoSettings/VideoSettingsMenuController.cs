@@ -13,8 +13,8 @@ internal class VideoSettingsMenuController : SettingsMenuController<VideoSetting
 {
     public override int Type => MenuType.VideoSettings;
 
-    public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, IMenusManager menusManager, IPopupsManager popupsManager)
-        : base(prefab, model, menusManager, popupsManager)
+    public VideoSettingsMenuController(string prefab, IMenusManager menusManager, VideoSettingsMenuModel model, IPopupsManager popupsManager)
+        : base(prefab, menusManager, model, popupsManager)
     {
 
     }

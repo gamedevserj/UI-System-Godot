@@ -11,12 +11,9 @@ internal class AudioSettingsMenuController : SettingsMenuController<AudioSetting
 
     public override int Type => MenuType.AudioSettings;
 
-    public AudioSettingsMenuController(string prefab, AudioSettingsMenuModel model, IMenusManager menusManager,
-        IPopupsManager popupsManager)
-        : base(prefab, model, menusManager, popupsManager)
-    {
-
-    }
+    public AudioSettingsMenuController(string prefab, IMenusManager menusManager, AudioSettingsMenuModel model, IPopupsManager popupsManager)
+        : base(prefab, menusManager, model, popupsManager)
+    { }
 
     protected override void SetupElements()
     {
