@@ -16,11 +16,9 @@ internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuV
 
     public override int Type => MenuType.RebindKeys;
 
-    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, IMenusManager menusManager,
-        IPopupsManager popupsManager) : base(prefab, model, menusManager, popupsManager)
-    {
-
-    }
+    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, IMenusManager menusManager, Node parent,
+        IPopupsManager popupsManager) : base(prefab, model, menusManager, parent, popupsManager)
+    { }
 
     public override void HandleInputPressedWhenActive(InputEvent key)
     {

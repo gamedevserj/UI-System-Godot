@@ -1,4 +1,5 @@
-﻿using System.Text.RegularExpressions;
+﻿using Godot;
+using System.Text.RegularExpressions;
 using UISystem.Core.Elements.Structs;
 using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem.Interfaces;
@@ -13,11 +14,10 @@ internal class VideoSettingsMenuController : SettingsMenuController<VideoSetting
 {
     public override int Type => MenuType.VideoSettings;
 
-    public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, IMenusManager menusManager, IPopupsManager popupsManager)
-        : base(prefab, model, menusManager, popupsManager)
-    {
-
-    }
+    public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, IMenusManager menusManager, Node parent,
+        IPopupsManager popupsManager)
+        : base(prefab, model, menusManager, parent, popupsManager)
+    { }
 
     protected override void SetupElements()
     {

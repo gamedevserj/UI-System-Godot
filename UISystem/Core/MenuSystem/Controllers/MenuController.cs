@@ -19,6 +19,7 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
 
     protected readonly string _prefab;
     protected readonly IMenusManager _menusManager;
+    protected readonly Node _parent;
 
     public virtual bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
     public abstract int Type { get; }
@@ -28,18 +29,19 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
         set => _defaultSelectedElement = _lastSelectedElement = value;
     }
 
-    public MenuController(string prefab, TModel model, IMenusManager menusManager)
+    public MenuController(string prefab, TModel model, IMenusManager menusManager, Node parent)
     {
         _prefab = prefab;
         _model = model;
         _menusManager = menusManager;
+        _parent = parent;
     }
 
-    public void Init(Node menuParent)
+    public void Init()
     {
         if (!_view.IsValid())
         {
-            CreateView(menuParent);
+            CreateView(_parent);
         }
     }
 

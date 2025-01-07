@@ -9,7 +9,7 @@ public partial interface IMenuController
     int Type { get; }
     bool CanReturnToPreviousMenu { get; set; }
 
-    void Init(Node parent);
+    void Init();
     void Hide(StackingType stackingType, Action onComplete = null, bool instant = false);
     void Show(Action onComplete = null, bool instant = false);
 

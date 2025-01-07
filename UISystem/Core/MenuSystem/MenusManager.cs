@@ -56,7 +56,7 @@ public partial class MenusManager : Control, IMenusManager
     private void ChangeMenu(int menuType, StackingType stackingType, Action onNewMenuShown = null, bool instant = false)
     {
         IMenuController controller = _controllers[menuType];
-        controller.Init(this);
+        controller.Init();
 
         switch (stackingType)
         {

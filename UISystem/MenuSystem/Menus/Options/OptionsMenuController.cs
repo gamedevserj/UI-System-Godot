@@ -1,3 +1,4 @@
+using Godot;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
@@ -10,10 +11,9 @@ internal class OptionsMenuController : MenuController<OptionsMenuView, OptionsMe
 
     public override int Type => MenuType.Options;
 
-    public OptionsMenuController(string prefab, OptionsMenuModel model, IMenusManager menusManager)
-        : base(prefab, model, menusManager)
-    {
-    }
+    public OptionsMenuController(string prefab, OptionsMenuModel model, IMenusManager menusManager, Node parent)
+        : base(prefab, model, menusManager, parent)
+    { }
 
     protected override void SetupElements()
     {

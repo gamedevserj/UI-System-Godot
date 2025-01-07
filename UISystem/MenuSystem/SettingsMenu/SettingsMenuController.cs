@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Godot;
+using System;
 using UISystem.Constants;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
@@ -13,7 +14,8 @@ internal abstract class SettingsMenuController<TView, TModel> : MenuController<T
 
     protected readonly IPopupsManager _popupsManager;
 
-    protected SettingsMenuController(string prefab, TModel model, IMenusManager menusManager, IPopupsManager popupsManager) : base(prefab, model, menusManager)
+    protected SettingsMenuController(string prefab, TModel model, IMenusManager menusManager, Node parent, IPopupsManager popupsManager) 
+        : base(prefab, model, menusManager, parent)
     {
         _popupsManager = popupsManager;
     }

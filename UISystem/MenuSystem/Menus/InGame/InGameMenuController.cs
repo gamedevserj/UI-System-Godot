@@ -11,20 +11,14 @@ internal class InGameMenuController : MenuController<InGameMenuView, IMenuModel>
 
     public override int Type => MenuType.InGame;
 
-    public InGameMenuController(string prefab, IMenuModel model, IMenusManager menusManager) : base(prefab, model, menusManager)
-    {
-
-    }
+    public InGameMenuController(string prefab, IMenuModel model, IMenusManager menusManager, Node parent) 
+        : base(prefab, model, menusManager, parent)
+    { }
 
     public override void HandleInputPressedWhenActive(InputEvent key)
     {
-        if (key.IsPressed())
-        {
-            if (key.IsAction(InputsData.PauseButton))
-            {
-                PauseGame();
-            }
-        }
+        if (key.IsPressed() && key.IsAction(InputsData.PauseButton))
+            PauseGame();
     }
 
     private void PauseGame()

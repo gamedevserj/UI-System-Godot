@@ -23,9 +23,9 @@ internal class PauseMenuController : MenuController<PauseMenuView, IMenuModel>
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
-    public PauseMenuController(string prefab, IMenuModel model, IMenusManager menusManager,
+    public PauseMenuController(string prefab, IMenuModel model, IMenusManager menusManager, Node parent,
         IPopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
-        : base(prefab, model, menusManager)
+        : base(prefab, model, menusManager, parent)
     {
         _popupsManager = popupsManager;
         _screenFadeManager = screenFadeManager;

@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Godot;
+using System;
 using UISystem.Common.Enums;
 using UISystem.Core.Elements.Structs;
 using UISystem.Core.Extensions;
@@ -18,8 +19,8 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<Interfac
     public override int Type => MenuType.InterfaceSettings;
 
 
-    public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, IMenusManager menusManager, IPopupsManager popupsManager) :
-        base(prefab, model, menusManager, popupsManager)
+    public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, IMenusManager menusManager, Node parent, IPopupsManager popupsManager) :
+        base(prefab, model, menusManager, parent, popupsManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;
     }
