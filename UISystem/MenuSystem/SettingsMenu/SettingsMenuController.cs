@@ -13,8 +13,7 @@ internal abstract class SettingsMenuController<TView, TModel> : MenuController<T
 
     protected readonly IPopupsManager _popupsManager;
 
-    protected SettingsMenuController(string prefab, IMenusManager menusManager, TModel model,  IPopupsManager popupsManager) 
-        : base(prefab, menusManager, model)
+    protected SettingsMenuController(string prefab, TModel model, IMenusManager menusManager, IPopupsManager popupsManager) : base(prefab, model, menusManager)
     {
         _popupsManager = popupsManager;
     }

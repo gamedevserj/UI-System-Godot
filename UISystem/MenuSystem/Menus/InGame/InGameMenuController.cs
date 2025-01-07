@@ -11,8 +11,10 @@ internal class InGameMenuController : MenuController<InGameMenuView, IMenuModel>
 
     public override int Type => MenuType.InGame;
 
-    public InGameMenuController(string prefab, IMenusManager menusManager, IMenuModel model = null) : base(prefab, menusManager, model)
-    { }
+    public InGameMenuController(string prefab, IMenuModel model, IMenusManager menusManager) : base(prefab, model, menusManager)
+    {
+
+    }
 
     public override void HandleInputPressedWhenActive(InputEvent key)
     {

@@ -16,8 +16,8 @@ internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuV
 
     public override int Type => MenuType.RebindKeys;
 
-    public RebindKeysMenuController(string prefab, IMenusManager menusManager, RebindKeysMenuModel model,
-        IPopupsManager popupsManager) : base(prefab, menusManager, model, popupsManager)
+    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, IMenusManager menusManager,
+        IPopupsManager popupsManager) : base(prefab, model, menusManager, popupsManager)
     {
 
     }

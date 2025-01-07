@@ -22,9 +22,9 @@ internal class MainMenuController : MenuController<MainMenuView, IMenuModel>
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(string prefab, IMenusManager menusManager, SceneTree sceneTree,IPopupsManager popupsManager, 
-        ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController, IMenuModel model = null) :
-        base(prefab, menusManager, model)
+    public MainMenuController(string prefab, IMenuModel model, IMenusManager menusManager, SceneTree sceneTree,
+        IPopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) :
+        base(prefab, model, menusManager)
     {
         _sceneTree = sceneTree;
         _popupsManager = popupsManager;

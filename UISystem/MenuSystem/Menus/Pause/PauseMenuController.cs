@@ -7,6 +7,7 @@ using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.Constants;
+using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
@@ -22,9 +23,9 @@ internal class PauseMenuController : MenuController<PauseMenuView, IMenuModel>
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
-    public PauseMenuController(string prefab, IMenusManager menusManager, IPopupsManager popupsManager, 
-        ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController, IMenuModel model = null)
-        : base(prefab, menusManager, model)
+    public PauseMenuController(string prefab, IMenuModel model, IMenusManager menusManager,
+        IPopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
+        : base(prefab, model, menusManager)
     {
         _popupsManager = popupsManager;
         _screenFadeManager = screenFadeManager;
