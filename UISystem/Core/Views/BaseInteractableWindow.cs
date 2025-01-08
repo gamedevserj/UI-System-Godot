@@ -39,7 +39,6 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
     {
         SwitchFocusAwailability(false);
         Visible = true;
-        Engine.TimeScale = 0.5f;
         _transition.Show(()=>
         {
             SwitchFocusAwailability(true);
@@ -52,7 +51,7 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
         SwitchFocusAwailability(false);
         _transition.Hide(() => { 
             onHidden?.Invoke();
-            Visible = false;
+            Visible = false; // need to switch off visibility to allow GuiPanel3D to receive mouse events
         }, instant);
     }
 
