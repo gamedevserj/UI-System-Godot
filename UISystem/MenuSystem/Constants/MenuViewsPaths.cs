@@ -14,6 +14,7 @@ internal partial class MenuViewsPaths
     private const string VideoSettings = Folder + "VideoSettingsMenuView.tscn";
     private const string RebindKeys = Folder + "RebindKeysMenuView.tscn";
     private const string InterfaceSettings = Folder + "InterfaceSettingsMenuView.tscn";
+    private const string Test3D = Folder + "Test3DView.tscn";
 
     public static readonly Dictionary<int, string> Paths = new()
     {
@@ -25,6 +26,7 @@ internal partial class MenuViewsPaths
         { MenuType.VideoSettings, VideoSettings },
         { MenuType.RebindKeys, RebindKeys },
         { MenuType.InterfaceSettings, InterfaceSettings },
+        { MenuType.Test3D, Test3D },
     };
 
 }

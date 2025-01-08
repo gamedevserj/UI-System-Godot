@@ -10,5 +10,6 @@ internal class MenuType
     public const int VideoSettings = 5;
     public const int RebindKeys = 6;
     public const int InterfaceSettings = 7;
+    public const int Test3D = 8;
 
 }

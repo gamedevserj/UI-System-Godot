@@ -10,6 +10,12 @@ internal static class TweenExtensions
         return tween;
     }
 
+    public static Tween TweenControlGlobalPosition(this Tween tween, Control target, Vector2 position, float duration)
+    {
+        tween.TweenProperty(target, PropertyConstants.GlobalPosition, position, duration);
+        return tween;
+    }
+
     public static void TweenModulate(this Tween tween, CanvasItem target, Color color, float duration, bool self = false)
     {
         if (!self)

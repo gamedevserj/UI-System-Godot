@@ -38,6 +38,8 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
     public override void Show(Action onShown, bool instant = false)
     {
         SwitchFocusAwailability(false);
+        Visible = true;
+        Engine.TimeScale = 0.5f;
         _transition.Show(()=>
         {
             SwitchFocusAwailability(true);
@@ -48,7 +50,10 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
     public override void Hide(Action onHidden, bool instant = false)
     {
         SwitchFocusAwailability(false);
-        _transition.Hide(onHidden, instant);
+        _transition.Hide(() => { 
+            onHidden?.Invoke();
+            Visible = false;
+        }, instant);
     }
 
 }

@@ -14,7 +14,7 @@ using UISystem.PopupSystem.Controllers;
 using UISystem.ScreenFade;
 
 namespace UISystem;
-public partial class UiInstaller : Control
+public partial class UiInstaller : Node
 {
 
     public static UiInstaller Instance { get; private set; }
@@ -23,6 +23,7 @@ public partial class UiInstaller : Control
     [Export] private MenusManager menusManager;
     [Export] private PopupsManager popupsManager;
     [Export] private ScreenFadeManager screenFadeManager;
+    [Export] private GuiPanel3D guiPanel3D;
 
     public override void _EnterTree()
     {
@@ -51,7 +52,7 @@ public partial class UiInstaller : Control
             new AudioSettingsMenuController(GetMenuPath(MenuType.AudioSettings), new AudioSettingsMenuModel(settings), menusManager, menusManager, popupsManager),
             new VideoSettingsMenuController(GetMenuPath(MenuType.VideoSettings), new VideoSettingsMenuModel(settings), menusManager, menusManager, popupsManager),
             new RebindKeysMenuController(GetMenuPath(MenuType.RebindKeys), new RebindKeysMenuModel(settings), menusManager, menusManager, popupsManager),
-            new InterfaceSettingsMenuController(GetMenuPath(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(settings), menusManager, menusManager, popupsManager)
+            new InterfaceSettingsMenuController(GetMenuPath(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(settings), menusManager, menusManager, popupsManager),
         };
         menusManager.Init(menus);
         menusManager.ShowMenu(MenuType.Main, StackingType.Clear);

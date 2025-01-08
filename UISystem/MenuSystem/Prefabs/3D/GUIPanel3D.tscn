@@ -1,0 +1,46 @@
+[gd_scene load_steps=6 format=3 uid="uid://cq5278lo5txm8"]
+
+[ext_resource type="Script" path="res://UISystem/Core/MenuSystem/3D/GuiPanel3D.cs" id="1_ypv5l"]
+
+[sub_resource type="QuadMesh" id="1"]
+size = Vector2(1.6, 0.9)
+
+[sub_resource type="ViewportTexture" id="ViewportTexture_m3af8"]
+viewport_path = NodePath("SubViewport")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_a2rca"]
+resource_local_to_scene = true
+transparency = 1
+shading_mode = 0
+albedo_texture = SubResource("ViewportTexture_m3af8")
+
+[sub_resource type="BoxShape3D" id="4"]
+size = Vector3(1.6, 0.9, 0.1)
+
+[node name="GUIPanel3D" type="Node3D" node_paths=PackedStringArray("subViewport", "quad", "area3d")]
+process_mode = 3
+script = ExtResource("1_ypv5l")
+subViewport = NodePath("SubViewport")
+quad = NodePath("Quad")
+area3d = NodePath("Quad/Area3D")
+
+[node name="SubViewport" type="SubViewport" parent="."]
+transparent_bg = true
+gui_embed_subwindows = true
+canvas_cull_mask = 4293918721
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Quad" type="MeshInstance3D" parent="."]
+mesh = SubResource("1")
+surface_material_override/0 = SubResource("StandardMaterial3D_a2rca")
+
+[node name="Area3D" type="Area3D" parent="Quad"]
+input_capture_on_drag = true
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D"]
+shape = SubResource("4")
+
+[node name="Camera3D" type="Camera3D" parent="."]
+transform = Transform3D(0.897081, 0, -0.441866, 0, 1, 0, 0.441866, 0, 0.897081, -0.560406, 5.96046e-08, 0.88008)
+cull_mask = 1

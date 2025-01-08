@@ -9,6 +9,7 @@ public static class PropertyConstants
     // control layout
     public const string Size = "size";
     public const string Position = "position";
+    public const string GlobalPosition = "global_position";
     public const string Rotation = "rotation";
     public const string Scale = "scale";
     public const string PivotOffset = "pivot_offset";

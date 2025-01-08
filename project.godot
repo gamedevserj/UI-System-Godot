@@ -81,6 +81,12 @@ Jump={
 ]
 }
 
+[layer_names]
+
+2d_render/layer_1="UI"
+3d_render/layer_1="UI"
+3d_physics/layer_1="UI"
+
 [rendering]
 
 renderer/rendering_method="gl_compatibility"
