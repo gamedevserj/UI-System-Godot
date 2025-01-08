@@ -10,9 +10,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vnlb0"]
 
-[node name="Node3D" type="Node3D"]
-
-[node name="UIInstaller" type="Control" parent="." node_paths=PackedStringArray("menuBackground", "menusManager", "popupsManager", "screenFadeManager", "guiPanel3D")]
+[node name="UIInstaller" type="Control" node_paths=PackedStringArray("menuBackground", "menusManager", "popupsManager", "screenFadeManager", "guiPanel3D")]
 process_mode = 3
 layout_mode = 3
 anchors_preset = 15
@@ -26,11 +24,12 @@ menuBackground = NodePath("CanvasLayer/MenuBackground")
 menusManager = NodePath("CanvasLayer/MenusManager")
 popupsManager = NodePath("CanvasLayer/PopupsManager")
 screenFadeManager = NodePath("CanvasLayer/ScreenFadeManager")
-guiPanel3D = NodePath("../GUIPanel3D")
+guiPanel3D = NodePath("GUIPanel3D")
 
-[node name="CanvasLayer" type="CanvasLayer" parent="UIInstaller"]
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
 
-[node name="MenuBackground" type="TextureRect" parent="UIInstaller/CanvasLayer"]
+[node name="MenuBackground" type="TextureRect" parent="CanvasLayer"]
+visible = false
 modulate = Color(0, 0.52549, 1, 0.521569)
 anchors_preset = 15
 anchor_right = 1.0
@@ -39,7 +38,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_w1hrq")
 
-[node name="MenusManager" type="Control" parent="UIInstaller/CanvasLayer"]
+[node name="MenusManager" type="Control" parent="CanvasLayer"]
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,7 +48,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("2_l6nlf")
 
-[node name="PopupsManager" type="Control" parent="UIInstaller/CanvasLayer"]
+[node name="PopupsManager" type="Control" parent="CanvasLayer"]
 z_index = 90
 layout_mode = 3
 anchors_preset = 15
@@ -60,7 +59,7 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("3_2pm43")
 
-[node name="ScreenFadeManager" type="TextureRect" parent="UIInstaller/CanvasLayer"]
+[node name="ScreenFadeManager" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(0, 0, 0, 0)
 z_index = 100
 anchors_preset = 15

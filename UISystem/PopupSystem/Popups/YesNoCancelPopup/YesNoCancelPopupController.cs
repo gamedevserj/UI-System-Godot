@@ -11,9 +11,9 @@ internal class YesNoCancelPopupController : PopupController<YesNoCancelPopupView
     public override int Type => PopupType.YesNoCancel;
     public override int PressedReturnPopupResult => PopupResult.Cancel;
 
-    public YesNoCancelPopupController(string prefab, IPopupsManager popupsManager, SceneTree sceneTree) : base(prefab, popupsManager, sceneTree)
-    {
-    }
+    public YesNoCancelPopupController(string prefab, IPopupsManager popupsManager, Node parent, SceneTree sceneTree) 
+        : base(prefab, popupsManager, parent, sceneTree)
+    { }
 
     protected override void SetupElements()
     {

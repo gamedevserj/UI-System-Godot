@@ -28,7 +28,7 @@ public partial class PopupsManager : Control, IPopupsManager
     public void ShowPopup(int popupType, IMenuController caller, string message, Action<int> onHideAction = null, bool instant = false)
     {
         _currentController = _controllers[popupType];
-        _currentController.Init(this);
+        _currentController.Init();
         _currentController.Show(caller, message, onHideAction, instant);
     }
 

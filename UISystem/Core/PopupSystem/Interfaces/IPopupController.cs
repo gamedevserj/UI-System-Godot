@@ -7,7 +7,7 @@ public partial interface IPopupController
 {
 
     int Type { get; }
-    void Init(Node parent);
+    void Init();
     void HandleInputPressedWhenActive(InputEvent key);
     void Hide(int result, bool instant = false);
     void Show(IMenuController caller, string message, Action<int> onHideAction, bool instant);

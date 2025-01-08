@@ -11,8 +11,8 @@ internal class YesPopupController : PopupController<YesPopupView>
     public override int Type => PopupType.Yes;
     public override int PressedReturnPopupResult => PopupResult.Yes;
 
-    public YesPopupController(string prefab, IPopupsManager popupsManager, SceneTree sceneTree)
-        : base(prefab, popupsManager, sceneTree)
+    public YesPopupController(string prefab, IPopupsManager popupsManager, Node parent, SceneTree sceneTree)
+        : base(prefab, popupsManager, parent, sceneTree)
     {
     }
 

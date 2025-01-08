@@ -8,6 +8,7 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_t0ow3"]
 
 [node name="YesNoPopup" type="Control" node_paths=PackedStringArray("noButton", "fadeObjectsContainer", "panel", "yesButton", "messageMask", "message")]
+z_index = 30
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0

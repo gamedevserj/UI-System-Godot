@@ -21,22 +21,25 @@ internal abstract class PopupController<T> : IPopupController where T : PopupVie
     protected readonly string _prefab;
     protected readonly IPopupsManager _popupsManager;
     protected readonly SceneTree _sceneTree;
+    protected readonly Node _parent;
 
     public abstract int Type { get; }
     public abstract int PressedReturnPopupResult { get; }
 
-    public PopupController(string prefab, IPopupsManager popupsManager, SceneTree sceneTree)
+    public PopupController(string prefab, IPopupsManager popupsManager, Node parent, SceneTree sceneTree)
     {
         _prefab = prefab;
         _popupsManager = popupsManager;
         _sceneTree = sceneTree;
+        _parent = parent;
+
     }
 
-    public virtual void Init(Node popupParent)
+    public virtual void Init()
     {
         if (!_view.IsValid())
         {
-            CreateView(popupParent);
+            CreateView(_parent);
         }
         _defaultSelectedElement = _view.DefaultSelectedElement;
     }
