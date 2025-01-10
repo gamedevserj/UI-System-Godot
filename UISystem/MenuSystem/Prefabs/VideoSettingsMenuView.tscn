@@ -7,6 +7,8 @@
 [sub_resource type="CanvasTexture" id="CanvasTexture_wvtwh"]
 
 [node name="VideoSettingsMenuView" type="Control" node_paths=PackedStringArray("windowModeDropdown", "resolutionDropdown", "saveSettingsButton", "returnButton", "panel", "fadeObjectsContainer", "resetButton")]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -25,6 +27,8 @@ fadeObjectsContainer = NodePath("Container")
 resetButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -33,6 +37,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="Container"]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -47,6 +53,8 @@ horizontal_alignment = 1
 vertical_alignment = 1
 
 [node name="Panel" type="Control" parent="Container"]
+light_mask = 2
+visibility_layer = 2
 clip_contents = true
 layout_mode = 1
 anchor_left = 0.1
@@ -59,6 +67,8 @@ mouse_filter = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="Border" type="TextureRect" parent="Container/Panel"]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -69,6 +79,8 @@ texture = SubResource("CanvasTexture_wvtwh")
 
 [node name="Color" type="TextureRect" parent="Container/Panel/Border"]
 self_modulate = Color(0, 0, 0, 1)
+light_mask = 2
+visibility_layer = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_right = 1.0
@@ -82,6 +94,8 @@ grow_vertical = 2
 texture = SubResource("CanvasTexture_wvtwh")
 
 [node name="VBoxContainer" type="VBoxContainer" parent="Container/Panel/Border/Color"]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
@@ -95,32 +109,78 @@ theme_override_constants/separation = 40
 alignment = 1
 
 [node name="WindowModeDropdown" parent="Container/Panel/Border/Color/VBoxContainer" instance=ExtResource("2_e1dgx")]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 2
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown" index="1"]
+light_mask = 2
+visibility_layer = 2
 offset_right = 500.0
 offset_bottom = 110.0
 
+[node name="Border" parent="Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown/ResizableControl" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="Control" parent="Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown/ResizableControl/Border" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="InsideColor" parent="Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown/ResizableControl/Border/Control" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="TextClipper" parent="Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown/ResizableControl" index="1"]
+light_mask = 2
+visibility_layer = 2
+
 [node name="Label" parent="Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown/ResizableControl/TextClipper" index="0"]
+light_mask = 2
+visibility_layer = 2
 offset_left = -63.0
 offset_top = -50.0
 offset_right = 64.0
 offset_bottom = 50.0
 
 [node name="ResolutionDropdown" parent="Container/Panel/Border/Color/VBoxContainer" instance=ExtResource("2_e1dgx")]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 2
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown" index="1"]
+light_mask = 2
+visibility_layer = 2
 offset_right = 500.0
 offset_bottom = 110.0
 
+[node name="Border" parent="Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown/ResizableControl" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="Control" parent="Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown/ResizableControl/Border" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="InsideColor" parent="Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown/ResizableControl/Border/Control" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="TextClipper" parent="Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown/ResizableControl" index="1"]
+light_mask = 2
+visibility_layer = 2
+
 [node name="Label" parent="Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown/ResizableControl/TextClipper" index="0"]
+light_mask = 2
+visibility_layer = 2
 offset_left = -245.0
 offset_top = -50.0
 offset_right = 245.0
 offset_bottom = 50.0
 
 [node name="ButtonsContainer" type="HBoxContainer" parent="Container/Panel/Border/Color"]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.5
@@ -136,34 +196,100 @@ alignment = 1
 metadata/_edit_use_anchors_ = true
 
 [node name="ReturnButton" parent="Container/Panel/Border/Color/ButtonsContainer" instance=ExtResource("5_mp8dl")]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 2
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/ButtonsContainer/ReturnButton" index="0"]
+light_mask = 2
+visibility_layer = 2
 offset_right = 450.0
 
+[node name="Border" parent="Container/Panel/Border/Color/ButtonsContainer/ReturnButton/ResizableControl" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="Control" parent="Container/Panel/Border/Color/ButtonsContainer/ReturnButton/ResizableControl/Border" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="InsideColor" parent="Container/Panel/Border/Color/ButtonsContainer/ReturnButton/ResizableControl/Border/Control" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="ContentClipper" parent="Container/Panel/Border/Color/ButtonsContainer/ReturnButton/ResizableControl" index="1"]
+light_mask = 2
+visibility_layer = 2
+
 [node name="Label" parent="Container/Panel/Border/Color/ButtonsContainer/ReturnButton/ResizableControl/ContentClipper" index="0"]
+light_mask = 2
+visibility_layer = 2
 offset_left = -200.0
 offset_right = 200.0
 text = "RETURN"
 
 [node name="SaveSettingsButton" parent="Container/Panel/Border/Color/ButtonsContainer" instance=ExtResource("5_mp8dl")]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 2
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/ButtonsContainer/SaveSettingsButton" index="0"]
+light_mask = 2
+visibility_layer = 2
 offset_right = 450.0
 
+[node name="Border" parent="Container/Panel/Border/Color/ButtonsContainer/SaveSettingsButton/ResizableControl" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="Control" parent="Container/Panel/Border/Color/ButtonsContainer/SaveSettingsButton/ResizableControl/Border" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="InsideColor" parent="Container/Panel/Border/Color/ButtonsContainer/SaveSettingsButton/ResizableControl/Border/Control" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="ContentClipper" parent="Container/Panel/Border/Color/ButtonsContainer/SaveSettingsButton/ResizableControl" index="1"]
+light_mask = 2
+visibility_layer = 2
+
 [node name="Label" parent="Container/Panel/Border/Color/ButtonsContainer/SaveSettingsButton/ResizableControl/ContentClipper" index="0"]
+light_mask = 2
+visibility_layer = 2
 offset_left = -200.0
 offset_right = 200.0
 text = "SAVE"
 
 [node name="ResetToDefaultButton" parent="Container/Panel/Border/Color/ButtonsContainer" instance=ExtResource("5_mp8dl")]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 2
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton" index="0"]
+light_mask = 2
+visibility_layer = 2
 offset_right = 450.0
 
+[node name="Border" parent="Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="Control" parent="Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl/Border" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="InsideColor" parent="Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl/Border/Control" index="0"]
+light_mask = 2
+visibility_layer = 2
+
+[node name="ContentClipper" parent="Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl" index="1"]
+light_mask = 2
+visibility_layer = 2
+
 [node name="Label" parent="Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton/ResizableControl/ContentClipper" index="0"]
+light_mask = 2
+visibility_layer = 2
 offset_left = -200.0
 offset_right = 200.0
 text = "RESET"

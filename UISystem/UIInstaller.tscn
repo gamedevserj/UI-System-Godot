@@ -12,6 +12,8 @@
 
 [node name="UIInstaller" type="Control" node_paths=PackedStringArray("menuBackground", "menusManager", "popupsManager", "screenFadeManager", "guiPanel3D")]
 process_mode = 3
+light_mask = 2
+visibility_layer = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -31,6 +33,8 @@ guiPanel3D = NodePath("GUIPanel3D")
 [node name="MenuBackground" type="TextureRect" parent="CanvasLayer"]
 visible = false
 modulate = Color(0, 0.52549, 1, 0.521569)
+light_mask = 2
+visibility_layer = 2
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
@@ -39,6 +43,8 @@ grow_vertical = 2
 texture = SubResource("CanvasTexture_w1hrq")
 
 [node name="MenusManager" type="Control" parent="CanvasLayer"]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -49,6 +55,8 @@ mouse_filter = 2
 script = ExtResource("2_l6nlf")
 
 [node name="PopupsManager" type="Control" parent="CanvasLayer"]
+light_mask = 2
+visibility_layer = 2
 z_index = 90
 layout_mode = 3
 anchors_preset = 15
@@ -61,6 +69,8 @@ script = ExtResource("3_2pm43")
 
 [node name="ScreenFadeManager" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(0, 0, 0, 0)
+light_mask = 2
+visibility_layer = 2
 z_index = 100
 anchors_preset = 15
 anchor_right = 1.0

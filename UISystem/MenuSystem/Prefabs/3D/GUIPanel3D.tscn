@@ -32,15 +32,18 @@ size = Vector2i(1920, 1080)
 render_target_update_mode = 4
 
 [node name="Quad" type="MeshInstance3D" parent="."]
+layers = 2
 mesh = SubResource("1")
 surface_material_override/0 = SubResource("StandardMaterial3D_a2rca")
 
 [node name="Area3D" type="Area3D" parent="Quad"]
+collision_layer = 2
+collision_mask = 2
 input_capture_on_drag = true
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Quad/Area3D"]
 shape = SubResource("4")
 
-[node name="Camera3D" type="Camera3D" parent="."]
+[node name="UICamera3D" type="Camera3D" parent="."]
 transform = Transform3D(0.897081, 0, -0.441866, 0, 1, 0, 0.441866, 0, 0.897081, -0.560406, 5.96046e-08, 0.88008)
-cull_mask = 1
+cull_mask = 2

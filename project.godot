@@ -83,9 +83,12 @@ Jump={
 
 [layer_names]
 
-2d_render/layer_1="UI"
-3d_render/layer_1="UI"
-3d_physics/layer_1="UI"
+2d_render/layer_1="Default"
+3d_render/layer_1="Default"
+2d_render/layer_2="UI"
+3d_render/layer_2="UI"
+3d_physics/layer_1="Default"
+3d_physics/layer_2="UI"
 
 [rendering]
 

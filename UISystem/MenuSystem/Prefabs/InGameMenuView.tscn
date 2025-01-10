@@ -3,6 +3,8 @@
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/InGame/InGameMenuView.cs" id="1_yoo8i"]
 
 [node name="InGameMenuView" type="Control" node_paths=PackedStringArray("fadeObjectsContainer")]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -13,6 +15,8 @@ script = ExtResource("1_yoo8i")
 fadeObjectsContainer = NodePath("Container")
 
 [node name="Container" type="Control" parent="."]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 1
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,6 +25,8 @@ grow_horizontal = 2
 grow_vertical = 2
 
 [node name="Label" type="Label" parent="Container"]
+light_mask = 2
+visibility_layer = 2
 layout_mode = 1
 anchors_preset = 5
 anchor_left = 0.5
