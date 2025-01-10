@@ -12,12 +12,16 @@ public partial class GuiPanel3D : Node
 	[Export] private SubViewport subViewport;
 	[Export] private MeshInstance3D quad;
 	[Export] private Area3D area3d;
+	[Export] private Control menusParent;
+	[Export] private Control popupsParent;
 
 	private bool _isMouseInside;
 	private Vector2 _lastEventPosition2D;
 	private float _lastEventTime = -1;
 
 	public SubViewport SubViewport => subViewport;
+	public Control MenusParent => menusParent;
+	public Control PopupsParent => popupsParent;
 
 	// Called when the node enters the scene tree for the first time.
 	public override void _Ready()

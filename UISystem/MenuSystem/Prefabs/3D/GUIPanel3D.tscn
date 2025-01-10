@@ -17,19 +17,39 @@ albedo_texture = SubResource("ViewportTexture_m3af8")
 [sub_resource type="BoxShape3D" id="4"]
 size = Vector3(1.6, 0.9, 0.1)
 
-[node name="GUIPanel3D" type="Node3D" node_paths=PackedStringArray("subViewport", "quad", "area3d")]
+[node name="GUIPanel3D" type="Node3D" node_paths=PackedStringArray("subViewport", "quad", "area3d", "menusParent", "popupsParent")]
 process_mode = 3
 script = ExtResource("1_ypv5l")
 subViewport = NodePath("SubViewport")
 quad = NodePath("Quad")
 area3d = NodePath("Quad/Area3D")
+menusParent = NodePath("SubViewport/MenusParent")
+popupsParent = NodePath("SubViewport/PopupsParent")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true
 gui_embed_subwindows = true
-canvas_cull_mask = 4293918721
+canvas_cull_mask = 4293918722
 size = Vector2i(1920, 1080)
 render_target_update_mode = 4
+
+[node name="MenusParent" type="Control" parent="SubViewport"]
+light_mask = 2
+visibility_layer = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
+
+[node name="PopupsParent" type="Control" parent="SubViewport"]
+light_mask = 2
+visibility_layer = 2
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
+mouse_filter = 2
 
 [node name="Quad" type="MeshInstance3D" parent="."]
 layers = 2
