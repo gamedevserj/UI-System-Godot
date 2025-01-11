@@ -1,0 +1,63 @@
+[gd_scene load_steps=4 format=3 uid="uid://dfulud7842pwx"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_a25ns"]
+
+[sub_resource type="PlaneMesh" id="PlaneMesh_iydxc"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_s50vo"]
+albedo_color = Color(1, 0, 0, 1)
+
+[node name="Node3D" type="Node3D"]
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="."]
+transform = Transform3D(0.7449, -0.482396, 0.460889, 0.283804, 0.854296, 0.43547, -0.603804, -0.193579, 0.773271, -3.19938, 1.89428, 2.07768)
+light_energy = 3.369
+
+[node name="Geometry" type="Node3D" parent="."]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -3.72722)
+mesh = SubResource("BoxMesh_a25ns")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D4" type="MeshInstance3D" parent="Geometry"]
+transform = Transform3D(7.92, 0, 0, 0, 7.92, 0, 0, 0, 7.92, 0, -0.575879, 0.118362)
+mesh = SubResource("PlaneMesh_iydxc")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D3" type="MeshInstance3D" parent="Geometry"]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1833, 0, -1.97564)
+mesh = SubResource("BoxMesh_a25ns")
+skeleton = NodePath("")
+
+[node name="MeshInstance3D2" type="MeshInstance3D" parent="."]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.6119, 4.76838e-07, -2.4489)
+layers = 2
+mesh = SubResource("BoxMesh_a25ns")
+skeleton = NodePath("../SubViewportContainer/UISubViewport")
+surface_material_override/0 = SubResource("StandardMaterial3D_s50vo")
+
+[node name="SubViewportContainer" type="SubViewportContainer" parent="."]
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="WorldSubViewport" type="SubViewport" parent="SubViewportContainer"]
+handle_input_locally = false
+canvas_cull_mask = 4294967065
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D" type="Camera3D" parent="SubViewportContainer/WorldSubViewport"]
+transform = Transform3D(0.691627, 0, 0.722255, 0, 1, 0, -0.722255, 0, 0.691627, 2.31398, -2.38419e-07, 1.35524)
+cull_mask = 1
+
+[node name="UISubViewport" type="SubViewport" parent="SubViewportContainer"]
+transparent_bg = true
+handle_input_locally = false
+canvas_cull_mask = 4293918722
+size = Vector2i(1920, 1080)
+render_target_update_mode = 4
+
+[node name="Camera3D2" type="Camera3D" parent="SubViewportContainer/UISubViewport"]
+transform = Transform3D(0.691627, 0, 0.722255, 0, 1, 0, -0.722255, 0, 0.691627, 2.31398, -2.38419e-07, 1.35524)
+cull_mask = 2
