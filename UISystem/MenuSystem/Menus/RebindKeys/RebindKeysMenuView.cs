@@ -2,15 +2,10 @@
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Elements.ElementViews;
 using UISystem.MenuSystem.SettingsMenu;
-using UISystem.Transitions;
-using UISystem.Transitions.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
 public partial class RebindKeysMenuView : SettingsMenuView
 {
-
-    private const float PanelDuration = 0.5f;
-    private const float ElementsDuration = 0.25f;
 
     [Export] private RebindableKeyButtonView moveLeft;
     [Export] private RebindableKeyButtonView moveLeftJoystick;
@@ -31,21 +26,15 @@ public partial class RebindKeysMenuView : SettingsMenuView
     public RebindableKeyButtonView Jump => jump;
     public RebindableKeyButtonView JumpJoystick => jumpJoystick;
     public ButtonView ReturnButton => returnButton;
+    public Control Panel => panel;
+    public ResizableControlView MoveLeftLabelResizableControl => moveLeftLabelResizableControl;
+    public ResizableControlView MoveRightLabelResizableControl => moveRightLabelResizableControl;
+    public ResizableControlView JumpLabelResizableControl => jumpLabelResizableControl;
 
     protected override void PopulateFocusableElements()
     {
         _focusableElements = new IFocusableControl[]
         { MoveLeft, MoveLeftJoystick, MoveRight, MoveRightJoystick, Jump, JumpJoystick, ResetButton, ReturnButton };
-    }
-
-    public override void Init()
-    {
-        base.Init();
-        _transition = new PanelSizeTransition(this, fadeObjectsContainer, panel,
-            new ITweenableMenuElement[] { returnButton, ResetButton,
-                moveLeft, moveLeftJoystick, moveRight, moveRightJoystick, jump, jumpJoystick,
-                moveLeftLabelResizableControl, moveRightLabelResizableControl, jumpLabelResizableControl},
-            PanelDuration, ElementsDuration);
     }
 
 }

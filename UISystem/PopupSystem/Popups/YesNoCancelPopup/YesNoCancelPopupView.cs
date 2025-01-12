@@ -1,7 +1,6 @@
 ﻿using Godot;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Elements.ElementViews;
-using UISystem.Transitions.Interfaces;
 
 namespace UISystem.PopupSystem.Views;
 internal partial class YesNoCancelPopupView : YesPopupView
@@ -18,11 +17,6 @@ internal partial class YesNoCancelPopupView : YesPopupView
     protected override void PopulateFocusableElements()
     {
         _focusableElements = new IFocusableControl[] { YesButton, NoButton, CancelButton };
-    }
-
-    protected override ITweenableMenuElement[] GetTweenableElements()
-    {
-        return new ITweenableMenuElement[] { YesButton, noButton, cancelButton, messageMask };
     }
 
 }

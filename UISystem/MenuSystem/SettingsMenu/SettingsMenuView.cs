@@ -9,6 +9,7 @@ public abstract partial class SettingsMenuView : BaseInteractableWindow
     [Export] protected Control fadeObjectsContainer;
     [Export] private ButtonView resetButton;
 
+    public Control FadeObjectsContainer => fadeObjectsContainer;
     public ButtonView ResetButton => resetButton;
 
 }

@@ -1,7 +1,7 @@
 using Godot;
 using System;
+using UISystem.Core.Transitions.Interfaces;
 using UISystem.Core.Views;
-using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Views;
 public partial class InGameMenuView : BaseWindowView
@@ -9,9 +9,11 @@ public partial class InGameMenuView : BaseWindowView
 
     [Export] private Control fadeObjectsContainer;
 
-    public override void Init()
+    public Control FadeObjectsContainer => fadeObjectsContainer;
+
+    public override void Init(IViewTransition transition)
     {
-        _transition = new FadeTransition(fadeObjectsContainer);
+        _transition = transition;
     }
 
     public override void Show(Action onShown, bool instant = false)
@@ -27,4 +29,5 @@ public partial class InGameMenuView : BaseWindowView
     {
         
     }
+
 }

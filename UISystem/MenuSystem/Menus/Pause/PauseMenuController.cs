@@ -6,16 +6,20 @@ using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
+using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
-using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
 using UISystem.ScreenFade;
+using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class PauseMenuController : MenuController<PauseMenuView, IMenuModel>
 {
+
+    private const float MainElementAnimationDuration = 0.25f;
+    private const float SecondaryElementAnimationDuration = 0.5f;
 
     public override int Type => MenuType.Pause;
 
@@ -99,5 +103,12 @@ internal class PauseMenuController : MenuController<PauseMenuView, IMenuModel>
             }
         });
 
+    }
+
+    protected override IViewTransition CreateTransition()
+    {
+        return new MainElementDropTransition(_view, _view.FadeObjectsContainer, _view.ResumeGameButton,
+            new[] { _view.OptionsButton, _view.ReturnToMainMenuButton },
+            MainElementAnimationDuration, SecondaryElementAnimationDuration);
     }
 }

@@ -2,8 +2,10 @@
 using UISystem.Core.Constants;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Views;
+using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class InGameMenuController : MenuController<InGameMenuView, IMenuModel>
@@ -30,4 +32,6 @@ internal class InGameMenuController : MenuController<InGameMenuView, IMenuModel>
     {
 
     }
+
+    protected override IViewTransition CreateTransition() => new FadeTransition(_view.FadeObjectsContainer);
 }

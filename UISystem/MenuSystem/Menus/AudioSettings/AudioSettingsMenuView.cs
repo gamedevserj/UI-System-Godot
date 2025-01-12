@@ -2,19 +2,14 @@
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Elements.ElementViews;
 using UISystem.MenuSystem.SettingsMenu;
-using UISystem.Transitions;
-using UISystem.Transitions.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
 public partial class AudioSettingsMenuView : SettingsMenuView
 {
 
-    private const float PanelDuration = 0.5f;
-    private const float ElementsDuration = 0.25f;
-
-    [Export] private ResizableControlView resizableControlMusic;
+    [Export] private ResizableControlView resizableControlMusic; // label container
     [Export] private HSliderView musicSlider;
-    [Export] private ResizableControlView resizableControlSfx;
+    [Export] private ResizableControlView resizableControlSfx; // label container
     [Export] private HSliderView sfxSlider;
     [Export] private ButtonView saveSettingsButton;
     [Export] private ButtonView returnButton;
@@ -24,19 +19,13 @@ public partial class AudioSettingsMenuView : SettingsMenuView
     public HSliderView SfxSlider => sfxSlider;
     public ButtonView SaveSettingsButton => saveSettingsButton;
     public ButtonView ReturnButton => returnButton;
+    public Control Panel => panel;
+    public ResizableControlView ResizableControlMusic => resizableControlMusic;
+    public ResizableControlView ResizableControlSfx => resizableControlSfx;
 
     protected override void PopulateFocusableElements()
     {
         _focusableElements = new IFocusableControl[] { MusicSlider, SfxSlider, SaveSettingsButton, ResetButton, ReturnButton };
-    }
-
-    public override void Init()
-    {
-        base.Init();
-        _transition = new PanelSizeTransition(this, fadeObjectsContainer, panel,
-            new ITweenableMenuElement[] { ReturnButton, SaveSettingsButton, ResetButton,
-            MusicSlider, SfxSlider, resizableControlMusic, resizableControlSfx },
-            PanelDuration, ElementsDuration);
     }
 
 }

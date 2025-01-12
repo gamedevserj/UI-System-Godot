@@ -5,6 +5,7 @@ using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.Core.Transitions.Interfaces;
 using UISystem.Core.Views;
 
 namespace UISystem.Core.MenuSystem.Controllers;
@@ -89,7 +90,7 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
     {
         PackedScene loadedPrefab = ResourceLoader.Load<PackedScene>(_prefab);
         _view = loadedPrefab.Instantiate() as TView;
-        _view.Init();
+        _view.Init(CreateTransition());
         SetupElements();
         menuParent.AddChild(_view);
     }
@@ -107,4 +108,5 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
     }
 
     protected abstract void SetupElements();
+    protected abstract IViewTransition CreateTransition();
 }

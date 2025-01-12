@@ -1,15 +1,20 @@
 ﻿using Godot;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
+using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
+using UISystem.Transitions.Interfaces;
+using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class AudioSettingsMenuController : SettingsMenuController<AudioSettingsMenuView, AudioSettingsMenuModel>
 {
 
+    private const float PanelDuration = 0.5f;
+    private const float ElementsDuration = 0.25f;
     public override int Type => MenuType.AudioSettings;
 
     public AudioSettingsMenuController(string prefab, AudioSettingsMenuModel model, IMenusManager menusManager, Node parent,
@@ -84,5 +89,13 @@ internal class AudioSettingsMenuController : SettingsMenuController<AudioSetting
         _view.MusicSlider.SetValue(_model.MusicVolume);
         _view.SfxSlider.SetValue(_model.SfxVolume);
         _lastSelectedElement = _view.ResetButton;
+    }
+
+    protected override IViewTransition CreateTransition()
+    {
+        return new PanelSizeTransition(_view, _view.FadeObjectsContainer, _view.Panel,
+            new ITweenableMenuElement[] { _view.ReturnButton, _view.SaveSettingsButton, _view.ResetButton,
+            _view.MusicSlider, _view.SfxSlider, _view.ResizableControlMusic, _view.ResizableControlSfx },
+            PanelDuration, ElementsDuration);
     }
 }

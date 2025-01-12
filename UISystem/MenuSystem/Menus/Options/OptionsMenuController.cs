@@ -1,13 +1,18 @@
 using Godot;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
+using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class OptionsMenuController : MenuController<OptionsMenuView, OptionsMenuModel>
 {
+
+    private const float MainElementAnimationDuration = 0.25f;
+    private const float SecondaryElementAnimationDuration = 0.5f;
 
     public override int Type => MenuType.Options;
 
@@ -54,4 +59,11 @@ internal class OptionsMenuController : MenuController<OptionsMenuView, OptionsMe
         _menusManager.ShowMenu(MenuType.InterfaceSettings);
     }
 
+    protected override IViewTransition CreateTransition()
+    {
+        return new MainElementDropTransition(_view, _view.FadeObjectsContainer, _view.InterfaceSettingsButton,
+            new[] { _view.ReturnButton, _view.AudioSettingsButton, _view.VideoSettingsButton, _view.RebindKeysButton },
+            MainElementAnimationDuration,
+            SecondaryElementAnimationDuration);
+    }
 }

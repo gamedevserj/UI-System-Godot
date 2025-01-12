@@ -6,6 +6,7 @@ using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.Core.PopupSystem.Views;
+using UISystem.Core.Transitions.Interfaces;
 
 namespace UISystem.Core.PopupSystem.Controllers;
 internal abstract class PopupController<T> : IPopupController where T : PopupView
@@ -32,7 +33,6 @@ internal abstract class PopupController<T> : IPopupController where T : PopupVie
         _popupsManager = popupsManager;
         _sceneTree = sceneTree;
         _parent = parent;
-
     }
 
     public virtual void Init()
@@ -79,7 +79,7 @@ internal abstract class PopupController<T> : IPopupController where T : PopupVie
     {
         PackedScene obj = ResourceLoader.Load<PackedScene>(_prefab);
         _view = obj.Instantiate() as T;
-        _view.Init();
+        _view.Init(CreateTransition());
         SetupElements();
         parent.AddChild(_view);
     }
@@ -90,5 +90,6 @@ internal abstract class PopupController<T> : IPopupController where T : PopupVie
     }
 
     protected abstract void SetupElements();
+    protected abstract IViewTransition CreateTransition();
 
 }

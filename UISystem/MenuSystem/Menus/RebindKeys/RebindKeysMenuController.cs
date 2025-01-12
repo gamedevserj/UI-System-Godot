@@ -4,15 +4,21 @@ using UISystem.Core.Constants;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
+using UISystem.Core.Transitions.Interfaces;
 using UISystem.Elements.ElementViews;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
+using UISystem.Transitions.Interfaces;
+using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuView, RebindKeysMenuModel>
 {
+
+    private const float PanelDuration = 0.5f;
+    private const float ElementsDuration = 0.25f;
 
     public override int Type => MenuType.RebindKeys;
 
@@ -111,5 +117,14 @@ internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuV
     {
         _lastSelectedElement = _view.ReturnButton;
         OnReturnToPreviousMenuButtonDown();
+    }
+
+    protected override IViewTransition CreateTransition()
+    {
+        return new PanelSizeTransition(_view, _view.FadeObjectsContainer, _view.Panel,
+            new ITweenableMenuElement[] { _view.ReturnButton, _view.ResetButton,
+                _view.MoveLeft, _view.MoveLeftJoystick, _view.MoveRight, _view.MoveRightJoystick, _view.Jump, _view.JumpJoystick,
+                _view.MoveLeftLabelResizableControl, _view.MoveRightLabelResizableControl, _view.JumpLabelResizableControl},
+            PanelDuration, ElementsDuration);
     }
 }

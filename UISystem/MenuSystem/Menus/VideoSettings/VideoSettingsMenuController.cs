@@ -4,14 +4,21 @@ using UISystem.Core.Elements.Structs;
 using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
+using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
+using UISystem.Transitions.Interfaces;
+using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class VideoSettingsMenuController : SettingsMenuController<VideoSettingsMenuView, VideoSettingsMenuModel>
 {
+
+    private const float PanelDuration = 0.5f;
+    private const float ElementsDuration = 0.25f;
+
     public override int Type => MenuType.VideoSettings;
 
     public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, IMenusManager menusManager, Node parent,
@@ -77,5 +84,13 @@ internal class VideoSettingsMenuController : SettingsMenuController<VideoSetting
     {
         _view.WindowModeDropdown.Select(_model.CurrenWindowModeIndex);
         _view.ResolutionDropdown.Select(_model.CurrentResolutionIndex);
+    }
+
+    protected override IViewTransition CreateTransition()
+    {
+        return new PanelSizeTransition(_view, _view.FadeObjectsContainer, _view.Panel,
+            new ITweenableMenuElement[] { _view.ReturnButton, _view.ResolutionDropdown, _view.WindowModeDropdown, 
+                _view.SaveSettingsButton, _view.ResetButton },
+            PanelDuration, ElementsDuration);
     }
 }

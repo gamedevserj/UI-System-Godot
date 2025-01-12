@@ -1,6 +1,6 @@
-﻿using Godot;
-using System;
+﻿using System;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.Transitions.Interfaces;
 
 namespace UISystem.Core.Views;
 /// <summary>
@@ -11,8 +11,9 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
 
     protected IFocusableControl[] _focusableElements;
 
-    public override void Init()
+    public override void Init(IViewTransition transition)
     {
+        _transition = transition;
         PopulateFocusableElements();
     }
 
