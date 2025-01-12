@@ -75,6 +75,12 @@ public partial class MenusManager : Control, IMenusManager
                 _previousMenus.Clear();
                 _currentController?.DestroyView();
                 break;
+            case StackingType.Replace:
+                _currentController.DestroyView();
+                if (_previousMenus.Count > 0)
+                    _previousMenus.Pop();
+                _previousMenus.Push(controller);
+                break;
             default:
                 break;
         }
