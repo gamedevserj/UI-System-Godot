@@ -7,7 +7,9 @@ using UISystem.Core.Transitions.Interfaces;
 using UISystem.Core.Views.Interfaces;
 
 namespace UISystem.Core.MenuSystem.Controllers;
-internal abstract class MenuControllerBase<TView, TModel, TParent, TFocusableElement> : IMenuController where TView : IView where TModel : IMenuModel
+internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFocusableElement> : IMenuController 
+    where TView : IView 
+    where TModel : IMenuModel
 {
 
     protected TView _view;
@@ -17,7 +19,7 @@ internal abstract class MenuControllerBase<TView, TModel, TParent, TFocusableEle
     protected TFocusableElement _defaultSelectedElement;
     private bool _canProcessInput = true; // to prevent input processing during transitions
 
-    protected readonly string _prefab;
+    protected readonly TPrefab _prefab;
     protected readonly IMenusManager _menusManager;
     protected readonly TParent _parent;
 
@@ -30,7 +32,7 @@ internal abstract class MenuControllerBase<TView, TModel, TParent, TFocusableEle
         set => _defaultSelectedElement = _lastSelectedElement = value;
     }
 
-    public MenuControllerBase(string prefab, TModel model, IMenusManager menusManager, TParent parent)
+    public MenuControllerBase(TPrefab prefab, TModel model, IMenusManager menusManager, TParent parent)
     {
         _prefab = prefab;
         _model = model;
@@ -92,7 +94,6 @@ internal abstract class MenuControllerBase<TView, TModel, TParent, TFocusableEle
     }
 
     protected abstract void FocusElement();
-
     protected abstract void CreateView(TParent menuParent);
     protected abstract void SetupElements();
     protected abstract IViewTransition CreateTransition();

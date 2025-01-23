@@ -8,7 +8,7 @@ using UISystem.MenuSystem.Views;
 using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class InGameMenuController : MenuController<InGameMenuView, IMenuModel, Node, IFocusableControl>
+internal class InGameMenuController : MenuController<string, InGameMenuView, IMenuModel, Node, IFocusableControl>
 {
 
     public override int Type => MenuType.InGame;

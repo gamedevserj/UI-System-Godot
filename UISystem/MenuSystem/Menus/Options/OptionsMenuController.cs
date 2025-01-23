@@ -8,7 +8,7 @@ using UISystem.MenuSystem.Views;
 using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class OptionsMenuController : MenuController<OptionsMenuView, OptionsMenuModel, Node, IFocusableControl>
+internal class OptionsMenuController : MenuController<string, OptionsMenuView, OptionsMenuModel, Node, IFocusableControl>
 {
 
     private const float MainElementAnimationDuration = 0.25f;

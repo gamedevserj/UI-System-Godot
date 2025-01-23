@@ -15,7 +15,7 @@ using UISystem.ScreenFade;
 using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class PauseMenuController : MenuController<PauseMenuView, IMenuModel, Node, IFocusableControl>
+internal class PauseMenuController : MenuController<string, PauseMenuView, IMenuModel, Node, IFocusableControl>
 {
 
     private const float MainElementAnimationDuration = 0.25f;

@@ -6,7 +6,7 @@ using UISystem.Core.Views;
 
 namespace UISystem.MenuSystem;
 // controller for Godot
-internal abstract class MenuController<TView, TModel, TParent, TFocusableElement> : MenuControllerBase<TView, TModel, Node, IFocusableControl>
+internal abstract class MenuController<TPrefab, TView, TModel, TParent, TFocusableElement> : MenuControllerBase<string, TView, TModel, Node, IFocusableControl>
     where TView : BaseWindowView 
     where TModel : IMenuModel
 {
@@ -16,6 +16,7 @@ internal abstract class MenuController<TView, TModel, TParent, TFocusableElement
     protected MenuController(string prefab, TModel model, IMenusManager menusManager, Node parent) : base(prefab, model, menusManager, parent)
     {
     }
+
 
     protected override void CreateView(Node menuParent)
     {
