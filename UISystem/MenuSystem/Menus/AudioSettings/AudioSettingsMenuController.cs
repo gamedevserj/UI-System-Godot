@@ -8,9 +8,10 @@ using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
 using UISystem.Transitions.Interfaces;
 using UISystem.Transitions;
+using UISystem.Core.Elements.Interfaces;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class AudioSettingsMenuController : SettingsMenuController<AudioSettingsMenuView, AudioSettingsMenuModel>
+internal class AudioSettingsMenuController : SettingsMenuController<AudioSettingsMenuView, AudioSettingsMenuModel, Node, IFocusableControl>
 {
 
     private const float PanelDuration = 0.5f;

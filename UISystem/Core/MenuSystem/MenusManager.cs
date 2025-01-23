@@ -3,7 +3,6 @@ using System;
 using System.Collections.Generic;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
-using UISystem.MenuSystem.Constants;
 
 namespace UISystem.Core.MenuSystem;
 public partial class MenusManager : Control, IMenusManager
@@ -86,11 +85,6 @@ public partial class MenusManager : Control, IMenusManager
         {
             onNewMenuShown?.Invoke();
         }, instant);
-    }
-
-    private static string GetMenuView(int menuType)
-    {
-        return MenuViewsPaths.Paths[menuType];
     }
 
 }

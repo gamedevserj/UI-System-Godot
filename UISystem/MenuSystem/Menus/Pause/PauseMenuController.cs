@@ -2,6 +2,7 @@
 using System;
 using UISystem.Constants;
 using UISystem.Core.Constants;
+using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
@@ -14,7 +15,7 @@ using UISystem.ScreenFade;
 using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class PauseMenuController : MenuController<PauseMenuView, IMenuModel>
+internal class PauseMenuController : MenuController<PauseMenuView, IMenuModel, Node, IFocusableControl>
 {
 
     private const float MainElementAnimationDuration = 0.25f;

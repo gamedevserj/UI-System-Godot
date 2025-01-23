@@ -11,9 +11,10 @@ using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
 using UISystem.Transitions.Interfaces;
 using UISystem.Transitions;
+using UISystem.Core.Elements.Interfaces;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class VideoSettingsMenuController : SettingsMenuController<VideoSettingsMenuView, VideoSettingsMenuModel>
+internal class VideoSettingsMenuController : SettingsMenuController<VideoSettingsMenuView, VideoSettingsMenuModel, Node, IFocusableControl>
 {
 
     private const float PanelDuration = 0.5f;

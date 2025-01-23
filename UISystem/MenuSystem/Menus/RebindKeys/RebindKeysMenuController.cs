@@ -14,7 +14,7 @@ using UISystem.Transitions.Interfaces;
 using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuView, RebindKeysMenuModel>
+internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuView, RebindKeysMenuModel, Node, IFocusableControl>
 {
 
     private const float PanelDuration = 0.5f;

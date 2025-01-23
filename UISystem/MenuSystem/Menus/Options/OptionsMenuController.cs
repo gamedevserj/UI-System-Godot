@@ -1,4 +1,5 @@
 using Godot;
+using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
@@ -7,7 +8,7 @@ using UISystem.MenuSystem.Views;
 using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class OptionsMenuController : MenuController<OptionsMenuView, OptionsMenuModel>
+internal class OptionsMenuController : MenuController<OptionsMenuView, OptionsMenuModel, Node, IFocusableControl>
 {
 
     private const float MainElementAnimationDuration = 0.25f;

@@ -1,5 +1,6 @@
 ﻿using Godot;
 using UISystem.Core.Constants;
+using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
@@ -7,7 +8,7 @@ using UISystem.MenuSystem.Views;
 using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class InGameMenuController : MenuController<InGameMenuView, IMenuModel>
+internal class InGameMenuController : MenuController<InGameMenuView, IMenuModel, Node, IFocusableControl>
 {
 
     public override int Type => MenuType.InGame;

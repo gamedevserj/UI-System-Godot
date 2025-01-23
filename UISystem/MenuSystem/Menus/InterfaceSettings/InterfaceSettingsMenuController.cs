@@ -12,9 +12,10 @@ using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
 using UISystem.Transitions.Interfaces;
 using UISystem.Transitions;
+using UISystem.Core.Elements.Interfaces;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class InterfaceSettingsMenuController : SettingsMenuController<InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
+internal class InterfaceSettingsMenuController : SettingsMenuController<InterfaceSettingsMenuView, InterfaceSettingsMenuModel, Node, IFocusableControl>
 {
 
     private const float PanelDuration = 0.5f;

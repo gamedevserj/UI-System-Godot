@@ -1,11 +1,14 @@
 ﻿using Godot;
+using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Views;
 
 namespace UISystem.MenuSystem;
 // controller for Godot
-internal abstract class MenuController<TView, TModel> : MenuControllerBase<TView, TModel> where TView : BaseWindowView where TModel : IMenuModel
+internal abstract class MenuController<TView, TModel, TParent, TFocusableElement> : MenuControllerBase<TView, TModel, Node, IFocusableControl>
+    where TView : BaseWindowView 
+    where TModel : IMenuModel
 {
 
     protected override bool IsViewValid => _view != null && _view.IsValid;
@@ -21,6 +24,18 @@ internal abstract class MenuController<TView, TModel> : MenuControllerBase<TView
         _view.Init(CreateTransition());
         SetupElements();
         menuParent.AddChild(_view);
+    }
+
+    protected override void FocusElement()
+    {
+        if (_lastSelectedElement?.IsValidElement() == true)
+        {
+            _lastSelectedElement.SwitchFocus(true);
+        }
+        else if (_defaultSelectedElement?.IsValidElement() == true)
+        {
+            _defaultSelectedElement.SwitchFocus(true);
+        }
     }
 
 }

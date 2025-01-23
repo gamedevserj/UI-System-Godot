@@ -1,37 +1,36 @@
 ﻿using Godot;
 using System;
 using UISystem.Core.Constants;
-using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Transitions.Interfaces;
 using UISystem.Core.Views.Interfaces;
 
 namespace UISystem.Core.MenuSystem.Controllers;
-internal abstract class MenuControllerBase<TView, TModel> : IMenuController where TView : IView where TModel : IMenuModel
+internal abstract class MenuControllerBase<TView, TModel, TParent, TFocusableElement> : IMenuController where TView : IView where TModel : IMenuModel
 {
 
     protected TView _view;
     protected TModel _model;
 
-    protected IFocusableControl _lastSelectedElement;
-    private IFocusableControl _defaultSelectedElement;
+    protected TFocusableElement _lastSelectedElement;
+    protected TFocusableElement _defaultSelectedElement;
     private bool _canProcessInput = true; // to prevent input processing during transitions
 
     protected readonly string _prefab;
     protected readonly IMenusManager _menusManager;
-    protected readonly Node _parent;
+    protected readonly TParent _parent;
 
     public virtual bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
     public abstract int Type { get; }
     protected abstract bool IsViewValid { get; }
-    protected IFocusableControl DefaultSelectedElement
+    protected TFocusableElement DefaultSelectedElement
     {
         get => _defaultSelectedElement;
         set => _defaultSelectedElement = _lastSelectedElement = value;
     }
 
-    public MenuControllerBase(string prefab, TModel model, IMenusManager menusManager, Node parent)
+    public MenuControllerBase(string prefab, TModel model, IMenusManager menusManager, TParent parent)
     {
         _prefab = prefab;
         _model = model;
@@ -92,19 +91,9 @@ internal abstract class MenuControllerBase<TView, TModel> : IMenuController wher
             _menusManager.ReturnToPreviousMenu(onComplete, instant);
     }
 
-    private void FocusElement()
-    {
-        if (_lastSelectedElement?.IsValidElement() == true)
-        {
-            _lastSelectedElement.SwitchFocus(true);
-        }
-        else if (_defaultSelectedElement?.IsValidElement() == true)
-        {
-            _defaultSelectedElement.SwitchFocus(true);
-        }
-    }
+    protected abstract void FocusElement();
 
-    protected abstract void CreateView(Node menuParent);
+    protected abstract void CreateView(TParent menuParent);
     protected abstract void SetupElements();
     protected abstract IViewTransition CreateTransition();
 }
