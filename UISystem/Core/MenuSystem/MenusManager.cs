@@ -5,20 +5,12 @@ using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 
 namespace UISystem.Core.MenuSystem;
-public partial class MenusManager : Control, IMenusManager
+public partial class MenusManager : IMenusManager
 {
 
     private IMenuController _currentController;
     private Stack<IMenuController> _previousMenus = new();
     private Dictionary<int, IMenuController> _controllers = new();
-
-    public override void _Input(InputEvent @event)
-    {
-        if (_currentController == null || !_currentController.CanProcessInput)
-            return;
-
-        _currentController?.ProcessInput(@event);
-    }
 
     public void Init(IMenuController[] controllers)
     {
@@ -26,6 +18,14 @@ public partial class MenusManager : Control, IMenusManager
         {
             _controllers.Add(controllers[i].Type, controllers[i]);
         }
+    }
+
+    public void ProcessInput(InputEvent @event)
+    {
+        if (_currentController == null || !_currentController.CanProcessInput)
+            return;
+
+        _currentController?.ProcessInput(@event);
     }
 
     public void ShowMenu(int menuType, StackingType stackingType = StackingType.Add, Action onNewMenuShown = null, bool instant = false)

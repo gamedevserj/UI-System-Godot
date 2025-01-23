@@ -20,14 +20,21 @@ public partial class UiInstaller : Node
     public static UiInstaller Instance { get; private set; }
 
     [Export] private TextureRect menuBackground;
-    [Export] private MenusManager menusManager;
+    [Export] private Node menusParent;
     [Export] private PopupsManager popupsManager;
     [Export] private ScreenFadeManager screenFadeManager;
     [Export] private GuiPanel3D guiPanel3D;
 
+    private IMenusManager _menusManager;
+
     public override void _EnterTree()
     {
         Instance ??= this;
+    }
+
+    public override void _Input(InputEvent @event)
+    {
+        _menusManager?.ProcessInput(@event);
     }
 
     public void Init(GameSettings settings)
@@ -43,19 +50,20 @@ public partial class UiInstaller : Node
         popupsManager.Init(popups);
 
         var backgroundController = new MenuBackgroundController(GetTree(), menuBackground);
+        _menusManager = new MenusManager();
         var menus = new IMenuController[]
         {
-            new MainMenuController(GetMenuPath(MenuType.Main), new MainMenuModel(), menusManager, menusManager, tree, popupsManager, screenFadeManager, backgroundController),
-            new InGameMenuController(GetMenuPath(MenuType.InGame), new InGameMenuModel(), menusManager, menusManager),
-            new PauseMenuController(GetMenuPath(MenuType.Pause), new PauseMenuModel(), menusManager, menusManager, popupsManager, screenFadeManager, backgroundController),
-            new OptionsMenuController(GetMenuPath(MenuType.Options), new OptionsMenuModel(), menusManager, menusManager),
-            new AudioSettingsMenuController(GetMenuPath(MenuType.AudioSettings), new AudioSettingsMenuModel(settings), menusManager, menusManager, popupsManager),
-            new VideoSettingsMenuController(GetMenuPath(MenuType.VideoSettings), new VideoSettingsMenuModel(settings), menusManager, menusManager, popupsManager),
-            new RebindKeysMenuController(GetMenuPath(MenuType.RebindKeys), new RebindKeysMenuModel(settings), menusManager, menusManager, popupsManager),
-            new InterfaceSettingsMenuController(GetMenuPath(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(settings), menusManager, menusManager, popupsManager),
+            new MainMenuController(GetMenuPath(MenuType.Main), new MainMenuModel(), _menusManager, menusParent, tree, popupsManager, screenFadeManager, backgroundController),
+            new InGameMenuController(GetMenuPath(MenuType.InGame), new InGameMenuModel(), _menusManager, menusParent),
+            new PauseMenuController(GetMenuPath(MenuType.Pause), new PauseMenuModel(), _menusManager, menusParent, popupsManager, screenFadeManager, backgroundController),
+            new OptionsMenuController(GetMenuPath(MenuType.Options), new OptionsMenuModel(), _menusManager, menusParent),
+            new AudioSettingsMenuController(GetMenuPath(MenuType.AudioSettings), new AudioSettingsMenuModel(settings), _menusManager, menusParent, popupsManager),
+            new VideoSettingsMenuController(GetMenuPath(MenuType.VideoSettings), new VideoSettingsMenuModel(settings), _menusManager, menusParent, popupsManager),
+            new RebindKeysMenuController(GetMenuPath(MenuType.RebindKeys), new RebindKeysMenuModel(settings), _menusManager, menusParent, popupsManager),
+            new InterfaceSettingsMenuController(GetMenuPath(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(settings), _menusManager, menusParent, popupsManager),
         };
-        menusManager.Init(menus);
-        menusManager.ShowMenu(MenuType.Main, StackingType.Clear);
+        _menusManager.Init(menus);
+        _menusManager.ShowMenu(MenuType.Main, StackingType.Clear);
     }
 
     private static string GetMenuPath(int menuType)
