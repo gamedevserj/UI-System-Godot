@@ -17,7 +17,6 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
 
     protected TFocusableElement _lastSelectedElement;
     protected TFocusableElement _defaultSelectedElement;
-    private bool _canProcessInput = true; // to prevent input processing during transitions
 
     protected readonly TPrefab _prefab;
     protected readonly IMenusManager _menusManager;
@@ -25,6 +24,7 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
 
     public virtual bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
     public abstract int Type { get; }
+    public bool CanProcessInput { get; private set; } = true;// to prevent input processing during transitions
     protected abstract bool IsViewValid { get; }
     protected TFocusableElement DefaultSelectedElement
     {
@@ -50,35 +50,28 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
 
     public virtual void Show(Action onComplete = null, bool instant = false)
     {
-        _canProcessInput = false;
+        CanProcessInput = false;
         _view.Show(() =>
         {
             onComplete?.Invoke();
             FocusElement();
-            _canProcessInput = true;
+            CanProcessInput = true;
         }, instant);
     }
 
     public virtual void Hide(StackingType stackingType, Action onComplete = null, bool instant = false) 
     {
-        _canProcessInput = false;
+        CanProcessInput = false;
         _view.Hide(() =>
         {
             onComplete?.Invoke();
-            _canProcessInput = true;
+            CanProcessInput = true;
         }, instant);
-    }
-
-    public virtual void DetectInput(InputEvent key)
-    {
-        if (!_canProcessInput) return;
-
-        ProcessInput(key);
     }
 
     public void DestroyView() => _view.DestroyView();
 
-    protected virtual void ProcessInput(InputEvent key)
+    public virtual void ProcessInput(InputEvent key)
     {
         if (key.IsActionPressed(InputsData.ReturnToPreviousMenu))
             OnReturnToPreviousMenuButtonDown();

@@ -14,7 +14,10 @@ public partial class MenusManager : Control, IMenusManager
 
     public override void _Input(InputEvent @event)
     {
-        _currentController?.DetectInput(@event);
+        if (_currentController == null || !_currentController.CanProcessInput)
+            return;
+
+        _currentController?.ProcessInput(@event);
     }
 
     public void Init(IMenuController[] controllers)

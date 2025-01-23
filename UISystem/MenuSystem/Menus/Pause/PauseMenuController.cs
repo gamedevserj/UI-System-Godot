@@ -53,6 +53,14 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
         }, instant);
     }
 
+    public override void ProcessInput(InputEvent key)
+    {
+        if (key.IsPressed() && key.IsAction(InputsData.ReturnToPreviousMenu))
+        {
+            PressedResume();
+        }
+    }
+
     protected override void SetupElements()
     {
         _view.ResumeGameButton.ButtonDown += PressedResume;
@@ -92,14 +100,6 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
             }
         });
 
-    }
-
-    protected override void ProcessInput(InputEvent key)
-    {
-        if (key.IsPressed() && key.IsAction(InputsData.ReturnToPreviousMenu))
-        {
-            PressedResume();
-        }
     }
 
     protected override IViewTransition CreateTransition()
