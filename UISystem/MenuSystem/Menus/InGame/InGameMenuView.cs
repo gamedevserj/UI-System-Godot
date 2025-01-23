@@ -25,7 +25,7 @@ public partial class InGameMenuView : BaseWindowView
         _transition.Hide(onHidden, instant);
     }
 
-    public override void SwitchFocusAwailability(bool enable)
+    public override void SwitchFocusAvailability(bool enable)
     {
         
     }

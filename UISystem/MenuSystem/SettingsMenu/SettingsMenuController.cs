@@ -1,7 +1,6 @@
 ﻿using Godot;
 using System;
 using UISystem.Constants;
-using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.SettingsMenu.Interfaces;

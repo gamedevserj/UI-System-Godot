@@ -2,14 +2,13 @@
 using System;
 using UISystem.Core.Constants;
 using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Transitions.Interfaces;
-using UISystem.Core.Views;
+using UISystem.Core.Views.Interfaces;
 
 namespace UISystem.Core.MenuSystem.Controllers;
-internal abstract class MenuController<TView, TModel> : IMenuController where TView : BaseWindowView where TModel : IMenuModel
+internal abstract class MenuControllerBase<TView, TModel> : IMenuController where TView : IView where TModel : IMenuModel
 {
 
     protected TView _view;
@@ -17,6 +16,7 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
 
     protected IFocusableControl _lastSelectedElement;
     private IFocusableControl _defaultSelectedElement;
+    private bool _canProcessInput = true; // to prevent input processing during transitions
 
     protected readonly string _prefab;
     protected readonly IMenusManager _menusManager;
@@ -24,13 +24,14 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
 
     public virtual bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
     public abstract int Type { get; }
+    protected abstract bool IsViewValid { get; }
     protected IFocusableControl DefaultSelectedElement
     {
         get => _defaultSelectedElement;
         set => _defaultSelectedElement = _lastSelectedElement = value;
     }
 
-    public MenuController(string prefab, TModel model, IMenusManager menusManager, Node parent)
+    public MenuControllerBase(string prefab, TModel model, IMenusManager menusManager, Node parent)
     {
         _prefab = prefab;
         _model = model;
@@ -40,7 +41,7 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
 
     public void Init()
     {
-        if (!_view.IsValid())
+        if (!IsViewValid)
         {
             CreateView(_parent);
         }
@@ -48,34 +49,39 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
 
     public virtual void Show(Action onComplete = null, bool instant = false)
     {
+        _canProcessInput = false;
         _view.Show(() =>
         {
             onComplete?.Invoke();
             FocusElement();
+            _canProcessInput = true;
         }, instant);
     }
 
-    // stackingType is used to Hide background when necessary
     public virtual void Hide(StackingType stackingType, Action onComplete = null, bool instant = false) 
     {
-        _view.Hide(() => onComplete?.Invoke(), instant);
+        _canProcessInput = false;
+        _view.Hide(() =>
+        {
+            onComplete?.Invoke();
+            _canProcessInput = true;
+        }, instant);
     }
 
     public virtual void HandleInputPressedWhenActive(InputEvent key)
     {
-        if (key.IsActionPressed(InputsData.ReturnToPreviousMenu) && CanReturnToPreviousMenu)
+        if (!_canProcessInput) return;
+
+        if (key.IsActionPressed(InputsData.ReturnToPreviousMenu))
             OnReturnToPreviousMenuButtonDown();
     }
 
-    public void DestroyView()
-    {
-        _view.SafeQueueFree();
-    }
+    public void DestroyView() => _view.DestroyView();
 
     // when showing popups
     protected void SwitchFocusAvailability(bool enable)
     {
-        _view.SwitchFocusAwailability(enable);
+        _view.SwitchFocusAvailability(enable);
         if (enable)
             FocusElement();
     }
@@ -84,15 +90,6 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
     {
         if (CanReturnToPreviousMenu)
             _menusManager.ReturnToPreviousMenu(onComplete, instant);
-    }
-
-    private void CreateView(Node menuParent)
-    {
-        PackedScene loadedPrefab = ResourceLoader.Load<PackedScene>(_prefab);
-        _view = loadedPrefab.Instantiate() as TView;
-        _view.Init(CreateTransition());
-        SetupElements();
-        menuParent.AddChild(_view);
     }
 
     private void FocusElement()
@@ -107,6 +104,7 @@ internal abstract class MenuController<TView, TModel> : IMenuController where TV
         }
     }
 
+    protected abstract void CreateView(Node menuParent);
     protected abstract void SetupElements();
     protected abstract IViewTransition CreateTransition();
 }

@@ -17,7 +17,7 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
         PopulateFocusableElements();
     }
 
-    public override void SwitchFocusAwailability(bool enable)
+    public override void SwitchFocusAvailability(bool enable)
     {
         if (_focusableElements != null)
         {
@@ -38,18 +38,18 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
 
     public override void Show(Action onShown, bool instant = false)
     {
-        SwitchFocusAwailability(false);
+        SwitchFocusAvailability(false);
         Visible = true;
         _transition.Show(()=>
         {
-            SwitchFocusAwailability(true);
+            SwitchFocusAvailability(true);
             onShown?.Invoke();
         }, instant);
     }
 
     public override void Hide(Action onHidden, bool instant = false)
     {
-        SwitchFocusAwailability(false);
+        SwitchFocusAvailability(false);
         _transition.Hide(() => { 
             onHidden?.Invoke();
             Visible = false; // need to switch off visibility to allow GuiPanel3D to receive mouse events

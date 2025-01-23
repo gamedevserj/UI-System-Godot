@@ -1,7 +1,6 @@
 using Godot;
 using System;
 using UISystem.Constants;
-using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
@@ -60,7 +59,8 @@ internal class MainMenuController : MenuController<MainMenuView, IMenuModel>
 
     protected override void OnReturnToPreviousMenuButtonDown(Action onComplete, bool instant = false)
     {
-        ShowQuitPopup();
+        if (CanReturnToPreviousMenu)
+            ShowQuitPopup();
     }
 
     private void PressedPlay()

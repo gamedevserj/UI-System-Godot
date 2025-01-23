@@ -26,10 +26,6 @@ public partial class MenusManager : Control, IMenusManager
         }
     }
 
-    /// <summary>
-    /// </summary>
-    /// <param name="menuType"></param>
-    /// <param name="menuChangeType">Is used to show/hide background</param>
     public void ShowMenu(int menuType, StackingType stackingType = StackingType.Add, Action onNewMenuShown = null, bool instant = false)
     {
         if (_currentController?.Type == menuType)

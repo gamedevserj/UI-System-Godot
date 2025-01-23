@@ -18,6 +18,7 @@ internal abstract class PopupController<T> : IPopupController where T : PopupVie
     protected IFocusableControl _defaultSelectedElement;
     protected Action<int> _onHideAction;
     private IMenuController _caller;
+    private bool _canProcessInput = true; // to prevent input processing during transitions
 
     protected readonly string _prefab;
     protected readonly IPopupsManager _popupsManager;
@@ -46,18 +47,22 @@ internal abstract class PopupController<T> : IPopupController where T : PopupVie
 
     public void HandleInputPressedWhenActive(InputEvent key)
     {
+        if (!_canProcessInput) return;
+
         if (key.IsActionPressed(InputsData.ReturnToPreviousMenu))
             _popupsManager.HidePopup(PressedReturnPopupResult);
     }
 
     public void Show(IMenuController caller, string message, Action<int> onHideAction, bool instant = false)
     {
+        _canProcessInput = false;
         _caller = caller;
         _caller.CanReturnToPreviousMenu = false;
         _view.Message.Text = message;
         _onHideAction = onHideAction;
         _view.Show(() =>
         {
+            _canProcessInput = true;
             if (_defaultSelectedElement?.IsValidElement() == true)
             {
                 _defaultSelectedElement.SwitchFocus(true);
@@ -67,8 +72,10 @@ internal abstract class PopupController<T> : IPopupController where T : PopupVie
 
     public void Hide(int result, bool instant = false)
     {
+        _canProcessInput = false;
         _view.Hide(() =>
         {
+            _canProcessInput = true;
             _caller.CanReturnToPreviousMenu = true;
             _onHideAction?.Invoke(result);
             DestroyView();

@@ -2,7 +2,6 @@
 using System;
 using UISystem.Constants;
 using UISystem.Core.Constants;
-using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
@@ -38,12 +37,9 @@ internal class PauseMenuController : MenuController<PauseMenuView, IMenuModel>
 
     public override void HandleInputPressedWhenActive(InputEvent key)
     {
-        if (key.IsPressed())
+        if (key.IsPressed() && key.IsAction(InputsData.ReturnToPreviousMenu))
         {
-            if (key.IsAction(InputsData.ReturnToPreviousMenu))
-            {
-                PressedResume();
-            }
+            PressedResume();
         }
     }
 
