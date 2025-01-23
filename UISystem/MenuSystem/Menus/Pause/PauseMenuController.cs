@@ -36,14 +36,6 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
         _menuBackgroundController = menuBackgroundController;
     }
 
-    public override void HandleInputPressedWhenActive(InputEvent key)
-    {
-        if (key.IsPressed() && key.IsAction(InputsData.ReturnToPreviousMenu))
-        {
-            PressedResume();
-        }
-    }
-
     public override void Show(Action onComplete = null, bool instant = false)
     {
         base.Show(onComplete, instant);
@@ -100,6 +92,14 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
             }
         });
 
+    }
+
+    protected override void ProcessInput(InputEvent key)
+    {
+        if (key.IsPressed() && key.IsAction(InputsData.ReturnToPreviousMenu))
+        {
+            PressedResume();
+        }
     }
 
     protected override IViewTransition CreateTransition()

@@ -69,15 +69,20 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
         }, instant);
     }
 
-    public virtual void HandleInputPressedWhenActive(InputEvent key)
+    public virtual void DetectInput(InputEvent key)
     {
         if (!_canProcessInput) return;
 
-        if (key.IsActionPressed(InputsData.ReturnToPreviousMenu))
-            OnReturnToPreviousMenuButtonDown();
+        ProcessInput(key);
     }
 
     public void DestroyView() => _view.DestroyView();
+
+    protected virtual void ProcessInput(InputEvent key)
+    {
+        if (key.IsActionPressed(InputsData.ReturnToPreviousMenu))
+            OnReturnToPreviousMenuButtonDown();
+    }
 
     // when showing popups
     protected void SwitchFocusAvailability(bool enable)

@@ -13,7 +13,7 @@ public partial interface IMenuController
     void Hide(StackingType stackingType, Action onComplete = null, bool instant = false);
     void Show(Action onComplete = null, bool instant = false);
 
-    void HandleInputPressedWhenActive(InputEvent key);
+    void DetectInput(InputEvent key);
     void DestroyView();
 
 }

@@ -14,7 +14,7 @@ public partial class MenusManager : Control, IMenusManager
 
     public override void _Input(InputEvent @event)
     {
-        _currentController?.HandleInputPressedWhenActive(@event);
+        _currentController?.DetectInput(@event);
     }
 
     public void Init(IMenuController[] controllers)

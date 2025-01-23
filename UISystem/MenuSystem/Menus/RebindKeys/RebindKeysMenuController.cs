@@ -26,12 +26,12 @@ internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuV
         IPopupsManager popupsManager) : base(prefab, model, menusManager, parent, popupsManager)
     { }
 
-    public override void HandleInputPressedWhenActive(InputEvent key)
+    protected override void ProcessInput(InputEvent key)
     {
         if (key.IsPressed() && _model.IsRebinding)
             _model.RebindKey(key);
         else
-            base.HandleInputPressedWhenActive(key);
+            base.ProcessInput(key);
     }
 
     private static void UpdateButtonView(RebindableKeyButtonView button, string action, int index)

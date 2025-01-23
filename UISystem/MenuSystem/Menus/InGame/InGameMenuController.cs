@@ -17,7 +17,7 @@ internal class InGameMenuController : MenuController<string, InGameMenuView, IMe
         : base(prefab, model, menusManager, parent)
     { }
 
-    public override void HandleInputPressedWhenActive(InputEvent key)
+    protected override void ProcessInput(InputEvent key)
     {
         if (key.IsPressed() && key.IsAction(InputsData.PauseButton))
             PauseGame();
