@@ -6,15 +6,18 @@ using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.PopupSystem.Constants;
 
 namespace UISystem.Core.PopupSystem;
-public partial class PopupsManager : Control, IPopupsManager
+public partial class PopupsManager : IPopupsManager
 {
 
     private IPopupController _currentController;
     private Dictionary<int, IPopupController> _controllers = new();
 
-    public override void _Input(InputEvent @event)
+    public void ProcessInput(InputEvent @event)
     {
-        _currentController?.HandleInputPressedWhenActive(@event);
+        if (_currentController == null || !_currentController.CanProcessInput)
+            return;
+
+        _currentController?.ProcessInput(@event);
     }
 
     public void Init(IPopupController[] controllers)
@@ -38,17 +41,17 @@ public partial class PopupsManager : Control, IPopupsManager
         _currentController = null;
     }
 
-    private void AddPopups(IPopupController[] popupControllers)
-    {
-        for (int i = 0; i < popupControllers.Length; i++)
-        {
-            _controllers.Add(popupControllers[i].Type, popupControllers[i]);
-        }
-    }
+    //private void AddPopups(IPopupController[] popupControllers)
+    //{
+    //    for (int i = 0; i < popupControllers.Length; i++)
+    //    {
+    //        _controllers.Add(popupControllers[i].Type, popupControllers[i]);
+    //    }
+    //}
 
-    private static string GetPopupPath(int type)
-    {
-        return PopupViewsPaths.Paths[type];
-    }
+    //private static string GetPopupPath(int type)
+    //{
+    //    return PopupViewsPaths.Paths[type];
+    //}
 
 }

@@ -1,7 +1,6 @@
-[gd_scene load_steps=7 format=3 uid="uid://cv5bjtd0iw8pd"]
+[gd_scene load_steps=6 format=3 uid="uid://cv5bjtd0iw8pd"]
 
 [ext_resource type="Script" path="res://UISystem/UiInstaller.cs" id="1_rgp7s"]
-[ext_resource type="Script" path="res://UISystem/Core/PopupSystem/PopupsManager.cs" id="3_2pm43"]
 [ext_resource type="PackedScene" uid="uid://cq5278lo5txm8" path="res://UISystem/MenuSystem/Prefabs/3D/GUIPanel3D.tscn" id="3_ufqt6"]
 [ext_resource type="Script" path="res://UISystem/ScreenFade/ScreenFadeManager.cs" id="4_mlvp7"]
 
@@ -9,7 +8,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vnlb0"]
 
-[node name="UIInstaller" type="Control" node_paths=PackedStringArray("menuBackground", "menusParent", "popupsManager", "screenFadeManager", "guiPanel3D")]
+[node name="UIInstaller" type="Control" node_paths=PackedStringArray("menuBackground", "menusParent", "popupsParent", "screenFadeManager", "guiPanel3D")]
 process_mode = 3
 light_mask = 2
 visibility_layer = 2
@@ -22,8 +21,8 @@ grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_rgp7s")
 menuBackground = NodePath("CanvasLayer/MenuBackground")
-menusParent = NodePath("CanvasLayer/MenusManager")
-popupsManager = NodePath("CanvasLayer/PopupsManager")
+menusParent = NodePath("CanvasLayer/MenusParent")
+popupsParent = NodePath("CanvasLayer/PopupsParent")
 screenFadeManager = NodePath("CanvasLayer/ScreenFadeManager")
 guiPanel3D = NodePath("GUIPanel3D")
 
@@ -41,7 +40,7 @@ grow_horizontal = 2
 grow_vertical = 2
 texture = SubResource("CanvasTexture_w1hrq")
 
-[node name="MenusManager" type="Control" parent="CanvasLayer"]
+[node name="MenusParent" type="Control" parent="CanvasLayer"]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 3
@@ -52,7 +51,7 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="PopupsManager" type="Control" parent="CanvasLayer"]
+[node name="PopupsParent" type="Control" parent="CanvasLayer"]
 light_mask = 2
 visibility_layer = 2
 z_index = 90
@@ -63,7 +62,6 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
-script = ExtResource("3_2pm43")
 
 [node name="ScreenFadeManager" type="TextureRect" parent="CanvasLayer"]
 modulate = Color(0, 0, 0, 0)
