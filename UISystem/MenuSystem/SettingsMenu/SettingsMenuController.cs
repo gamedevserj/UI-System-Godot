@@ -26,34 +26,33 @@ internal abstract class SettingsMenuController<TView, TModel, TParent, TFocusabl
 
     protected abstract void ResetViewToDefault();
 
-    public override void OnCancelButtonDown(Action onComplete = null, bool instant = false)
+    public override void OnCancelButtonDown()
     {
         if (_model.HasUnappliedSettings)
         {
             SwitchFocusAvailability(false);
             _popupsManager.ShowPopup(PopupType.YesNoCancel, this, PopupMessages.SaveChanges, (result) =>
             {
-                OnReturnToPreviousMenuPopupClosed(result, onComplete, instant);
-                onComplete?.Invoke();
+                OnReturnToPreviousMenuPopupClosed(result);
             });
         }
         else
         {
-            base.OnCancelButtonDown(onComplete, instant);
+            base.OnCancelButtonDown();
         }
     }
 
-    protected void OnReturnToPreviousMenuPopupClosed(int result, Action onComplete = null, bool instant = false)
+    protected void OnReturnToPreviousMenuPopupClosed(int result)
     {
         switch (result)
         {
             case PopupResult.No:
                 _model.DiscardChanges();
-                base.OnCancelButtonDown(onComplete, instant);
+                base.OnCancelButtonDown();
                 break;
             case PopupResult.Yes:
                 _model.SaveSettings();
-                base.OnCancelButtonDown(onComplete, instant);
+                base.OnCancelButtonDown();
                 break;
             case PopupResult.Cancel:
                 SwitchFocusAvailability(true);

@@ -78,10 +78,10 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
             FocusElement();
     }
 
-    public virtual void OnCancelButtonDown(Action onComplete = null, bool instant = false)
+    public virtual void OnCancelButtonDown()
     {
         if (CanReturnToPreviousMenu)
-            _menusManager.ReturnToPreviousMenu(onComplete, instant);
+            _menusManager.ReturnToPreviousMenu();
     }
 
     public virtual void OnPauseButtonDown() // for in-game menu

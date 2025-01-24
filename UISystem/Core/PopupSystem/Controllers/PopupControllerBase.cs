@@ -73,7 +73,7 @@ internal abstract class PopupControllerBase<TPrefab, TView, TParent, TInputEvent
         }), instant);
     }
 
-    public virtual void OnCancelButtonDown(Action onComplete = null, bool instant = false)
+    public virtual void OnCancelButtonDown()
     {
         _popupsManager.HidePopup(PressedReturnPopupResult);
     }

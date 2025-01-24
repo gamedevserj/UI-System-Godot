@@ -2,7 +2,6 @@ using Godot;
 using System;
 using UISystem.Constants;
 using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.PhysicalInput;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
@@ -59,7 +58,7 @@ internal class MainMenuController : MenuController<string, MainMenuView, IMenuMo
         DefaultSelectedElement = _view.PlayButton;
     }
 
-    public override void OnCancelButtonDown(Action onComplete, bool instant = false)
+    public override void OnCancelButtonDown()
     {
         if (CanReturnToPreviousMenu)
             ShowQuitPopup();

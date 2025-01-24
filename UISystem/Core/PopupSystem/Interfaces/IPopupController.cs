@@ -8,7 +8,6 @@ public partial interface IPopupController<TInputEvent> : IInputReceiver<TInputEv
 
     int Type { get; }
     void Init();
-    //void ProcessInput(TInputEvent key);
     void Hide(int result, bool instant = false);
     void Show(IMenuController<TInputEvent> caller, string message, Action<int> onHideAction, bool instant);
 
