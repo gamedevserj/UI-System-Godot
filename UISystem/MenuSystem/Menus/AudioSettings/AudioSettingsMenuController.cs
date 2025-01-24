@@ -9,6 +9,7 @@ using UISystem.MenuSystem.Views;
 using UISystem.Transitions.Interfaces;
 using UISystem.Transitions;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.PhysicalInput;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class AudioSettingsMenuController : SettingsMenuController<AudioSettingsMenuView, AudioSettingsMenuModel, Node, IFocusableControl>
@@ -18,9 +19,9 @@ internal class AudioSettingsMenuController : SettingsMenuController<AudioSetting
     private const float ElementsDuration = 0.25f;
     public override int Type => MenuType.AudioSettings;
 
-    public AudioSettingsMenuController(string prefab, AudioSettingsMenuModel model, IMenusManager menusManager, Node parent,
-        IPopupsManager popupsManager)
-        : base(prefab, model, menusManager, parent, popupsManager)
+    public AudioSettingsMenuController(string prefab, AudioSettingsMenuModel model, IMenusManager<InputEvent> menusManager, Node parent,
+        IInputProcessor<InputEvent> inputProcessor, IPopupsManager<InputEvent> popupsManager)
+        : base(prefab, model, menusManager, parent, inputProcessor, popupsManager)
     {
 
     }

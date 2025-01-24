@@ -12,6 +12,7 @@ using UISystem.MenuSystem.Views;
 using UISystem.Transitions.Interfaces;
 using UISystem.Transitions;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.PhysicalInput;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class VideoSettingsMenuController : SettingsMenuController<VideoSettingsMenuView, VideoSettingsMenuModel, Node, IFocusableControl>
@@ -22,9 +23,9 @@ internal class VideoSettingsMenuController : SettingsMenuController<VideoSetting
 
     public override int Type => MenuType.VideoSettings;
 
-    public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, IMenusManager menusManager, Node parent,
-        IPopupsManager popupsManager)
-        : base(prefab, model, menusManager, parent, popupsManager)
+    public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, IMenusManager<InputEvent> menusManager, Node parent,
+        IInputProcessor<InputEvent> inputProcessor, IPopupsManager<InputEvent> popupsManager)
+        : base(prefab, model, menusManager, parent, inputProcessor, popupsManager)
     { }
 
     protected override void SetupElements()

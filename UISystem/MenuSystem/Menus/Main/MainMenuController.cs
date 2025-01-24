@@ -2,6 +2,7 @@ using Godot;
 using System;
 using UISystem.Constants;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.PhysicalInput;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
@@ -23,13 +24,13 @@ internal class MainMenuController : MenuController<string, MainMenuView, IMenuMo
     public override int Type => MenuType.Main;
 
     private readonly SceneTree _sceneTree;
-    private readonly IPopupsManager _popupsManager;
+    private readonly IPopupsManager<InputEvent> _popupsManager;
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(string prefab, IMenuModel model, IMenusManager menusManager, Node parent, SceneTree sceneTree,
-        IPopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) :
-        base(prefab, model, menusManager, parent)
+    public MainMenuController(string prefab, IMenuModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor,
+        SceneTree sceneTree, IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) :
+        base(prefab, model, menusManager, parent, inputProcessor)
     {
         _sceneTree = sceneTree;
         _popupsManager = popupsManager;

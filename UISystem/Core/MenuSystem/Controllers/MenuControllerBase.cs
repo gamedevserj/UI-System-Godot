@@ -1,13 +1,12 @@
-﻿using Godot;
-using System;
-using UISystem.Core.Constants;
+﻿using System;
+using UISystem.Core.PhysicalInput;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Transitions.Interfaces;
 using UISystem.Core.Views.Interfaces;
 
 namespace UISystem.Core.MenuSystem.Controllers;
-internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFocusableElement> : IMenuController 
+internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFocusableElement, TInputEvent> : IMenuController<TInputEvent>
     where TView : IView 
     where TModel : IMenuModel
 {
@@ -19,8 +18,9 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
     protected TFocusableElement _defaultSelectedElement;
 
     protected readonly TPrefab _prefab;
-    protected readonly IMenusManager _menusManager;
+    protected readonly IMenusManager<TInputEvent> _menusManager;
     protected readonly TParent _parent;
+    protected readonly IInputProcessor<TInputEvent> _inputProcessor;
 
     public virtual bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
     public abstract int Type { get; }
@@ -32,12 +32,13 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
         set => _defaultSelectedElement = _lastSelectedElement = value;
     }
 
-    public MenuControllerBase(TPrefab prefab, TModel model, IMenusManager menusManager, TParent parent)
+    public MenuControllerBase(TPrefab prefab, TModel model, IMenusManager<TInputEvent> menusManager, TParent parent, IInputProcessor<TInputEvent> inputProcessor)
     {
         _prefab = prefab;
         _model = model;
         _menusManager = menusManager;
         _parent = parent;
+        _inputProcessor = inputProcessor;
     }
 
     public void Init()
@@ -71,9 +72,9 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
 
     public void DestroyView() => _view.DestroyView();
 
-    public virtual void ProcessInput(InputEvent key)
+    public virtual void ProcessInput(TInputEvent key)
     {
-        if (key.IsActionPressed(InputsData.ReturnToPreviousMenu))
+        if (_inputProcessor.IsPressingReturnToPreviousMenuButton(key))
             OnReturnToPreviousMenuButtonDown();
     }
 

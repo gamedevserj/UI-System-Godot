@@ -1,18 +1,17 @@
-﻿using Godot;
-using System;
+﻿using System;
 using System.Collections.Generic;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 
 namespace UISystem.Core.MenuSystem;
-public partial class MenusManager : IMenusManager
+public partial class MenusManager<TInputEvent> : IMenusManager<TInputEvent>
 {
 
-    private IMenuController _currentController;
-    private Stack<IMenuController> _previousMenus = new();
-    private Dictionary<int, IMenuController> _controllers = new();
+    private IMenuController<TInputEvent> _currentController;
+    private Stack<IMenuController<TInputEvent>> _previousMenus = new();
+    private Dictionary<int, IMenuController<TInputEvent>> _controllers = new();
 
-    public void Init(IMenuController[] controllers)
+    public void Init(IMenuController<TInputEvent>[] controllers)
     {
         for (int i = 0; i < controllers.Length; i++)
         {
@@ -20,7 +19,7 @@ public partial class MenusManager : IMenusManager
         }
     }
 
-    public void ProcessInput(InputEvent @event)
+    public void ProcessInput(TInputEvent @event)
     {
         if (_currentController == null || !_currentController.CanProcessInput)
             return;
@@ -53,7 +52,7 @@ public partial class MenusManager : IMenusManager
 
     private void ChangeMenu(int menuType, StackingType stackingType, Action onNewMenuShown = null, bool instant = false)
     {
-        IMenuController controller = _controllers[menuType];
+        var controller = _controllers[menuType];
         controller.Init();
 
         switch (stackingType)

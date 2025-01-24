@@ -1,5 +1,6 @@
 using Godot;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.PhysicalInput;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
@@ -16,8 +17,8 @@ internal class OptionsMenuController : MenuController<string, OptionsMenuView, O
 
     public override int Type => MenuType.Options;
 
-    public OptionsMenuController(string prefab, OptionsMenuModel model, IMenusManager menusManager, Node parent)
-        : base(prefab, model, menusManager, parent)
+    public OptionsMenuController(string prefab, OptionsMenuModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor)
+        : base(prefab, model, menusManager, parent, inputProcessor)
     { }
 
     protected override void SetupElements()

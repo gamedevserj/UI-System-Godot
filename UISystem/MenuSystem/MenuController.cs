@@ -1,22 +1,22 @@
 ﻿using Godot;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.PhysicalInput;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Views;
 
 namespace UISystem.MenuSystem;
 // controller for Godot
-internal abstract class MenuController<TPrefab, TView, TModel, TParent, TFocusableElement> : MenuControllerBase<string, TView, TModel, Node, IFocusableControl>
+internal abstract class MenuController<TPrefab, TView, TModel, TParent, TFocusableElement> : MenuControllerBase<string, TView, TModel, Node, IFocusableControl, InputEvent>
     where TView : BaseWindowView 
     where TModel : IMenuModel
 {
 
     protected override bool IsViewValid => _view != null && _view.IsValid;
 
-    protected MenuController(string prefab, TModel model, IMenusManager menusManager, Node parent) : base(prefab, model, menusManager, parent)
-    {
-    }
-
+    protected MenuController(string prefab, TModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor) 
+        : base(prefab, model, menusManager, parent, inputProcessor)
+    { }
 
     protected override void CreateView(Node menuParent)
     {

@@ -12,6 +12,7 @@ using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
 using UISystem.Transitions.Interfaces;
 using UISystem.Transitions;
+using UISystem.Core.PhysicalInput;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuView, RebindKeysMenuModel, Node, IFocusableControl>
@@ -22,13 +23,13 @@ internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuV
 
     public override int Type => MenuType.RebindKeys;
 
-    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, IMenusManager menusManager, Node parent,
-        IPopupsManager popupsManager) : base(prefab, model, menusManager, parent, popupsManager)
+    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor,
+        IPopupsManager<InputEvent> popupsManager) : base(prefab, model, menusManager, parent, inputProcessor, popupsManager)
     { }
 
     public override void ProcessInput(InputEvent key)
     {
-        if (key.IsPressed() && _model.IsRebinding)
+        if (_inputProcessor.IsPressingAnyKey(key) && _model.IsRebinding)
             _model.RebindKey(key);
         else
             base.ProcessInput(key);

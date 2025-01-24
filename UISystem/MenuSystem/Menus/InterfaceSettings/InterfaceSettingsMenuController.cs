@@ -13,6 +13,7 @@ using UISystem.MenuSystem.Views;
 using UISystem.Transitions.Interfaces;
 using UISystem.Transitions;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.PhysicalInput;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class InterfaceSettingsMenuController : SettingsMenuController<InterfaceSettingsMenuView, InterfaceSettingsMenuModel, Node, IFocusableControl>
@@ -25,8 +26,9 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<Interfac
     public override int Type => MenuType.InterfaceSettings;
 
 
-    public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, IMenusManager menusManager, Node parent, IPopupsManager popupsManager) :
-        base(prefab, model, menusManager, parent, popupsManager)
+    public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, IMenusManager<InputEvent> menusManager, Node parent,
+        IInputProcessor<InputEvent> inputProcessor, IPopupsManager<InputEvent> popupsManager) :
+        base(prefab, model, menusManager, parent, inputProcessor, popupsManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;
     }

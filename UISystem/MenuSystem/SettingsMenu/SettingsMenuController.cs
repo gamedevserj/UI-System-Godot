@@ -2,6 +2,7 @@
 using System;
 using UISystem.Constants;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.PhysicalInput;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem.SettingsMenu.Interfaces;
@@ -14,10 +15,11 @@ internal abstract class SettingsMenuController<TView, TModel, TParent, TFocusabl
     where TModel : ISettingsMenuModel
 {
 
-    protected readonly IPopupsManager _popupsManager;
+    protected readonly IPopupsManager<InputEvent> _popupsManager;
 
-    protected SettingsMenuController(string prefab, TModel model, IMenusManager menusManager, Node parent, IPopupsManager popupsManager) 
-        : base(prefab, model, menusManager, parent)
+    protected SettingsMenuController(string prefab, TModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor,
+        IPopupsManager<InputEvent> popupsManager) 
+        : base(prefab, model, menusManager, parent, inputProcessor)
     {
         _popupsManager = popupsManager;
     }

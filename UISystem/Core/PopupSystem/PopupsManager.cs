@@ -6,13 +6,13 @@ using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.PopupSystem.Constants;
 
 namespace UISystem.Core.PopupSystem;
-public partial class PopupsManager : IPopupsManager
+public partial class PopupsManager<TInputEvent> : IPopupsManager<TInputEvent>
 {
 
-    private IPopupController _currentController;
-    private Dictionary<int, IPopupController> _controllers = new();
+    private IPopupController<TInputEvent> _currentController;
+    private Dictionary<int, IPopupController<TInputEvent>> _controllers = new();
 
-    public void ProcessInput(InputEvent @event)
+    public void ProcessInput(TInputEvent @event)
     {
         if (_currentController == null || !_currentController.CanProcessInput)
             return;
@@ -20,7 +20,7 @@ public partial class PopupsManager : IPopupsManager
         _currentController?.ProcessInput(@event);
     }
 
-    public void Init(IPopupController[] controllers)
+    public void Init(IPopupController<TInputEvent>[] controllers)
     {
         for (int i = 0; i < controllers.Length; i++)
         {
@@ -28,7 +28,7 @@ public partial class PopupsManager : IPopupsManager
         }
     }
 
-    public void ShowPopup(int popupType, IMenuController caller, string message, Action<int> onHideAction = null, bool instant = false)
+    public void ShowPopup(int popupType, IMenuController<TInputEvent> caller, string message, Action<int> onHideAction = null, bool instant = false)
     {
         _currentController = _controllers[popupType];
         _currentController.Init();

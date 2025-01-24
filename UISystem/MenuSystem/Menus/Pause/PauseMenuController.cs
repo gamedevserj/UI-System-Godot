@@ -3,6 +3,7 @@ using System;
 using UISystem.Constants;
 using UISystem.Core.Constants;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.PhysicalInput;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
@@ -23,13 +24,13 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
 
     public override int Type => MenuType.Pause;
 
-    private readonly IPopupsManager _popupsManager;
+    private readonly IPopupsManager<InputEvent> _popupsManager;
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
-    public PauseMenuController(string prefab, IMenuModel model, IMenusManager menusManager, Node parent,
-        IPopupsManager popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
-        : base(prefab, model, menusManager, parent)
+    public PauseMenuController(string prefab, IMenuModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor,
+        IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
+        : base(prefab, model, menusManager, parent, inputProcessor)
     {
         _popupsManager = popupsManager;
         _screenFadeManager = screenFadeManager;
@@ -53,12 +54,10 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
         }, instant);
     }
 
-    public override void ProcessInput(InputEvent key)
-    {
-        if (key.IsPressed() && key.IsAction(InputsData.ReturnToPreviousMenu))
-        {
+    public override void ProcessInput(InputEvent inputEvent)
+    { 
+        if (_inputProcessor.IsPressingReturnToPreviousMenuButton(inputEvent))
             PressedResume();
-        }
     }
 
     protected override void SetupElements()

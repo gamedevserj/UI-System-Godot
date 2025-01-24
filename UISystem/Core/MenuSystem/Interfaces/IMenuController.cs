@@ -3,7 +3,7 @@ using System;
 using UISystem.Core.MenuSystem.Enums;
 
 namespace UISystem.Core.MenuSystem.Interfaces;
-public partial interface IMenuController
+public partial interface IMenuController<TInputEvent>
 {
 
     int Type { get; }
@@ -14,7 +14,7 @@ public partial interface IMenuController
     void Hide(StackingType stackingType, Action onComplete = null, bool instant = false);
     void Show(Action onComplete = null, bool instant = false);
 
-    void ProcessInput(InputEvent key);
+    void ProcessInput(TInputEvent key);
     void DestroyView();
 
 }

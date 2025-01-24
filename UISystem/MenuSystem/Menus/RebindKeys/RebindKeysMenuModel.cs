@@ -54,6 +54,7 @@ public class RebindKeysMenuModel : ISettingsMenuModel
         Array<InputEvent> currentEvents = InputMap.ActionGetEvents(_currentlyRebindingAction);
         // rebinding only if input comes from corresponding device and it is not the same event as existing events
         // in case there are alternative events (like wasd/arrows)
+        // TODO: maybe switch the current existing main/alt events when it is defined in different index
         if (!IsInputFromCorrectDevice(key) || IsEventDefinedInDifferentIndex(key, currentEvents))
         {
             return;
