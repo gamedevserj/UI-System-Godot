@@ -18,14 +18,14 @@ internal class YesNoPopupController : PopupController<string, YesNoPopupView, No
     public override int Type => PopupType.YesNo;
     public override int PressedReturnPopupResult => PopupResult.No;
 
-    public YesNoPopupController(string prefab, IPopupsManager<InputEvent> popupsManager, Node parent, IInputProcessor<InputEvent> inputProcessor) 
-        : base(prefab, popupsManager, parent, inputProcessor)
+    public YesNoPopupController(string prefab, IPopupsManager<InputEvent> popupsManager, Node parent) : base(prefab, popupsManager, parent)
     { }
 
     protected override void SetupElements()
     {
         _view.YesButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.Yes);
         _view.NoButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.No);
+        _defaultSelectedElement = _view.NoButton;
     }
 
     protected override IViewTransition CreateTransition()

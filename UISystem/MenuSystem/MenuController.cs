@@ -17,13 +17,13 @@ internal abstract class MenuController<TPrefab, TView, TModel, TParent, TFocusab
         : base(prefab, model, menusManager, parent)
     { }
 
-    protected override void CreateView(Node menuParent)
+    protected override void CreateView(Node parent)
     {
         PackedScene loadedPrefab = ResourceLoader.Load<PackedScene>(_prefab);
         _view = loadedPrefab.Instantiate() as TView;
         _view.Init(CreateTransition());
         SetupElements();
-        menuParent.AddChild(_view);
+        parent.AddChild(_view);
     }
 
     protected override void FocusElement()

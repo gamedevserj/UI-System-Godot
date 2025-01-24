@@ -21,27 +21,25 @@ internal abstract class PopupControllerBase<TPrefab, TView, TParent, TInputEvent
     protected readonly TPrefab _prefab;
     protected readonly IPopupsManager<TInputEvent> _popupsManager;
     protected readonly TParent _parent;
-    protected readonly IInputProcessor<TInputEvent> _inputProcessor;
 
     public abstract int Type { get; }
     public abstract int PressedReturnPopupResult { get; }
     public bool CanReceivePhysicalInput { get; private set; } = true; // to prevent input processing during transitions
+    protected abstract bool IsViewValid { get; }
 
-    public PopupControllerBase(TPrefab prefab, IPopupsManager<TInputEvent> popupsManager, TParent parent, IInputProcessor<TInputEvent> inputProcessor)
+    public PopupControllerBase(TPrefab prefab, IPopupsManager<TInputEvent> popupsManager, TParent parent)
     {
         _prefab = prefab;
         _popupsManager = popupsManager;
         _parent = parent;
-        _inputProcessor = inputProcessor;
     }
 
     public virtual void Init()
     {
-        if (!_view.IsValid())
+        if (!IsViewValid)
         {
             CreateView(_parent);
         }
-        _defaultSelectedElement = _view.DefaultSelectedElement;
     }
 
     public void Show(IMenuController<TInputEvent> caller, string message, Action<int> onHideAction, bool instant = false)
@@ -54,10 +52,7 @@ internal abstract class PopupControllerBase<TPrefab, TView, TParent, TInputEvent
         _view.Show((() =>
         {
             CanReceivePhysicalInput = true;
-            if (_defaultSelectedElement?.IsValidElement() == true)
-            {
-                _defaultSelectedElement.SwitchFocus(true);
-            }
+            FocusElement();
         }), instant);
     }
 
@@ -87,11 +82,9 @@ internal abstract class PopupControllerBase<TPrefab, TView, TParent, TInputEvent
     public void OnAnyButtonDown(TInputEvent inputEvent)
     { }
 
-    private void DestroyView()
-    {
-        _view.SafeQueueFree();
-    }
+    private void DestroyView() => _view.SafeQueueFree();
 
+    protected abstract void FocusElement();
     protected abstract void CreateView(TParent menuParent);
     protected abstract void SetupElements();
     protected abstract IViewTransition CreateTransition();
