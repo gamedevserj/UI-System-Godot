@@ -5,23 +5,17 @@ using UISystem.Core.PhysicalInput;
 namespace UISystem.PhysicalInput;
 internal class InputProcessor : IInputProcessor<InputEvent>
 {
-    public bool IsPressingReturnToPreviousMenuButton(InputEvent inputEvent)
+
+    public void ProcessInput(InputEvent inputEvent, IInputReceiver<InputEvent> inputReceiver)
     {
         if (inputEvent.IsActionPressed(InputsData.ReturnToPreviousMenu))
-            return true;
-        return false;
+            inputReceiver.OnCancelButtonDown();
+
+        if (inputEvent.IsActionPressed(InputsData.PauseButton))
+            inputReceiver.OnPauseButtonDown();
+
+        if (inputEvent.IsPressed())
+            inputReceiver.OnAnyButtonDown(inputEvent);
     }
 
-    public bool IsPressingPause(InputEvent inputEvent)
-    {
-        if(inputEvent.IsPressed() && inputEvent.IsAction(InputsData.PauseButton))
-            return true;
-        return false;
-    }
-
-    public bool IsPressingAnyKey(InputEvent inputEvent)
-    {
-        if(inputEvent.IsPressed()) return true;
-        return false;
-    }
 }

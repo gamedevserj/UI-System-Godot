@@ -1,11 +1,10 @@
 ﻿using Godot;
 using System;
 using UISystem.Constants;
-using UISystem.Core.Constants;
 using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.PhysicalInput;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.Core.PhysicalInput;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
@@ -28,9 +27,9 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
-    public PauseMenuController(string prefab, IMenuModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor,
+    public PauseMenuController(string prefab, IMenuModel model, IMenusManager<InputEvent> menusManager, Node parent,
         IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
-        : base(prefab, model, menusManager, parent, inputProcessor)
+        : base(prefab, model, menusManager, parent)
     {
         _popupsManager = popupsManager;
         _screenFadeManager = screenFadeManager;
@@ -54,10 +53,9 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
         }, instant);
     }
 
-    public override void ProcessInput(InputEvent inputEvent)
-    { 
-        if (_inputProcessor.IsPressingReturnToPreviousMenuButton(inputEvent))
-            PressedResume();
+    public override void OnResumeButtonDown()
+    {
+        PressedResume();
     }
 
     protected override void SetupElements()
@@ -98,7 +96,6 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
                 SwitchFocusAvailability(true);
             }
         });
-
     }
 
     protected override IViewTransition CreateTransition()

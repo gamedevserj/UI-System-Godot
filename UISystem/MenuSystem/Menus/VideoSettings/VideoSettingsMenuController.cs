@@ -24,8 +24,8 @@ internal class VideoSettingsMenuController : SettingsMenuController<VideoSetting
     public override int Type => MenuType.VideoSettings;
 
     public VideoSettingsMenuController(string prefab, VideoSettingsMenuModel model, IMenusManager<InputEvent> menusManager, Node parent,
-        IInputProcessor<InputEvent> inputProcessor, IPopupsManager<InputEvent> popupsManager)
-        : base(prefab, model, menusManager, parent, inputProcessor, popupsManager)
+        IPopupsManager<InputEvent> popupsManager)
+        : base(prefab, model, menusManager, parent, popupsManager)
     { }
 
     protected override void SetupElements()
@@ -41,7 +41,7 @@ internal class VideoSettingsMenuController : SettingsMenuController<VideoSetting
     private void OnReturnButtonDown()
     {
         _lastSelectedElement = _view.ReturnButton;
-        OnReturnToPreviousMenuButtonDown();
+        OnCancelButtonDown();
     }
 
     private void SetupWindowModeDropdown()

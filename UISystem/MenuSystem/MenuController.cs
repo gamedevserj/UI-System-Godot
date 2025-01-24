@@ -14,8 +14,8 @@ internal abstract class MenuController<TPrefab, TView, TModel, TParent, TFocusab
 
     protected override bool IsViewValid => _view != null && _view.IsValid;
 
-    protected MenuController(string prefab, TModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor) 
-        : base(prefab, model, menusManager, parent, inputProcessor)
+    protected MenuController(string prefab, TModel model, IMenusManager<InputEvent> menusManager, Node parent) 
+        : base(prefab, model, menusManager, parent)
     { }
 
     protected override void CreateView(Node menuParent)

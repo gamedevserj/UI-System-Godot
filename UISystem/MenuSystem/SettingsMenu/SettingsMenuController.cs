@@ -17,16 +17,16 @@ internal abstract class SettingsMenuController<TView, TModel, TParent, TFocusabl
 
     protected readonly IPopupsManager<InputEvent> _popupsManager;
 
-    protected SettingsMenuController(string prefab, TModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor,
+    protected SettingsMenuController(string prefab, TModel model, IMenusManager<InputEvent> menusManager, Node parent,
         IPopupsManager<InputEvent> popupsManager) 
-        : base(prefab, model, menusManager, parent, inputProcessor)
+        : base(prefab, model, menusManager, parent)
     {
         _popupsManager = popupsManager;
     }
 
     protected abstract void ResetViewToDefault();
 
-    protected override void OnReturnToPreviousMenuButtonDown(Action onComplete = null, bool instant = false)
+    public override void OnCancelButtonDown(Action onComplete = null, bool instant = false)
     {
         if (_model.HasUnappliedSettings)
         {
@@ -39,7 +39,7 @@ internal abstract class SettingsMenuController<TView, TModel, TParent, TFocusabl
         }
         else
         {
-            base.OnReturnToPreviousMenuButtonDown(onComplete, instant);
+            base.OnCancelButtonDown(onComplete, instant);
         }
     }
 
@@ -49,11 +49,11 @@ internal abstract class SettingsMenuController<TView, TModel, TParent, TFocusabl
         {
             case PopupResult.No:
                 _model.DiscardChanges();
-                base.OnReturnToPreviousMenuButtonDown(onComplete, instant);
+                base.OnCancelButtonDown(onComplete, instant);
                 break;
             case PopupResult.Yes:
                 _model.SaveSettings();
-                base.OnReturnToPreviousMenuButtonDown(onComplete, instant);
+                base.OnCancelButtonDown(onComplete, instant);
                 break;
             case PopupResult.Cancel:
                 SwitchFocusAvailability(true);

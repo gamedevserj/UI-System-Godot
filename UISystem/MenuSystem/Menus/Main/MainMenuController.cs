@@ -28,9 +28,9 @@ internal class MainMenuController : MenuController<string, MainMenuView, IMenuMo
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(string prefab, IMenuModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor,
-        SceneTree sceneTree, IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) :
-        base(prefab, model, menusManager, parent, inputProcessor)
+    public MainMenuController(string prefab, IMenuModel model, IMenusManager<InputEvent> menusManager, Node parent, SceneTree sceneTree, 
+        IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) :
+        base(prefab, model, menusManager, parent)
     {
         _sceneTree = sceneTree;
         _popupsManager = popupsManager;
@@ -59,7 +59,7 @@ internal class MainMenuController : MenuController<string, MainMenuView, IMenuMo
         DefaultSelectedElement = _view.PlayButton;
     }
 
-    protected override void OnReturnToPreviousMenuButtonDown(Action onComplete, bool instant = false)
+    public override void OnCancelButtonDown(Action onComplete, bool instant = false)
     {
         if (CanReturnToPreviousMenu)
             ShowQuitPopup();

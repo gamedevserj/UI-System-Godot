@@ -1,9 +1,10 @@
 ﻿namespace UISystem.Core.PhysicalInput;
-internal partial interface IInputProcessor<TInputEvent>
+public partial interface IInputProcessor<TInputEvent>
 {
 
-    bool IsPressingReturnToPreviousMenuButton(TInputEvent inputEvent);
-    bool IsPressingPause(TInputEvent inputEvent);
-    bool IsPressingAnyKey(TInputEvent inputEvent);
+    void ProcessInput(TInputEvent input, IInputReceiver<TInputEvent> inputReceiver);
+    //bool IsPressingCancel(TInputEvent inputEvent);
+    //bool IsPressingPause(TInputEvent inputEvent);
+    //bool IsPressingAnyKey(TInputEvent inputEvent);
 
 }

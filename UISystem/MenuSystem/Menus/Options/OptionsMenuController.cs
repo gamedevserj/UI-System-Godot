@@ -17,8 +17,8 @@ internal class OptionsMenuController : MenuController<string, OptionsMenuView, O
 
     public override int Type => MenuType.Options;
 
-    public OptionsMenuController(string prefab, OptionsMenuModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor)
-        : base(prefab, model, menusManager, parent, inputProcessor)
+    public OptionsMenuController(string prefab, OptionsMenuModel model, IMenusManager<InputEvent> menusManager, Node parent)
+        : base(prefab, model, menusManager, parent)
     { }
 
     protected override void SetupElements()
@@ -33,7 +33,7 @@ internal class OptionsMenuController : MenuController<string, OptionsMenuView, O
 
     private void OnReturnButtonDown()
     {
-        OnReturnToPreviousMenuButtonDown();
+        OnCancelButtonDown();
     }
 
     private void OnAudioSettingsButtonDown()

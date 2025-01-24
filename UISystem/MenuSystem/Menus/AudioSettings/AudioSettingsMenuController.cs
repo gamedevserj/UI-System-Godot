@@ -20,8 +20,8 @@ internal class AudioSettingsMenuController : SettingsMenuController<AudioSetting
     public override int Type => MenuType.AudioSettings;
 
     public AudioSettingsMenuController(string prefab, AudioSettingsMenuModel model, IMenusManager<InputEvent> menusManager, Node parent,
-        IInputProcessor<InputEvent> inputProcessor, IPopupsManager<InputEvent> popupsManager)
-        : base(prefab, model, menusManager, parent, inputProcessor, popupsManager)
+        IPopupsManager<InputEvent> popupsManager)
+        : base(prefab, model, menusManager, parent, popupsManager)
     {
 
     }
@@ -39,7 +39,7 @@ internal class AudioSettingsMenuController : SettingsMenuController<AudioSetting
     private void OnReturnButtonDown()
     {
         _lastSelectedElement = _view.ReturnButton;
-        OnReturnToPreviousMenuButtonDown();
+        OnCancelButtonDown();
     }
 
     private void OnSaveSettingsButtonDown()

@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.Core.PhysicalInput;
 
 namespace UISystem.Core.MenuSystem;
 public partial class MenusManager<TInputEvent> : IMenusManager<TInputEvent>
@@ -10,21 +11,23 @@ public partial class MenusManager<TInputEvent> : IMenusManager<TInputEvent>
     private IMenuController<TInputEvent> _currentController;
     private Stack<IMenuController<TInputEvent>> _previousMenus = new();
     private Dictionary<int, IMenuController<TInputEvent>> _controllers = new();
+    private IInputProcessor<TInputEvent> _inputProcessor;
 
-    public void Init(IMenuController<TInputEvent>[] controllers)
+    public void Init(IMenuController<TInputEvent>[] controllers, IInputProcessor<TInputEvent> inputProcessor)
     {
         for (int i = 0; i < controllers.Length; i++)
         {
             _controllers.Add(controllers[i].Type, controllers[i]);
         }
+        _inputProcessor = inputProcessor;
     }
 
-    public void ProcessInput(TInputEvent @event)
+    public void ProcessInput(TInputEvent inputEvent)
     {
-        if (_currentController == null || !_currentController.CanProcessInput)
+        if (_currentController == null || !_currentController.CanReceivePhysicalInput)
             return;
 
-        _currentController?.ProcessInput(@event);
+        _inputProcessor.ProcessInput(inputEvent, _currentController);
     }
 
     public void ShowMenu(int menuType, StackingType stackingType = StackingType.Add, Action onNewMenuShown = null, bool instant = false)

@@ -20,11 +20,10 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
     protected readonly TPrefab _prefab;
     protected readonly IMenusManager<TInputEvent> _menusManager;
     protected readonly TParent _parent;
-    protected readonly IInputProcessor<TInputEvent> _inputProcessor;
 
     public virtual bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
     public abstract int Type { get; }
-    public bool CanProcessInput { get; private set; } = true;// to prevent input processing during transitions
+    public bool CanReceivePhysicalInput { get; private set; } = true;// to prevent input processing during transitions
     protected abstract bool IsViewValid { get; }
     protected TFocusableElement DefaultSelectedElement
     {
@@ -32,13 +31,12 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
         set => _defaultSelectedElement = _lastSelectedElement = value;
     }
 
-    public MenuControllerBase(TPrefab prefab, TModel model, IMenusManager<TInputEvent> menusManager, TParent parent, IInputProcessor<TInputEvent> inputProcessor)
+    public MenuControllerBase(TPrefab prefab, TModel model, IMenusManager<TInputEvent> menusManager, TParent parent)
     {
         _prefab = prefab;
         _model = model;
         _menusManager = menusManager;
         _parent = parent;
-        _inputProcessor = inputProcessor;
     }
 
     public void Init()
@@ -51,32 +49,26 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
 
     public virtual void Show(Action onComplete = null, bool instant = false)
     {
-        CanProcessInput = false;
+        CanReceivePhysicalInput = false;
         _view.Show(() =>
         {
             onComplete?.Invoke();
             FocusElement();
-            CanProcessInput = true;
+            CanReceivePhysicalInput = true;
         }, instant);
     }
 
     public virtual void Hide(StackingType stackingType, Action onComplete = null, bool instant = false) 
     {
-        CanProcessInput = false;
+        CanReceivePhysicalInput = false;
         _view.Hide(() =>
         {
             onComplete?.Invoke();
-            CanProcessInput = true;
+            CanReceivePhysicalInput = true;
         }, instant);
     }
 
     public void DestroyView() => _view.DestroyView();
-
-    public virtual void ProcessInput(TInputEvent key)
-    {
-        if (_inputProcessor.IsPressingReturnToPreviousMenuButton(key))
-            OnReturnToPreviousMenuButtonDown();
-    }
 
     // when showing popups
     protected void SwitchFocusAvailability(bool enable)
@@ -86,11 +78,18 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
             FocusElement();
     }
 
-    protected virtual void OnReturnToPreviousMenuButtonDown(Action onComplete = null, bool instant = false)
+    public virtual void OnCancelButtonDown(Action onComplete = null, bool instant = false)
     {
         if (CanReturnToPreviousMenu)
             _menusManager.ReturnToPreviousMenu(onComplete, instant);
     }
+
+    public virtual void OnPauseButtonDown() // for in-game menu
+    { }
+    public virtual void OnResumeButtonDown() // for pause menu
+    { }
+    public virtual void OnAnyButtonDown(TInputEvent inputEvent) // for rebind menu
+    { }
 
     protected abstract void FocusElement();
     protected abstract void CreateView(TParent menuParent);

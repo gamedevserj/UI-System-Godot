@@ -52,8 +52,8 @@ internal abstract class PopupController<TView, TInputEvent> : IPopupController<T
     {
         if (!CanProcessInput) return;
 
-        if (_inputProcessor.IsPressingReturnToPreviousMenuButton(key))
-            _popupsManager.HidePopup(PressedReturnPopupResult);
+        //if (_inputProcessor.IsPressingCancel(key))
+        //    _popupsManager.HidePopup(PressedReturnPopupResult);
     }
 
     public void Show(IMenuController<TInputEvent> caller, string message, Action<int> onHideAction, bool instant = false)

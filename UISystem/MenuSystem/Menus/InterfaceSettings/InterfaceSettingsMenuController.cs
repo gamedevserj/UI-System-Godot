@@ -27,8 +27,8 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<Interfac
 
 
     public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, IMenusManager<InputEvent> menusManager, Node parent,
-        IInputProcessor<InputEvent> inputProcessor, IPopupsManager<InputEvent> popupsManager) :
-        base(prefab, model, menusManager, parent, inputProcessor, popupsManager)
+        IPopupsManager<InputEvent> popupsManager) :
+        base(prefab, model, menusManager, parent, popupsManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;
     }
@@ -45,7 +45,7 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<Interfac
     private void OnReturnButtonDown()
     {
         _lastSelectedElement = _view.ReturnButton;
-        OnReturnToPreviousMenuButtonDown();
+        OnCancelButtonDown();
     }
 
     private void OnSaveSettingsButtonDown()

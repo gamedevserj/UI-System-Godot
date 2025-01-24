@@ -23,16 +23,14 @@ internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuV
 
     public override int Type => MenuType.RebindKeys;
 
-    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, IMenusManager<InputEvent> menusManager, Node parent, IInputProcessor<InputEvent> inputProcessor,
-        IPopupsManager<InputEvent> popupsManager) : base(prefab, model, menusManager, parent, inputProcessor, popupsManager)
+    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, IMenusManager<InputEvent> menusManager, Node parent,
+        IPopupsManager<InputEvent> popupsManager) : base(prefab, model, menusManager, parent, popupsManager)
     { }
 
-    public override void ProcessInput(InputEvent key)
+    public override void OnAnyButtonDown(InputEvent inputEvent)
     {
-        if (_inputProcessor.IsPressingAnyKey(key) && _model.IsRebinding)
-            _model.RebindKey(key);
-        else
-            base.ProcessInput(key);
+        if (_model.IsRebinding)
+            _model.RebindKey(inputEvent);
     }
 
     private static void UpdateButtonView(RebindableKeyButtonView button, string action, int index)
@@ -117,7 +115,7 @@ internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuV
     private void OnReturnButtonDown()
     {
         _lastSelectedElement = _view.ReturnButton;
-        OnReturnToPreviousMenuButtonDown();
+        OnCancelButtonDown();
     }
 
     protected override IViewTransition CreateTransition()
