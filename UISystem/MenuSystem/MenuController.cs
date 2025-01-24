@@ -1,6 +1,5 @@
 ﻿using Godot;
 using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.PhysicalInput;
 using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Views;

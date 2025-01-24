@@ -9,7 +9,7 @@ using UISystem.Transitions;
 using UISystem.Transitions.Interfaces;
 
 namespace UISystem.PopupSystem.Controllers;
-internal class YesPopupController : PopupController<YesPopupView, InputEvent>
+internal class YesPopupController : PopupController<string, YesPopupView, Node, InputEvent>
 {
 
     protected const float PanelDuration = 0.5f;
@@ -18,8 +18,8 @@ internal class YesPopupController : PopupController<YesPopupView, InputEvent>
     public override int Type => PopupType.Yes;
     public override int PressedReturnPopupResult => PopupResult.Yes;
 
-    public YesPopupController(string prefab, IPopupsManager<InputEvent> popupsManager, Node parent, IInputProcessor<InputEvent> inputProcessor, SceneTree sceneTree)
-        : base(prefab, popupsManager, parent, inputProcessor, sceneTree)
+    public YesPopupController(string prefab, IPopupsManager<InputEvent> popupsManager, Node parent, IInputProcessor<InputEvent> inputProcessor)
+        : base(prefab, popupsManager, parent, inputProcessor)
     {
     }
 

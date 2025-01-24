@@ -49,11 +49,11 @@ public partial class UiInstaller : Node
         _popupsManager = new PopupsManager<InputEvent>();
         var popups = new IPopupController<InputEvent>[]
         {
-            new YesPopupController(GetPopupPath(PopupType.Yes), _popupsManager, popupsParent, inputProcessor, tree),
-            new YesNoPopupController(GetPopupPath(PopupType.YesNo), _popupsManager, popupsParent, inputProcessor, tree),
-            new YesNoCancelPopupController(GetPopupPath(PopupType.YesNoCancel), _popupsManager, popupsParent, inputProcessor, tree)
+            new YesPopupController(GetPopupPath(PopupType.Yes), _popupsManager, popupsParent, inputProcessor),
+            new YesNoPopupController(GetPopupPath(PopupType.YesNo), _popupsManager, popupsParent, inputProcessor),
+            new YesNoCancelPopupController(GetPopupPath(PopupType.YesNoCancel), _popupsManager, popupsParent, inputProcessor)
         };
-        _popupsManager.Init(popups);
+        _popupsManager.Init(popups, inputProcessor);
 
         var backgroundController = new MenuBackgroundController(GetTree(), menuBackground);
         _menusManager = new MenusManager<InputEvent>();

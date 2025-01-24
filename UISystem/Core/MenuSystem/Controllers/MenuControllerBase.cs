@@ -1,5 +1,4 @@
 ﻿using System;
-using UISystem.Core.PhysicalInput;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Transitions.Interfaces;
@@ -74,6 +73,7 @@ internal abstract class MenuControllerBase<TPrefab, TView, TModel, TParent, TFoc
     protected void SwitchFocusAvailability(bool enable)
     {
         _view.SwitchFocusAvailability(enable);
+        CanReceivePhysicalInput = enable;
         if (enable)
             FocusElement();
     }

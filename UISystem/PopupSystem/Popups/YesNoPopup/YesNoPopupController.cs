@@ -9,7 +9,7 @@ using UISystem.Transitions;
 using UISystem.Core.PhysicalInput;
 
 namespace UISystem.PopupSystem.Controllers;
-internal class YesNoPopupController : PopupController<YesNoPopupView, InputEvent>
+internal class YesNoPopupController : PopupController<string, YesNoPopupView, Node, InputEvent>
 {
 
     protected const float PanelDuration = 0.5f;
@@ -18,8 +18,8 @@ internal class YesNoPopupController : PopupController<YesNoPopupView, InputEvent
     public override int Type => PopupType.YesNo;
     public override int PressedReturnPopupResult => PopupResult.No;
 
-    public YesNoPopupController(string prefab, IPopupsManager<InputEvent> popupsManager, Node parent, IInputProcessor<InputEvent> inputProcessor, SceneTree sceneTree) 
-        : base(prefab, popupsManager, parent, inputProcessor, sceneTree)
+    public YesNoPopupController(string prefab, IPopupsManager<InputEvent> popupsManager, Node parent, IInputProcessor<InputEvent> inputProcessor) 
+        : base(prefab, popupsManager, parent, inputProcessor)
     { }
 
     protected override void SetupElements()

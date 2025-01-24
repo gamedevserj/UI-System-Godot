@@ -2,8 +2,8 @@
 using System;
 using System.Collections.Generic;
 using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.Core.PhysicalInput;
 using UISystem.Core.PopupSystem.Interfaces;
-using UISystem.PopupSystem.Constants;
 
 namespace UISystem.Core.PopupSystem;
 public partial class PopupsManager<TInputEvent> : IPopupsManager<TInputEvent>
@@ -11,21 +11,23 @@ public partial class PopupsManager<TInputEvent> : IPopupsManager<TInputEvent>
 
     private IPopupController<TInputEvent> _currentController;
     private Dictionary<int, IPopupController<TInputEvent>> _controllers = new();
+    private IInputProcessor<TInputEvent> _inputProcessor;
 
-    public void ProcessInput(TInputEvent @event)
+    public void ProcessInput(TInputEvent inputEvent)
     {
-        if (_currentController == null || !_currentController.CanProcessInput)
+        if (_currentController == null || !_currentController.CanReceivePhysicalInput)
             return;
 
-        _currentController?.ProcessInput(@event);
+        _inputProcessor.ProcessInput(inputEvent, _currentController);
     }
 
-    public void Init(IPopupController<TInputEvent>[] controllers)
+    public void Init(IPopupController<TInputEvent>[] controllers, IInputProcessor<TInputEvent> inputProcessor)
     {
         for (int i = 0; i < controllers.Length; i++)
         {
             _controllers.Add(controllers[i].Type, controllers[i]);
         }
+        _inputProcessor = inputProcessor;
     }
 
     public void ShowPopup(int popupType, IMenuController<TInputEvent> caller, string message, Action<int> onHideAction = null, bool instant = false)
