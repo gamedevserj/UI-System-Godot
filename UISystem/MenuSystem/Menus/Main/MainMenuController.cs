@@ -63,7 +63,6 @@ internal class MainMenuController<TViewHandler, TInputEvent>
 
     private void PressedPlay()
     {
-        //_lastSelectedElement = _view.PlayButton;
         _view.SetLastSelectedElement(_view.PlayButton);
         _screenFadeManager.FadeOut(() =>
         {
@@ -73,14 +72,12 @@ internal class MainMenuController<TViewHandler, TInputEvent>
 
     private void PressedOptions()
     {
-        //_lastSelectedElement = _view.OptionsButton;
         _view.SetLastSelectedElement(_view.OptionsButton);
         _menusManager.ShowMenu(MenuType.Options);
     }
 
     private void PressedQuit()
     {
-        //_lastSelectedElement = _view.QuitButton;
         _view.SetLastSelectedElement(_view.QuitButton);
         ShowQuitPopup();
     }

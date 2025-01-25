@@ -12,6 +12,6 @@ public partial interface IMenuController<TInputEvent> : IInputReceiver<TInputEve
     void Init();
     void Hide(StackingType stackingType, Action onComplete = null, bool instant = false);
     void Show(Action onComplete = null, bool instant = false);
-    void DestroyView();
+    void ProcessStacking(StackingType stackingType);
 
 }

@@ -16,7 +16,7 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
 
     protected readonly IMenusManager<TInputEvent> _menusManager;
 
-    public virtual bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
+    public bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
     public abstract int Type { get; }
     public bool CanReceivePhysicalInput { get; private set; } // to prevent input processing during transitions
 
@@ -57,7 +57,26 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
         }, instant);
     }
 
-    public void DestroyView() => _view.DestroyView();
+    protected void DestroyView() => _viewHandler.DestroyView();
+    public virtual void ProcessStacking(StackingType stackingType)
+    {
+        switch (stackingType)
+        {
+            case StackingType.Add:
+                break;
+            case StackingType.Remove:
+                DestroyView();
+                break;
+            case StackingType.Clear:
+                DestroyView();
+                break;
+            case StackingType.Replace:
+                DestroyView();
+                break;
+            default:
+                break;
+        }
+    }
 
     // when showing popups
     protected void SwitchFocusAvailability(bool enable)

@@ -64,26 +64,21 @@ public partial class MenusManager<TInputEvent> : IMenusManager<TInputEvent>
                 _previousMenus.Push(_currentController);
                 break;
             case StackingType.Remove:
-                _currentController.DestroyView();
                 _previousMenus.Pop();
                 break;
             case StackingType.Clear:
                 foreach (var menuController in _previousMenus)
                 {
-                    menuController.DestroyView();
+                    menuController.ProcessStacking(stackingType);
                 }
                 _previousMenus.Clear();
-                _currentController?.DestroyView();
                 break;
             case StackingType.Replace:
-                _currentController.DestroyView();
-                if (_previousMenus.Count > 0)
-                    _previousMenus.Pop();
-                _previousMenus.Push(controller);
                 break;
             default:
                 break;
         }
+        _currentController?.ProcessStacking(stackingType);
         _currentController = controller;
 
         _currentController.Show(() =>

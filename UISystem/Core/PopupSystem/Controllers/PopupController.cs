@@ -27,7 +27,7 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPop
         _popupsManager = popupsManager;
     }
 
-    public virtual void Init()
+    public void Init()
     {
         if (!_viewHandler.IsViewValid)
         {
@@ -41,7 +41,6 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPop
         CanReceivePhysicalInput = false;
         _caller = caller;
         _caller.CanReturnToPreviousMenu = false;
-        //_viewHandler.Message.Text = message;
         _view.SetMessage(message);
         _onHideAction = onHideAction;
         _view.Show((() =>
@@ -62,6 +61,7 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPop
             DestroyView();
         }), instant);
     }
+    protected void DestroyView() => _viewHandler.DestroyView();
 
     public virtual void OnCancelButtonDown()
     {
@@ -75,7 +75,6 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPop
     public void OnAnyButtonDown(TInputEvent inputEvent)
     { }
 
-    private void DestroyView() => _viewHandler.DestroyView();
 
     protected abstract void SetupElements();
 
