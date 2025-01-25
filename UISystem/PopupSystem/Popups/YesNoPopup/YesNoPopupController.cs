@@ -1,37 +1,23 @@
 using Godot;
 using UISystem.Core.PopupSystem.Controllers;
 using UISystem.Core.PopupSystem.Interfaces;
-using UISystem.Core.Transitions.Interfaces;
 using UISystem.PopupSystem.Constants;
-using UISystem.PopupSystem.Views;
-using UISystem.Transitions.Interfaces;
-using UISystem.Transitions;
-using UISystem.Core.PhysicalInput;
+using UISystem.PopupSystem.Popups.ViewHandlers;
+using UISystem.PopupSystem.Popups.Views;
 
-namespace UISystem.PopupSystem.Controllers;
-internal class YesNoPopupController : PopupController<string, YesNoPopupView, Node, InputEvent>
+namespace UISystem.PopupSystem.Popups.Controllers;
+internal class YesNoPopupController<TViewHandler, TInputEvent> : PopupController<YesNoPopupViewHandler<YesNoPopupView>, InputEvent, YesNoPopupView>
 {
-
-    protected const float PanelDuration = 0.5f;
-    protected const float ElementsDuration = 0.25f;
-
     public override int Type => PopupType.YesNo;
     public override int PressedReturnPopupResult => PopupResult.No;
 
-    public YesNoPopupController(string prefab, IPopupsManager<InputEvent> popupsManager, Node parent) : base(prefab, popupsManager, parent)
+    public YesNoPopupController(YesNoPopupViewHandler<YesNoPopupView> viewHandler, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, popupsManager)
     { }
 
     protected override void SetupElements()
     {
-        _view.YesButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.Yes);
-        _view.NoButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.No);
-        _defaultSelectedElement = _view.NoButton;
+        View.YesButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.Yes);
+        View.NoButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.No);
     }
 
-    protected override IViewTransition CreateTransition()
-    {
-        return new PanelSizeTransition(_view, _view.FadeObjectsContainer, _view.Panel,
-            new ITweenableMenuElement[] { _view.YesButton, _view.NoButton, _view.MessageMask },
-            PanelDuration, ElementsDuration);
-    }
 }

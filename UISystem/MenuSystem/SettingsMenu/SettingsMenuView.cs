@@ -12,4 +12,9 @@ public abstract partial class SettingsMenuView : BaseInteractableWindow
     public Control FadeObjectsContainer => fadeObjectsContainer;
     public ButtonView ResetButton => resetButton;
 
+    public override void FocusElement()
+    {
+        throw new System.NotImplementedException();
+    }
+
 }

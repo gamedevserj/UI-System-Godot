@@ -30,4 +30,8 @@ public partial class InGameMenuView : BaseWindowView
         
     }
 
+    public override void FocusElement()
+    {
+        throw new NotImplementedException();
+    }
 }

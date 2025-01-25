@@ -21,6 +21,11 @@ public partial class OptionsMenuView : BaseInteractableWindow
     public ButtonView RebindKeysButton => rebindKeysButton;
     public Control FadeObjectsContainer => fadeObjectsContainer;
 
+    public override void FocusElement()
+    {
+        throw new System.NotImplementedException();
+    }
+
     protected override void PopulateFocusableElements()
     {
         _focusableElements = new IFocusableControl[] { ReturnButton, AudioSettingsButton, VideoSettingsButton,

@@ -22,8 +22,8 @@ internal abstract class MenuController<TPrefab, TView, TModel, TParent, TFocusab
         PackedScene loadedPrefab = ResourceLoader.Load<PackedScene>(_prefab);
         _view = loadedPrefab.Instantiate() as TView;
         _view.Init(CreateTransition());
-        SetupElements();
         parent.AddChild(_view);
+        SetupElements();
     }
 
     protected override void FocusElement()

@@ -17,6 +17,11 @@ public partial class PauseMenuView : BaseInteractableWindow
     public ButtonView ReturnToMainMenuButton => returnToMainMenuButton;
     public Control FadeObjectsContainer => fadeObjectsContainer;
 
+    public override void FocusElement()
+    {
+        throw new System.NotImplementedException();
+    }
+
     protected override void PopulateFocusableElements()
     {
         _focusableElements = new IFocusableControl[] { ResumeGameButton, OptionsButton, ReturnToMainMenuButton };

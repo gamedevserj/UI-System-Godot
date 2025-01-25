@@ -16,6 +16,8 @@ public abstract partial class BaseWindowView : Control, IView
     public abstract void Show(Action onShown, bool instant = false);
     public abstract void Hide(Action onHidden, bool instant = false);
     public abstract void SwitchFocusAvailability(bool enable);
+    public abstract void FocusElement();
 
     public void DestroyView() => this.SafeQueueFree();
+
 }

@@ -14,5 +14,6 @@ internal interface IView
     void Hide(Action onHidden, bool instant = false);
     void DestroyView();
     void SwitchFocusAvailability(bool enable);
+    void FocusElement();
 
 }

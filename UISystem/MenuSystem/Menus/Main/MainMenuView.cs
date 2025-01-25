@@ -17,6 +17,11 @@ public partial class MainMenuView : BaseInteractableWindow
     public ButtonView QuitButton => quitButton;
     public Control FadeObjectsContainer => fadeObjectsContainer;
 
+    public override void FocusElement()
+    {
+        throw new System.NotImplementedException();
+    }
+
     protected override void PopulateFocusableElements()
     {
         _focusableElements = new IFocusableControl[] { PlayButton, OptionsButton, QuitButton };

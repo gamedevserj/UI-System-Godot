@@ -1,18 +1,20 @@
 ﻿using Godot;
-using UISystem.Core.PhysicalInput;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.Core.PhysicalInput;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.PopupSystem.Interfaces;
-using UISystem.PhysicalInput;
 using UISystem.MenuSystem;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Controllers;
 using UISystem.MenuSystem.Models;
+using UISystem.PhysicalInput;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
-using UISystem.PopupSystem.Controllers;
+using UISystem.PopupSystem.Popups.Controllers;
+using UISystem.PopupSystem.Popups.ViewHandlers;
+using UISystem.PopupSystem.Popups.Views;
 using UISystem.ScreenFade;
 
 namespace UISystem;
@@ -47,11 +49,14 @@ public partial class UiInstaller : Node
 
         IInputProcessor<InputEvent> inputProcessor = new InputProcessor();
         _popupsManager = new PopupsManager<InputEvent>();
+        var yesPopupViewHandler = new YesPopupViewHandler<YesPopupView>(GetPopupPath(PopupType.Yes), popupsParent);
+        var yesNoPopupViewHandler = new YesNoPopupViewHandler<YesNoPopupView>(GetPopupPath(PopupType.YesNo), popupsParent);
+        var yesNoCancelPopupViewHandler = new YesNoCancelPopupViewHandler<YesNoCancelPopupView>(GetPopupPath(PopupType.YesNoCancel), popupsParent);
         var popups = new IPopupController<InputEvent>[]
         {
-            new YesPopupController(GetPopupPath(PopupType.Yes), _popupsManager, popupsParent),
-            new YesNoPopupController(GetPopupPath(PopupType.YesNo), _popupsManager, popupsParent),
-            new YesNoCancelPopupController(GetPopupPath(PopupType.YesNoCancel), _popupsManager, popupsParent)
+            new YesPopupController<YesPopupView, InputEvent>(yesPopupViewHandler, _popupsManager),
+            new YesNoPopupController<YesNoPopupView, InputEvent>(yesNoPopupViewHandler, _popupsManager),
+            new YesNoCancelPopupController<YesNoCancelPopupView, InputEvent>(yesNoCancelPopupViewHandler, _popupsManager)
         };
         _popupsManager.Init(popups, inputProcessor);
 
