@@ -12,13 +12,11 @@ public partial class AudioSettingsMenuView : SettingsMenuView
     [Export] private ResizableControlView resizableControlSfx; // label container
     [Export] private HSliderView sfxSlider;
     [Export] private ButtonView saveSettingsButton;
-    [Export] private ButtonView returnButton;
     [Export] private Control panel;
 
     public HSliderView MusicSlider => musicSlider;
     public HSliderView SfxSlider => sfxSlider;
     public ButtonView SaveSettingsButton => saveSettingsButton;
-    public ButtonView ReturnButton => returnButton;
     public Control Panel => panel;
     public ResizableControlView ResizableControlMusic => resizableControlMusic;
     public ResizableControlView ResizableControlSfx => resizableControlSfx;

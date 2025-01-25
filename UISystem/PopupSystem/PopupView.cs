@@ -1,18 +1,19 @@
 ﻿using Godot;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.Core.Views;
 
-namespace UISystem.Core.PopupSystem.Views;
-public abstract partial class PopupView : BaseInteractableWindow
+namespace UISystem.PopupSystem;
+public abstract partial class PopupView : BaseInteractableWindow, IPopupView
 {
 
     [Export] protected Control fadeObjectsContainer;
     [Export] protected Control panel;
-    [Export] private Label message;
+    [Export] private Label messageLabel;
 
     public Control FadeObjectsContainer => fadeObjectsContainer;
     public Control Panel => panel;
-    public Label Message { get => message; set => message = value; }
+    public Label Message { set => messageLabel = value; }
     public abstract IFocusableControl DefaultSelectedElement { get; }
 
     public override void FocusElement()
@@ -23,4 +24,8 @@ public abstract partial class PopupView : BaseInteractableWindow
         }
     }
 
+    public void SetMessage(string message)
+    {
+        messageLabel.Text = message;
+    }
 }

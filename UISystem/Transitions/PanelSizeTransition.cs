@@ -13,6 +13,8 @@ public class PanelSizeTransition : IViewTransition
 {
 
     private const float FadeDuration = 0.1f;
+    protected const float PanelDuration = 0.2f;
+    protected const float ElementsDuration = 0.1f;
 
     private SceneTree _sceneTree;
     private bool _initializedParameters;
@@ -36,8 +38,8 @@ public class PanelSizeTransition : IViewTransition
         }
     }
 
-    public PanelSizeTransition(Control caller, Control fadeObjectsContainer, Control panel, ITweenableMenuElement[] resizableControls, float panelDuration,
-        float elementsDuration)
+    public PanelSizeTransition(Control caller, Control fadeObjectsContainer, Control panel, ITweenableMenuElement[] resizableControls, 
+        float panelDuration = PanelDuration, float elementsDuration = ElementsDuration)
     {
         _caller = caller;
         _fadeObjectsContainer = fadeObjectsContainer;

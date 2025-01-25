@@ -1,10 +1,9 @@
 using Godot;
 using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.Views;
 using UISystem.Elements.ElementViews;
 
 namespace UISystem.MenuSystem.Views;
-public partial class PauseMenuView : BaseInteractableWindow
+public partial class PauseMenuView : MenuView
 {
 
     [Export] private ButtonView resumeGameButton;
@@ -17,10 +16,7 @@ public partial class PauseMenuView : BaseInteractableWindow
     public ButtonView ReturnToMainMenuButton => returnToMainMenuButton;
     public Control FadeObjectsContainer => fadeObjectsContainer;
 
-    public override void FocusElement()
-    {
-        throw new System.NotImplementedException();
-    }
+    protected override IFocusableControl DefaultSelectedElement => ResumeGameButton;
 
     protected override void PopulateFocusableElements()
     {

@@ -7,7 +7,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_t0ow3"]
 
-[node name="YesNoPopup" type="Control" node_paths=PackedStringArray("noButton", "fadeObjectsContainer", "panel", "yesButton", "messageMask", "message")]
+[node name="YesNoPopup" type="Control" node_paths=PackedStringArray("noButton", "yesButton", "messageMask", "fadeObjectsContainer", "panel", "messageLabel")]
 light_mask = 2
 visibility_layer = 2
 z_index = 30
@@ -19,11 +19,11 @@ grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_rr6j1")
 noButton = NodePath("FadeObjectContainer/Outline/Color/ButtonsContainer/NoButton")
-fadeObjectsContainer = NodePath("FadeObjectContainer")
-panel = NodePath("FadeObjectContainer/Outline")
 yesButton = NodePath("FadeObjectContainer/Outline/Color/ButtonsContainer/YesButton")
 messageMask = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask")
-message = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask/Message")
+fadeObjectsContainer = NodePath("FadeObjectContainer")
+panel = NodePath("FadeObjectContainer/Outline")
+messageLabel = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask/Message")
 
 [node name="FadeObjectContainer" type="Control" parent="."]
 light_mask = 2

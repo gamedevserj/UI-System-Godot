@@ -1,25 +1,18 @@
 using Godot;
 using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.PhysicalInput;
+using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
-using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
-using UISystem.MenuSystem.Models;
+using UISystem.MenuSystem.ViewHandlers;
 using UISystem.MenuSystem.Views;
-using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class OptionsMenuController : MenuController<string, OptionsMenuView, OptionsMenuModel, Node, IFocusableControl>
+internal class OptionsMenuController<TViewHandler, TInputEvent>
+    : MenuController<OptionsMenuViewHandler<OptionsMenuView>, OptionsMenuView, IMenuModel, InputEvent, IFocusableControl>
 {
-
-    private const float MainElementAnimationDuration = 0.25f;
-    private const float SecondaryElementAnimationDuration = 0.5f;
-
     public override int Type => MenuType.Options;
-
-    public OptionsMenuController(string prefab, OptionsMenuModel model, IMenusManager<InputEvent> menusManager, Node parent)
-        : base(prefab, model, menusManager, parent)
-    { }
+    public OptionsMenuController(OptionsMenuViewHandler<OptionsMenuView> viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager) : base(viewHandler, model, menusManager)
+    { }   
 
     protected override void SetupElements()
     {
@@ -28,7 +21,6 @@ internal class OptionsMenuController : MenuController<string, OptionsMenuView, O
         _view.VideoSettingsButton.ButtonDown += OnVideoSettingsButtonDown;
         _view.RebindKeysButton.ButtonDown += OnRebindKeysButtonDown;
         _view.InterfaceSettingsButton.ButtonDown += OnInterfaceSettingsButtonDown;
-        DefaultSelectedElement = _view.InterfaceSettingsButton;
     }
 
     private void OnReturnButtonDown()
@@ -38,33 +30,25 @@ internal class OptionsMenuController : MenuController<string, OptionsMenuView, O
 
     private void OnAudioSettingsButtonDown()
     {
-        _lastSelectedElement = _view.AudioSettingsButton;
+        _view.SetLastSelectedElement(_view.AudioSettingsButton);
         _menusManager.ShowMenu(MenuType.AudioSettings);
     }
 
     private void OnVideoSettingsButtonDown()
     {
-        _lastSelectedElement = _view.VideoSettingsButton;
+        _view.SetLastSelectedElement(_view.VideoSettingsButton);
         _menusManager.ShowMenu(MenuType.VideoSettings);
     }
 
     private void OnRebindKeysButtonDown()
     {
-        _lastSelectedElement = _view.RebindKeysButton;
+        _view.SetLastSelectedElement(_view.RebindKeysButton);
         _menusManager.ShowMenu(MenuType.RebindKeys);
     }
 
     private void OnInterfaceSettingsButtonDown()
     {
-        _lastSelectedElement = _view.InterfaceSettingsButton;
+        _view.SetLastSelectedElement(_view.InterfaceSettingsButton);
         _menusManager.ShowMenu(MenuType.InterfaceSettings);
-    }
-
-    protected override IViewTransition CreateTransition()
-    {
-        return new MainElementDropTransition(_view, _view.FadeObjectsContainer, _view.InterfaceSettingsButton,
-            new[] { _view.ReturnButton, _view.AudioSettingsButton, _view.VideoSettingsButton, _view.RebindKeysButton },
-            MainElementAnimationDuration,
-            SecondaryElementAnimationDuration);
     }
 }

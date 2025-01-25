@@ -1,20 +1,19 @@
 ﻿using Godot;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
-using UISystem.Core.PhysicalInput;
-using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
+using UISystem.MenuSystem.ViewHandlers;
 using UISystem.MenuSystem.Views;
-using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class InGameMenuController : MenuController<string, InGameMenuView, IMenuModel, Node, IFocusableControl>
+internal class InGameMenuController<TViewHandler, TInputEvent> 
+    : MenuController<InGameMenuViewHandler<InGameMenuView>, InGameMenuView, IMenuModel, InputEvent, IFocusableControl>
 {
 
     public override int Type => MenuType.InGame;
 
-    public InGameMenuController(string prefab, IMenuModel model, IMenusManager<InputEvent> menusManager, Node parent) 
-        : base(prefab, model, menusManager, parent)
+    public InGameMenuController(InGameMenuViewHandler<InGameMenuView> viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager) : base(viewHandler, model, menusManager)
     { }
 
     public override void OnPauseButtonDown()
@@ -27,5 +26,4 @@ internal class InGameMenuController : MenuController<string, InGameMenuView, IMe
 
     }
 
-    protected override IViewTransition CreateTransition() => new FadeTransition(_view.FadeObjectsContainer);
 }

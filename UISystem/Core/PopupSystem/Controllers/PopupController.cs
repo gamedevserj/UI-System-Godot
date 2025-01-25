@@ -6,10 +6,12 @@ using UISystem.Core.Views.Interfaces;
 namespace UISystem.Core.PopupSystem.Controllers;
 internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPopupController<TInputEvent> 
     where TViewHandler : IViewHandler<TView>
-    where TView : IView
+    where TView : IPopupView
 {
 
     protected TViewHandler _viewHandler;
+    protected TView _view;
+
     protected Action<int> _onHideAction;
     private IMenuController<TInputEvent> _caller;
 
@@ -17,8 +19,7 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPop
 
     public abstract int Type { get; }
     public abstract int PressedReturnPopupResult { get; }
-    public bool CanReceivePhysicalInput { get; private set; } = true; // to prevent input processing during transitions
-    protected TView View => _viewHandler.GetOrCreateView();
+    public bool CanReceivePhysicalInput { get; private set; } // to prevent input processing during transitions
 
     public PopupController(TViewHandler viewHandler, IPopupsManager<TInputEvent> popupsManager)
     {
@@ -28,12 +29,11 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPop
 
     public virtual void Init()
     {
-        //if (!IsViewValid)
-        //{
-        //    CreateView(_parent);
-        //}
-        _viewHandler.GetOrCreateView();
-        SetupElements();
+        if (!_viewHandler.IsViewValid)
+        {
+            _view = _viewHandler.CreateView();
+            SetupElements();
+        }
     }
 
     public void Show(IMenuController<TInputEvent> caller, string message, Action<int> onHideAction, bool instant = false)
@@ -42,18 +42,19 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPop
         _caller = caller;
         _caller.CanReturnToPreviousMenu = false;
         //_viewHandler.Message.Text = message;
+        _view.SetMessage(message);
         _onHideAction = onHideAction;
-        View.Show((() =>
+        _view.Show((() =>
         {
             CanReceivePhysicalInput = true;
-            View.FocusElement();
+            _view.FocusElement();
         }), instant);
     }
 
     public void Hide(int result, bool instant = false)
     {
         CanReceivePhysicalInput = false;
-        View.Hide((() =>
+        _view.Hide((() =>
         {
             CanReceivePhysicalInput = true;
             _caller.CanReturnToPreviousMenu = true;
@@ -69,10 +70,8 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPop
 
     public void OnPauseButtonDown()
     { }
-
     public void OnResumeButtonDown()
     { }
-
     public void OnAnyButtonDown(TInputEvent inputEvent)
     { }
 

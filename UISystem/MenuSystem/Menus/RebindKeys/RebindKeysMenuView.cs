@@ -13,7 +13,6 @@ public partial class RebindKeysMenuView : SettingsMenuView
     [Export] private RebindableKeyButtonView moveRightJoystick;
     [Export] private RebindableKeyButtonView jump;
     [Export] private RebindableKeyButtonView jumpJoystick;
-    [Export] private ButtonView returnButton;
     [Export] private Control panel;
     [Export] private ResizableControlView moveLeftLabelResizableControl;
     [Export] private ResizableControlView moveRightLabelResizableControl;
@@ -25,7 +24,6 @@ public partial class RebindKeysMenuView : SettingsMenuView
     public RebindableKeyButtonView MoveRightJoystick => moveRightJoystick;
     public RebindableKeyButtonView Jump => jump;
     public RebindableKeyButtonView JumpJoystick => jumpJoystick;
-    public ButtonView ReturnButton => returnButton;
     public Control Panel => panel;
     public ResizableControlView MoveLeftLabelResizableControl => moveLeftLabelResizableControl;
     public ResizableControlView MoveRightLabelResizableControl => moveRightLabelResizableControl;

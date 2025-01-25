@@ -2,24 +2,21 @@
 using System;
 using UISystem.Constants;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
-using UISystem.Core.PhysicalInput;
 using UISystem.Core.PopupSystem.Interfaces;
-using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
+using UISystem.MenuSystem.ViewHandlers;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
 using UISystem.ScreenFade;
-using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class PauseMenuController : MenuController<string, PauseMenuView, IMenuModel, Node, IFocusableControl>
+internal class PauseMenuController<TViewHandler, TInputEvent>
+    : MenuController<PauseMenuViewHandler<PauseMenuView>, PauseMenuView, IMenuModel, InputEvent, IFocusableControl>
 {
-
-    private const float MainElementAnimationDuration = 0.25f;
-    private const float SecondaryElementAnimationDuration = 0.5f;
 
     public override int Type => MenuType.Pause;
 
@@ -27,9 +24,9 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
-    public PauseMenuController(string prefab, IMenuModel model, IMenusManager<InputEvent> menusManager, Node parent,
-        IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController)
-        : base(prefab, model, menusManager, parent)
+    public PauseMenuController(PauseMenuViewHandler<PauseMenuView> viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager,
+        IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
+        : base(viewHandler, model, menusManager)
     {
         _popupsManager = popupsManager;
         _screenFadeManager = screenFadeManager;
@@ -63,7 +60,6 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
         _view.ResumeGameButton.ButtonDown += PressedResume;
         _view.OptionsButton.ButtonDown += PressedOptions;
         _view.ReturnToMainMenuButton.ButtonDown += PressedReturn;
-        DefaultSelectedElement = _view.ResumeGameButton;
     }
 
     private void PressedResume()
@@ -73,13 +69,13 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
 
     private void PressedOptions()
     {
-        _lastSelectedElement = _view.OptionsButton;
+        _view.SetLastSelectedElement(_view.OptionsButton);
         _menusManager.ShowMenu(MenuType.Options);
     }
 
     private void PressedReturn()
     {
-        _lastSelectedElement = _view.ReturnToMainMenuButton;
+        _view.SetLastSelectedElement(_view.ReturnToMainMenuButton);
         SwitchFocusAvailability(false);
 
         _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.QuitToMainMenu, (result) =>
@@ -98,10 +94,4 @@ internal class PauseMenuController : MenuController<string, PauseMenuView, IMenu
         });
     }
 
-    protected override IViewTransition CreateTransition()
-    {
-        return new MainElementDropTransition(_view, _view.FadeObjectsContainer, _view.ResumeGameButton,
-            new[] { _view.OptionsButton, _view.ReturnToMainMenuButton },
-            MainElementAnimationDuration, SecondaryElementAnimationDuration);
-    }
 }

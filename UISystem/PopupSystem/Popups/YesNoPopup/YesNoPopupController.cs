@@ -16,8 +16,8 @@ internal class YesNoPopupController<TViewHandler, TInputEvent> : PopupController
 
     protected override void SetupElements()
     {
-        View.YesButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.Yes);
-        View.NoButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.No);
+        _view.YesButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.Yes);
+        _view.NoButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.No);
     }
 
 }

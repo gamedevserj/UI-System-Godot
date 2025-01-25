@@ -1,10 +1,9 @@
 using Godot;
 using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.Views;
 using UISystem.Elements.ElementViews;
 
 namespace UISystem.MenuSystem.Views;
-public partial class OptionsMenuView : BaseInteractableWindow
+public partial class OptionsMenuView : MenuView
 {
 
     [Export] private ButtonView interfaceSettingsButton;
@@ -21,10 +20,7 @@ public partial class OptionsMenuView : BaseInteractableWindow
     public ButtonView RebindKeysButton => rebindKeysButton;
     public Control FadeObjectsContainer => fadeObjectsContainer;
 
-    public override void FocusElement()
-    {
-        throw new System.NotImplementedException();
-    }
+    protected override IFocusableControl DefaultSelectedElement => InterfaceSettingsButton;
 
     protected override void PopulateFocusableElements()
     {

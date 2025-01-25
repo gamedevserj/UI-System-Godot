@@ -5,53 +5,36 @@ using UISystem.Core.Elements.Structs;
 using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
-using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
+using UISystem.MenuSystem.ViewHandlers;
 using UISystem.MenuSystem.Views;
-using UISystem.Transitions.Interfaces;
-using UISystem.Transitions;
-using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.PhysicalInput;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class InterfaceSettingsMenuController : SettingsMenuController<InterfaceSettingsMenuView, InterfaceSettingsMenuModel, Node, IFocusableControl>
+internal class InterfaceSettingsMenuController<TViewHandler, TInputEvent>
+    : SettingsMenuController<InterfaceSettingsMenuViewHandler<InterfaceSettingsMenuView>, InputEvent, InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
 {
 
-    private const float PanelDuration = 0.5f;
-    private const float ElementsDuration = 0.25f;
     private readonly int _controllerIconsNumber;
-
     public override int Type => MenuType.InterfaceSettings;
 
-
-    public InterfaceSettingsMenuController(string prefab, InterfaceSettingsMenuModel model, IMenusManager<InputEvent> menusManager, Node parent,
-        IPopupsManager<InputEvent> popupsManager) :
-        base(prefab, model, menusManager, parent, popupsManager)
+    public InterfaceSettingsMenuController(InterfaceSettingsMenuViewHandler<InterfaceSettingsMenuView> viewHandler, InterfaceSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;
     }
 
     protected override void SetupElements()
     {
-        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
         SetupControllerIconsDropdown();
+        base.SetupElements();
         _view.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
-        _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
-        DefaultSelectedElement = _view.ReturnButton;
-    }
-
-    private void OnReturnButtonDown()
-    {
-        _lastSelectedElement = _view.ReturnButton;
-        OnCancelButtonDown();
     }
 
     private void OnSaveSettingsButtonDown()
     {
         _model.SaveSettings();
-        _lastSelectedElement = _view.SaveSettingsButton;
+        _view.SetLastSelectedElement(_view.SaveSettingsButton);
     }
 
     private void SetupControllerIconsDropdown()
@@ -70,7 +53,7 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<Interfac
     private void SelectControllerIconsType(long index)
     {
         _model.SelectIconType((int)index);
-        _lastSelectedElement = _view.ControllerIconsDropdown;
+        _view.SetLastSelectedElement(_view.ControllerIconsDropdown);
     }
 
     protected override void ResetViewToDefault()
@@ -78,10 +61,4 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<Interfac
         _view.ControllerIconsDropdown.Select((int)_model.ControllerIconsType);
     }
 
-    protected override IViewTransition CreateTransition()
-    {
-        return new PanelSizeTransition(_view, _view.FadeObjectsContainer, _view.Panel,
-            new ITweenableMenuElement[] { _view.ReturnButton, _view.ControllerIconsDropdown, _view.SaveSettingsButton, _view.ResetButton },
-            PanelDuration, ElementsDuration);
-    }
 }

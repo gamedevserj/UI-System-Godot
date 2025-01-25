@@ -12,6 +12,8 @@ public class MainElementDropTransition : IViewTransition
 {
 
     private const float FadeDuration = 0.1f;
+    private const float MainElementAnimationDuration = 0.2f;
+    private const float SecondaryElementAnimationDuration = 0.1f;
 
     private Vector2 _mainElementSize;
     private bool _initializedParameters;
@@ -34,7 +36,8 @@ public class MainElementDropTransition : IViewTransition
     }
 
     public MainElementDropTransition(Control caller, Control fadeObjectsContainer, ITweenableMenuElement mainResizableControl,
-        ITweenableMenuElement[] secondaryElements, float mainElementDuration, float secondaryElementDuration)
+        ITweenableMenuElement[] secondaryElements, float mainElementDuration = MainElementAnimationDuration, 
+        float secondaryElementDuration = SecondaryElementAnimationDuration)
     {
         _caller = caller;
         _fadeObjectsContainer = fadeObjectsContainer;

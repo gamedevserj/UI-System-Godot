@@ -8,7 +8,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_runyc"]
 
-[node name="AudioSettingsMenuView" type="Control" node_paths=PackedStringArray("resizableControlMusic", "musicSlider", "resizableControlSfx", "sfxSlider", "saveSettingsButton", "returnButton", "panel", "fadeObjectsContainer", "resetButton")]
+[node name="AudioSettingsMenuView" type="Control" node_paths=PackedStringArray("resizableControlMusic", "musicSlider", "resizableControlSfx", "sfxSlider", "saveSettingsButton", "returnButton", "panel", "fadeObjectsContainer", "returnButton", "resetButton")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 3
@@ -28,6 +28,7 @@ saveSettingsButton = NodePath("Container/Panel/PanelBorder/Color/ButtonsContaine
 returnButton = NodePath("Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton")
 panel = NodePath("Container/Panel")
 fadeObjectsContainer = NodePath("Container")
+returnButton = NodePath("Container/Panel/PanelBorder/Color/ButtonsContainer/ReturnButton")
 resetButton = NodePath("Container/Panel/PanelBorder/Color/ButtonsContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]

@@ -2,23 +2,21 @@ using Godot;
 using System;
 using UISystem.Constants;
 using UISystem.Core.Elements.Interfaces;
+using UISystem.Core.MenuSystem.Controllers;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
-using UISystem.Core.Transitions.Interfaces;
 using UISystem.MenuSystem.Constants;
+using UISystem.MenuSystem.ViewHandlers;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
 using UISystem.ScreenFade;
-using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class MainMenuController : MenuController<string, MainMenuView, IMenuModel, Node, IFocusableControl>
+internal class MainMenuController<TViewHandler, TInputEvent> 
+    : MenuController<MainMenuViewHandler<MainMenuView>, MainMenuView, IMenuModel, InputEvent, IFocusableControl>
 {
-
-    private const float MainElementAnimationDuration = 0.25f;
-    private const float SecondaryElementAnimationDuration = 0.5f;
 
     public override int Type => MenuType.Main;
 
@@ -27,14 +25,14 @@ internal class MainMenuController : MenuController<string, MainMenuView, IMenuMo
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(string prefab, IMenuModel model, IMenusManager<InputEvent> menusManager, Node parent, SceneTree sceneTree, 
-        IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) :
-        base(prefab, model, menusManager, parent)
+    public MainMenuController(MainMenuViewHandler<MainMenuView> viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager,
+        SceneTree sceneTree, IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
+        : base(viewHandler, model, menusManager)
     {
         _sceneTree = sceneTree;
         _popupsManager = popupsManager;
-        _menuBackgroundController = menuBackgroundController;
         _screenFadeManager = screenFadeManager;
+        _menuBackgroundController = menuBackgroundController;
     }
 
     public override void Show(Action onComplete = null, bool instant = false)
@@ -55,7 +53,6 @@ internal class MainMenuController : MenuController<string, MainMenuView, IMenuMo
         _view.PlayButton.ButtonDown += PressedPlay;
         _view.OptionsButton.ButtonDown += PressedOptions;
         _view.QuitButton.ButtonDown += PressedQuit;
-        DefaultSelectedElement = _view.PlayButton;
     }
 
     public override void OnCancelButtonDown()
@@ -66,7 +63,8 @@ internal class MainMenuController : MenuController<string, MainMenuView, IMenuMo
 
     private void PressedPlay()
     {
-        _lastSelectedElement = _view.PlayButton;
+        //_lastSelectedElement = _view.PlayButton;
+        _view.SetLastSelectedElement(_view.PlayButton);
         _screenFadeManager.FadeOut(() =>
         {
             _menusManager.ShowMenu(MenuType.InGame, StackingType.Clear, instant: true);
@@ -75,13 +73,15 @@ internal class MainMenuController : MenuController<string, MainMenuView, IMenuMo
 
     private void PressedOptions()
     {
-        _lastSelectedElement = _view.OptionsButton;
+        //_lastSelectedElement = _view.OptionsButton;
+        _view.SetLastSelectedElement(_view.OptionsButton);
         _menusManager.ShowMenu(MenuType.Options);
     }
 
     private void PressedQuit()
     {
-        _lastSelectedElement = _view.QuitButton;
+        //_lastSelectedElement = _view.QuitButton;
+        _view.SetLastSelectedElement(_view.QuitButton);
         ShowQuitPopup();
     }
 
@@ -97,10 +97,4 @@ internal class MainMenuController : MenuController<string, MainMenuView, IMenuMo
         });
     }
 
-    protected override IViewTransition CreateTransition()
-    {
-        return new MainElementDropTransition(_view, _view.FadeObjectsContainer, _view.PlayButton,
-            new[] { _view.OptionsButton, _view.QuitButton },
-            MainElementAnimationDuration, SecondaryElementAnimationDuration);
-    }
 }

@@ -4,27 +4,21 @@ using UISystem.Core.Constants;
 using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
-using UISystem.Core.Transitions.Interfaces;
 using UISystem.Elements.ElementViews;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
+using UISystem.MenuSystem.ViewHandlers;
 using UISystem.MenuSystem.Views;
-using UISystem.Transitions.Interfaces;
-using UISystem.Transitions;
-using UISystem.Core.PhysicalInput;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuView, RebindKeysMenuModel, Node, IFocusableControl>
+internal class RebindKeysMenuController<TViewHandler, TInputEvent>
+    : SettingsMenuController<RebindKeysMenuViewHandler<RebindKeysMenuView>, InputEvent, RebindKeysMenuView, RebindKeysMenuModel>
 {
-
-    private const float PanelDuration = 0.5f;
-    private const float ElementsDuration = 0.25f;
 
     public override int Type => MenuType.RebindKeys;
 
-    public RebindKeysMenuController(string prefab, RebindKeysMenuModel model, IMenusManager<InputEvent> menusManager, Node parent,
-        IPopupsManager<InputEvent> popupsManager) : base(prefab, model, menusManager, parent, popupsManager)
+    public RebindKeysMenuController(RebindKeysMenuViewHandler<RebindKeysMenuView> viewHandler, RebindKeysMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
     { }
 
     public override void OnAnyButtonDown(InputEvent inputEvent)
@@ -63,7 +57,7 @@ internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuV
         {
             button.GetViewport().SetInputAsHandled();
             button.GrabFocus();
-            _lastSelectedElement = button;
+            _view.SetLastSelectedElement(button);
         }
     }
 
@@ -88,7 +82,6 @@ internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuV
         OnButtonDown(_view.JumpJoystick, InputsData.Jump, InputsData.JoystickEventIndex);
 
         UpdateAllButtonViews();
-        DefaultSelectedElement = _view.ReturnButton;
     }
 
     private void UpdateAllButtonViews()
@@ -114,16 +107,8 @@ internal class RebindKeysMenuController : SettingsMenuController<RebindKeysMenuV
 
     private void OnReturnButtonDown()
     {
-        _lastSelectedElement = _view.ReturnButton;
+        _view.SetLastSelectedElement(_view.ReturnButton);
         OnCancelButtonDown();
     }
 
-    protected override IViewTransition CreateTransition()
-    {
-        return new PanelSizeTransition(_view, _view.FadeObjectsContainer, _view.Panel,
-            new ITweenableMenuElement[] { _view.ReturnButton, _view.ResetButton,
-                _view.MoveLeft, _view.MoveLeftJoystick, _view.MoveRight, _view.MoveRightJoystick, _view.Jump, _view.JumpJoystick,
-                _view.MoveLeftLabelResizableControl, _view.MoveRightLabelResizableControl, _view.JumpLabelResizableControl},
-            PanelDuration, ElementsDuration);
-    }
 }

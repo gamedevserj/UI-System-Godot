@@ -10,13 +10,11 @@ public partial class VideoSettingsMenuView : SettingsMenuView
     [Export] private DropdownView windowModeDropdown;
     [Export] private DropdownView resolutionDropdown;
     [Export] private ButtonView saveSettingsButton;
-    [Export] private ButtonView returnButton;
     [Export] private Control panel;
 
     public DropdownView WindowModeDropdown => windowModeDropdown;
     public DropdownView ResolutionDropdown => resolutionDropdown;
     public ButtonView SaveSettingsButton => saveSettingsButton;
-    public ButtonView ReturnButton => returnButton;
     public Control Panel => panel;
 
     protected override void PopulateFocusableElements()

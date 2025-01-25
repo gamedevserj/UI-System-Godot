@@ -9,7 +9,7 @@ internal abstract class ViewHandler<TPrefab, TView, TParent> : IViewHandler<TVie
     protected readonly TPrefab _prefab;
     protected readonly TParent _parent;
 
-    protected abstract bool IsViewValid { get; }
+    public abstract bool IsViewValid { get; }
 
     public ViewHandler(TPrefab prefab, TParent parent)
     {
@@ -17,12 +17,7 @@ internal abstract class ViewHandler<TPrefab, TView, TParent> : IViewHandler<TVie
         _parent = parent;
     }
 
-    public TView GetOrCreateView()
-    {
-        if (!IsViewValid)
-            _view = CreateView();
-        return _view;
-    }
+    public abstract TView CreateView();
 
     public abstract IViewTransition CreateTransition();
 
@@ -30,5 +25,4 @@ internal abstract class ViewHandler<TPrefab, TView, TParent> : IViewHandler<TVie
 
     public abstract void SwitchFocusAvailability(bool enable);
 
-    protected abstract TView CreateView();
 }

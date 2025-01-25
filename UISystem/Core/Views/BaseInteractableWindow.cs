@@ -31,11 +31,6 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
         }
     }
 
-    protected virtual void PopulateFocusableElements()
-    {
-
-    }
-
     public override void Show(Action onShown, bool instant = false)
     {
         SwitchFocusAvailability(false);
@@ -55,5 +50,7 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
             Visible = false; // need to switch off visibility to allow GuiPanel3D to receive mouse events
         }, instant);
     }
+
+    protected abstract void PopulateFocusableElements();
 
 }

@@ -1,20 +1,19 @@
 ﻿using Godot;
-using UISystem.Core.Views;
+using UISystem.Core.Elements.Interfaces;
 using UISystem.Elements.ElementViews;
 
 namespace UISystem.MenuSystem.SettingsMenu;
-public abstract partial class SettingsMenuView : BaseInteractableWindow
+public abstract partial class SettingsMenuView : MenuView
 {
 
     [Export] protected Control fadeObjectsContainer;
+    [Export] private ButtonView returnButton;
     [Export] private ButtonView resetButton;
 
     public Control FadeObjectsContainer => fadeObjectsContainer;
+    public ButtonView ReturnButton => returnButton;
     public ButtonView ResetButton => resetButton;
 
-    public override void FocusElement()
-    {
-        throw new System.NotImplementedException();
-    }
+    protected override IFocusableControl DefaultSelectedElement => ReturnButton;
 
 }

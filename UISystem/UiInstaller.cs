@@ -9,6 +9,8 @@ using UISystem.MenuSystem;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Controllers;
 using UISystem.MenuSystem.Models;
+using UISystem.MenuSystem.ViewHandlers;
+using UISystem.MenuSystem.Views;
 using UISystem.PhysicalInput;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
@@ -62,16 +64,25 @@ public partial class UiInstaller : Node
 
         var backgroundController = new MenuBackgroundController(GetTree(), menuBackground);
         _menusManager = new MenusManager<InputEvent>();
+        var mainMenuViewHandler = new MainMenuViewHandler<MainMenuView>(GetMenuPath(MenuType.Main), menusParent);
+        var inGameMenuViewHandler = new InGameMenuViewHandler<InGameMenuView>(GetMenuPath(MenuType.InGame), menusParent);
+        var pauseViewHandler = new PauseMenuViewHandler<PauseMenuView>(GetMenuPath(MenuType.Pause), menusParent);
+        var optionsViewHandler = new OptionsMenuViewHandler<OptionsMenuView>(GetMenuPath(MenuType.Options), menusParent);
+        var audioSettingsViewHandler = new AudioSettingsMenuViewHandler<AudioSettingsMenuView>(GetMenuPath(MenuType.AudioSettings), menusParent);
+        var videoSettingsViewHandler = new VideoSettingsMenuViewHandler<VideoSettingsMenuView>(GetMenuPath(MenuType.VideoSettings), menusParent);
+        var rebindKeysViewHandler = new RebindKeysMenuViewHandler<RebindKeysMenuView>(GetMenuPath(MenuType.RebindKeys), menusParent);
+        var interfaceMenuViewHandler = new InterfaceSettingsMenuViewHandler<InterfaceSettingsMenuView>(GetMenuPath(MenuType.InterfaceSettings), menusParent);
         var menus = new IMenuController<InputEvent>[]
         {
-            new MainMenuController(GetMenuPath(MenuType.Main), new MainMenuModel(), _menusManager, menusParent, tree, _popupsManager, screenFadeManager, backgroundController),
-            new InGameMenuController(GetMenuPath(MenuType.InGame), new InGameMenuModel(), _menusManager, menusParent),
-            new PauseMenuController(GetMenuPath(MenuType.Pause), new PauseMenuModel(), _menusManager, menusParent, _popupsManager, screenFadeManager, backgroundController),
-            new OptionsMenuController(GetMenuPath(MenuType.Options), new OptionsMenuModel(), _menusManager, menusParent),
-            new AudioSettingsMenuController(GetMenuPath(MenuType.AudioSettings), new AudioSettingsMenuModel(settings), _menusManager, menusParent, _popupsManager),
-            new VideoSettingsMenuController(GetMenuPath(MenuType.VideoSettings), new VideoSettingsMenuModel(settings), _menusManager, menusParent, _popupsManager),
-            new RebindKeysMenuController(GetMenuPath(MenuType.RebindKeys), new RebindKeysMenuModel(settings), _menusManager, menusParent, _popupsManager),
-            new InterfaceSettingsMenuController(GetMenuPath(MenuType.InterfaceSettings), new InterfaceSettingsMenuModel(settings), _menusManager, menusParent, _popupsManager),
+            new MainMenuController<MainMenuView, InputEvent>(mainMenuViewHandler, null, _menusManager, tree, _popupsManager, screenFadeManager, backgroundController),
+            //new MainMenuController(GetMenuPath(MenuType.Main), new MainMenuModel(), _menusManager, menusParent, tree, _popupsManager, screenFadeManager, backgroundController),
+            new InGameMenuController<InGameMenuView, InputEvent>(inGameMenuViewHandler, new InGameMenuModel(), _menusManager),
+            new PauseMenuController<PauseMenuView, InputEvent>(pauseViewHandler, null, _menusManager, _popupsManager, screenFadeManager, backgroundController),
+            new OptionsMenuController<OptionsMenuView, InputEvent>(optionsViewHandler, null, _menusManager),
+            new AudioSettingsMenuController<AudioSettingsMenuView, InputEvent>(audioSettingsViewHandler, new AudioSettingsMenuModel(settings), _menusManager, _popupsManager),
+            new VideoSettingsMenuController<VideoSettingsMenuView, InputEvent>(videoSettingsViewHandler, new VideoSettingsMenuModel(settings), _menusManager, _popupsManager),
+            new RebindKeysMenuController<RebindKeysMenuView, InputEvent>(rebindKeysViewHandler, new RebindKeysMenuModel(settings), _menusManager, _popupsManager),
+            new InterfaceSettingsMenuController<InterfaceSettingsMenuView, InputEvent>(interfaceMenuViewHandler, new InterfaceSettingsMenuModel(settings), _menusManager, _popupsManager),
         };
         _menusManager.Init(menus, inputProcessor);
         _menusManager.ShowMenu(MenuType.Main, StackingType.Clear);

@@ -7,7 +7,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_ulc4q"]
 
-[node name="YesNoCancelPopup" type="Control" node_paths=PackedStringArray("noButton", "cancelButton", "fadeObjectsContainer", "panel", "yesButton", "messageMask", "message")]
+[node name="YesNoCancelPopup" type="Control" node_paths=PackedStringArray("cancelButton", "noButton", "yesButton", "messageMask", "fadeObjectsContainer", "panel", "messageLabel")]
 light_mask = 2
 visibility_layer = 2
 z_index = 30
@@ -18,13 +18,13 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_r2q6b")
-noButton = NodePath("FadeObjectContainer/Outline/Color/ButtonsContainer/NoButton")
 cancelButton = NodePath("FadeObjectContainer/Outline/Color/ButtonsContainer/CancelButton")
-fadeObjectsContainer = NodePath("FadeObjectContainer")
-panel = NodePath("FadeObjectContainer/Outline")
+noButton = NodePath("FadeObjectContainer/Outline/Color/ButtonsContainer/NoButton")
 yesButton = NodePath("FadeObjectContainer/Outline/Color/ButtonsContainer/YesButton")
 messageMask = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask")
-message = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask/Message")
+fadeObjectsContainer = NodePath("FadeObjectContainer")
+panel = NodePath("FadeObjectContainer/Outline")
+messageLabel = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask/Message")
 
 [node name="FadeObjectContainer" type="Control" parent="."]
 light_mask = 2

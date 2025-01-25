@@ -9,11 +9,9 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
 
     [Export] private DropdownView controllerIconsDropdown;
     [Export] private ButtonView saveSettingsButton;
-    [Export] private ButtonView returnButton;
     [Export] private Control panel;
 
     public ButtonView SaveSettingsButton => saveSettingsButton;
-    public ButtonView ReturnButton => returnButton;
     public DropdownView ControllerIconsDropdown => controllerIconsDropdown;
     public Control Panel => panel;
 

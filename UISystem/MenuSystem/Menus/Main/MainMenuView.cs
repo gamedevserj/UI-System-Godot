@@ -4,7 +4,7 @@ using UISystem.Core.Views;
 using UISystem.Elements.ElementViews;
 
 namespace UISystem.MenuSystem.Views;
-public partial class MainMenuView : BaseInteractableWindow
+public partial class MainMenuView : MenuView
 {
 
     [Export] private ButtonView playButton;
@@ -17,10 +17,7 @@ public partial class MainMenuView : BaseInteractableWindow
     public ButtonView QuitButton => quitButton;
     public Control FadeObjectsContainer => fadeObjectsContainer;
 
-    public override void FocusElement()
-    {
-        throw new System.NotImplementedException();
-    }
+    protected override IFocusableControl DefaultSelectedElement => PlayButton;
 
     protected override void PopulateFocusableElements()
     {

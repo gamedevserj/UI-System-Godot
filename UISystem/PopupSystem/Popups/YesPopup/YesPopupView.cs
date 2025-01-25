@@ -1,6 +1,5 @@
 ﻿using Godot;
 using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.PopupSystem.Views;
 using UISystem.Elements.ElementViews;
 
 namespace UISystem.PopupSystem.Popups.Views;
