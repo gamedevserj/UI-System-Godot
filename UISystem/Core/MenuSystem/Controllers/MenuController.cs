@@ -63,7 +63,6 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
     protected void SwitchFocusAvailability(bool enable)
     {
         _view.SwitchFocusAvailability(enable);
-        CanReceivePhysicalInput = enable;
         if (enable)
             _view.FocusElement();
     }

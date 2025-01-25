@@ -26,6 +26,11 @@ internal class RebindKeysMenuController<TViewHandler, TInputEvent>
         if (_model.IsRebinding)
             _model.RebindKey(inputEvent);
     }
+    public override void OnCancelButtonDown()
+    {
+        if (!_model.IsRebinding)
+            base.OnCancelButtonDown();
+    }
 
     private static void UpdateButtonView(RebindableKeyButtonView button, string action, int index)
     {
@@ -36,27 +41,23 @@ internal class RebindKeysMenuController<TViewHandler, TInputEvent>
     private void OnButtonDown(RebindableKeyButtonView button, string action, int index)
     {
         button.TextureRect.Texture = (Texture2D)GD.Load(Icons.EllipsisImage);
-        SwitchRebindingButtonFocusability(button, false);
+        _view.SetLastSelectedElement(button);
+        SwitchFocusAvailability(false);
 
         _model.StartRebinding(action, index, () =>
         {
             SwitchRebindingButtonFocusability(button, true);
             UpdateButtonView(button, action, index);
+            SwitchFocusAvailability(true);
         });
     }
 
-    private void SwitchRebindingButtonFocusability(RebindableKeyButtonView button, bool allowFocus)
+    private void SwitchRebindingButtonFocusability(IFocusableControl button, bool allowFocus)
     {
-        (button as IFocusableControl).SwitchFocusAvailability(allowFocus);
-        (button as IFocusableControl).SwitchFocus(allowFocus);
-        if (!allowFocus)
-        {
-            button.ReleaseFocus();
-        }
+        SwitchFocusAvailability(allowFocus);
         if (allowFocus)
         {
-            button.GetViewport().SetInputAsHandled();
-            button.GrabFocus();
+            _view.GetViewport().SetInputAsHandled();
             _view.SetLastSelectedElement(button);
         }
     }

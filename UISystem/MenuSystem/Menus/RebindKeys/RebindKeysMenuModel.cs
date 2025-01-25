@@ -38,7 +38,6 @@ public class RebindKeysMenuModel : ISettingsMenuModel
     {
         _onFinishedRebinding = onFinishedRebinding;
         _currentlyRebindingEventIndex = index;
-
         _currentlyRebindingAction = action;
         _isRebinding = true;
     }

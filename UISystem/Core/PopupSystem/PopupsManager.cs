@@ -42,17 +42,4 @@ public partial class PopupsManager<TInputEvent> : IPopupsManager<TInputEvent>
         _currentController = null;
     }
 
-    //private void AddPopups(IPopupController[] popupControllers)
-    //{
-    //    for (int i = 0; i < popupControllers.Length; i++)
-    //    {
-    //        _controllers.Add(popupControllers[i].Type, popupControllers[i]);
-    //    }
-    //}
-
-    //private static string GetPopupPath(int type)
-    //{
-    //    return PopupViewsPaths.Paths[type];
-    //}
-
 }
