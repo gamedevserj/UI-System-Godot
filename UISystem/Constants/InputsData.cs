@@ -1,7 +1,8 @@
 ﻿namespace UISystem.Core.Constants;
-internal partial class InputsData
+internal class InputsData
 {
 
+    public const string ReturnButton = "ReturnToPreviousMenu";
     public const string PauseButton = "PauseButton";
 
     public const int KeyboardEventIndex = 0;
