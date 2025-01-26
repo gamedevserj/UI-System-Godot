@@ -1,6 +1,6 @@
 using Godot;
-using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.Views;
+using UISystem.Elements;
 using UISystem.Elements.ElementViews;
 
 namespace UISystem.MenuSystem.Views;

@@ -1,5 +1,5 @@
 ﻿using Godot;
-using UISystem.Core.Elements.Interfaces;
+using UISystem.Elements;
 using UISystem.Elements.ElementViews;
 
 namespace UISystem.MenuSystem.SettingsMenu;

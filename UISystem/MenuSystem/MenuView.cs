@@ -1,6 +1,6 @@
-﻿using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.MenuSystem;
+﻿using UISystem.Core.MenuSystem;
 using UISystem.Core.Views;
+using UISystem.Elements;
 
 namespace UISystem.MenuSystem;
 public abstract partial class MenuView : BaseInteractableWindow, IMenuView<IFocusableControl>

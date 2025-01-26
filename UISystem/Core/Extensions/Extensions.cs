@@ -1,5 +1,5 @@
 using Godot;
-using UISystem.Core.Elements.Structs;
+using UISystem.Elements;
 
 namespace UISystem.Core.Extensions
 {

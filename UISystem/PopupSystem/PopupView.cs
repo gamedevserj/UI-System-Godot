@@ -1,7 +1,7 @@
 ﻿using Godot;
-using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
+using UISystem.Elements;
 
 namespace UISystem.PopupSystem;
 public abstract partial class PopupView : BaseInteractableWindow, IPopupView

@@ -1,5 +1,5 @@
 using Godot;
-using UISystem.Core.Elements.Interfaces;
+using UISystem.Elements;
 
 namespace UISystem.MenuSystem.Views;
 public partial class InGameMenuView : MenuView

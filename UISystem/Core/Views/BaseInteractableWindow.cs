@@ -1,6 +1,6 @@
 ﻿using System;
-using UISystem.Core.Elements.Interfaces;
 using UISystem.Core.Transitions.Interfaces;
+using UISystem.Elements;
 
 namespace UISystem.Core.Views;
 /// <summary>
