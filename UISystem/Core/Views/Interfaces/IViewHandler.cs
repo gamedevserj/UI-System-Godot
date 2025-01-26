@@ -1,6 +1,6 @@
 ﻿using UISystem.Core.Transitions;
 
-namespace UISystem.Core.Views.Interfaces;
+namespace UISystem.Core.Views;
 internal interface IViewHandler<TView>
 {
 

@@ -1,4 +1,4 @@
-﻿using UISystem.Core.Views.Interfaces;
+﻿using UISystem.Core.Views;
 
 namespace UISystem.Core.PopupSystem;
 internal interface IPopupView : IView

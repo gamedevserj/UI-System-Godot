@@ -2,7 +2,7 @@
 using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
-using UISystem.Core.Views.Interfaces;
+using UISystem.Core.Views;
 using UISystem.Elements;
 using UISystem.MenuSystem.SettingsMenu.Interfaces;
 using UISystem.PopupSystem;

@@ -2,9 +2,9 @@
 using System;
 using UISystem.Core.Extensions;
 using UISystem.Core.Transitions;
-using UISystem.Core.Views.Interfaces;
+using UISystem.Core.Views;
 
-namespace UISystem.Core.Views;
+namespace UISystem.Views;
 public abstract partial class BaseWindowView : Control, IView
 {
 

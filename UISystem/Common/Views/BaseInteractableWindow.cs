@@ -2,7 +2,7 @@
 using UISystem.Core.Transitions;
 using UISystem.Elements;
 
-namespace UISystem.Core.Views;
+namespace UISystem.Views;
 /// <summary>
 /// Base class for a window with interactable elements (menu, popup, etc.)
 /// </summary>

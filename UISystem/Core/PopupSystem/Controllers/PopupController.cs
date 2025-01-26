@@ -1,7 +1,7 @@
 ﻿using System;
 using UISystem.Core.Controllers;
 using UISystem.Core.MenuSystem;
-using UISystem.Core.Views.Interfaces;
+using UISystem.Core.Views;
 
 namespace UISystem.Core.PopupSystem;
 internal abstract class PopupController<TViewHandler, TInputEvent, TView>

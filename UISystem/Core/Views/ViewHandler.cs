@@ -1,5 +1,4 @@
 ﻿using UISystem.Core.Transitions;
-using UISystem.Core.Views.Interfaces;
 
 namespace UISystem.Core.Views;
 internal abstract class ViewHandler<TPrefab, TView, TParent> : IViewHandler<TView>

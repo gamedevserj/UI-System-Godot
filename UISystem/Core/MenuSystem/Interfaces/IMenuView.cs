@@ -1,4 +1,4 @@
-﻿using UISystem.Core.Views.Interfaces;
+﻿using UISystem.Core.Views;
 
 namespace UISystem.Core.MenuSystem;
 internal interface IMenuView<TInteractableElement> : IView

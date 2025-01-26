@@ -1,6 +1,6 @@
 ﻿using System;
 using UISystem.Core.Controllers;
-using UISystem.Core.Views.Interfaces;
+using UISystem.Core.Views;
 
 namespace UISystem.Core.MenuSystem;
 internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent, TInteractableElement>
