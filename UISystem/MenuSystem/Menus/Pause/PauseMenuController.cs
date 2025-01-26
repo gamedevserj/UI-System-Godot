@@ -52,7 +52,7 @@ internal class PauseMenuController<TViewHandler, TInputEvent>
 
     protected override void SetupElements()
     {
-        _view.ResumeGameButton.ButtonDown += OnCancelButtonDown;
+        _view.ResumeGameButton.ButtonDown += OnReturnButtonDown;
         _view.OptionsButton.ButtonDown += PressedOptions;
         _view.ReturnToMainMenuButton.ButtonDown += PressedReturn;
     }

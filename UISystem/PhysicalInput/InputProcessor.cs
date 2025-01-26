@@ -9,7 +9,7 @@ internal class InputProcessor : IInputProcessor<InputEvent>
     public void ProcessInput(InputEvent inputEvent, IInputReceiver<InputEvent> inputReceiver)
     {
         if (inputEvent.IsActionPressed(InputsData.ReturnToPreviousMenu))
-            inputReceiver.OnCancelButtonDown();
+            inputReceiver.OnReturnButtonDown();
 
         if (inputEvent.IsActionPressed(InputsData.PauseButton))
             inputReceiver.OnPauseButtonDown();

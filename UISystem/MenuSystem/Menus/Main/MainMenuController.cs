@@ -55,7 +55,7 @@ internal class MainMenuController<TViewHandler, TInputEvent>
         _view.QuitButton.ButtonDown += PressedQuit;
     }
 
-    public override void OnCancelButtonDown()
+    public override void OnReturnButtonDown()
     {
         if (CanReturnToPreviousMenu)
             ShowQuitPopup();

@@ -26,10 +26,10 @@ internal class RebindKeysMenuController<TViewHandler, TInputEvent>
         if (_model.IsRebinding)
             _model.RebindKey(inputEvent);
     }
-    public override void OnCancelButtonDown()
+    public override void OnReturnButtonDown()
     {
         if (!_model.IsRebinding)
-            base.OnCancelButtonDown();
+            base.OnReturnButtonDown();
     }
 
     private static void UpdateButtonView(RebindableKeyButtonView button, string action, int index)
@@ -64,7 +64,7 @@ internal class RebindKeysMenuController<TViewHandler, TInputEvent>
 
     protected override void SetupElements()
     {
-        _view.ReturnButton.ButtonDown += OnCancelButtonDown;
+        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
         _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
 
         _view.MoveLeft.ButtonDown += () =>

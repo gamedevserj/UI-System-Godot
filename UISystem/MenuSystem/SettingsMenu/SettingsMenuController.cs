@@ -29,11 +29,11 @@ internal abstract class SettingsMenuController<TViewHandler, TInputEvent, TView,
 
     protected override void SetupElements()
     {
-        _view.ReturnButton.ButtonDown += OnCancelButtonDown;
+        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
         _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
     }
 
-    public override void OnCancelButtonDown()
+    public override void OnReturnButtonDown()
     {
         if (_model.HasUnappliedSettings)
         {
@@ -46,7 +46,7 @@ internal abstract class SettingsMenuController<TViewHandler, TInputEvent, TView,
         }
         else
         {
-            base.OnCancelButtonDown();
+            base.OnReturnButtonDown();
         }
     }
 
@@ -56,11 +56,11 @@ internal abstract class SettingsMenuController<TViewHandler, TInputEvent, TView,
         {
             case PopupResult.No:
                 _model.DiscardChanges();
-                base.OnCancelButtonDown();
+                base.OnReturnButtonDown();
                 break;
             case PopupResult.Yes:
                 _model.SaveSettings();
-                base.OnCancelButtonDown();
+                base.OnReturnButtonDown();
                 break;
             case PopupResult.Cancel:
                 SwitchFocusAvailability(true);

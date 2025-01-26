@@ -84,7 +84,7 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
             _view.FocusElement();
     }
 
-    public override void OnCancelButtonDown()
+    public override void OnReturnButtonDown()
     {
         if (CanReturnToPreviousMenu)
             _menusManager.ReturnToPreviousMenu();

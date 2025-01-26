@@ -60,7 +60,7 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView>
     }
     protected override void DestroyView() => _viewHandler.DestroyView();
 
-    public override void OnCancelButtonDown()
+    public override void OnReturnButtonDown()
     {
         _popupsManager.HidePopup(PressedReturnPopupResult);
     }

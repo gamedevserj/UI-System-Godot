@@ -3,7 +3,7 @@ public partial interface IInputReceiver<TInputEvent>
 {
 
     bool CanReceivePhysicalInput { get; }
-    void OnCancelButtonDown();
+    void OnReturnButtonDown();
     void OnPauseButtonDown();
     void OnAnyButtonDown(TInputEvent inputEvent);
 

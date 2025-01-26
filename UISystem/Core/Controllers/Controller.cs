@@ -1,7 +1,7 @@
-﻿using UISystem.Core.Views.Interfaces;
+﻿using UISystem.Core.PhysicalInput;
 
 namespace UISystem.Core.Controllers;
-internal abstract class Controller<TViewHandler, TView, TInputEvent>
+internal abstract class Controller<TViewHandler, TView, TInputEvent> : IInputReceiver<TInputEvent>
 {
 
     protected TViewHandler _viewHandler;
@@ -12,7 +12,7 @@ internal abstract class Controller<TViewHandler, TView, TInputEvent>
 
     public abstract void Init();
 
-    public abstract void OnCancelButtonDown();
+    public abstract void OnReturnButtonDown();
     public virtual void OnPauseButtonDown() { } // for in-game menu
     public virtual void OnAnyButtonDown(TInputEvent inputEvent) { }  // for rebind menu
     protected abstract void DestroyView();
