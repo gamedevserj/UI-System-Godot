@@ -9,7 +9,7 @@ using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class AudioSettingsMenuController<TViewHandler, TInputEvent>
-    : SettingsMenuController<AudioSettingsMenuViewHandler<AudioSettingsMenuView>, InputEvent, AudioSettingsMenuView, AudioSettingsMenuModel>
+    : SettingsMenuController<AudioSettingsMenuViewHandler<AudioSettingsMenuView>, AudioSettingsMenuView, AudioSettingsMenuModel>
 {
 
     public override int Type => MenuType.AudioSettings;

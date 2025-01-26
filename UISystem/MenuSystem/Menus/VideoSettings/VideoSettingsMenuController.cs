@@ -12,7 +12,7 @@ using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class VideoSettingsMenuController<TViewHandler, TInputEvent>
-    : SettingsMenuController<VideoSettingsMenuViewHandler<VideoSettingsMenuView>, InputEvent, VideoSettingsMenuView, VideoSettingsMenuModel>
+    : SettingsMenuController<VideoSettingsMenuViewHandler<VideoSettingsMenuView>, VideoSettingsMenuView, VideoSettingsMenuModel>
 {
 
     public override int Type => MenuType.VideoSettings;

@@ -2,7 +2,7 @@
 using Godot.Collections;
 using System;
 using UISystem.Core.Constants;
-using UISystem.MenuSystem.SettingsMenu.Interfaces;
+using UISystem.Core.MenuSystem;
 
 namespace UISystem.MenuSystem.Models;
 public class RebindKeysMenuModel : ISettingsMenuModel

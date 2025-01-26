@@ -5,7 +5,7 @@ using UISystem.PopupSystem.Popups.ViewHandlers;
 using UISystem.PopupSystem.Popups.Views;
 
 namespace UISystem.PopupSystem.Popups.Controllers;
-internal class YesPopupController<TViewHandler, TInputEvent> : PopupController<YesPopupViewHandler<YesPopupView>, InputEvent, YesPopupView>
+internal class YesPopupController<TViewHandler, TInputEvent> : PopupControllerBase<YesPopupViewHandler<YesPopupView>, YesPopupView>
 {
 
     public override int Type => PopupType.Yes;

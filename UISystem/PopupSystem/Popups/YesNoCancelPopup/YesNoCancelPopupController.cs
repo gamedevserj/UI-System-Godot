@@ -5,7 +5,7 @@ using UISystem.PopupSystem.Popups.ViewHandlers;
 using UISystem.PopupSystem.Popups.Views;
 
 namespace UISystem.PopupSystem.Popups.Controllers;
-internal class YesNoCancelPopupController<TViewHandler, TInputEvent> : PopupController<YesNoCancelPopupViewHandler<YesNoCancelPopupView>, InputEvent, YesNoCancelPopupView>
+internal class YesNoCancelPopupController<TViewHandler, TInputEvent> : PopupControllerBase<YesNoCancelPopupViewHandler<YesNoCancelPopupView>, YesNoCancelPopupView>
 {
 
     public override int Type => PopupType.YesNoCancel;

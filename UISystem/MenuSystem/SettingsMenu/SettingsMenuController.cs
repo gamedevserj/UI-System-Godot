@@ -4,12 +4,11 @@ using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
 using UISystem.Elements;
-using UISystem.MenuSystem.SettingsMenu.Interfaces;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
 
 namespace UISystem.MenuSystem.SettingsMenu;
-internal abstract class SettingsMenuController<TViewHandler, TInputEvent, TView, TModel>
+internal abstract class SettingsMenuController<TViewHandler, TView, TModel>
     : MenuController<TViewHandler, TView, TModel, InputEvent, IFocusableControl>
     where TViewHandler : IViewHandler<TView>
     where TView : SettingsMenuView

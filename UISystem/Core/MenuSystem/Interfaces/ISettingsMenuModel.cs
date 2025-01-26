@@ -1,6 +1,4 @@
-﻿using UISystem.Core.MenuSystem;
-
-namespace UISystem.MenuSystem.SettingsMenu.Interfaces;
+﻿namespace UISystem.Core.MenuSystem;
 public interface ISettingsMenuModel : IMenuModel
 {
 

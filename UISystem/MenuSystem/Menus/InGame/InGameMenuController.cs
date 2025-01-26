@@ -1,13 +1,11 @@
 ﻿using Godot;
 using UISystem.Core.MenuSystem;
-using UISystem.Elements;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.ViewHandlers;
 using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class InGameMenuController<TViewHandler, TInputEvent> 
-    : MenuController<InGameMenuViewHandler<InGameMenuView>, InGameMenuView, IMenuModel, InputEvent, IFocusableControl>
+internal class InGameMenuController<TViewHandler, TInputEvent>  : MenuControllerBase<InGameMenuViewHandler<InGameMenuView>, InGameMenuView>
 {
 
     public override int Type => MenuType.InGame;

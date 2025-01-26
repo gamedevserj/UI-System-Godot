@@ -13,7 +13,7 @@ using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class InterfaceSettingsMenuController<TViewHandler, TInputEvent>
-    : SettingsMenuController<InterfaceSettingsMenuViewHandler<InterfaceSettingsMenuView>, InputEvent, InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
+    : SettingsMenuController<InterfaceSettingsMenuViewHandler<InterfaceSettingsMenuView>, InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
 {
 
     private readonly int _controllerIconsNumber;

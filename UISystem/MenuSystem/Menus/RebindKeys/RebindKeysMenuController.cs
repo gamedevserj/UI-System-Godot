@@ -13,7 +13,7 @@ using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class RebindKeysMenuController<TViewHandler, TInputEvent>
-    : SettingsMenuController<RebindKeysMenuViewHandler<RebindKeysMenuView>, InputEvent, RebindKeysMenuView, RebindKeysMenuModel>
+    : SettingsMenuController<RebindKeysMenuViewHandler<RebindKeysMenuView>, RebindKeysMenuView, RebindKeysMenuModel>
 {
 
     public override int Type => MenuType.RebindKeys;
