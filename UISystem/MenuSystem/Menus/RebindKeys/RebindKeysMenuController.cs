@@ -64,7 +64,7 @@ internal class RebindKeysMenuController<TViewHandler, TInputEvent>
 
     protected override void SetupElements()
     {
-        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
+        _view.ReturnButton.ButtonDown += OnCancelButtonDown;
         _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
 
         _view.MoveLeft.ButtonDown += () =>
@@ -104,12 +104,6 @@ internal class RebindKeysMenuController<TViewHandler, TInputEvent>
     protected override void ResetViewToDefault()
     {
         UpdateAllButtonViews();
-    }
-
-    private void OnReturnButtonDown()
-    {
-        _view.SetLastSelectedElement(_view.ReturnButton);
-        OnCancelButtonDown();
     }
 
 }

@@ -29,19 +29,15 @@ internal abstract class SettingsMenuController<TViewHandler, TInputEvent, TView,
 
     protected override void SetupElements()
     {
-        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
+        _view.ReturnButton.ButtonDown += OnCancelButtonDown;
         _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
-    }
-    private void OnReturnButtonDown()
-    {
-        _view.SetLastSelectedElement(_view.ReturnButton);
-        OnCancelButtonDown();
     }
 
     public override void OnCancelButtonDown()
     {
         if (_model.HasUnappliedSettings)
         {
+            _view.SetLastSelectedElement(_view.ReturnButton);
             SwitchFocusAvailability(false);
             _popupsManager.ShowPopup(PopupType.YesNoCancel, this, PopupMessages.SaveChanges, (result) =>
             {

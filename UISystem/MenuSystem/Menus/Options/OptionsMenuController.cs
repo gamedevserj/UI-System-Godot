@@ -16,16 +16,11 @@ internal class OptionsMenuController<TViewHandler, TInputEvent>
 
     protected override void SetupElements()
     {
-        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
+        _view.ReturnButton.ButtonDown += OnCancelButtonDown;
         _view.AudioSettingsButton.ButtonDown += OnAudioSettingsButtonDown;
         _view.VideoSettingsButton.ButtonDown += OnVideoSettingsButtonDown;
         _view.RebindKeysButton.ButtonDown += OnRebindKeysButtonDown;
         _view.InterfaceSettingsButton.ButtonDown += OnInterfaceSettingsButtonDown;
-    }
-
-    private void OnReturnButtonDown()
-    {
-        OnCancelButtonDown();
     }
 
     private void OnAudioSettingsButtonDown()
