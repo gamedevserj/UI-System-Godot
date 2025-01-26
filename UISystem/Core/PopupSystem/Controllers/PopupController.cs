@@ -65,9 +65,4 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView>
         _popupsManager.HidePopup(PressedReturnPopupResult);
     }
 
-    public override void OnPauseButtonDown()
-    { }
-    public override void OnAnyButtonDown(TInputEvent inputEvent)
-    { }
-
 }

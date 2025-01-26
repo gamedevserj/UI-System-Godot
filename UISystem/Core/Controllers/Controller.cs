@@ -13,8 +13,8 @@ internal abstract class Controller<TViewHandler, TView, TInputEvent>
     public abstract void Init();
 
     public abstract void OnCancelButtonDown();
-    public abstract void OnPauseButtonDown();
-    public abstract void OnAnyButtonDown(TInputEvent inputEvent);
+    public virtual void OnPauseButtonDown() { } // for in-game menu
+    public virtual void OnAnyButtonDown(TInputEvent inputEvent) { }  // for rebind menu
     protected abstract void DestroyView();
     protected abstract void SetupElements();
 

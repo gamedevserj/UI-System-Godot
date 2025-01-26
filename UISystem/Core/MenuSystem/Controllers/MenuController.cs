@@ -90,9 +90,4 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
             _menusManager.ReturnToPreviousMenu();
     }
 
-    public override void OnPauseButtonDown() // for in-game menu
-    { }
-    public override void OnAnyButtonDown(TInputEvent inputEvent) // for rebind menu
-    { }
-
 }
