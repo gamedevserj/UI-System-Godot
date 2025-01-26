@@ -1,6 +1,6 @@
 ﻿using System;
 using UISystem.Core.Controllers;
-using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.Core.Views.Interfaces;
 

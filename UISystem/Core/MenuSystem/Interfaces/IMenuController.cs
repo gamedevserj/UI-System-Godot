@@ -1,8 +1,7 @@
 using System;
-using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.PhysicalInput;
 
-namespace UISystem.Core.MenuSystem.Interfaces;
+namespace UISystem.Core.MenuSystem;
 public partial interface IMenuController<TInputEvent> : IInputReceiver<TInputEvent>
 {
 

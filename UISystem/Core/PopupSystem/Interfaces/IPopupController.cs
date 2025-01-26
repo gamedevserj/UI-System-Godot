@@ -1,5 +1,5 @@
 ﻿using System;
-using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.Core.MenuSystem;
 using UISystem.Core.PhysicalInput;
 
 namespace UISystem.Core.PopupSystem.Interfaces;

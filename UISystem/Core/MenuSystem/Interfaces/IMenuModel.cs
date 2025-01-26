@@ -1,4 +1,4 @@
-﻿namespace UISystem.Core.MenuSystem.Interfaces;
+﻿namespace UISystem.Core.MenuSystem;
 public interface IMenuModel
 {
 }

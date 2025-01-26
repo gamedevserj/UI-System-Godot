@@ -1,7 +1,5 @@
 ﻿using Godot;
 using UISystem.Core.MenuSystem;
-using UISystem.Core.MenuSystem.Enums;
-using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PhysicalInput;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.PopupSystem.Interfaces;
@@ -75,7 +73,6 @@ public partial class UiInstaller : Node
         var menus = new IMenuController<InputEvent>[]
         {
             new MainMenuController<MainMenuView, InputEvent>(mainMenuViewHandler, null, _menusManager, tree, _popupsManager, screenFadeManager, backgroundController),
-            //new MainMenuController(GetMenuPath(MenuType.Main), new MainMenuModel(), _menusManager, menusParent, tree, _popupsManager, screenFadeManager, backgroundController),
             new InGameMenuController<InGameMenuView, InputEvent>(inGameMenuViewHandler, new InGameMenuModel(), _menusManager),
             new PauseMenuController<PauseMenuView, InputEvent>(pauseViewHandler, null, _menusManager, _popupsManager, screenFadeManager, backgroundController),
             new OptionsMenuController<OptionsMenuView, InputEvent>(optionsViewHandler, null, _menusManager),

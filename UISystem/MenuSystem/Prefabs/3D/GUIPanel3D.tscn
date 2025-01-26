@@ -1,6 +1,6 @@
 [gd_scene load_steps=6 format=3 uid="uid://cq5278lo5txm8"]
 
-[ext_resource type="Script" path="res://UISystem/Core/MenuSystem/3D/GuiPanel3D.cs" id="1_ypv5l"]
+[ext_resource type="Script" path="res://UISystem/MenuSystem/3D/GuiPanel3D.cs" id="1_s31ks"]
 
 [sub_resource type="QuadMesh" id="1"]
 size = Vector2(1.6, 0.9)
@@ -19,7 +19,7 @@ size = Vector3(1.6, 0.9, 0.1)
 
 [node name="GUIPanel3D" type="Node3D" node_paths=PackedStringArray("subViewport", "quad", "area3d", "menusParent", "popupsParent")]
 process_mode = 3
-script = ExtResource("1_ypv5l")
+script = ExtResource("1_s31ks")
 subViewport = NodePath("SubViewport")
 quad = NodePath("Quad")
 area3d = NodePath("Quad/Area3D")

@@ -1,4 +1,4 @@
-﻿namespace UISystem.Core.MenuSystem.Enums;
+﻿namespace UISystem.Core.MenuSystem;
 public enum StackingType
 {
     Add = 0,

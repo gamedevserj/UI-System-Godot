@@ -1,11 +1,9 @@
 ﻿using System;
 using UISystem.Core.Controllers;
-using UISystem.Core.MenuSystem.Enums;
-using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Views.Interfaces;
 
-namespace UISystem.Core.MenuSystem.Controllers;
-internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent, TInteractableElement> 
+namespace UISystem.Core.MenuSystem;
+internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent, TInteractableElement>
     : Controller<TViewHandler, TView, TInputEvent>, IMenuController<TInputEvent>
     where TViewHandler : IViewHandler<TView>
     where TView : IMenuView<TInteractableElement>
@@ -45,7 +43,7 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
         }, instant);
     }
 
-    public virtual void Hide(StackingType stackingType, Action onComplete = null, bool instant = false) 
+    public virtual void Hide(StackingType stackingType, Action onComplete = null, bool instant = false)
     {
         CanReceivePhysicalInput = false;
         _view.Hide(() =>

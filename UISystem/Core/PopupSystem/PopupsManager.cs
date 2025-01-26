@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.Core.MenuSystem;
 using UISystem.Core.PhysicalInput;
 using UISystem.Core.PopupSystem.Interfaces;
 

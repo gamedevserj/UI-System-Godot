@@ -1,5 +1,5 @@
 ﻿using UISystem.Core.Elements.Interfaces;
-using UISystem.Core.MenuSystem.Interfaces;
+using UISystem.Core.MenuSystem;
 using UISystem.Core.Views;
 
 namespace UISystem.MenuSystem;
