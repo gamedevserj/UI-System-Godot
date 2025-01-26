@@ -1,5 +1,5 @@
 ﻿using System;
-using UISystem.Core.Transitions.Interfaces;
+using UISystem.Core.Transitions;
 
 namespace UISystem.Core.Views.Interfaces;
 internal interface IView

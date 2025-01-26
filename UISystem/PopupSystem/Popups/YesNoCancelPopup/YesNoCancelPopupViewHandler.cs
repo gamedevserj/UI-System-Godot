@@ -1,5 +1,5 @@
 ﻿using Godot;
-using UISystem.Core.Transitions.Interfaces;
+using UISystem.Core.Transitions;
 using UISystem.Core.Views.Interfaces;
 using UISystem.PopupSystem.Popups.Views;
 using UISystem.Transitions;

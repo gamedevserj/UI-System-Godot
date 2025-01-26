@@ -1,7 +1,7 @@
 ﻿using Godot;
 using System;
 using UISystem.Core.Extensions;
-using UISystem.Core.Transitions.Interfaces;
+using UISystem.Core.Transitions;
 using UISystem.Core.Views.Interfaces;
 
 namespace UISystem.Core.Views;

@@ -4,7 +4,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using UISystem.Core.Extensions;
-using UISystem.Core.Transitions.Interfaces;
+using UISystem.Core.Transitions;
 using UISystem.Transitions.Interfaces;
 
 namespace UISystem.Transitions;

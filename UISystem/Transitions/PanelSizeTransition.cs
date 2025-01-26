@@ -2,7 +2,7 @@
 using System;
 using System.Threading.Tasks;
 using UISystem.Core.Extensions;
-using UISystem.Core.Transitions.Interfaces;
+using UISystem.Core.Transitions;
 using UISystem.Transitions.Enums;
 using UISystem.Transitions.Extensions;
 using UISystem.Transitions.Interfaces;

@@ -1,5 +1,5 @@
 ﻿using System;
-using UISystem.Core.Transitions.Interfaces;
+using UISystem.Core.Transitions;
 using UISystem.Elements;
 
 namespace UISystem.Core.Views;
