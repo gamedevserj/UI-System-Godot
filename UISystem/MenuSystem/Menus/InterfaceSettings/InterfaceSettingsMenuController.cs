@@ -4,7 +4,7 @@ using UISystem.Common.Enums;
 using UISystem.Core.Elements.Structs;
 using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem;
-using UISystem.Core.PopupSystem.Interfaces;
+using UISystem.Core.PopupSystem;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;

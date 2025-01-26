@@ -2,7 +2,6 @@
 using System.Collections.Generic;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PhysicalInput;
-using UISystem.Core.PopupSystem.Interfaces;
 
 namespace UISystem.Core.PopupSystem;
 public partial class PopupsManager<TInputEvent> : IPopupsManager<TInputEvent>

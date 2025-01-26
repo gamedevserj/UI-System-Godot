@@ -1,12 +1,11 @@
 ﻿using System;
 using UISystem.Core.Controllers;
 using UISystem.Core.MenuSystem;
-using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.Core.Views.Interfaces;
 
-namespace UISystem.Core.PopupSystem.Controllers;
-internal abstract class PopupController<TViewHandler, TInputEvent, TView> 
-    : Controller<TViewHandler, TView, TInputEvent>, IPopupController<TInputEvent> 
+namespace UISystem.Core.PopupSystem;
+internal abstract class PopupController<TViewHandler, TInputEvent, TView>
+    : Controller<TViewHandler, TView, TInputEvent>, IPopupController<TInputEvent>
     where TViewHandler : IViewHandler<TView>
     where TView : IPopupView
 {
@@ -40,23 +39,23 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView>
         _caller.CanReturnToPreviousMenu = false;
         _view.SetMessage(message);
         _onHideAction = onHideAction;
-        _view.Show((() =>
+        _view.Show(() =>
         {
             CanReceivePhysicalInput = true;
             _view.FocusElement();
-        }), instant);
+        }, instant);
     }
 
     public void Hide(int result, bool instant = false)
     {
         CanReceivePhysicalInput = false;
-        _view.Hide((() =>
+        _view.Hide(() =>
         {
             CanReceivePhysicalInput = true;
             _caller.CanReturnToPreviousMenu = true;
             _onHideAction?.Invoke(result);
             DestroyView();
-        }), instant);
+        }, instant);
     }
     protected override void DestroyView() => _viewHandler.DestroyView();
 

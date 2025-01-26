@@ -2,7 +2,6 @@
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PhysicalInput;
 using UISystem.Core.PopupSystem;
-using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.MenuSystem;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Controllers;

@@ -1,6 +1,5 @@
 using Godot;
-using UISystem.Core.PopupSystem.Controllers;
-using UISystem.Core.PopupSystem.Interfaces;
+using UISystem.Core.PopupSystem;
 using UISystem.PopupSystem.Constants;
 using UISystem.PopupSystem.Popups.ViewHandlers;
 using UISystem.PopupSystem.Popups.Views;
