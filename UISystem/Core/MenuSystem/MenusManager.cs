@@ -6,26 +6,18 @@ namespace UISystem.Core.MenuSystem;
 public partial class MenusManager<TInputEvent> : IMenusManager<TInputEvent>
 {
 
+    public static Action<IInputReceiver<TInputEvent>> OnControllerSwitch;
+
     private IMenuController<TInputEvent> _currentController;
     private Stack<IMenuController<TInputEvent>> _previousMenus = new();
     private Dictionary<int, IMenuController<TInputEvent>> _controllers = new();
-    private IInputProcessor<TInputEvent> _inputProcessor;
 
-    public void Init(IMenuController<TInputEvent>[] controllers, IInputProcessor<TInputEvent> inputProcessor)
+    public void Init(IMenuController<TInputEvent>[] controllers)
     {
         for (int i = 0; i < controllers.Length; i++)
         {
             _controllers.Add(controllers[i].Type, controllers[i]);
         }
-        _inputProcessor = inputProcessor;
-    }
-
-    public void ProcessInput(TInputEvent inputEvent)
-    {
-        if (_currentController == null || !_currentController.CanReceivePhysicalInput)
-            return;
-
-        _inputProcessor.ProcessInput(inputEvent, _currentController);
     }
 
     public void ShowMenu(int menuType, StackingType stackingType = StackingType.Add, Action onNewMenuShown = null, bool instant = false)
@@ -78,9 +70,10 @@ public partial class MenusManager<TInputEvent> : IMenusManager<TInputEvent>
         }
         _currentController?.ProcessStacking(stackingType);
         _currentController = controller;
-
+        
         _currentController.Show(() =>
         {
+            OnControllerSwitch?.Invoke(_currentController);
             onNewMenuShown?.Invoke();
         }, instant);
     }

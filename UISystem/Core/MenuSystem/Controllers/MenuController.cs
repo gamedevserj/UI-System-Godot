@@ -1,5 +1,4 @@
 ﻿using System;
-using UISystem.Core.Controllers;
 using UISystem.Core.Views;
 
 namespace UISystem.Core.MenuSystem;
@@ -14,7 +13,8 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
 
     protected readonly IMenusManager<TInputEvent> _menusManager;
 
-    public bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
+    // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
+    public bool CanReturnToPreviousMenu { get; set; } = true; 
 
     public MenuController(TViewHandler viewHandler, TModel model, IMenusManager<TInputEvent> menusManager)
     {

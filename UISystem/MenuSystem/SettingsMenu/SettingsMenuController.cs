@@ -39,7 +39,7 @@ internal abstract class SettingsMenuController<TViewHandler, TInputEvent, TView,
             _view.SetLastSelectedElement(_view.ReturnButton);
             CanReceivePhysicalInput = false;
             SwitchFocusAvailability(false);
-            _popupsManager.ShowPopup(PopupType.YesNoCancel, this, PopupMessages.SaveChanges, (result) =>
+            _popupsManager.ShowPopup(PopupType.YesNoCancel, PopupMessages.SaveChanges, (result) =>
             {
                 OnReturnToPreviousMenuPopupClosed(result);
                 CanReceivePhysicalInput = true;
@@ -76,7 +76,7 @@ internal abstract class SettingsMenuController<TViewHandler, TInputEvent, TView,
     {
         _view.SetLastSelectedElement(_view.ResetButton);
         SwitchFocusAvailability(false);
-        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.ResetToDefault, (result) =>
+        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.ResetToDefault, (result) =>
         {
             if (result == PopupResult.Yes)
             {

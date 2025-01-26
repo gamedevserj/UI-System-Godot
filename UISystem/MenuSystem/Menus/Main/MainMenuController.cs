@@ -83,7 +83,7 @@ internal class MainMenuController<TViewHandler, TInputEvent>
     private void ShowQuitPopup()
     {
         SwitchFocusAvailability(false);
-        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.QuitGame, (result) =>
+        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.QuitGame, (result) =>
         {
             if (result == PopupResult.Yes)
                 _sceneTree.Quit();

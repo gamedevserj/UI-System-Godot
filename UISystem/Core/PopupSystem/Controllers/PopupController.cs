@@ -1,6 +1,4 @@
 ﻿using System;
-using UISystem.Core.Controllers;
-using UISystem.Core.MenuSystem;
 using UISystem.Core.Views;
 
 namespace UISystem.Core.PopupSystem;
@@ -11,7 +9,6 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView>
 {
 
     protected Action<int> _onHideAction;
-    private IMenuController<TInputEvent> _caller;
 
     protected readonly IPopupsManager<TInputEvent> _popupsManager;
 
@@ -32,11 +29,9 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView>
         }
     }
 
-    public void Show(IMenuController<TInputEvent> caller, string message, Action<int> onHideAction, bool instant = false)
+    public void Show(string message, Action<int> onHideAction, bool instant = false)
     {
         CanReceivePhysicalInput = false;
-        _caller = caller;
-        _caller.CanReturnToPreviousMenu = false;
         _view.SetMessage(message);
         _onHideAction = onHideAction;
         _view.Show(() =>
@@ -52,7 +47,6 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView>
         _view.Hide(() =>
         {
             CanReceivePhysicalInput = true;
-            _caller.CanReturnToPreviousMenu = true;
             _onHideAction?.Invoke(result);
             DestroyView();
         }, instant);

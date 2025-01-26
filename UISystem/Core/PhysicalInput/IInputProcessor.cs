@@ -2,6 +2,6 @@
 public partial interface IInputProcessor<TInputEvent>
 {
 
-    void ProcessInput(TInputEvent input, IInputReceiver<TInputEvent> inputReceiver);
+    void ProcessInput(TInputEvent input);
 
 }

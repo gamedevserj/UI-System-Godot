@@ -66,7 +66,7 @@ internal class PauseMenuController<TViewHandler, TInputEvent>
         _view.SetLastSelectedElement(_view.ReturnToMainMenuButton);
         SwitchFocusAvailability(false);
 
-        _popupsManager.ShowPopup(PopupType.YesNo, this, PopupMessages.QuitToMainMenu, (result) =>
+        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.QuitToMainMenu, (result) =>
         {
             if (result == PopupResult.Yes)
             {
