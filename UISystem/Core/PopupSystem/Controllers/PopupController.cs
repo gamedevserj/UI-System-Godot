@@ -67,8 +67,6 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView>
 
     public override void OnPauseButtonDown()
     { }
-    public override void OnResumeButtonDown() 
-    { }
     public override void OnAnyButtonDown(TInputEvent inputEvent)
     { }
 

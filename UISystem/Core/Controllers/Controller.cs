@@ -14,7 +14,6 @@ internal abstract class Controller<TViewHandler, TView, TInputEvent>
 
     public abstract void OnCancelButtonDown();
     public abstract void OnPauseButtonDown();
-    public abstract void OnResumeButtonDown();
     public abstract void OnAnyButtonDown(TInputEvent inputEvent);
     protected abstract void DestroyView();
     protected abstract void SetupElements();

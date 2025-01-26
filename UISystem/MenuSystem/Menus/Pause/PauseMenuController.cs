@@ -50,21 +50,11 @@ internal class PauseMenuController<TViewHandler, TInputEvent>
         }, instant);
     }
 
-    public override void OnResumeButtonDown()
-    {
-        PressedResume();
-    }
-
     protected override void SetupElements()
     {
-        _view.ResumeGameButton.ButtonDown += PressedResume;
+        _view.ResumeGameButton.ButtonDown += OnCancelButtonDown;
         _view.OptionsButton.ButtonDown += PressedOptions;
         _view.ReturnToMainMenuButton.ButtonDown += PressedReturn;
-    }
-
-    private void PressedResume()
-    {
-        _menusManager.ReturnToPreviousMenu();
     }
 
     private void PressedOptions()
