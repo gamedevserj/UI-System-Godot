@@ -3,22 +3,12 @@ using System.Collections.Generic;
 using UISystem.Core.PhysicalInput;
 
 namespace UISystem.Core.MenuSystem;
-public partial class MenusManager<TInputEvent> : IMenusManager<TInputEvent>
+public partial class MenusManager<TInputEvent> : Manager<IMenuController<TInputEvent>, TInputEvent>, IMenusManager<TInputEvent>
 {
 
     public static Action<IInputReceiver<TInputEvent>> OnControllerSwitch;
 
-    private IMenuController<TInputEvent> _currentController;
     private Stack<IMenuController<TInputEvent>> _previousMenus = new();
-    private Dictionary<int, IMenuController<TInputEvent>> _controllers = new();
-
-    public void Init(IMenuController<TInputEvent>[] controllers)
-    {
-        for (int i = 0; i < controllers.Length; i++)
-        {
-            _controllers.Add(controllers[i].Type, controllers[i]);
-        }
-    }
 
     public void ShowMenu(int menuType, StackingType stackingType = StackingType.Add, Action onNewMenuShown = null, bool instant = false)
     {

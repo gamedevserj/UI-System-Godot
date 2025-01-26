@@ -1,7 +1,7 @@
 ﻿using UISystem.Core.PhysicalInput;
 
 namespace UISystem.Core;
-internal abstract class Controller<TViewHandler, TView, TInputEvent> : IInputReceiver<TInputEvent>
+internal abstract class Controller<TViewHandler, TView, TInputEvent> : IController<TInputEvent>, IInputReceiver<TInputEvent>
 {
 
     protected TViewHandler _viewHandler;
