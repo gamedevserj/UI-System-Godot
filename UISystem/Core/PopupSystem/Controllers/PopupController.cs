@@ -1,25 +1,22 @@
 ﻿using System;
+using UISystem.Core.Controllers;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.PopupSystem.Interfaces;
 using UISystem.Core.Views.Interfaces;
 
 namespace UISystem.Core.PopupSystem.Controllers;
-internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPopupController<TInputEvent> 
+internal abstract class PopupController<TViewHandler, TInputEvent, TView> 
+    : Controller<TViewHandler, TView, TInputEvent>, IPopupController<TInputEvent> 
     where TViewHandler : IViewHandler<TView>
     where TView : IPopupView
 {
-
-    protected TViewHandler _viewHandler;
-    protected TView _view;
 
     protected Action<int> _onHideAction;
     private IMenuController<TInputEvent> _caller;
 
     protected readonly IPopupsManager<TInputEvent> _popupsManager;
 
-    public abstract int Type { get; }
     public abstract int PressedReturnPopupResult { get; }
-    public bool CanReceivePhysicalInput { get; private set; } // to prevent input processing during transitions
 
     public PopupController(TViewHandler viewHandler, IPopupsManager<TInputEvent> popupsManager)
     {
@@ -27,7 +24,7 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPop
         _popupsManager = popupsManager;
     }
 
-    public void Init()
+    public override void Init()
     {
         if (!_viewHandler.IsViewValid)
         {
@@ -61,21 +58,18 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView> : IPop
             DestroyView();
         }), instant);
     }
-    protected void DestroyView() => _viewHandler.DestroyView();
+    protected override void DestroyView() => _viewHandler.DestroyView();
 
-    public virtual void OnCancelButtonDown()
+    public override void OnCancelButtonDown()
     {
         _popupsManager.HidePopup(PressedReturnPopupResult);
     }
 
-    public void OnPauseButtonDown()
+    public override void OnPauseButtonDown()
     { }
-    public void OnResumeButtonDown()
+    public override void OnResumeButtonDown() 
     { }
-    public void OnAnyButtonDown(TInputEvent inputEvent)
+    public override void OnAnyButtonDown(TInputEvent inputEvent)
     { }
-
-
-    protected abstract void SetupElements();
 
 }

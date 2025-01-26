@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace UISystem.Core.PhysicalInput;
+﻿namespace UISystem.Core.PhysicalInput;
 public partial interface IInputReceiver<TInputEvent>
 {
 

@@ -8,7 +8,7 @@ internal abstract class Controller<TViewHandler, TView, TInputEvent>
     protected TView _view;
 
     public abstract int Type { get; }
-    public bool CanReceivePhysicalInput { get; private set; } // to prevent input processing during transitions
+    public bool CanReceivePhysicalInput { get; protected set; } // to prevent input processing during transitions
 
     public abstract void Init();
 

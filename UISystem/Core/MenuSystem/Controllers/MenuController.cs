@@ -1,24 +1,22 @@
 ﻿using System;
+using UISystem.Core.Controllers;
 using UISystem.Core.MenuSystem.Enums;
 using UISystem.Core.MenuSystem.Interfaces;
 using UISystem.Core.Views.Interfaces;
 
 namespace UISystem.Core.MenuSystem.Controllers;
-internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent, TInteractableElement> : IMenuController<TInputEvent>
+internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent, TInteractableElement> 
+    : Controller<TViewHandler, TView, TInputEvent>, IMenuController<TInputEvent>
     where TViewHandler : IViewHandler<TView>
     where TView : IMenuView<TInteractableElement>
     where TModel : IMenuModel
 {
 
-    protected TViewHandler _viewHandler;
-    protected TView _view;
     protected TModel _model;
 
     protected readonly IMenusManager<TInputEvent> _menusManager;
 
     public bool CanReturnToPreviousMenu { get; set; } = true; // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
-    public abstract int Type { get; }
-    public bool CanReceivePhysicalInput { get; private set; } // to prevent input processing during transitions
 
     public MenuController(TViewHandler viewHandler, TModel model, IMenusManager<TInputEvent> menusManager)
     {
@@ -27,7 +25,7 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
         _menusManager = menusManager;
     }
 
-    public void Init()
+    public override void Init()
     {
         if (!_viewHandler.IsViewValid)
         {
@@ -57,7 +55,6 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
         }, instant);
     }
 
-    protected void DestroyView() => _viewHandler.DestroyView();
     public virtual void ProcessStacking(StackingType stackingType)
     {
         switch (stackingType)
@@ -77,6 +74,7 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
                 break;
         }
     }
+    protected override void DestroyView() => _viewHandler.DestroyView();
 
     // when showing popups
     protected void SwitchFocusAvailability(bool enable)
@@ -86,18 +84,17 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
             _view.FocusElement();
     }
 
-    public virtual void OnCancelButtonDown()
+    public override void OnCancelButtonDown()
     {
         if (CanReturnToPreviousMenu)
             _menusManager.ReturnToPreviousMenu();
     }
 
-    public virtual void OnPauseButtonDown() // for in-game menu
+    public override void OnPauseButtonDown() // for in-game menu
     { }
-    public virtual void OnResumeButtonDown() // for pause menu
+    public override void OnResumeButtonDown() // for pause menu
     { }
-    public virtual void OnAnyButtonDown(TInputEvent inputEvent) // for rebind menu
+    public override void OnAnyButtonDown(TInputEvent inputEvent) // for rebind menu
     { }
 
-    protected abstract void SetupElements();
 }
