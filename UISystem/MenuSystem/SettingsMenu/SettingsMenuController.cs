@@ -38,10 +38,12 @@ internal abstract class SettingsMenuController<TViewHandler, TInputEvent, TView,
         if (_model.HasUnappliedSettings)
         {
             _view.SetLastSelectedElement(_view.ReturnButton);
+            CanReceivePhysicalInput = false;
             SwitchFocusAvailability(false);
             _popupsManager.ShowPopup(PopupType.YesNoCancel, this, PopupMessages.SaveChanges, (result) =>
             {
                 OnReturnToPreviousMenuPopupClosed(result);
+                CanReceivePhysicalInput = true;
             });
         }
         else
