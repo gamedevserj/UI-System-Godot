@@ -9,15 +9,16 @@ using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
+using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class RebindKeysMenuController<TViewHandler, TInputEvent>
-    : SettingsMenuController<MenuViewCreator<RebindKeysMenuView>, RebindKeysMenuView, RebindKeysMenuModel>
+    : SettingsMenuController<ViewCreator<RebindKeysMenuView>, RebindKeysMenuView, RebindKeysMenuModel>
 {
 
     public override int Type => MenuType.RebindKeys;
 
-    public RebindKeysMenuController(MenuViewCreator<RebindKeysMenuView> viewHandler, RebindKeysMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
+    public RebindKeysMenuController(ViewCreator<RebindKeysMenuView> viewHandler, RebindKeysMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
     { }
 
     public override void OnAnyButtonDown(InputEvent inputEvent)

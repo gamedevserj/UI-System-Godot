@@ -2,12 +2,13 @@ using Godot;
 using UISystem.Core.MenuSystem;
 using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Views;
+using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class OptionsMenuController<TViewHandler, TInputEvent> : MenuControllerBase<MenuViewCreator<OptionsMenuView>, OptionsMenuView>
+internal class OptionsMenuController<TViewHandler, TInputEvent> : MenuControllerBase<ViewCreator<OptionsMenuView>, OptionsMenuView>
 {
     public override int Type => MenuType.Options;
-    public OptionsMenuController(MenuViewCreator<OptionsMenuView> viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager) : base(viewHandler, model, menusManager)
+    public OptionsMenuController(ViewCreator<OptionsMenuView> viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager) : base(viewHandler, model, menusManager)
     { }   
 
     protected override void SetupElements()

@@ -8,9 +8,10 @@ using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
 using UISystem.ScreenFade;
+using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class MainMenuController<TViewHandler, TInputEvent> : MenuControllerBase<MenuViewCreator<MainMenuView>, MainMenuView>
+internal class MainMenuController<TViewHandler, TInputEvent> : MenuControllerBase<ViewCreator<MainMenuView>, MainMenuView>
 {
 
     public override int Type => MenuType.Main;
@@ -20,7 +21,7 @@ internal class MainMenuController<TViewHandler, TInputEvent> : MenuControllerBas
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(MenuViewCreator<MainMenuView> viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager,
+    public MainMenuController(ViewCreator<MainMenuView> viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager,
         SceneTree sceneTree, IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
         : base(viewHandler, model, menusManager)
     {

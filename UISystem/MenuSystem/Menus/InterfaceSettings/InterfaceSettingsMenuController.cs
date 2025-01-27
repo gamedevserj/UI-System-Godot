@@ -9,16 +9,17 @@ using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
+using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class InterfaceSettingsMenuController<TViewHandler, TInputEvent>
-    : SettingsMenuController<MenuViewCreator<InterfaceSettingsMenuView>, InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
+    : SettingsMenuController<ViewCreator<InterfaceSettingsMenuView>, InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
 {
 
     private readonly int _controllerIconsNumber;
     public override int Type => MenuType.InterfaceSettings;
 
-    public InterfaceSettingsMenuController(MenuViewCreator<InterfaceSettingsMenuView> viewHandler, InterfaceSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
+    public InterfaceSettingsMenuController(ViewCreator<InterfaceSettingsMenuView> viewHandler, InterfaceSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;
     }

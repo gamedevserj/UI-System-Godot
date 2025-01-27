@@ -5,15 +5,16 @@ using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
+using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class AudioSettingsMenuController<TViewHandler, TInputEvent>
-    : SettingsMenuController<MenuViewCreator<AudioSettingsMenuView>, AudioSettingsMenuView, AudioSettingsMenuModel>
+    : SettingsMenuController<ViewCreator<AudioSettingsMenuView>, AudioSettingsMenuView, AudioSettingsMenuModel>
 {
 
     public override int Type => MenuType.AudioSettings;
 
-    public AudioSettingsMenuController(MenuViewCreator<AudioSettingsMenuView> viewHandler, AudioSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
+    public AudioSettingsMenuController(ViewCreator<AudioSettingsMenuView> viewHandler, AudioSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
     { }
 
     protected override void SetupElements()

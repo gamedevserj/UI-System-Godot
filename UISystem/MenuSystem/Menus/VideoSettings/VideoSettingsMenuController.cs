@@ -8,15 +8,16 @@ using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
+using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class VideoSettingsMenuController<TViewHandler, TInputEvent>
-    : SettingsMenuController<MenuViewCreator<VideoSettingsMenuView>, VideoSettingsMenuView, VideoSettingsMenuModel>
+    : SettingsMenuController<ViewCreator<VideoSettingsMenuView>, VideoSettingsMenuView, VideoSettingsMenuModel>
 {
 
     public override int Type => MenuType.VideoSettings;
 
-    public VideoSettingsMenuController(MenuViewCreator<VideoSettingsMenuView> viewHandler, VideoSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
+    public VideoSettingsMenuController(ViewCreator<VideoSettingsMenuView> viewHandler, VideoSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
     { }
 
     protected override void SetupElements()

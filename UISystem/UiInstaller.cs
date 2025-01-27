@@ -45,9 +45,9 @@ public partial class UiInstaller : Node
         _inputProcessor = new InputProcessor();
 
         var popupsManager = new PopupsManager<InputEvent>();
-        var yesPopupViewHandler = new PopupViewCreator<YesPopupView>(GetPopupPath(PopupType.Yes), popupsParent);
-        var yesNoPopupViewHandler = new PopupViewCreator<YesNoPopupView>(GetPopupPath(PopupType.YesNo), popupsParent);
-        var yesNoCancelPopupViewHandler = new PopupViewCreator<YesNoCancelPopupView>(GetPopupPath(PopupType.YesNoCancel), popupsParent);
+        var yesPopupViewHandler = new ViewCreator<YesPopupView>(GetPopupPath(PopupType.Yes), popupsParent);
+        var yesNoPopupViewHandler = new ViewCreator<YesNoPopupView>(GetPopupPath(PopupType.YesNo), popupsParent);
+        var yesNoCancelPopupViewHandler = new ViewCreator<YesNoCancelPopupView>(GetPopupPath(PopupType.YesNoCancel), popupsParent);
         var popups = new IPopupController<InputEvent>[]
         {
             new YesPopupController<YesPopupView, InputEvent>(yesPopupViewHandler, popupsManager),
@@ -59,15 +59,14 @@ public partial class UiInstaller : Node
         var backgroundController = new MenuBackgroundController(GetTree(), menuBackground);
 
         var menusManager = new MenusManager<InputEvent>();
-        //var test = new MenuViewCreator<MainMenuView>(GetMenuPath(MenuType.Main), menusParent);
-        var mainMenuViewHandler = new MenuViewCreator<MainMenuView>(GetMenuPath(MenuType.Main), menusParent);
-        var inGameMenuViewHandler = new MenuViewCreator<InGameMenuView>(GetMenuPath(MenuType.InGame), menusParent);
-        var pauseViewHandler = new MenuViewCreator<PauseMenuView>(GetMenuPath(MenuType.Pause), menusParent);
-        var optionsViewHandler = new MenuViewCreator<OptionsMenuView>(GetMenuPath(MenuType.Options), menusParent);
-        var audioSettingsViewHandler = new MenuViewCreator<AudioSettingsMenuView>(GetMenuPath(MenuType.AudioSettings), menusParent);
-        var videoSettingsViewHandler = new MenuViewCreator<VideoSettingsMenuView>(GetMenuPath(MenuType.VideoSettings), menusParent);
-        var rebindKeysViewHandler = new MenuViewCreator<RebindKeysMenuView>(GetMenuPath(MenuType.RebindKeys), menusParent);
-        var interfaceMenuViewHandler = new MenuViewCreator<InterfaceSettingsMenuView>(GetMenuPath(MenuType.InterfaceSettings), menusParent);
+        var mainMenuViewHandler = new ViewCreator<MainMenuView>(GetMenuPath(MenuType.Main), menusParent);
+        var inGameMenuViewHandler = new ViewCreator<InGameMenuView>(GetMenuPath(MenuType.InGame), menusParent);
+        var pauseViewHandler = new ViewCreator<PauseMenuView>(GetMenuPath(MenuType.Pause), menusParent);
+        var optionsViewHandler = new ViewCreator<OptionsMenuView>(GetMenuPath(MenuType.Options), menusParent);
+        var audioSettingsViewHandler = new ViewCreator<AudioSettingsMenuView>(GetMenuPath(MenuType.AudioSettings), menusParent);
+        var videoSettingsViewHandler = new ViewCreator<VideoSettingsMenuView>(GetMenuPath(MenuType.VideoSettings), menusParent);
+        var rebindKeysViewHandler = new ViewCreator<RebindKeysMenuView>(GetMenuPath(MenuType.RebindKeys), menusParent);
+        var interfaceMenuViewHandler = new ViewCreator<InterfaceSettingsMenuView>(GetMenuPath(MenuType.InterfaceSettings), menusParent);
         var menus = new IMenuController<InputEvent>[]
         {
             new MainMenuController<MainMenuView, InputEvent>(mainMenuViewHandler, null, menusManager, tree, popupsManager, screenFadeManager, backgroundController),

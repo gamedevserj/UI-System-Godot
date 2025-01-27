@@ -2,13 +2,13 @@
 using UISystem.Core.Extensions;
 using UISystem.Core.Views;
 
-namespace UISystem.PopupSystem;
-internal class PopupViewCreator<TView> : ViewCreator<string, TView, Node> where TView : PopupView
+namespace UISystem.Views;
+internal class ViewCreator<TView> : ViewCreator<string, TView, Node> where TView : ViewBase
 {
 
     public override bool IsViewValid => _view != null && _view.IsValid;
 
-    public PopupViewCreator(string prefab, Node parent) : base(prefab, parent)
+    public ViewCreator(string prefab, Node parent) : base(prefab, parent)
     { }
 
     public override void DestroyView() => _view.SafeQueueFree();
@@ -23,4 +23,5 @@ internal class PopupViewCreator<TView> : ViewCreator<string, TView, Node> where 
         _parent.AddChild(_view);
         return _view;
     }
+
 }
