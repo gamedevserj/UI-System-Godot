@@ -1,23 +1,29 @@
-﻿using System;
+﻿using Godot;
+using System;
+using UISystem.Core.Extensions;
 using UISystem.Core.Transitions;
+using UISystem.Core.Views;
 using UISystem.Elements;
 
 namespace UISystem.Views;
 /// <summary>
 /// Base class for a window with interactable elements (menu, popup, etc.)
 /// </summary>
-public abstract partial class BaseInteractableWindow : BaseWindowView
+public abstract partial class ViewBase : Control, IView
 {
 
+    protected IViewTransition _transition;
     protected IFocusableControl[] _focusableElements;
 
-    public override void Init(IViewTransition transition)
+    public bool IsValid => this.IsValid();
+
+    public virtual void Init(IViewTransition transition)
     {
         _transition = transition;
         PopulateFocusableElements();
     }
 
-    public override void SwitchFocusAvailability(bool enable)
+    public void SwitchFocusAvailability(bool enable)
     {
         if (_focusableElements != null)
         {
@@ -31,7 +37,7 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
         }
     }
 
-    public override void Show(Action onShown, bool instant = false)
+    public void Show(Action onShown, bool instant = false)
     {
         SwitchFocusAvailability(false);
         Visible = true;
@@ -42,7 +48,7 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
         }, instant);
     }
 
-    public override void Hide(Action onHidden, bool instant = false)
+    public void Hide(Action onHidden, bool instant = false)
     {
         SwitchFocusAvailability(false);
         _transition.Hide(() => { 
@@ -51,6 +57,8 @@ public abstract partial class BaseInteractableWindow : BaseWindowView
         }, instant);
     }
 
+    public void DestroyView() => this.SafeQueueFree();
+    public abstract void FocusElement();
     protected abstract void PopulateFocusableElements();
 
 }

@@ -4,7 +4,7 @@ using UISystem.Elements;
 using UISystem.Views;
 
 namespace UISystem.PopupSystem;
-public abstract partial class PopupView : BaseInteractableWindow, IPopupView
+public abstract partial class PopupView : ViewBase, IPopupView
 {
 
     [Export] protected Control fadeObjectsContainer;

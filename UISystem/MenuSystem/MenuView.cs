@@ -3,7 +3,7 @@ using UISystem.Elements;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem;
-public abstract partial class MenuView : BaseInteractableWindow, IMenuView<IFocusableControl>
+public abstract partial class MenuView : ViewBase, IMenuView<IFocusableControl>
 {
 
     protected IFocusableControl _lastSelectedElement;
