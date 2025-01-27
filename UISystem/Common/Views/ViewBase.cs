@@ -12,14 +12,14 @@ namespace UISystem.Views;
 public abstract partial class ViewBase : Control, IView
 {
 
-    protected IViewTransition _transition;
+    private IViewTransition _transition;
     protected IFocusableControl[] _focusableElements;
 
     public bool IsValid => this.IsValid();
 
-    public virtual void Init(IViewTransition transition)
+    public virtual void Init()
     {
-        _transition = transition;
+        _transition = CreateTransition();
         PopulateFocusableElements();
     }
 
@@ -60,5 +60,6 @@ public abstract partial class ViewBase : Control, IView
     public void DestroyView() => this.SafeQueueFree();
     public abstract void FocusElement();
     protected abstract void PopulateFocusableElements();
+    protected abstract IViewTransition CreateTransition();
 
 }

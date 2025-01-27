@@ -1,7 +1,10 @@
 ﻿using Godot;
+using UISystem.Core.Transitions;
 using UISystem.Elements;
 using UISystem.Elements.ElementViews;
 using UISystem.MenuSystem.SettingsMenu;
+using UISystem.Transitions;
+using UISystem.Transitions.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
 public partial class AudioSettingsMenuView : SettingsMenuView
@@ -20,7 +23,12 @@ public partial class AudioSettingsMenuView : SettingsMenuView
     public Control Panel => panel;
     public ResizableControlView ResizableControlMusic => resizableControlMusic;
     public ResizableControlView ResizableControlSfx => resizableControlSfx;
-
+    protected override IViewTransition CreateTransition()
+    {
+        return new PanelSizeTransition(this, FadeObjectsContainer, Panel,
+        new ITweenableMenuElement[] { ReturnButton, SaveSettingsButton, ResetButton,
+            MusicSlider, SfxSlider, ResizableControlMusic, ResizableControlSfx });
+    }
     protected override void PopulateFocusableElements()
     {
         _focusableElements = new IFocusableControl[] { MusicSlider, SfxSlider, SaveSettingsButton, ResetButton, ReturnButton };

@@ -6,7 +6,7 @@ namespace UISystem.MenuSystem;
 public abstract partial class MenuView : ViewBase, IMenuView<IFocusableControl>
 {
 
-    protected IFocusableControl _lastSelectedElement;
+    private IFocusableControl _lastSelectedElement;
     protected abstract IFocusableControl DefaultSelectedElement { get; }
 
     public override void FocusElement()

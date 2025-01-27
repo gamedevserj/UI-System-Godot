@@ -1,7 +1,7 @@
 ﻿using UISystem.Core.Transitions;
 
 namespace UISystem.Core.Views;
-internal abstract class ViewHandler<TPrefab, TView, TParent> : IViewHandler<TView>
+internal abstract class ViewModel<TPrefab, TView, TParent> : IViewModel<TView>
 {
 
     protected TView _view;
@@ -10,15 +10,13 @@ internal abstract class ViewHandler<TPrefab, TView, TParent> : IViewHandler<TVie
 
     public abstract bool IsViewValid { get; }
 
-    public ViewHandler(TPrefab prefab, TParent parent)
+    public ViewModel(TPrefab prefab, TParent parent)
     {
         _prefab = prefab;
         _parent = parent;
     }
 
     public abstract TView CreateView();
-
-    public abstract IViewTransition CreateTransition();
 
     public abstract void DestroyView();
 

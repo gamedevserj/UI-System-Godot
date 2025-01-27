@@ -4,7 +4,7 @@ using UISystem.Core.Views;
 namespace UISystem.Core.PopupSystem;
 internal abstract class PopupController<TViewHandler, TInputEvent, TView>
     : Controller<TViewHandler, TView, TInputEvent>, IPopupController<TInputEvent>
-    where TViewHandler : IViewHandler<TView>
+    where TViewHandler : IViewModel<TView>
     where TView : IPopupView
 {
 

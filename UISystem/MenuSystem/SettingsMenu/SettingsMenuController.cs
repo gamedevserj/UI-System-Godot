@@ -10,7 +10,7 @@ using UISystem.PopupSystem.Constants;
 namespace UISystem.MenuSystem.SettingsMenu;
 internal abstract class SettingsMenuController<TViewHandler, TView, TModel>
     : MenuController<TViewHandler, TView, TModel, InputEvent, IFocusableControl>
-    where TViewHandler : IViewHandler<TView>
+    where TViewHandler : IViewModel<TView>
     where TView : SettingsMenuView
     where TModel : ISettingsMenuModel
 {

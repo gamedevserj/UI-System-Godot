@@ -1,6 +1,8 @@
 using Godot;
+using UISystem.Core.Transitions;
 using UISystem.Elements;
 using UISystem.Elements.ElementViews;
+using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Views;
 public partial class OptionsMenuView : MenuView
@@ -22,6 +24,11 @@ public partial class OptionsMenuView : MenuView
 
     protected override IFocusableControl DefaultSelectedElement => InterfaceSettingsButton;
 
+    protected override IViewTransition CreateTransition()
+    {
+        return new MainElementDropTransition(this, FadeObjectsContainer, InterfaceSettingsButton,
+        new[] { ReturnButton, AudioSettingsButton, VideoSettingsButton, RebindKeysButton });
+    }
     protected override void PopulateFocusableElements()
     {
         _focusableElements = new IFocusableControl[] { ReturnButton, AudioSettingsButton, VideoSettingsButton,

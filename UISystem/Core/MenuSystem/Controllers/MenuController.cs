@@ -4,7 +4,7 @@ using UISystem.Core.Views;
 namespace UISystem.Core.MenuSystem;
 internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent, TInteractableElement>
     : Controller<TViewHandler, TView, TInputEvent>, IMenuController<TInputEvent>
-    where TViewHandler : IViewHandler<TView>
+    where TViewHandler : IViewModel<TView>
     where TView : IMenuView<TInteractableElement>
     where TModel : IMenuModel
 {

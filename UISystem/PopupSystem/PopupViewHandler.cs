@@ -3,7 +3,7 @@ using UISystem.Core.Extensions;
 using UISystem.Core.Views;
 
 namespace UISystem.PopupSystem;
-internal abstract class PopupViewHandler<TView> : ViewHandler<string, TView, Node> where TView : PopupView
+internal abstract class PopupViewHandler<TView> : ViewModel<string, TView, Node> where TView : PopupView
 {
 
     public override bool IsViewValid => _view != null && _view.IsValid;
@@ -19,7 +19,7 @@ internal abstract class PopupViewHandler<TView> : ViewHandler<string, TView, Nod
     {
         PackedScene loadedPrefab = ResourceLoader.Load<PackedScene>(_prefab);
         _view = loadedPrefab.Instantiate() as TView;
-        _view.Init(CreateTransition());
+        _view.Init();
         _parent.AddChild(_view);
         return _view;
     }

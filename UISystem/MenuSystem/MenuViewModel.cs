@@ -3,12 +3,12 @@ using UISystem.Core.Extensions;
 using UISystem.Core.Views;
 
 namespace UISystem.MenuSystem;
-internal abstract class MenuViewHandler<TView> : ViewHandler<string, TView, Node> where TView : MenuView
+internal abstract class MenuViewModel<TView> : ViewModel<string, TView, Node> where TView : MenuView
 {
 
     public override bool IsViewValid => _view != null && _view.IsValid;
 
-    protected MenuViewHandler(string prefab, Node parent) : base(prefab, parent)
+    protected MenuViewModel(string prefab, Node parent) : base(prefab, parent)
     {
     }    
 
@@ -20,7 +20,7 @@ internal abstract class MenuViewHandler<TView> : ViewHandler<string, TView, Node
     {
         PackedScene loadedPrefab = ResourceLoader.Load<PackedScene>(_prefab);
         _view = loadedPrefab.Instantiate() as TView;
-        _view.Init(CreateTransition());
+        _view.Init();
         _parent.AddChild(_view);
         return _view;
     }
