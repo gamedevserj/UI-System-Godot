@@ -11,7 +11,6 @@ using UISystem.PhysicalInput;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
 using UISystem.PopupSystem.Popups.Controllers;
-using UISystem.PopupSystem.Popups.ViewHandlers;
 using UISystem.PopupSystem.Popups.Views;
 using UISystem.ScreenFade;
 
@@ -46,9 +45,9 @@ public partial class UiInstaller : Node
         _inputProcessor = new InputProcessor();
 
         var popupsManager = new PopupsManager<InputEvent>();
-        var yesPopupViewHandler = new YesPopupViewCreator<YesPopupView>(GetPopupPath(PopupType.Yes), popupsParent);
-        var yesNoPopupViewHandler = new YesNoPopupViewCreator<YesNoPopupView>(GetPopupPath(PopupType.YesNo), popupsParent);
-        var yesNoCancelPopupViewHandler = new YesNoCancelPopupViewCreator<YesNoCancelPopupView>(GetPopupPath(PopupType.YesNoCancel), popupsParent);
+        var yesPopupViewHandler = new PopupViewCreator<YesPopupView>(GetPopupPath(PopupType.Yes), popupsParent);
+        var yesNoPopupViewHandler = new PopupViewCreator<YesNoPopupView>(GetPopupPath(PopupType.YesNo), popupsParent);
+        var yesNoCancelPopupViewHandler = new PopupViewCreator<YesNoCancelPopupView>(GetPopupPath(PopupType.YesNoCancel), popupsParent);
         var popups = new IPopupController<InputEvent>[]
         {
             new YesPopupController<YesPopupView, InputEvent>(yesPopupViewHandler, popupsManager),

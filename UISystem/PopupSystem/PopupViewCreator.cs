@@ -3,7 +3,7 @@ using UISystem.Core.Extensions;
 using UISystem.Core.Views;
 
 namespace UISystem.PopupSystem;
-internal abstract class PopupViewCreator<TView> : ViewCreator<string, TView, Node> where TView : PopupView
+internal class PopupViewCreator<TView> : ViewCreator<string, TView, Node> where TView : PopupView
 {
 
     public override bool IsViewValid => _view != null && _view.IsValid;
