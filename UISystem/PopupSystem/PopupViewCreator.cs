@@ -2,15 +2,14 @@
 using UISystem.Core.Extensions;
 using UISystem.Core.Views;
 
-namespace UISystem.MenuSystem;
-internal abstract class MenuViewModel<TView> : ViewModel<string, TView, Node> where TView : MenuView
+namespace UISystem.PopupSystem;
+internal abstract class PopupViewCreator<TView> : ViewCreator<string, TView, Node> where TView : PopupView
 {
 
     public override bool IsViewValid => _view != null && _view.IsValid;
 
-    protected MenuViewModel(string prefab, Node parent) : base(prefab, parent)
-    {
-    }    
+    public PopupViewCreator(string prefab, Node parent) : base(prefab, parent)
+    { }
 
     public override void DestroyView() => _view.SafeQueueFree();
 

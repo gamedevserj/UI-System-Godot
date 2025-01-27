@@ -4,7 +4,7 @@ using UISystem.Core.Views;
 namespace UISystem.Core.PopupSystem;
 internal abstract class PopupController<TViewHandler, TInputEvent, TView>
     : Controller<TViewHandler, TView, TInputEvent>, IPopupController<TInputEvent>
-    where TViewHandler : IViewModel<TView>
+    where TViewHandler : IViewCreator<TView>
     where TView : IPopupView
 {
 
@@ -16,15 +16,15 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView>
 
     public PopupController(TViewHandler viewHandler, IPopupsManager<TInputEvent> popupsManager)
     {
-        _viewHandler = viewHandler;
+        _viewCreator = viewHandler;
         _popupsManager = popupsManager;
     }
 
     public override void Init()
     {
-        if (!_viewHandler.IsViewValid)
+        if (!_viewCreator.IsViewValid)
         {
-            _view = _viewHandler.CreateView();
+            _view = _viewCreator.CreateView();
             SetupElements();
         }
     }
@@ -51,7 +51,7 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView>
             DestroyView();
         }, instant);
     }
-    protected override void DestroyView() => _viewHandler.DestroyView();
+    protected override void DestroyView() => _viewCreator.DestroyView();
 
     public override void OnReturnButtonDown()
     {

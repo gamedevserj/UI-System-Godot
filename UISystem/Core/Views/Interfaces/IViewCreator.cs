@@ -1,7 +1,7 @@
 ﻿using UISystem.Core.Transitions;
 
 namespace UISystem.Core.Views;
-internal interface IViewModel<TView>
+internal interface IViewCreator<TView>
 {
 
     bool IsViewValid { get; }

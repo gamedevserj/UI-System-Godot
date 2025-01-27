@@ -1,7 +1,5 @@
-﻿using UISystem.Core.Transitions;
-
-namespace UISystem.Core.Views;
-internal abstract class ViewModel<TPrefab, TView, TParent> : IViewModel<TView>
+﻿namespace UISystem.Core.Views;
+internal abstract class ViewCreator<TPrefab, TView, TParent> : IViewCreator<TView>
 {
 
     protected TView _view;
@@ -10,7 +8,7 @@ internal abstract class ViewModel<TPrefab, TView, TParent> : IViewModel<TView>
 
     public abstract bool IsViewValid { get; }
 
-    public ViewModel(TPrefab prefab, TParent parent)
+    public ViewCreator(TPrefab prefab, TParent parent)
     {
         _prefab = prefab;
         _parent = parent;

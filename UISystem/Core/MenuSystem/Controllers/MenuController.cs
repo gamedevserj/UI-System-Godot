@@ -2,9 +2,9 @@
 using UISystem.Core.Views;
 
 namespace UISystem.Core.MenuSystem;
-internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent, TInteractableElement>
-    : Controller<TViewHandler, TView, TInputEvent>, IMenuController<TInputEvent>
-    where TViewHandler : IViewModel<TView>
+internal abstract class MenuController<TViewCreator, TView, TModel, TInputEvent, TInteractableElement>
+    : Controller<TViewCreator, TView, TInputEvent>, IMenuController<TInputEvent>
+    where TViewCreator : IViewCreator<TView>
     where TView : IMenuView<TInteractableElement>
     where TModel : IMenuModel
 {
@@ -16,18 +16,18 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
     // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
     public bool CanReturnToPreviousMenu { get; set; } = true; 
 
-    public MenuController(TViewHandler viewHandler, TModel model, IMenusManager<TInputEvent> menusManager)
+    public MenuController(TViewCreator viewHandler, TModel model, IMenusManager<TInputEvent> menusManager)
     {
-        _viewHandler = viewHandler;
+        _viewCreator = viewHandler;
         _model = model;
         _menusManager = menusManager;
     }
 
     public override void Init()
     {
-        if (!_viewHandler.IsViewValid)
+        if (!_viewCreator.IsViewValid)
         {
-            _view = _viewHandler.CreateView();
+            _view = _viewCreator.CreateView();
             SetupElements();
         }
     }
@@ -72,7 +72,7 @@ internal abstract class MenuController<TViewHandler, TView, TModel, TInputEvent,
                 break;
         }
     }
-    protected override void DestroyView() => _viewHandler.DestroyView();
+    protected override void DestroyView() => _viewCreator.DestroyView();
 
     // when showing popups
     protected void SwitchFocusAvailability(bool enable)
