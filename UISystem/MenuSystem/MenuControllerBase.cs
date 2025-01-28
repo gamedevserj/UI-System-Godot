@@ -11,7 +11,7 @@ internal abstract class MenuControllerBase<TViewCreator, TView>
     where TViewCreator : IViewCreator<TView>
     where TView : IMenuView<IFocusableControl>
 {
-    protected MenuControllerBase(TViewCreator viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager) : base(viewHandler, model, menusManager)
+    protected MenuControllerBase(TViewCreator viewCreator, IMenuModel model, IMenusManager<InputEvent> menusManager) : base(viewCreator, model, menusManager)
     {
     }
 }

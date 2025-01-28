@@ -5,10 +5,10 @@ using UISystem.MenuSystem.Views;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class OptionsMenuController<TViewHandler, TInputEvent> : MenuControllerBase<ViewCreator<OptionsMenuView>, OptionsMenuView>
+internal class OptionsMenuController<TViewCreator, TInputEvent> : MenuControllerBase<ViewCreator<OptionsMenuView>, OptionsMenuView>
 {
     public override int Type => MenuType.Options;
-    public OptionsMenuController(ViewCreator<OptionsMenuView> viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager) : base(viewHandler, model, menusManager)
+    public OptionsMenuController(ViewCreator<OptionsMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent> menusManager) : base(viewCreator, model, menusManager)
     { }   
 
     protected override void SetupElements()

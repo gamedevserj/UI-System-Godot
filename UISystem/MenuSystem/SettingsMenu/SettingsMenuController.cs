@@ -8,17 +8,17 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
 
 namespace UISystem.MenuSystem.SettingsMenu;
-internal abstract class SettingsMenuController<TViewHandler, TView, TModel>
-    : MenuController<TViewHandler, TView, TModel, InputEvent, IFocusableControl>
-    where TViewHandler : IViewCreator<TView>
+internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
+    : MenuController<TViewCreator, TView, TModel, InputEvent, IFocusableControl>
+    where TViewCreator : IViewCreator<TView>
     where TView : SettingsMenuView
     where TModel : ISettingsMenuModel
 {
 
     protected readonly IPopupsManager<InputEvent> _popupsManager;
 
-    protected SettingsMenuController(TViewHandler viewHandler, TModel model, IMenusManager<InputEvent> menusManager, 
-        IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager)
+    protected SettingsMenuController(TViewCreator viewCreator, TModel model, IMenusManager<InputEvent> menusManager, 
+        IPopupsManager<InputEvent> popupsManager) : base(viewCreator, model, menusManager)
     {
         _popupsManager = popupsManager;
     }

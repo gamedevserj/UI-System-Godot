@@ -2,9 +2,9 @@
 using UISystem.Core.Views;
 
 namespace UISystem.Core.PopupSystem;
-internal abstract class PopupController<TViewHandler, TInputEvent, TView>
-    : Controller<TViewHandler, TView, TInputEvent>, IPopupController<TInputEvent>
-    where TViewHandler : IViewCreator<TView>
+internal abstract class PopupController<TViewCreator, TInputEvent, TView>
+    : Controller<TViewCreator, TView, TInputEvent>, IPopupController<TInputEvent>
+    where TViewCreator : IViewCreator<TView>
     where TView : IPopupView
 {
 
@@ -14,9 +14,9 @@ internal abstract class PopupController<TViewHandler, TInputEvent, TView>
 
     public abstract int PressedReturnPopupResult { get; }
 
-    public PopupController(TViewHandler viewHandler, IPopupsManager<TInputEvent> popupsManager)
+    public PopupController(TViewCreator viewCreator, IPopupsManager<TInputEvent> popupsManager)
     {
-        _viewCreator = viewHandler;
+        _viewCreator = viewCreator;
         _popupsManager = popupsManager;
     }
 

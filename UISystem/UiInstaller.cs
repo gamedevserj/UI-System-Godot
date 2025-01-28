@@ -13,6 +13,7 @@ using UISystem.PopupSystem.Constants;
 using UISystem.PopupSystem.Popups.Controllers;
 using UISystem.PopupSystem.Popups.Views;
 using UISystem.ScreenFade;
+using UISystem.Views;
 
 namespace UISystem;
 public partial class UiInstaller : Node
@@ -45,38 +46,38 @@ public partial class UiInstaller : Node
         _inputProcessor = new InputProcessor();
 
         var popupsManager = new PopupsManager<InputEvent>();
-        var yesPopupViewHandler = new ViewCreator<YesPopupView>(GetPopupPath(PopupType.Yes), popupsParent);
-        var yesNoPopupViewHandler = new ViewCreator<YesNoPopupView>(GetPopupPath(PopupType.YesNo), popupsParent);
-        var yesNoCancelPopupViewHandler = new ViewCreator<YesNoCancelPopupView>(GetPopupPath(PopupType.YesNoCancel), popupsParent);
+        var yesPopupViewCreator = new ViewCreator<YesPopupView>(GetPopupPath(PopupType.Yes), popupsParent);
+        var yesNoPopupViewCreator = new ViewCreator<YesNoPopupView>(GetPopupPath(PopupType.YesNo), popupsParent);
+        var yesNoCancelPopupViewCreator = new ViewCreator<YesNoCancelPopupView>(GetPopupPath(PopupType.YesNoCancel), popupsParent);
         var popups = new IPopupController<InputEvent>[]
         {
-            new YesPopupController<YesPopupView, InputEvent>(yesPopupViewHandler, popupsManager),
-            new YesNoPopupController<YesNoPopupView, InputEvent>(yesNoPopupViewHandler, popupsManager),
-            new YesNoCancelPopupController<YesNoCancelPopupView, InputEvent>(yesNoCancelPopupViewHandler, popupsManager)
+            new YesPopupController<YesPopupView, InputEvent>(yesPopupViewCreator, popupsManager),
+            new YesNoPopupController<YesNoPopupView, InputEvent>(yesNoPopupViewCreator, popupsManager),
+            new YesNoCancelPopupController<YesNoCancelPopupView, InputEvent>(yesNoCancelPopupViewCreator, popupsManager)
         };
         popupsManager.Init(popups);
 
         var backgroundController = new MenuBackgroundController(GetTree(), menuBackground);
 
         var menusManager = new MenusManager<InputEvent>();
-        var mainMenuViewHandler = new ViewCreator<MainMenuView>(GetMenuPath(MenuType.Main), menusParent);
-        var inGameMenuViewHandler = new ViewCreator<InGameMenuView>(GetMenuPath(MenuType.InGame), menusParent);
-        var pauseViewHandler = new ViewCreator<PauseMenuView>(GetMenuPath(MenuType.Pause), menusParent);
-        var optionsViewHandler = new ViewCreator<OptionsMenuView>(GetMenuPath(MenuType.Options), menusParent);
-        var audioSettingsViewHandler = new ViewCreator<AudioSettingsMenuView>(GetMenuPath(MenuType.AudioSettings), menusParent);
-        var videoSettingsViewHandler = new ViewCreator<VideoSettingsMenuView>(GetMenuPath(MenuType.VideoSettings), menusParent);
-        var rebindKeysViewHandler = new ViewCreator<RebindKeysMenuView>(GetMenuPath(MenuType.RebindKeys), menusParent);
-        var interfaceMenuViewHandler = new ViewCreator<InterfaceSettingsMenuView>(GetMenuPath(MenuType.InterfaceSettings), menusParent);
+        var mainMenuViewCreator = new ViewCreator<MainMenuView>(GetMenuPath(MenuType.Main), menusParent);
+        var inGameMenuViewCreator = new ViewCreator<InGameMenuView>(GetMenuPath(MenuType.InGame), menusParent);
+        var pauseViewCreator = new ViewCreator<PauseMenuView>(GetMenuPath(MenuType.Pause), menusParent);
+        var optionsViewCreator = new ViewCreator<OptionsMenuView>(GetMenuPath(MenuType.Options), menusParent);
+        var audioSettingsViewCreator = new ViewCreator<AudioSettingsMenuView>(GetMenuPath(MenuType.AudioSettings), menusParent);
+        var videoSettingsViewCreator = new ViewCreator<VideoSettingsMenuView>(GetMenuPath(MenuType.VideoSettings), menusParent);
+        var rebindKeysViewCreator = new ViewCreator<RebindKeysMenuView>(GetMenuPath(MenuType.RebindKeys), menusParent);
+        var interfaceMenuViewCreator = new ViewCreator<InterfaceSettingsMenuView>(GetMenuPath(MenuType.InterfaceSettings), menusParent);
         var menus = new IMenuController<InputEvent>[]
         {
-            new MainMenuController<MainMenuView, InputEvent>(mainMenuViewHandler, null, menusManager, tree, popupsManager, screenFadeManager, backgroundController),
-            new InGameMenuController<InGameMenuView, InputEvent>(inGameMenuViewHandler, new InGameMenuModel(), menusManager),
-            new PauseMenuController<PauseMenuView, InputEvent>(pauseViewHandler, null, menusManager, popupsManager, screenFadeManager, backgroundController),
-            new OptionsMenuController<OptionsMenuView, InputEvent>(optionsViewHandler, null, menusManager),
-            new AudioSettingsMenuController<AudioSettingsMenuView, InputEvent>(audioSettingsViewHandler, new AudioSettingsMenuModel(settings), menusManager, popupsManager),
-            new VideoSettingsMenuController<VideoSettingsMenuView, InputEvent>(videoSettingsViewHandler, new VideoSettingsMenuModel(settings), menusManager, popupsManager),
-            new RebindKeysMenuController<RebindKeysMenuView, InputEvent>(rebindKeysViewHandler, new RebindKeysMenuModel(settings), menusManager, popupsManager),
-            new InterfaceSettingsMenuController<InterfaceSettingsMenuView, InputEvent>(interfaceMenuViewHandler, new InterfaceSettingsMenuModel(settings), menusManager, popupsManager),
+            new MainMenuController<MainMenuView, InputEvent>(mainMenuViewCreator, null, menusManager, tree, popupsManager, screenFadeManager, backgroundController),
+            new InGameMenuController<InGameMenuView, InputEvent>(inGameMenuViewCreator, new InGameMenuModel(), menusManager),
+            new PauseMenuController<PauseMenuView, InputEvent>(pauseViewCreator, null, menusManager, popupsManager, screenFadeManager, backgroundController),
+            new OptionsMenuController<OptionsMenuView, InputEvent>(optionsViewCreator, null, menusManager),
+            new AudioSettingsMenuController<AudioSettingsMenuView, InputEvent>(audioSettingsViewCreator, new AudioSettingsMenuModel(settings), menusManager, popupsManager),
+            new VideoSettingsMenuController<VideoSettingsMenuView, InputEvent>(videoSettingsViewCreator, new VideoSettingsMenuModel(settings), menusManager, popupsManager),
+            new RebindKeysMenuController<RebindKeysMenuView, InputEvent>(rebindKeysViewCreator, new RebindKeysMenuModel(settings), menusManager, popupsManager),
+            new InterfaceSettingsMenuController<InterfaceSettingsMenuView, InputEvent>(interfaceMenuViewCreator, new InterfaceSettingsMenuModel(settings), menusManager, popupsManager),
         };
         menusManager.Init(menus);
         menusManager.ShowMenu(MenuType.Main, StackingType.Clear);

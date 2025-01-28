@@ -12,13 +12,13 @@ using UISystem.MenuSystem.Views;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class RebindKeysMenuController<TViewHandler, TInputEvent>
+internal class RebindKeysMenuController<TViewCreator, TInputEvent>
     : SettingsMenuController<ViewCreator<RebindKeysMenuView>, RebindKeysMenuView, RebindKeysMenuModel>
 {
 
     public override int Type => MenuType.RebindKeys;
 
-    public RebindKeysMenuController(ViewCreator<RebindKeysMenuView> viewHandler, RebindKeysMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
+    public RebindKeysMenuController(ViewCreator<RebindKeysMenuView> viewCreator, RebindKeysMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
     { }
 
     public override void OnAnyButtonDown(InputEvent inputEvent)

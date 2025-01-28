@@ -12,14 +12,14 @@ using UISystem.MenuSystem.Views;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class InterfaceSettingsMenuController<TViewHandler, TInputEvent>
+internal class InterfaceSettingsMenuController<TViewCreator, TInputEvent>
     : SettingsMenuController<ViewCreator<InterfaceSettingsMenuView>, InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
 {
 
     private readonly int _controllerIconsNumber;
     public override int Type => MenuType.InterfaceSettings;
 
-    public InterfaceSettingsMenuController(ViewCreator<InterfaceSettingsMenuView> viewHandler, InterfaceSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
+    public InterfaceSettingsMenuController(ViewCreator<InterfaceSettingsMenuView> viewCreator, InterfaceSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;
     }

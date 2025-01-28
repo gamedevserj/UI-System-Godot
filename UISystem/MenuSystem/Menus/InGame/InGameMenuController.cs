@@ -5,12 +5,12 @@ using UISystem.MenuSystem.Views;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class InGameMenuController<TViewHandler, TInputEvent>  : MenuControllerBase<ViewCreator<InGameMenuView>, InGameMenuView>
+internal class InGameMenuController<TViewCreator, TInputEvent>  : MenuControllerBase<ViewCreator<InGameMenuView>, InGameMenuView>
 {
 
     public override int Type => MenuType.InGame;
 
-    public InGameMenuController(ViewCreator<InGameMenuView> viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager) : base(viewHandler, model, menusManager)
+    public InGameMenuController(ViewCreator<InGameMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent> menusManager) : base(viewCreator, model, menusManager)
     { }
 
     public override void OnPauseButtonDown()

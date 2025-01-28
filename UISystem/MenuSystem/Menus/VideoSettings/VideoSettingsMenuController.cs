@@ -11,13 +11,13 @@ using UISystem.MenuSystem.Views;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class VideoSettingsMenuController<TViewHandler, TInputEvent>
+internal class VideoSettingsMenuController<TViewCreator, TInputEvent>
     : SettingsMenuController<ViewCreator<VideoSettingsMenuView>, VideoSettingsMenuView, VideoSettingsMenuModel>
 {
 
     public override int Type => MenuType.VideoSettings;
 
-    public VideoSettingsMenuController(ViewCreator<VideoSettingsMenuView> viewHandler, VideoSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
+    public VideoSettingsMenuController(ViewCreator<VideoSettingsMenuView> viewCreator, VideoSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
     { }
 
     protected override void SetupElements()

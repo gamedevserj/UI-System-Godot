@@ -5,11 +5,11 @@ using UISystem.Core.Views;
 namespace UISystem.PopupSystem;
 // just a base class to adapt generic controller to Godot's specific parameters
 // so that there is no need to specify InputEvent for every controller
-internal abstract class PopupControllerBase<TViewHandler, TView> : PopupController<TViewHandler, InputEvent, TView>
-    where TViewHandler : IViewCreator<TView>
+internal abstract class PopupControllerBase<TViewCreator, TView> : PopupController<TViewCreator, InputEvent, TView>
+    where TViewCreator : IViewCreator<TView>
     where TView : IPopupView
 {
-    protected PopupControllerBase(TViewHandler viewHandler, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, popupsManager)
+    protected PopupControllerBase(TViewCreator viewCreator, IPopupsManager<InputEvent> popupsManager) : base(viewCreator, popupsManager)
     {
     }
 }

@@ -8,13 +8,13 @@ using UISystem.MenuSystem.Views;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class AudioSettingsMenuController<TViewHandler, TInputEvent>
+internal class AudioSettingsMenuController<TViewCreator, TInputEvent>
     : SettingsMenuController<ViewCreator<AudioSettingsMenuView>, AudioSettingsMenuView, AudioSettingsMenuModel>
 {
 
     public override int Type => MenuType.AudioSettings;
 
-    public AudioSettingsMenuController(ViewCreator<AudioSettingsMenuView> viewHandler, AudioSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, model, menusManager, popupsManager)
+    public AudioSettingsMenuController(ViewCreator<AudioSettingsMenuView> viewCreator, AudioSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
     { }
 
     protected override void SetupElements()

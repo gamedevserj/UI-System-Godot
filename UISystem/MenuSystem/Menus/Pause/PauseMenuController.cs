@@ -11,7 +11,7 @@ using UISystem.ScreenFade;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class PauseMenuController<TViewHandler, TInputEvent> : MenuControllerBase<ViewCreator<PauseMenuView>, PauseMenuView>
+internal class PauseMenuController<TViewCreator, TInputEvent> : MenuControllerBase<ViewCreator<PauseMenuView>, PauseMenuView>
 {
 
     public override int Type => MenuType.Pause;
@@ -20,9 +20,9 @@ internal class PauseMenuController<TViewHandler, TInputEvent> : MenuControllerBa
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
-    public PauseMenuController(ViewCreator<PauseMenuView> viewHandler, IMenuModel model, IMenusManager<InputEvent> menusManager,
+    public PauseMenuController(ViewCreator<PauseMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent> menusManager,
         IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
-        : base(viewHandler, model, menusManager)
+        : base(viewCreator, model, menusManager)
     {
         _popupsManager = popupsManager;
         _screenFadeManager = screenFadeManager;

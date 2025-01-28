@@ -5,13 +5,13 @@ using UISystem.PopupSystem.Popups.Views;
 using UISystem.Views;
 
 namespace UISystem.PopupSystem.Popups.Controllers;
-internal class YesNoCancelPopupController<TViewHandler, TInputEvent> : PopupControllerBase<ViewCreator<YesNoCancelPopupView>, YesNoCancelPopupView>
+internal class YesNoCancelPopupController<TViewCreator, TInputEvent> : PopupControllerBase<ViewCreator<YesNoCancelPopupView>, YesNoCancelPopupView>
 {
 
     public override int Type => PopupType.YesNoCancel;
     public override int PressedReturnPopupResult => PopupResult.Cancel;
 
-    public YesNoCancelPopupController(ViewCreator<YesNoCancelPopupView> viewHandler, IPopupsManager<InputEvent> popupsManager) : base(viewHandler, popupsManager)
+    public YesNoCancelPopupController(ViewCreator<YesNoCancelPopupView> viewCreator, IPopupsManager<InputEvent> popupsManager) : base(viewCreator, popupsManager)
     { }
 
     protected override void SetupElements()
