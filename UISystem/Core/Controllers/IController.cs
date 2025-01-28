@@ -1,8 +1,10 @@
-﻿namespace UISystem.Core;
-public interface IController<TInputEvent>
+﻿using System;
+
+namespace UISystem.Core;
+public interface IController<TInputEvent, TType> where TType : Enum
 {
 
-    int Type { get; }
+    TType Type { get; }
     void Init();
 
 }

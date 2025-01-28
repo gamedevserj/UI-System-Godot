@@ -10,7 +10,7 @@ public static class PopupViewsPaths
     private const string YesNo = Folder + "YesNoPopupView.tscn";
     private const string YesNoCancel = Folder + "YesNoCancelPopupView.tscn";
 
-    public static readonly Dictionary<int, string> Paths = new()
+    public static readonly Dictionary<PopupType, string> Paths = new()
     {
         { PopupType.Yes, Yes },
         { PopupType.YesNo, YesNo },

@@ -3,6 +3,8 @@ using UISystem.Core.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PhysicalInput;
 using UISystem.Core.PopupSystem;
+using UISystem.MenuSystem;
+using UISystem.PopupSystem;
 
 namespace UISystem.PhysicalInput;
 internal class InputProcessor : IInputProcessor<InputEvent>
@@ -14,13 +16,13 @@ internal class InputProcessor : IInputProcessor<InputEvent>
 
     public InputProcessor()
     {
-        MenusManager<InputEvent>.OnControllerSwitch += OnMenuControllerSwitch;
-        PopupsManager<InputEvent>.OnControllerSwitch += OnPopupControllerSwitch;
+        MenusManager<InputEvent, MenuType>.OnControllerSwitch += OnMenuControllerSwitch;
+        PopupsManager<InputEvent, PopupType, PopupResult>.OnControllerSwitch += OnPopupControllerSwitch;
     }
     ~InputProcessor()
     {
-        MenusManager<InputEvent>.OnControllerSwitch -= OnMenuControllerSwitch;
-        PopupsManager<InputEvent>.OnControllerSwitch -= OnPopupControllerSwitch;
+        MenusManager<InputEvent, MenuType>.OnControllerSwitch -= OnMenuControllerSwitch;
+        PopupsManager<InputEvent, PopupType, PopupResult>.OnControllerSwitch -= OnPopupControllerSwitch;
     }
 
     public void ProcessInput(InputEvent inputEvent)

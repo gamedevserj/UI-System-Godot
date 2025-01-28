@@ -1,6 +1,5 @@
 ﻿using Godot;
 using UISystem.Core.PopupSystem;
-using UISystem.PopupSystem.Constants;
 using UISystem.PopupSystem.Popups.Views;
 using UISystem.Views;
 
@@ -8,10 +7,10 @@ namespace UISystem.PopupSystem.Popups.Controllers;
 internal class YesPopupController<TViewCreator, TInputEvent> : PopupControllerBase<ViewCreator<YesPopupView>, YesPopupView>
 {
 
-    public override int Type => PopupType.Yes;
-    public override int PressedReturnPopupResult => PopupResult.Yes;
+    public override PopupType Type => PopupType.Yes;
+    public override PopupResult PressedReturnPopupResult => PopupResult.Yes;
 
-    public YesPopupController(ViewCreator<YesPopupView> viewCreator, IPopupsManager<InputEvent> popupsManager) : base(viewCreator, popupsManager)
+    public YesPopupController(ViewCreator<YesPopupView> viewCreator, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) : base(viewCreator, popupsManager)
     { }
 
     protected override void SetupElements()

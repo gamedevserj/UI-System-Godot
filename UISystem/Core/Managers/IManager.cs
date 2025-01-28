@@ -1,5 +1,8 @@
-﻿namespace UISystem.Core;
-internal interface IManager<TController, TInputEvent> where TController : IController<TInputEvent>
+﻿using System;
+
+namespace UISystem.Core;
+internal interface IManager<TController, TInputEvent, TType> where TController : IController<TInputEvent, TType>
+    where TType : Enum
 {
     void Init(TController[] controllers);
 }

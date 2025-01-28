@@ -1,11 +1,15 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 
 namespace UISystem.Core;
-public abstract class Manager<TController, TInputEvent> : IManager<TController, TInputEvent> where TController : IController<TInputEvent>
+public abstract class Manager<TController, TInputEvent, TType> 
+    : IManager<TController, TInputEvent, TType> 
+    where TController : IController<TInputEvent, TType>
+    where TType : Enum
 {
 
     protected TController _currentController;
-    protected Dictionary<int, TController> _controllers = new();
+    protected Dictionary<TType, TController> _controllers = new();
 
     public void Init(TController[] controllers)
     {

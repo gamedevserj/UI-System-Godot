@@ -5,10 +5,10 @@ using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Elements;
-using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
+using UISystem.PopupSystem;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
@@ -17,9 +17,11 @@ internal class InterfaceSettingsMenuController<TViewCreator, TInputEvent>
 {
 
     private readonly int _controllerIconsNumber;
-    public override int Type => MenuType.InterfaceSettings;
+    public override MenuType Type => MenuType.InterfaceSettings;
 
-    public InterfaceSettingsMenuController(ViewCreator<InterfaceSettingsMenuView> viewCreator, InterfaceSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
+    public InterfaceSettingsMenuController(ViewCreator<InterfaceSettingsMenuView> viewCreator, InterfaceSettingsMenuModel model, 
+        IMenusManager<InputEvent, MenuType> menusManager, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) 
+        : base(viewCreator, model, menusManager, popupsManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;
     }

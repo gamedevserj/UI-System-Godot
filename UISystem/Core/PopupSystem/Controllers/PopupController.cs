@@ -2,19 +2,21 @@
 using UISystem.Core.Views;
 
 namespace UISystem.Core.PopupSystem;
-internal abstract class PopupController<TViewCreator, TInputEvent, TView>
-    : Controller<TViewCreator, TView, TInputEvent>, IPopupController<TInputEvent>
+internal abstract class PopupController<TViewCreator, TInputEvent, TView, TType, TResult>
+    : Controller<TViewCreator, TView, TInputEvent, TType>, IPopupController<TInputEvent, TType, TResult>
     where TViewCreator : IViewCreator<TView>
     where TView : IPopupView
+    where TType : Enum
+    where TResult : Enum
 {
 
-    protected Action<int> _onHideAction;
+    protected Action<TResult> _onHideAction;
 
-    protected readonly IPopupsManager<TInputEvent> _popupsManager;
+    protected readonly IPopupsManager<TInputEvent, TType, TResult> _popupsManager;
 
-    public abstract int PressedReturnPopupResult { get; }
+    public abstract TResult PressedReturnPopupResult { get; }
 
-    public PopupController(TViewCreator viewCreator, IPopupsManager<TInputEvent> popupsManager)
+    public PopupController(TViewCreator viewCreator, IPopupsManager<TInputEvent, TType, TResult> popupsManager)
     {
         _viewCreator = viewCreator;
         _popupsManager = popupsManager;
@@ -29,7 +31,7 @@ internal abstract class PopupController<TViewCreator, TInputEvent, TView>
         }
     }
 
-    public void Show(string message, Action<int> onHideAction, bool instant = false)
+    public void Show(string message, Action<TResult> onHideAction, bool instant = false)
     {
         CanReceivePhysicalInput = false;
         _view.SetMessage(message);
@@ -41,7 +43,7 @@ internal abstract class PopupController<TViewCreator, TInputEvent, TView>
         }, instant);
     }
 
-    public void Hide(int result, bool instant = false)
+    public void Hide(TResult result, bool instant = false)
     {
         CanReceivePhysicalInput = false;
         _view.Hide(() =>

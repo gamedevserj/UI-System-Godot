@@ -1,23 +1,23 @@
-﻿using Godot;
-using System;
+﻿using System;
 using UISystem.Core.Views;
 
 namespace UISystem.Core.MenuSystem;
-internal abstract class MenuController<TViewCreator, TView, TModel, TInputEvent, TInteractableElement>
-    : Controller<TViewCreator, TView, TInputEvent>, IMenuController<TInputEvent>
+internal abstract class MenuController<TViewCreator, TView, TModel, TInputEvent, TInteractableElement, TType>
+    : Controller<TViewCreator, TView, TInputEvent, TType>, IMenuController<TInputEvent, TType>
     where TViewCreator : IViewCreator<TView>
     where TView : IMenuView<TInteractableElement>
     where TModel : IMenuModel
+    where TType : Enum
 {
 
     protected TModel _model;
 
-    protected readonly IMenusManager<TInputEvent> _menusManager;
+    protected readonly IMenusManager<TInputEvent, TType> _menusManager;
 
     // when you want to temporarly disable retuning to previous menu, i.e. when player is rebinding keys
     public bool CanReturnToPreviousMenu { get; set; } = true; 
 
-    public MenuController(TViewCreator viewCreator, TModel model, IMenusManager<TInputEvent> menusManager)
+    public MenuController(TViewCreator viewCreator, TModel model, IMenusManager<TInputEvent, TType> menusManager)
     {
         _viewCreator = viewCreator;
         _model = model;

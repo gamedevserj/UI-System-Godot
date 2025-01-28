@@ -2,10 +2,12 @@
 using UISystem.Core.PhysicalInput;
 
 namespace UISystem.Core.PopupSystem;
-public partial interface IPopupController<TInputEvent> : IController<TInputEvent>, IInputReceiver<TInputEvent>
+public partial interface IPopupController<TInputEvent, TType, TResult> : IController<TInputEvent, TType>, IInputReceiver<TInputEvent>
+    where TType : Enum
+    where TResult : Enum
 {
 
-    void Hide(int result, bool instant = false);
-    void Show(string message, Action<int> onHideAction, bool instant);
+    void Hide(TResult result, bool instant = false);
+    void Show(string message, Action<TResult> onHideAction, bool instant);
 
 }

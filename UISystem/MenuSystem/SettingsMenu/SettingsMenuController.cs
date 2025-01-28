@@ -5,20 +5,19 @@ using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
 using UISystem.Elements;
 using UISystem.PopupSystem;
-using UISystem.PopupSystem.Constants;
 
 namespace UISystem.MenuSystem.SettingsMenu;
 internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
-    : MenuController<TViewCreator, TView, TModel, InputEvent, IFocusableControl>
+    : MenuController<TViewCreator, TView, TModel, InputEvent, IFocusableControl, MenuType>
     where TViewCreator : IViewCreator<TView>
     where TView : SettingsMenuView
     where TModel : ISettingsMenuModel
 {
 
-    protected readonly IPopupsManager<InputEvent> _popupsManager;
+    protected readonly IPopupsManager<InputEvent, PopupType, PopupResult> _popupsManager;
 
-    protected SettingsMenuController(TViewCreator viewCreator, TModel model, IMenusManager<InputEvent> menusManager, 
-        IPopupsManager<InputEvent> popupsManager) : base(viewCreator, model, menusManager)
+    protected SettingsMenuController(TViewCreator viewCreator, TModel model, IMenusManager<InputEvent, MenuType> menusManager, 
+        IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) : base(viewCreator, model, menusManager)
     {
         _popupsManager = popupsManager;
     }
@@ -50,7 +49,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
         }
     }
 
-    protected void OnReturnToPreviousMenuPopupClosed(int result)
+    protected void OnReturnToPreviousMenuPopupClosed(PopupResult result)
     {
         switch (result)
         {

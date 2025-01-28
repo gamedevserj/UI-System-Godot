@@ -1,10 +1,10 @@
 ﻿using Godot;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
-using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
+using UISystem.PopupSystem;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
@@ -12,9 +12,10 @@ internal class AudioSettingsMenuController<TViewCreator, TInputEvent>
     : SettingsMenuController<ViewCreator<AudioSettingsMenuView>, AudioSettingsMenuView, AudioSettingsMenuModel>
 {
 
-    public override int Type => MenuType.AudioSettings;
+    public override MenuType Type => MenuType.AudioSettings;
 
-    public AudioSettingsMenuController(ViewCreator<AudioSettingsMenuView> viewCreator, AudioSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
+    public AudioSettingsMenuController(ViewCreator<AudioSettingsMenuView> viewCreator, AudioSettingsMenuModel model, 
+        IMenusManager<InputEvent, MenuType> menusManager, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
     { }
 
     protected override void SetupElements()

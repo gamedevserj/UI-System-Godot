@@ -1,13 +1,17 @@
 ﻿using System;
 using UISystem.Core.PhysicalInput;
+using static Godot.HttpRequest;
 
 namespace UISystem.Core.PopupSystem;
-public partial class PopupsManager<TInputEvent> : Manager<IPopupController<TInputEvent>, TInputEvent>,  IPopupsManager<TInputEvent>
+public partial class PopupsManager<TInputEvent, TType, TResult> : Manager<IPopupController<TInputEvent, TType, TResult>, TInputEvent, TType>, 
+    IPopupsManager<TInputEvent, TType, TResult>
+    where TType : Enum
+    where TResult : Enum
 {
 
     public static Action<IInputReceiver<TInputEvent>> OnControllerSwitch;
 
-    public void ShowPopup(int popupType, string message, Action<int> onHideAction = null, bool instant = false)
+    public void ShowPopup(TType popupType, string message, Action<TResult> onHideAction = null, bool instant = false)
     {
         _currentController = _controllers[popupType];
         _currentController.Init();
@@ -19,7 +23,7 @@ public partial class PopupsManager<TInputEvent> : Manager<IPopupController<TInpu
         OnControllerSwitch?.Invoke(_currentController);
     }
 
-    public void HidePopup(int result)
+    public void HidePopup(TResult result)
     {
         _currentController?.Hide(result);
         _currentController = null;

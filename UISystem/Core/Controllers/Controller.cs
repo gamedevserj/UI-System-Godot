@@ -1,13 +1,15 @@
-﻿using UISystem.Core.PhysicalInput;
+﻿using System;
+using UISystem.Core.PhysicalInput;
 
 namespace UISystem.Core;
-internal abstract class Controller<TViewCreator, TView, TInputEvent> : IController<TInputEvent>, IInputReceiver<TInputEvent>
+internal abstract class Controller<TViewCreator, TView, TInputEvent, TType> : IController<TInputEvent, TType>, IInputReceiver<TInputEvent>
+    where TType : Enum
 {
 
     protected TViewCreator _viewCreator;
     protected TView _view;
 
-    public abstract int Type { get; }
+    public abstract TType Type { get; }
     public bool CanReceivePhysicalInput { get; protected set; } // to prevent input processing during transitions
 
     public abstract void Init();

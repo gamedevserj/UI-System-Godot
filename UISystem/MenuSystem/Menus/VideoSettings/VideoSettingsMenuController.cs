@@ -4,10 +4,10 @@ using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Elements;
-using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
+using UISystem.PopupSystem;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
@@ -15,9 +15,10 @@ internal class VideoSettingsMenuController<TViewCreator, TInputEvent>
     : SettingsMenuController<ViewCreator<VideoSettingsMenuView>, VideoSettingsMenuView, VideoSettingsMenuModel>
 {
 
-    public override int Type => MenuType.VideoSettings;
+    public override MenuType Type => MenuType.VideoSettings;
 
-    public VideoSettingsMenuController(ViewCreator<VideoSettingsMenuView> viewCreator, VideoSettingsMenuModel model, IMenusManager<InputEvent> menusManager, IPopupsManager<InputEvent> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
+    public VideoSettingsMenuController(ViewCreator<VideoSettingsMenuView> viewCreator, VideoSettingsMenuModel model, 
+        IMenusManager<InputEvent, MenuType> menusManager, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
     { }
 
     protected override void SetupElements()

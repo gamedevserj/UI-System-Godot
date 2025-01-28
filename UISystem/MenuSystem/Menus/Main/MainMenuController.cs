@@ -3,10 +3,8 @@ using System;
 using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
-using UISystem.MenuSystem.Constants;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
-using UISystem.PopupSystem.Constants;
 using UISystem.ScreenFade;
 using UISystem.Views;
 
@@ -14,15 +12,15 @@ namespace UISystem.MenuSystem.Controllers;
 internal class MainMenuController<TViewCreator, TInputEvent> : MenuControllerBase<ViewCreator<MainMenuView>, MainMenuView>
 {
 
-    public override int Type => MenuType.Main;
+    public override MenuType Type => MenuType.Main;
 
     private readonly SceneTree _sceneTree;
-    private readonly IPopupsManager<InputEvent> _popupsManager;
+    private readonly IPopupsManager<InputEvent, PopupType, PopupResult> _popupsManager;
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(ViewCreator<MainMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent> menusManager,
-        SceneTree sceneTree, IPopupsManager<InputEvent> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
+    public MainMenuController(ViewCreator<MainMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent, MenuType> menusManager,
+        SceneTree sceneTree, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
         : base(viewCreator, model, menusManager)
     {
         _sceneTree = sceneTree;
