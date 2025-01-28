@@ -1,5 +1,5 @@
 ﻿using Godot;
-using UISystem.Core.Extensions;
+using UISystem.Extensions;
 using UISystem.Transitions.Enums;
 using UISystem.Transitions.Extensions;
 using UISystem.Transitions.Structs;

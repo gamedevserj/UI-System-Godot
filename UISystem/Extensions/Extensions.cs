@@ -1,7 +1,7 @@
 using Godot;
 using UISystem.Elements;
 
-namespace UISystem.Core.Extensions
+namespace UISystem.Extensions
 {
     public static class Extensions
     {

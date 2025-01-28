@@ -1,7 +1,7 @@
 ﻿using Godot;
 using UISystem.Constants;
 
-namespace UISystem.Core.Extensions;
+namespace UISystem.Extensions;
 internal static class TweenExtensions
 {
     public static Tween TweenControlPosition(this Tween tween, Control target, Vector2 position, float duration)

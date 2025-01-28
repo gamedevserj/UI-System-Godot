@@ -3,8 +3,8 @@ using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using UISystem.Core.Extensions;
 using UISystem.Core.Transitions;
+using UISystem.Extensions;
 using UISystem.Transitions.Interfaces;
 
 namespace UISystem.Transitions;

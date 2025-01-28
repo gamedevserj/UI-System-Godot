@@ -1,11 +1,11 @@
 ﻿using Godot;
 using System;
 using UISystem.Common.Enums;
-using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
 using UISystem.Elements;
+using UISystem.Extensions;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;

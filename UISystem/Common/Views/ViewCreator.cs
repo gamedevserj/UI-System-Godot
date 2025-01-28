@@ -1,6 +1,6 @@
 ﻿using Godot;
-using UISystem.Core.Extensions;
 using UISystem.Core.Views;
+using UISystem.Extensions;
 
 namespace UISystem.Views;
 internal class ViewCreator<TView> : ViewCreator<string, TView, Node> where TView : ViewBase

@@ -1,5 +1,5 @@
 ﻿using Godot;
-using UISystem.Core.Extensions;
+using UISystem.Extensions;
 
 namespace UISystem.Hovering;
 [GlobalClass]
