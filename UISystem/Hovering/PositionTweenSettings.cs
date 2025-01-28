@@ -1,9 +1,7 @@
 ﻿using Godot;
-using UISystem.Core.Enums;
 using UISystem.Core.Extensions;
-using UISystem.Core.Interfaces;
 
-namespace UISystem.Core.Hovering;
+namespace UISystem.Hovering;
 [GlobalClass]
 public partial class PositionTweenSettings : TweenSettings<Vector2>
 {

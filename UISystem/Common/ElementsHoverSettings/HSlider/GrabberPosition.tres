@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="PositionTweenSettings" load_steps=2 format=3 uid="uid://bgkxvmu7uv87p"]
 
-[ext_resource type="Script" path="res://UISystem/Core/Hovering/PositionTweenSettings.cs" id="1_q0xua"]
+[ext_resource type="Script" path="res://UISystem/Hovering/PositionTweenSettings.cs" id="1_q0xua"]
 
 [resource]
 script = ExtResource("1_q0xua")

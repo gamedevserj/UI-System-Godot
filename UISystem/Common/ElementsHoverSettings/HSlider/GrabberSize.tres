@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="SizeTweenSettings" load_steps=2 format=3 uid="uid://u66f3lgv02n7"]
 
-[ext_resource type="Script" path="res://UISystem/Core/Hovering/SizeTweenSettings.cs" id="1_ms1lf"]
+[ext_resource type="Script" path="res://UISystem/Hovering/SizeTweenSettings.cs" id="1_ms1lf"]
 
 [resource]
 script = ExtResource("1_ms1lf")

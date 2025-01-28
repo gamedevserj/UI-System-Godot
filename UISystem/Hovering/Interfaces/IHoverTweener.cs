@@ -1,7 +1,6 @@
 ﻿using Godot;
-using UISystem.Core.Enums;
 
-namespace UISystem.Core.Interfaces;
+namespace UISystem.Hovering;
 public interface IHoverTweener
 {
 

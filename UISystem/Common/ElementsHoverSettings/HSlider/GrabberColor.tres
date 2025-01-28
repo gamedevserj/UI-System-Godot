@@ -1,6 +1,6 @@
 [gd_resource type="Resource" script_class="ColorTweenSettings" load_steps=2 format=3 uid="uid://bq67mkdlssxod"]
 
-[ext_resource type="Script" path="res://UISystem/Core/Hovering/ColorTweenSettings.cs" id="1_iwt2w"]
+[ext_resource type="Script" path="res://UISystem/Hovering/ColorTweenSettings.cs" id="1_iwt2w"]
 
 [resource]
 script = ExtResource("1_iwt2w")

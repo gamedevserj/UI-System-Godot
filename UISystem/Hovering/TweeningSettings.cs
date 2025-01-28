@@ -1,6 +1,6 @@
 ﻿using static Godot.Tween;
 
-namespace UISystem.Core.Hovering;
+namespace UISystem.Hovering;
 public struct TweeningSettings
 {
 

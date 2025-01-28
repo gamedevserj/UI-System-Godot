@@ -1,4 +1,4 @@
-﻿namespace UISystem.Core.Enums;
+﻿namespace UISystem.Hovering;
 public enum ControlDrawMode
 {
     Normal = 0,

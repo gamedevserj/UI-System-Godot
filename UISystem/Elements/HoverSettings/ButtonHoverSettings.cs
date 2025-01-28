@@ -1,7 +1,5 @@
 ﻿using Godot;
-using UISystem.Core.Enums;
-using UISystem.Core.Hovering;
-using UISystem.Core.Interfaces;
+using UISystem.Hovering;
 
 namespace UISystem.Elements.HoverSettings;
 [GlobalClass]

@@ -1,8 +1,6 @@
 ﻿using Godot;
-using UISystem.Core.Enums;
-using UISystem.Core.Interfaces;
 
-namespace UISystem.Core.Hovering;
+namespace UISystem.Hovering;
 public abstract partial class TweenSettings<T> : Resource
 {
 

@@ -1,8 +1,7 @@
 ﻿using Godot;
 using System.Threading.Tasks;
-using UISystem.Core.Enums;
-using UISystem.Core.Interfaces;
 using UISystem.Elements.HoverSettings;
+using UISystem.Hovering;
 using UISystem.Transitions.Interfaces;
 
 namespace UISystem.Elements.ElementViews;
