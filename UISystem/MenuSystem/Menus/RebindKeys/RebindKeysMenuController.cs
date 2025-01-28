@@ -3,22 +3,21 @@ using UISystem.Constants;
 using UISystem.Core.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
+using UISystem.Core.Views;
 using UISystem.Elements;
 using UISystem.Elements.ElementViews;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
-using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class RebindKeysMenuController<TViewCreator, TInputEvent>
-    : SettingsMenuController<ViewCreator<RebindKeysMenuView>, RebindKeysMenuView, RebindKeysMenuModel>
+internal class RebindKeysMenuController : SettingsMenuController<IViewCreator<RebindKeysMenuView>, RebindKeysMenuView, RebindKeysMenuModel>
 {
 
     public override MenuType Type => MenuType.RebindKeys;
 
-    public RebindKeysMenuController(ViewCreator<RebindKeysMenuView> viewCreator, RebindKeysMenuModel model, 
+    public RebindKeysMenuController(IViewCreator<RebindKeysMenuView> viewCreator, RebindKeysMenuModel model, 
         IMenusManager<InputEvent, MenuType> menusManager, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) 
         : base(viewCreator, model, menusManager, popupsManager)
     { }

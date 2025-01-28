@@ -1,15 +1,15 @@
 ﻿using Godot;
 using UISystem.Core.MenuSystem;
+using UISystem.Core.Views;
 using UISystem.MenuSystem.Views;
-using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class InGameMenuController<TViewCreator, TInputEvent>  : MenuControllerBase<ViewCreator<InGameMenuView>, InGameMenuView>
+internal class InGameMenuController : MenuControllerBase<IViewCreator<InGameMenuView>, InGameMenuView>
 {
 
     public override MenuType Type => MenuType.InGame;
 
-    public InGameMenuController(ViewCreator<InGameMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent, MenuType> menusManager) : base(viewCreator, model, menusManager)
+    public InGameMenuController(IViewCreator<InGameMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent, MenuType> menusManager) : base(viewCreator, model, menusManager)
     { }
 
     public override void OnPauseButtonDown()

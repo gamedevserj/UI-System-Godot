@@ -3,21 +3,20 @@ using System.Text.RegularExpressions;
 using UISystem.Core.Extensions;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
+using UISystem.Core.Views;
 using UISystem.Elements;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
-using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class VideoSettingsMenuController<TViewCreator, TInputEvent>
-    : SettingsMenuController<ViewCreator<VideoSettingsMenuView>, VideoSettingsMenuView, VideoSettingsMenuModel>
+internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator<VideoSettingsMenuView>, VideoSettingsMenuView, VideoSettingsMenuModel>
 {
 
     public override MenuType Type => MenuType.VideoSettings;
 
-    public VideoSettingsMenuController(ViewCreator<VideoSettingsMenuView> viewCreator, VideoSettingsMenuModel model, 
+    public VideoSettingsMenuController(IViewCreator<VideoSettingsMenuView> viewCreator, VideoSettingsMenuModel model, 
         IMenusManager<InputEvent, MenuType> menusManager, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
     { }
 

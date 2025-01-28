@@ -51,9 +51,9 @@ public partial class UiInstaller : Node
         var yesNoCancelPopupViewCreator = new ViewCreator<YesNoCancelPopupView>(GetPopupPath(PopupType.YesNoCancel), popupsParent);
         var popups = new IPopupController<InputEvent, PopupType, PopupResult>[]
         {
-            new YesPopupController<YesPopupView, InputEvent>(yesPopupViewCreator, popupsManager),
-            new YesNoPopupController<YesNoPopupView, InputEvent>(yesNoPopupViewCreator, popupsManager),
-            new YesNoCancelPopupController<YesNoCancelPopupView, InputEvent>(yesNoCancelPopupViewCreator, popupsManager)
+            new YesPopupController(yesPopupViewCreator, popupsManager),
+            new YesNoPopupController(yesNoPopupViewCreator, popupsManager),
+            new YesNoCancelPopupController(yesNoCancelPopupViewCreator, popupsManager)
         };
         popupsManager.Init(popups);
 
@@ -70,14 +70,14 @@ public partial class UiInstaller : Node
         var interfaceMenuViewCreator = new ViewCreator<InterfaceSettingsMenuView>(GetMenuPath(MenuType.InterfaceSettings), menusParent);
         var menus = new IMenuController<InputEvent, MenuType>[]
         {
-            new MainMenuController<MainMenuView, InputEvent>(mainMenuViewCreator, null, menusManager, tree, popupsManager, screenFadeManager, backgroundController),
-            new InGameMenuController<InGameMenuView, InputEvent>(inGameMenuViewCreator, new InGameMenuModel(), menusManager),
-            new PauseMenuController<PauseMenuView, InputEvent>(pauseViewCreator, null, menusManager, popupsManager, screenFadeManager, backgroundController),
-            new OptionsMenuController<OptionsMenuView, InputEvent>(optionsViewCreator, null, menusManager),
-            new AudioSettingsMenuController<AudioSettingsMenuView, InputEvent>(audioSettingsViewCreator, new AudioSettingsMenuModel(settings), menusManager, popupsManager),
-            new VideoSettingsMenuController<VideoSettingsMenuView, InputEvent>(videoSettingsViewCreator, new VideoSettingsMenuModel(settings), menusManager, popupsManager),
-            new RebindKeysMenuController<RebindKeysMenuView, InputEvent>(rebindKeysViewCreator, new RebindKeysMenuModel(settings), menusManager, popupsManager),
-            new InterfaceSettingsMenuController<InterfaceSettingsMenuView, InputEvent>(interfaceMenuViewCreator, new InterfaceSettingsMenuModel(settings), menusManager, popupsManager),
+            new MainMenuController(mainMenuViewCreator, null, menusManager, tree, popupsManager, screenFadeManager, backgroundController),
+            new InGameMenuController(inGameMenuViewCreator, new InGameMenuModel(), menusManager),
+            new PauseMenuController(pauseViewCreator, null, menusManager, popupsManager, screenFadeManager, backgroundController),
+            new OptionsMenuController(optionsViewCreator, null, menusManager),
+            new AudioSettingsMenuController(audioSettingsViewCreator, new AudioSettingsMenuModel(settings), menusManager, popupsManager),
+            new VideoSettingsMenuController(videoSettingsViewCreator, new VideoSettingsMenuModel(settings), menusManager, popupsManager),
+            new RebindKeysMenuController(rebindKeysViewCreator, new RebindKeysMenuModel(settings), menusManager, popupsManager),
+            new InterfaceSettingsMenuController(interfaceMenuViewCreator, new InterfaceSettingsMenuModel(settings), menusManager, popupsManager),
         };
         menusManager.Init(menus);
         menusManager.ShowMenu(MenuType.Main, StackingType.Clear);

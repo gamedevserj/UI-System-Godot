@@ -3,13 +3,13 @@ using System;
 using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
+using UISystem.Core.Views;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
 using UISystem.ScreenFade;
-using UISystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class MainMenuController<TViewCreator, TInputEvent> : MenuControllerBase<ViewCreator<MainMenuView>, MainMenuView>
+internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView>, MainMenuView>
 {
 
     public override MenuType Type => MenuType.Main;
@@ -19,7 +19,7 @@ internal class MainMenuController<TViewCreator, TInputEvent> : MenuControllerBas
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(ViewCreator<MainMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent, MenuType> menusManager,
+    public MainMenuController(IViewCreator<MainMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent, MenuType> menusManager,
         SceneTree sceneTree, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
         : base(viewCreator, model, menusManager)
     {

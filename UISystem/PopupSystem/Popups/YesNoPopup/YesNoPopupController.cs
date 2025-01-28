@@ -1,15 +1,15 @@
 using Godot;
 using UISystem.Core.PopupSystem;
+using UISystem.Core.Views;
 using UISystem.PopupSystem.Popups.Views;
-using UISystem.Views;
 
 namespace UISystem.PopupSystem.Popups.Controllers;
-internal class YesNoPopupController<TViewCreator, TInputEvent> : PopupControllerBase<ViewCreator<YesNoPopupView>, YesNoPopupView>
+internal class YesNoPopupController : PopupControllerBase<IViewCreator<YesNoPopupView>, YesNoPopupView>
 {
     public override PopupType Type => PopupType.YesNo;
     public override PopupResult PressedReturnPopupResult => PopupResult.No;
 
-    public YesNoPopupController(ViewCreator<YesNoPopupView> viewCreator, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) : base(viewCreator, popupsManager)
+    public YesNoPopupController(IViewCreator<YesNoPopupView> viewCreator, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) : base(viewCreator, popupsManager)
     { }
 
     protected override void SetupElements()
