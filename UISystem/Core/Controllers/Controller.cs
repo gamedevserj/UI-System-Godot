@@ -13,7 +13,6 @@ internal abstract class Controller<TViewCreator, TView, TInputEvent, TType> : IC
     public bool CanReceivePhysicalInput { get; protected set; } // to prevent input processing during transitions
 
     public abstract void Init();
-
     public abstract void OnReturnButtonDown();
     public virtual void OnPauseButtonDown() { } // for in-game menu
     public virtual void OnAnyButtonDown(TInputEvent inputEvent) { }  // for rebind menu

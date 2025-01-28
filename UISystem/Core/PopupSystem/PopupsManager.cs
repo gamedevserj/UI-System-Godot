@@ -1,6 +1,5 @@
 ﻿using System;
 using UISystem.Core.PhysicalInput;
-using static Godot.HttpRequest;
 
 namespace UISystem.Core.PopupSystem;
 public partial class PopupsManager<TInputEvent, TType, TResult> : Manager<IPopupController<TInputEvent, TType, TResult>, TInputEvent, TType>, 

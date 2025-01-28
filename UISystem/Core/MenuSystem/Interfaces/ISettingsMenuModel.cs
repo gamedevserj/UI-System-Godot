@@ -6,7 +6,6 @@ public interface ISettingsMenuModel : IMenuModel
 
     void SaveSettings();
     void DiscardChanges();
-
     void ResetToDefault();
 
 }
