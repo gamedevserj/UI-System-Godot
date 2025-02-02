@@ -13,8 +13,6 @@ internal class ViewCreator<TView> : ViewCreator<string, TView, Node> where TView
 
     public override void DestroyView() => _view.SafeQueueFree();
 
-    public override void SwitchFocusAvailability(bool enable) => _view.SwitchFocusAvailability(enable);
-
     public override TView CreateView()
     {
         PackedScene loadedPrefab = ResourceLoader.Load<PackedScene>(_prefab);

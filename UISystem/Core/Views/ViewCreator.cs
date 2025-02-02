@@ -18,6 +18,4 @@ internal abstract class ViewCreator<TPrefab, TView, TParent> : IViewCreator<TVie
 
     public abstract void DestroyView();
 
-    public abstract void SwitchFocusAvailability(bool enable);
-
 }
