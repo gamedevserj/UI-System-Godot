@@ -15,8 +15,6 @@ public abstract partial class ViewBase : Control, IView
     private IViewTransition _transition;
     protected IFocusableControl[] _focusableElements;
 
-    public bool IsValid => this.IsValid();
-
     public virtual void Init()
     {
         _transition = CreateTransition();

@@ -6,7 +6,7 @@ namespace UISystem.Views;
 internal class ViewCreator<TView> : ViewCreator<string, TView, Node> where TView : ViewBase
 {
 
-    public override bool IsViewValid => _view != null && _view.IsValid;
+    public override bool IsViewValid => _view.IsValid();
 
     public ViewCreator(string prefab, Node parent) : base(prefab, parent)
     { }
