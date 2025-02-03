@@ -32,6 +32,7 @@ To create key binding that player can rebind you need to do the following:
 1. Create your actions in InputMap
 2. Create a property in InputsData and add it to the RebindableActions array
 3. Add rebindable button views in the menu view and set them up in the controller using existing buttons as example
+   
  ⚠️ The example rebinding menu uses image names from https://kenney.nl/assets/input-prompts, but they are not included in this repository. You'll need to download them separately.
 
 ## Popup system
