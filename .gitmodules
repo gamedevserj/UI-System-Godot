@@ -1,0 +1,3 @@
+[submodule "UISystemCore"]
+	path = UISystem/Core
+	url = git@github.com:gamedevserj/UI-System-Core.git
