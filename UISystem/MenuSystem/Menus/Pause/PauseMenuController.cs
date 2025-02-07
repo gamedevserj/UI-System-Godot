@@ -14,12 +14,12 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
 
     public override MenuType Type => MenuType.Pause;
 
-    private readonly IPopupsManager<InputEvent, PopupType, PopupResult> _popupsManager;
+    private readonly IPopupsManager<PopupType, PopupResult> _popupsManager;
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
-    public PauseMenuController(IViewCreator<PauseMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent, MenuType> menusManager,
-        IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
+    public PauseMenuController(IViewCreator<PauseMenuView> viewCreator, IMenuModel model, IMenusManager<MenuType> menusManager,
+        IPopupsManager<PopupType, PopupResult> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
         : base(viewCreator, model, menusManager)
     {
         _popupsManager = popupsManager;

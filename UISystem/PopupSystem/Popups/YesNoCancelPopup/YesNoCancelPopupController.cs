@@ -1,5 +1,4 @@
-﻿using Godot;
-using UISystem.Core.PopupSystem;
+﻿using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
 using UISystem.PopupSystem.Popups.Views;
 
@@ -10,7 +9,7 @@ internal class YesNoCancelPopupController : PopupControllerBase<IViewCreator<Yes
     public override PopupType Type => PopupType.YesNoCancel;
     public override PopupResult PressedReturnPopupResult => PopupResult.Cancel;
 
-    public YesNoCancelPopupController(IViewCreator<YesNoCancelPopupView> viewCreator, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) : base(viewCreator, popupsManager)
+    public YesNoCancelPopupController(IViewCreator<YesNoCancelPopupView> viewCreator, IPopupsManager<PopupType, PopupResult> popupsManager) : base(viewCreator, popupsManager)
     { }
 
     protected override void SetupElements()

@@ -9,7 +9,7 @@ internal class InGameMenuController : MenuControllerBase<IViewCreator<InGameMenu
 
     public override MenuType Type => MenuType.InGame;
 
-    public InGameMenuController(IViewCreator<InGameMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent, MenuType> menusManager) : base(viewCreator, model, menusManager)
+    public InGameMenuController(IViewCreator<InGameMenuView> viewCreator, IMenuModel model, IMenusManager<MenuType> menusManager) : base(viewCreator, model, menusManager)
     { }
 
     public override void OnPauseButtonDown()

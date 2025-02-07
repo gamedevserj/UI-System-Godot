@@ -15,12 +15,12 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
     public override MenuType Type => MenuType.Main;
 
     private readonly SceneTree _sceneTree;
-    private readonly IPopupsManager<InputEvent, PopupType, PopupResult> _popupsManager;
+    private readonly IPopupsManager<PopupType, PopupResult> _popupsManager;
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(IViewCreator<MainMenuView> viewCreator, IMenuModel model, IMenusManager<InputEvent, MenuType> menusManager,
-        SceneTree sceneTree, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
+    public MainMenuController(IViewCreator<MainMenuView> viewCreator, IMenuModel model, IMenusManager<MenuType> menusManager,
+        SceneTree sceneTree, IPopupsManager<PopupType, PopupResult> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
         : base(viewCreator, model, menusManager)
     {
         _sceneTree = sceneTree;

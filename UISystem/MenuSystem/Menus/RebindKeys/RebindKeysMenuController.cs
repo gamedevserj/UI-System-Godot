@@ -9,24 +9,27 @@ using UISystem.Elements.ElementViews;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
+using UISystem.PhysicalInput;
 using UISystem.PopupSystem;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class RebindKeysMenuController : SettingsMenuController<IViewCreator<RebindKeysMenuView>, RebindKeysMenuView, RebindKeysMenuModel>
+internal class RebindKeysMenuController 
+    : SettingsMenuController<IViewCreator<RebindKeysMenuView>, RebindKeysMenuView, RebindKeysMenuModel>, IRebindInputReceiver
 {
 
     public override MenuType Type => MenuType.RebindKeys;
 
     public RebindKeysMenuController(IViewCreator<RebindKeysMenuView> viewCreator, RebindKeysMenuModel model, 
-        IMenusManager<InputEvent, MenuType> menusManager, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) 
+        IMenusManager<MenuType> menusManager, IPopupsManager<PopupType, PopupResult> popupsManager) 
         : base(viewCreator, model, menusManager, popupsManager)
     { }
 
-    public override void OnAnyButtonDown(InputEvent inputEvent)
+    public void OnAnyButtonDown(InputEvent inputEvent)
     {
         if (_model.IsRebinding)
             _model.RebindKey(inputEvent);
     }
+
     public override void OnReturnButtonDown()
     {
         if (!_model.IsRebinding)

@@ -1,5 +1,4 @@
-﻿using Godot;
-using UISystem.Constants;
+﻿using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
@@ -8,16 +7,16 @@ using UISystem.PopupSystem;
 
 namespace UISystem.MenuSystem.SettingsMenu;
 internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
-    : MenuController<TViewCreator, TView, TModel, InputEvent, IFocusableControl, MenuType>
+    : MenuController<TViewCreator, TView, TModel, IFocusableControl, MenuType>
     where TViewCreator : IViewCreator<TView>
     where TView : SettingsMenuView
     where TModel : ISettingsMenuModel
 {
 
-    protected readonly IPopupsManager<InputEvent, PopupType, PopupResult> _popupsManager;
+    protected readonly IPopupsManager<PopupType, PopupResult> _popupsManager;
 
-    protected SettingsMenuController(TViewCreator viewCreator, TModel model, IMenusManager<InputEvent, MenuType> menusManager, 
-        IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) : base(viewCreator, model, menusManager)
+    protected SettingsMenuController(TViewCreator viewCreator, TModel model, IMenusManager<MenuType> menusManager, 
+        IPopupsManager<PopupType, PopupResult> popupsManager) : base(viewCreator, model, menusManager)
     {
         _popupsManager = popupsManager;
     }

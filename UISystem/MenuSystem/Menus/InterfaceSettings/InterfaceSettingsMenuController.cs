@@ -1,5 +1,4 @@
-﻿using Godot;
-using System;
+﻿using System;
 using UISystem.Common.Enums;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
@@ -19,7 +18,7 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCre
     public override MenuType Type => MenuType.InterfaceSettings;
 
     public InterfaceSettingsMenuController(IViewCreator<InterfaceSettingsMenuView> viewCreator, InterfaceSettingsMenuModel model, 
-        IMenusManager<InputEvent, MenuType> menusManager, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) 
+        IMenusManager<MenuType> menusManager, IPopupsManager<PopupType, PopupResult> popupsManager) 
         : base(viewCreator, model, menusManager, popupsManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;

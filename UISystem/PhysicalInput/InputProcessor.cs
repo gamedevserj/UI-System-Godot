@@ -10,19 +10,20 @@ namespace UISystem.PhysicalInput;
 internal class InputProcessor : IInputProcessor<InputEvent>
 {
 
-    private IInputReceiver<InputEvent> _menuInputReceiver;
-    private IInputReceiver<InputEvent> _popupInputReceiver;
-    private IInputReceiver<InputEvent> _activeReceiver;
+    private IInputReceiver _menuInputReceiver;
+    private IInputReceiver _popupInputReceiver;
+    private IInputReceiver _activeReceiver;
+    private IRebindInputReceiver _rebindInputReceiver;
 
     public InputProcessor()
     {
-        MenusManager<InputEvent, MenuType>.OnControllerSwitch += OnMenuControllerSwitch;
-        PopupsManager<InputEvent, PopupType, PopupResult>.OnControllerSwitch += OnPopupControllerSwitch;
+        MenusManager<MenuType>.OnControllerSwitch += OnMenuControllerSwitch;
+        PopupsManager<PopupType, PopupResult>.OnControllerSwitch += OnPopupControllerSwitch;
     }
     ~InputProcessor()
     {
-        MenusManager<InputEvent, MenuType>.OnControllerSwitch -= OnMenuControllerSwitch;
-        PopupsManager<InputEvent, PopupType, PopupResult>.OnControllerSwitch -= OnPopupControllerSwitch;
+        MenusManager<MenuType>.OnControllerSwitch -= OnMenuControllerSwitch;
+        PopupsManager<PopupType, PopupResult>.OnControllerSwitch -= OnPopupControllerSwitch;
     }
 
     public void ProcessInput(InputEvent inputEvent)
@@ -37,18 +38,22 @@ internal class InputProcessor : IInputProcessor<InputEvent>
             _activeReceiver.OnPauseButtonDown();
 
         if (inputEvent.IsPressed())
-            _activeReceiver.OnAnyButtonDown(inputEvent);
+            _rebindInputReceiver?.OnAnyButtonDown(inputEvent);
     }
 
-    private void OnPopupControllerSwitch(IInputReceiver<InputEvent> inputReceiver)
+    private void OnPopupControllerSwitch(IInputReceiver inputReceiver)
     {
         _popupInputReceiver = inputReceiver;
         _activeReceiver = _popupInputReceiver ?? _menuInputReceiver;
     }
 
-    private void OnMenuControllerSwitch(IInputReceiver<InputEvent> inputReceiver)
+    private void OnMenuControllerSwitch(IInputReceiver inputReceiver)
     {
         _activeReceiver = _menuInputReceiver = inputReceiver;
+        if (_activeReceiver is IRebindInputReceiver rebindInputReceiver)
+            _rebindInputReceiver = rebindInputReceiver;
+        else
+            _rebindInputReceiver = null;
     }
 
 }

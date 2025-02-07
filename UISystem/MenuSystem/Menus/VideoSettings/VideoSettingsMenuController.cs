@@ -1,5 +1,4 @@
-﻿using Godot;
-using System.Text.RegularExpressions;
+﻿using System.Text.RegularExpressions;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
@@ -17,7 +16,7 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
     public override MenuType Type => MenuType.VideoSettings;
 
     public VideoSettingsMenuController(IViewCreator<VideoSettingsMenuView> viewCreator, VideoSettingsMenuModel model, 
-        IMenusManager<InputEvent, MenuType> menusManager, IPopupsManager<InputEvent, PopupType, PopupResult> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
+        IMenusManager<MenuType> menusManager, IPopupsManager<PopupType, PopupResult> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
     { }
 
     protected override void SetupElements()
