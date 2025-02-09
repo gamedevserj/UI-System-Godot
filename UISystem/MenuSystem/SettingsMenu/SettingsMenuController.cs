@@ -35,7 +35,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
         {
             _view.SetLastSelectedElement(_view.ReturnButton);
             CanReceivePhysicalInput = false;
-            SwitchFocusAvailability(false);
+            SwitchInteractability(false);
             _popupsManager.ShowPopup(PopupType.YesNoCancel, PopupMessages.SaveChanges, (result) =>
             {
                 OnReturnToPreviousMenuPopupClosed(result);
@@ -61,10 +61,10 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
                 base.OnReturnButtonDown();
                 break;
             case PopupResult.Cancel:
-                SwitchFocusAvailability(true);
+                SwitchInteractability(true);
                 break;
             default:
-                SwitchFocusAvailability(true);
+                SwitchInteractability(true);
                 break;
         }
     }
@@ -72,7 +72,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
     protected virtual void OnResetToDefaultButtonDown()
     {
         _view.SetLastSelectedElement(_view.ResetButton);
-        SwitchFocusAvailability(false);
+        SwitchInteractability(false);
         _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.ResetToDefault, (result) =>
         {
             if (result == PopupResult.Yes)
@@ -80,7 +80,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
                 _model.ResetToDefault();
                 ResetViewToDefault();
             }
-            SwitchFocusAvailability(true);
+            SwitchInteractability(true);
         });
     }
 }

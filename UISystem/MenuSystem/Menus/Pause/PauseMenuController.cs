@@ -60,7 +60,7 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
     private void PressedReturn()
     {
         _view.SetLastSelectedElement(_view.ReturnToMainMenuButton);
-        SwitchFocusAvailability(false);
+        SwitchInteractability(false);
 
         _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.QuitToMainMenu, (result) =>
         {
@@ -73,7 +73,7 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
             }
             else if (result == PopupResult.No)
             {
-                SwitchFocusAvailability(true);
+                SwitchInteractability(true);
             }
         });
     }

@@ -46,19 +46,19 @@ internal class RebindKeysMenuController
     {
         button.TextureRect.Texture = (Texture2D)GD.Load(Icons.EllipsisImage);
         _view.SetLastSelectedElement(button);
-        SwitchFocusAvailability(false);
+        SwitchInteractability(false);
 
         _model.StartRebinding(action, index, () =>
         {
             SwitchRebindingButtonFocusability(button, true);
             UpdateButtonView(button, action, index);
-            SwitchFocusAvailability(true);
+            SwitchInteractability(true);
         });
     }
 
     private void SwitchRebindingButtonFocusability(IFocusableControl button, bool allowFocus)
     {
-        SwitchFocusAvailability(allowFocus);
+        SwitchInteractability(allowFocus);
         if (allowFocus)
         {
             _view.GetViewport().SetInputAsHandled();

@@ -78,13 +78,13 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
 
     private void ShowQuitPopup()
     {
-        SwitchFocusAvailability(false);
+        SwitchInteractability(false);
         _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.QuitGame, (result) =>
         {
             if (result == PopupResult.Yes)
                 _sceneTree.Quit();
             else if (result == PopupResult.No)
-                SwitchFocusAvailability(true);
+                SwitchInteractability(true);
         });
     }
 
