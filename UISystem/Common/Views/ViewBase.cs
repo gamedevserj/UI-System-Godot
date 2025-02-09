@@ -27,10 +27,7 @@ public abstract partial class ViewBase : Control, IView
         {
             for (int i = 0; i < _focusableElements.Length; i++)
             {
-                if (enable)
-                    _focusableElements[i].SwitchFocusAvailability(true);
-                else
-                    _focusableElements[i].SwitchFocusAvailability(false);
+                _focusableElements[i].SwitchFocusAvailability(enable);
             }
         }
     }
