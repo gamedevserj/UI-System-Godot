@@ -42,7 +42,7 @@ If you want to show a popup when some event occurs you can either create an even
  ⚠️ If you have interactable elements in your popup they should also implement IFocusableControl to disable them during transition
 
 ## Screen fade
-A simple script that controls fading, call FadeOut() with an optional action as a prarmeter that you want to happen when screen is completely black.  
+A simple script that controls fading, call FadeOut() with an optional action as a parameter that you want to happen when screen is completely black.  
 
 ## Transitions  
 Transition control the way view is shown/hidden. The repo includes few transitions as example. Menu elements should implement ITweenableMenuElement to reset hover before starting transition if transition changes are modifying the same properties as hovering tween.
