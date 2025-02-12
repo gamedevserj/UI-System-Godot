@@ -36,7 +36,7 @@ internal class RebindKeysMenuController
             base.OnReturnButtonDown();
     }
 
-    private static void UpdateButtonView(RebindableKeyButtonView button, string action, int index)
+    private void UpdateButtonView(RebindableKeyButtonView button, string action, int index)
     {
         var e = InputMap.ActionGetEvents(action)[index];
         button.TextureRect.Texture = (Texture2D)GD.Load(Icons.GetIcon(e));

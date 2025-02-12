@@ -11,8 +11,8 @@ public class AudioSettingsMenuModel : ISettingsMenuModel
     private readonly GameSettings _settings;
 
     public bool HasUnappliedSettings => MusicVolume != _tempMusicVolume || SfxVolume != _tempSfxVolume;
-    public float MusicVolume { get => GameSettings.MusicVolume; set => _tempMusicVolume = value; }
-    public float SfxVolume { get => GameSettings.SfxVolume; set => _tempSfxVolume = value; }
+    public float MusicVolume { get => _settings.MusicVolume; set => _tempMusicVolume = value; }
+    public float SfxVolume { get => _settings.SfxVolume; set => _tempSfxVolume = value; }
 
     public AudioSettingsMenuModel(GameSettings settings)
     {
@@ -41,8 +41,8 @@ public class AudioSettingsMenuModel : ISettingsMenuModel
 
     private void LoadSettings()
     {
-        _tempMusicVolume = GameSettings.MusicVolume;
-        _tempSfxVolume = GameSettings.SfxVolume;
+        _tempMusicVolume = _settings.MusicVolume;
+        _tempSfxVolume = _settings.SfxVolume;
     }
 
 }

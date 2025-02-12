@@ -13,7 +13,7 @@ public class VideoSettingsMenuModel : ISettingsMenuModel
 
     public int CurrentResolutionIndex { get; private set; }
     public int CurrenWindowModeIndex { get; private set; }
-    public bool HasUnappliedSettings => GameSettings.Resolution != _tempResolution || GameSettings.WindowMode != _tempWindowMode;
+    public bool HasUnappliedSettings => _settings.Resolution != _tempResolution || _settings.WindowMode != _tempWindowMode;
 
     private static float Aspect => (float)ScreenGetSize().X / ScreenGetSize().Y;
 
@@ -73,8 +73,8 @@ public class VideoSettingsMenuModel : ISettingsMenuModel
 
     private void LoadSettings()
     {
-        _tempResolution = GameSettings.Resolution;
-        _tempWindowMode = GameSettings.WindowMode;
+        _tempResolution = _settings.Resolution;
+        _tempWindowMode = _settings.WindowMode;
         SetResolution(_tempResolution);
         SetWindowMode(_tempWindowMode);
     }

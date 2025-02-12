@@ -19,10 +19,12 @@ public class GameSettings
 
     private readonly ConfigFile _config;
 
-    public static float MusicVolume { get; private set; } = ConfigData.DefaultMusicVolume;
-    public static float SfxVolume { get; private set; } = ConfigData.DefaultSfxVolume;
-    public static Vector2I Resolution { get; private set; } = ConfigData.DefaultResolution;
-    public static WindowMode WindowMode { get; private set; } = ConfigData.DefaultWindowMode;
+    public float MusicVolume { get; private set; } = ConfigData.DefaultMusicVolume;
+    public float SfxVolume { get; private set; } = ConfigData.DefaultSfxVolume;
+    public Vector2I Resolution { get; private set; } = ConfigData.DefaultResolution;
+    public WindowMode WindowMode { get; private set; } = ConfigData.DefaultWindowMode;
+
+    // keeping this static as it is easier to select icons for controllers this way
     public static ControllerIconsType ControllerIconsType { get; private set; } = ConfigData.DefaultControllerIconsType;
 
 
