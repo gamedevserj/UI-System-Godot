@@ -7,9 +7,6 @@ using UISystem.Core.Constants;
 using static Godot.DisplayServer;
 
 namespace UISystem;
-/// <summary>
-/// methods to set properties are not marked as static so that only classes with access to instance can change them
-/// </summary>
 public class GameSettings
 {
 
@@ -19,8 +16,26 @@ public class GameSettings
 
     private readonly ConfigFile _config;
 
-    public float MusicVolume { get; private set; } = ConfigData.DefaultMusicVolume;
-    public float SfxVolume { get; private set; } = ConfigData.DefaultSfxVolume;
+    private float _musicVolume;
+    private float _sfxVolume;
+    public float MusicVolume 
+    {   
+        get => _musicVolume;
+        set
+        {
+            _musicVolume = value;
+            OnMusicVolumeChanged?.Invoke(value);
+        } 
+    }
+    public float SfxVolume 
+    { 
+        get => _sfxVolume; 
+        set
+        {
+            _sfxVolume = value;
+            OnSfxVolumeChanged?.Invoke(value);
+        }
+    }
     public Vector2I Resolution { get; private set; } = ConfigData.DefaultResolution;
     public WindowMode WindowMode { get; private set; } = ConfigData.DefaultWindowMode;
 
@@ -34,18 +49,11 @@ public class GameSettings
         LoadSettings();
     }
 
-    public void SetMusicVolume(float volume)
+    public void SaveAudioSettings()
     {
-        MusicVolume = volume;
-        _config.SetValue(ConfigData.AudioSectionName, ConfigData.MusicVolumeKey, volume);
-        OnMusicVolumeChanged?.Invoke(volume);
-    }
-
-    public void SetSfxVolume(float volume)
-    {
-        SfxVolume = volume;
-        _config.SetValue(ConfigData.AudioSectionName, ConfigData.SfxVolumeKey, volume);
-        OnSfxVolumeChanged?.Invoke(volume);
+        _config.SetValue(ConfigData.AudioSectionName, ConfigData.MusicVolumeKey, MusicVolume);
+        _config.SetValue(ConfigData.AudioSectionName, ConfigData.SfxVolumeKey, SfxVolume);
+        Save();
     }
 
     public void SetControllerIconsType(ControllerIconsType type)
