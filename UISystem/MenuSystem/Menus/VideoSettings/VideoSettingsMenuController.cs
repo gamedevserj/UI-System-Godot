@@ -51,7 +51,10 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
         }
 
         _view.ResolutionDropdown.AddMultipleItems(items);
-        _view.ResolutionDropdown.Select(_model.CurrentResolutionIndex);
+        // if player resizes window, there won't be any matching resolutions
+        // this is to prevent dropdown being empty and show some value
+        int index = _model.CurrentResolutionIndex > 0 ? _model.CurrentResolutionIndex : 0;
+        _view.ResolutionDropdown.Select(index);
         _view.ResolutionDropdown.ItemSelected += OnResolutionDropdownSelect;
     }
 

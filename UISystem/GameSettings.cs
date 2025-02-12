@@ -14,10 +14,11 @@ public class GameSettings
     public static event Action<float> OnSfxVolumeChanged;
     public static event Action<ControllerIconsType> OnControllerIconsChanged;
 
-    private readonly ConfigFile _config;
-
     private float _musicVolume;
     private float _sfxVolume;
+
+    private readonly ConfigFile _config;
+
     public float MusicVolume 
     {   
         get => _musicVolume;
@@ -36,8 +37,8 @@ public class GameSettings
             OnSfxVolumeChanged?.Invoke(value);
         }
     }
-    public Vector2I Resolution { get; private set; } = ConfigData.DefaultResolution;
-    public WindowMode WindowMode { get; private set; } = ConfigData.DefaultWindowMode;
+    public Vector2I Resolution { get; set; } = ConfigData.DefaultResolution;
+    public WindowMode WindowMode { get; set; } = ConfigData.DefaultWindowMode;
 
     // keeping this static as it is easier to select icons for controllers this way
     public static ControllerIconsType ControllerIconsType { get; private set; } = ConfigData.DefaultControllerIconsType;
@@ -63,16 +64,11 @@ public class GameSettings
         OnControllerIconsChanged?.Invoke(type);
     }
 
-    public void SetResolution(Vector2I resolution)
+    public void SaveVideoSettings()
     {
-        Resolution = resolution;
-        _config.SetValue(ConfigData.VideoSectionName, ConfigData.ResolutionKey, resolution);
-    }
-
-    public void SetWindowMode(WindowMode windowMode)
-    {
-        WindowMode = windowMode;
-        _config.SetValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, (int)windowMode);
+        _config.SetValue(ConfigData.VideoSectionName, ConfigData.ResolutionKey, Resolution);
+        _config.SetValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, (int)WindowMode);
+        Save();
     }
 
     public void ResetInputMapToDefault()
