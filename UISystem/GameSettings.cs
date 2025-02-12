@@ -40,8 +40,7 @@ public class GameSettings
     public Vector2I Resolution { get; set; } = ConfigData.DefaultResolution;
     public WindowMode WindowMode { get; set; } = ConfigData.DefaultWindowMode;
 
-    // keeping this static as it is easier to select icons for controllers this way
-    public static ControllerIconsType ControllerIconsType { get; private set; } = ConfigData.DefaultControllerIconsType;
+    public ControllerIconsType ControllerIconsType { get; private set; } = ConfigData.DefaultControllerIconsType;
 
 
     public GameSettings(ConfigFile config)

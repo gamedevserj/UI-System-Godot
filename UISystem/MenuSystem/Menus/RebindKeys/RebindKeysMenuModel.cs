@@ -1,6 +1,7 @@
 ﻿using Godot;
 using Godot.Collections;
 using System;
+using UISystem.Common.Enums;
 using UISystem.Core.Constants;
 using UISystem.Core.MenuSystem;
 
@@ -17,6 +18,7 @@ public class RebindKeysMenuModel : ISettingsMenuModel
     public bool IsRebinding => _isRebinding;
 
     public bool HasUnappliedSettings => false;
+    public ControllerIconsType IconsType => _settings.ControllerIconsType;
 
     public RebindKeysMenuModel(GameSettings settings)
     {

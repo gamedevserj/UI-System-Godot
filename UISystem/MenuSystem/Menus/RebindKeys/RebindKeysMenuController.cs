@@ -38,8 +38,8 @@ internal class RebindKeysMenuController
 
     private void UpdateButtonView(RebindableKeyButtonView button, string action, int index)
     {
-        var e = InputMap.ActionGetEvents(action)[index];
-        button.TextureRect.Texture = (Texture2D)GD.Load(Icons.GetIcon(e));
+        var actionEvent = InputMap.ActionGetEvents(action)[index];
+        button.TextureRect.Texture = (Texture2D)GD.Load(Icons.GetIcon(actionEvent, _model.IconsType));
     }
 
     private void OnButtonDown(RebindableKeyButtonView button, string action, int index)
