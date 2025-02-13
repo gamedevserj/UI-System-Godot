@@ -18,39 +18,29 @@ public class InterfaceSettingsMenuModel : ISettingsMenuModel
     {
         _settings = settings;
         RememberLastSavedSettings();
-        //LoadSettings();
     }
 
     public void SelectIconType(int index)
     {
-        //_tempIconsType = (ControllerIconsType)index;
         ControllerIconsType = (ControllerIconsType)index;
     }
 
     public void SaveSettings()
     {
-        //_settings.SetControllerIconsType(_tempIconsType);
         RememberLastSavedSettings();
         _settings.SaveInterfaceSettings();
     }
 
     public void DiscardChanges()
     {
-        //LoadSettings();
         ControllerIconsType = _lastIconsType;
     }
 
     public void ResetToDefault()
     {
         ControllerIconsType = ConfigData.DefaultControllerIconsType;
-        //_settings.SetControllerIconsType(_tempIconsType);
         SaveSettings();
     }
-
-    //private void LoadSettings()
-    //{
-    //    _tempIconsType = _settings.ControllerIconsType;
-    //}
 
     private void RememberLastSavedSettings()
     {
