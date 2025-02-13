@@ -7,9 +7,6 @@ namespace UISystem.MenuSystem.Models;
 public class VideoSettingsMenuModel : ISettingsMenuModel
 {
 
-    private Vector2I _tempResolution;
-    private WindowMode _tempWindowMode;
-
     private Vector2I _lastResolution;
     private WindowMode _lastWindowMode;
 
