@@ -6,7 +6,6 @@ namespace UISystem.MenuSystem.Models;
 public class InterfaceSettingsMenuModel : ISettingsMenuModel
 {
 
-    //private ControllerIconsType _tempIconsType;
     private ControllerIconsType _lastIconsType;
 
     private readonly GameSettings _settings;
