@@ -37,7 +37,7 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
             items[i] = new OptionButtonItem(name, i);
         }
         _view.WindowModeDropdown.AddMultipleItems(items);
-        _view.WindowModeDropdown.Select(_model.CurrenWindowModeIndex);
+        _view.WindowModeDropdown.SelectItem(_model.CurrenWindowModeIndex);
         _view.WindowModeDropdown.ItemSelected += OnWindowModeDropdownSelect;
     }
 
@@ -54,7 +54,7 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
         // if player resizes window, there won't be any matching resolutions
         // this is to prevent dropdown being empty and show some value
         int index = _model.CurrentResolutionIndex > 0 ? _model.CurrentResolutionIndex : 0;
-        _view.ResolutionDropdown.Select(index);
+        _view.ResolutionDropdown.SelectItem(index);
         _view.ResolutionDropdown.ItemSelected += OnResolutionDropdownSelect;
     }
 
@@ -70,7 +70,7 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
 
     protected override void ResetViewToDefault()
     {
-        _view.WindowModeDropdown.Select(_model.CurrenWindowModeIndex);
-        _view.ResolutionDropdown.Select(_model.CurrentResolutionIndex);
+        _view.WindowModeDropdown.SelectItem(_model.CurrenWindowModeIndex);
+        _view.ResolutionDropdown.SelectItem(_model.CurrentResolutionIndex);
     }
 }

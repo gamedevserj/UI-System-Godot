@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Godot;
+using System;
 using UISystem.Common.Enums;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
@@ -47,7 +48,7 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCre
         }
         _view.ControllerIconsDropdown.AddMultipleItems(items);
         _view.ControllerIconsDropdown.ItemSelected += SelectControllerIconsType;
-        _view.ControllerIconsDropdown.Select((int)_model.ControllerIconsType);
+        _view.ControllerIconsDropdown.SelectItem((int)_model.ControllerIconsType);
     }
 
     private void SelectControllerIconsType(long index)
@@ -58,7 +59,7 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCre
 
     protected override void ResetViewToDefault()
     {
-        _view.ControllerIconsDropdown.Select((int)_model.ControllerIconsType);
+        _view.ControllerIconsDropdown.SelectItem((int)_model.ControllerIconsType);
     }
 
 }

@@ -15,8 +15,8 @@ public class VideoSettingsMenuModel : ISettingsMenuModel
 
     private readonly GameSettings _settings;
 
-    public int CurrentResolutionIndex { get; private set; }
-    public int CurrenWindowModeIndex { get; private set; }
+    public int CurrentResolutionIndex => VideoSettings.GetResolutionIndex(_settings.Resolution, GetAvailableResolutions());
+    public int CurrenWindowModeIndex => VideoSettings.GetWindwoModeIndex(_settings.WindowMode);
     public bool HasUnappliedSettings => CurrentWindowSize != _lastResolution || _settings.WindowMode != _lastWindowMode;
 
     private static float Aspect => (float)ScreenGetSize().X / ScreenGetSize().Y;
@@ -51,7 +51,9 @@ public class VideoSettingsMenuModel : ISettingsMenuModel
 
     public void SaveSettings()
     {
-        _settings.Resolution = CurrentWindowSize;
+        if (_settings.WindowMode == WindowMode.Windowed)
+            _settings.Resolution = CurrentWindowSize;
+
         RememberLastSavedSettings();
         _settings.SaveVideoSettings();
     }
@@ -67,8 +69,8 @@ public class VideoSettingsMenuModel : ISettingsMenuModel
     {
         _settings.Resolution = ConfigData.DefaultResolution;
         _settings.WindowMode = ConfigData.DefaultWindowMode;
-        SaveSettings();
         SetVideoParameters();
+        SaveSettings();
     }
 
     private void SetVideoParameters()
@@ -84,13 +86,13 @@ public class VideoSettingsMenuModel : ISettingsMenuModel
 
     private void SetResolution(Vector2I resolution)
     {
-        CurrentResolutionIndex = VideoSettings.GetResolutionIndex(resolution, GetAvailableResolutions());
+        _settings.Resolution = resolution;
         WindowSetSize(resolution);
     }
 
     private void SetWindowMode(WindowMode mode)
     {
-        CurrenWindowModeIndex = VideoSettings.GetWindwoModeIndex(mode);
+        _settings.WindowMode = mode;
         WindowSetMode(mode);
 
         // if you change resolution in fullscreen, then change window mode - window will not have the resolution that was selected

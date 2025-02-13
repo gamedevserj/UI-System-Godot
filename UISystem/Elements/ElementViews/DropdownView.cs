@@ -56,8 +56,7 @@ public partial class DropdownView : OptionButton, IFocusableControl, ITweenableM
         FocusExited += OnFocusExited;
         MouseEntered += OnMouseEntered;
         MouseExited += OnMouseExited;
-        ItemSelected += OnItemSelected;
-        OnItemSelected(GetSelectedId());
+        ItemSelected += UpdateText;
     }
 
     private void Unsubscribe()
@@ -67,10 +66,18 @@ public partial class DropdownView : OptionButton, IFocusableControl, ITweenableM
         FocusExited -= OnFocusExited;
         MouseEntered -= OnMouseEntered;
         MouseExited -= OnMouseExited;
-        ItemSelected -= OnItemSelected;
+        ItemSelected -= UpdateText;
     }
 
-    private void OnItemSelected(long index)
+    // needs to be a separate method to update label when selecting is called from code
+    // because view awaits one frame before subscribing when entering tree to allow controls to setup their transforms
+    public void SelectItem(long index)
+    {
+        Select((int)index);
+        UpdateText((int)index);
+    }
+
+    private void UpdateText(long index)
     {
         label.Text = GetItemText((int)index);
     }

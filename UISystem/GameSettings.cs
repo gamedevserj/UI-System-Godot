@@ -16,6 +16,7 @@ public class GameSettings
 
     private float _musicVolume;
     private float _sfxVolume;
+    private ControllerIconsType _controllerIcons;
 
     private readonly ConfigFile _config;
 
@@ -40,7 +41,15 @@ public class GameSettings
     public Vector2I Resolution { get; set; } = ConfigData.DefaultResolution;
     public WindowMode WindowMode { get; set; } = ConfigData.DefaultWindowMode;
 
-    public ControllerIconsType ControllerIconsType { get; private set; } = ConfigData.DefaultControllerIconsType;
+    public ControllerIconsType ControllerIconsType 
+    {
+        get => _controllerIcons;
+        set
+        {
+            _controllerIcons = value;
+            OnControllerIconsChanged?.Invoke(value);
+        }
+    }
 
 
     public GameSettings(ConfigFile config)
@@ -56,17 +65,16 @@ public class GameSettings
         Save();
     }
 
-    public void SetControllerIconsType(ControllerIconsType type)
+    public void SaveInterfaceSettings()
     {
-        ControllerIconsType = type;
-        _config.SetValue(ConfigData.InterfaceSectionName, ConfigData.ControllerIconsKey, (int)type);
-        OnControllerIconsChanged?.Invoke(type);
+        _config.SetValue(ConfigData.InterfaceSectionName, ConfigData.ControllerIconsKey, (int)ControllerIconsType);
+        Save();
     }
 
     public void SaveVideoSettings()
     {
         _config.SetValue(ConfigData.VideoSectionName, ConfigData.ResolutionKey, Resolution);
-        _config.SetValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, (int)WindowMode);
+        _config.SetValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, VideoSettings.GetWindwoModeIndex(WindowMode));
         Save();
     }
 
@@ -88,7 +96,7 @@ public class GameSettings
         Save();
     }
 
-    public void Save()
+    private void Save()
     {
         _config.Save(ConfigData.ConfigLocation);
     }
@@ -100,7 +108,9 @@ public class GameSettings
         SfxVolume = (float)GetConfigValue(ConfigData.AudioSectionName, ConfigData.SfxVolumeKey, ConfigData.DefaultSfxVolume, ref saveNewSettings);
 
         Resolution = (Vector2I)GetConfigValue(ConfigData.VideoSectionName, ConfigData.ResolutionKey, ConfigData.DefaultResolution, ref saveNewSettings);
-        WindowMode = (WindowMode)(int)GetConfigValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, (int)ConfigData.DefaultWindowMode, ref saveNewSettings);
+        int windowModeIndex = (int)GetConfigValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, 
+            VideoSettings.GetWindwoModeIndex(ConfigData.DefaultWindowMode), ref saveNewSettings);
+        WindowMode = VideoSettings.WindowModeOptions[windowModeIndex];
 
         ControllerIconsType = (ControllerIconsType)(int)GetConfigValue(ConfigData.InterfaceSectionName, ConfigData.ControllerIconsKey, (int)ConfigData.DefaultControllerIconsType, ref saveNewSettings);
 
