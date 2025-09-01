@@ -9,15 +9,14 @@ Core of this system is a submodule that can be found here : https://github.com/g
 The repo has some menus created: **Main, Options, Pause, Audio/Video settings, Interface settings, Key rebinding**   
 
 To add new menu:
-1. Add your menu type to the MenuType enum
-2. Create your menu view script that either inherits from MenuView or from SettingsMenuView (it has functionality to reset setting to default via model and reset view to default)
-3. If your view has interactable elements (buttons, sliders, etc.), they should have scripts attached to them that implement IFocusableControl to disable elements during menu transitions. Some of the elements already included in the repo at UISystem/Common/Elements, there are also prefabs for them in the UISystem/Common/Prefabs, so you can use those
-4. Create your menu model script that implements IMenuModel interface (it is just a marker interface) or ISettingsMenuModel (which has methods to save, discard and reset to default)
-5. Create your menu controller script that inherits from MenuControllerBase providing your view and model
-6. In your menu controller implement the MenuType property by providing your menu type and implement SetupElements()
-7. Create path to your view prefab in MenuViewsPaths
-8. Add your menus to the menus array created in the UiInstaller that passes them to the MenusManager
-9. After that you should be able to call _menusManager.ShowMenu(...) to show your new menu
+1. Create your menu view script that either inherits from MenuView or from SettingsMenuView (it has functionality to reset setting to default via model and reset view to default)
+2. If your view has interactable elements (buttons, sliders, etc.), they should have scripts attached to them that implement IFocusableControl to disable elements during menu transitions. Some of the elements already included in the repo at UISystem/Common/Elements, there are also prefabs for them in the UISystem/Common/Prefabs, so you can use those
+3. Create your menu model script that implements IMenuModel interface (it is just a marker interface) or ISettingsMenuModel (which has methods to save, discard and reset to default)
+4. Create your menu controller script that inherits from MenuControllerBase providing your view and model
+5. In your menu controller implement the MenuType property by providing your menu type and implement SetupElements()
+6. Create path to your view prefab in MenuViewsPaths
+7. Add your menus to the menus array created in the UiInstaller that passes them to the MenusManager
+8. After that you should be able to call _menusManager.ShowMenu(...) to show your new menu
 
 ### Menu background controller
 A simple script that handles menu's background, look at MainMenu and PauseMenu controllers for example.
