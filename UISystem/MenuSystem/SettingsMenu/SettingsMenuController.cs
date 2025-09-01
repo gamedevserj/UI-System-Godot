@@ -9,7 +9,7 @@ using UISystem.PopupSystem.Popups.Controllers;
 
 namespace UISystem.MenuSystem.SettingsMenu;
 internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
-    : MenuController<TViewCreator, TView, TModel, IFocusableControl, Type>
+    : MenuController<TViewCreator, TView, TModel, IFocusableControl>
     where TViewCreator : IViewCreator<TView>
     where TView : SettingsMenuView
     where TModel : ISettingsMenuModel
