@@ -45,11 +45,11 @@ public partial class UiInstaller : Node
 
         _inputProcessor = new InputProcessor();
 
-        var popupsManager = new PopupsManager<PopupType, PopupResult>();
+        var popupsManager = new PopupsManager<PopupResult>();
         var yesPopupViewCreator = new ViewCreator<YesPopupView>(GetPopupPath(PopupType.Yes), popupsParent);
         var yesNoPopupViewCreator = new ViewCreator<YesNoPopupView>(GetPopupPath(PopupType.YesNo), popupsParent);
         var yesNoCancelPopupViewCreator = new ViewCreator<YesNoCancelPopupView>(GetPopupPath(PopupType.YesNoCancel), popupsParent);
-        var popups = new IPopupController<PopupType, PopupResult>[]
+        var popups = new IPopupController<PopupResult>[]
         {
             new YesPopupController(yesPopupViewCreator, popupsManager),
             new YesNoPopupController(yesNoPopupViewCreator, popupsManager),
@@ -59,7 +59,7 @@ public partial class UiInstaller : Node
 
         var backgroundController = new MenuBackgroundController(GetTree(), menuBackground);
 
-        var menusManager = new MenusManager<MenuType>();
+        var menusManager = new MenusManager();
         var mainMenuViewCreator = new ViewCreator<MainMenuView>(GetMenuPath(MenuType.Main), menusParent);
         var inGameMenuViewCreator = new ViewCreator<InGameMenuView>(GetMenuPath(MenuType.InGame), menusParent);
         var pauseViewCreator = new ViewCreator<PauseMenuView>(GetMenuPath(MenuType.Pause), menusParent);
@@ -68,7 +68,7 @@ public partial class UiInstaller : Node
         var videoSettingsViewCreator = new ViewCreator<VideoSettingsMenuView>(GetMenuPath(MenuType.VideoSettings), menusParent);
         var rebindKeysViewCreator = new ViewCreator<RebindKeysMenuView>(GetMenuPath(MenuType.RebindKeys), menusParent);
         var interfaceMenuViewCreator = new ViewCreator<InterfaceSettingsMenuView>(GetMenuPath(MenuType.InterfaceSettings), menusParent);
-        var menus = new IMenuController<MenuType>[]
+        var menus = new IMenuController[]
         {
             new MainMenuController(mainMenuViewCreator, null, menusManager, tree, popupsManager, screenFadeManager, backgroundController),
             new InGameMenuController(inGameMenuViewCreator, new InGameMenuModel(), menusManager),
@@ -80,7 +80,7 @@ public partial class UiInstaller : Node
             new InterfaceSettingsMenuController(interfaceMenuViewCreator, new InterfaceSettingsMenuModel(settings), menusManager, popupsManager),
         };
         menusManager.Init(menus);
-        menusManager.ShowMenu(MenuType.Main, StackingType.Clear);
+        menusManager.ShowMenu(typeof(MainMenuController), StackingType.Clear);
     }
 
     private static string GetMenuPath(MenuType menuType)

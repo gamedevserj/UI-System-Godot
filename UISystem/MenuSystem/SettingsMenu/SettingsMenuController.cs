@@ -1,22 +1,24 @@
-﻿using UISystem.Constants;
+﻿using System;
+using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
 using UISystem.Elements;
 using UISystem.PopupSystem;
+using UISystem.PopupSystem.Popups.Controllers;
 
 namespace UISystem.MenuSystem.SettingsMenu;
 internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
-    : MenuController<TViewCreator, TView, TModel, IFocusableControl, MenuType>
+    : MenuController<TViewCreator, TView, TModel, IFocusableControl, Type>
     where TViewCreator : IViewCreator<TView>
     where TView : SettingsMenuView
     where TModel : ISettingsMenuModel
 {
 
-    protected readonly IPopupsManager<PopupType, PopupResult> _popupsManager;
+    protected readonly IPopupsManager<PopupResult> _popupsManager;
 
-    protected SettingsMenuController(TViewCreator viewCreator, TModel model, IMenusManager<MenuType> menusManager, 
-        IPopupsManager<PopupType, PopupResult> popupsManager) : base(viewCreator, model, menusManager)
+    protected SettingsMenuController(TViewCreator viewCreator, TModel model, IMenusManager menusManager, 
+        IPopupsManager<PopupResult> popupsManager) : base(viewCreator, model, menusManager)
     {
         _popupsManager = popupsManager;
     }
@@ -36,7 +38,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
             _view.SetLastSelectedElement(_view.ReturnButton);
             CanReceivePhysicalInput = false;
             SwitchInteractability(false);
-            _popupsManager.ShowPopup(PopupType.YesNoCancel, PopupMessages.SaveChanges, (result) =>
+            _popupsManager.ShowPopup(typeof(YesNoCancelPopupController), PopupMessages.SaveChanges, (result) =>
             {
                 OnReturnToPreviousMenuPopupClosed(result);
                 CanReceivePhysicalInput = true;
@@ -73,7 +75,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
     {
         _view.SetLastSelectedElement(_view.ResetButton);
         SwitchInteractability(false);
-        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.ResetToDefault, (result) =>
+        _popupsManager.ShowPopup(typeof(YesNoPopupController), PopupMessages.ResetToDefault, (result) =>
         {
             if (result == PopupResult.Yes)
             {

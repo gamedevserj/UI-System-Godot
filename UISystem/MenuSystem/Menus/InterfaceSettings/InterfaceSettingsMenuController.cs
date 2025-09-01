@@ -15,10 +15,9 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCre
 {
 
     private readonly int _controllerIconsNumber;
-    public override MenuType Type => MenuType.InterfaceSettings;
 
     public InterfaceSettingsMenuController(IViewCreator<InterfaceSettingsMenuView> viewCreator, InterfaceSettingsMenuModel model, 
-        IMenusManager<MenuType> menusManager, IPopupsManager<PopupType, PopupResult> popupsManager) 
+        IMenusManager menusManager, IPopupsManager<PopupResult> popupsManager) 
         : base(viewCreator, model, menusManager, popupsManager)
     {
         _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;

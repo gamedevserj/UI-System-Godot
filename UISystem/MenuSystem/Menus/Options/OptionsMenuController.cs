@@ -1,4 +1,4 @@
-using Godot;
+using System;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.Views;
 using UISystem.MenuSystem.Views;
@@ -6,8 +6,8 @@ using UISystem.MenuSystem.Views;
 namespace UISystem.MenuSystem.Controllers;
 internal class OptionsMenuController : MenuControllerBase<IViewCreator<OptionsMenuView>, OptionsMenuView>
 {
-    public override MenuType Type => MenuType.Options;
-    public OptionsMenuController(IViewCreator<OptionsMenuView> viewCreator, IMenuModel model, IMenusManager<MenuType> menusManager) : base(viewCreator, model, menusManager)
+
+    public OptionsMenuController(IViewCreator<OptionsMenuView> viewCreator, IMenuModel model, IMenusManager menusManager) : base(viewCreator, model, menusManager)
     { }   
 
     protected override void SetupElements()
@@ -22,24 +22,24 @@ internal class OptionsMenuController : MenuControllerBase<IViewCreator<OptionsMe
     private void OnAudioSettingsButtonDown()
     {
         _view.SetLastSelectedElement(_view.AudioSettingsButton);
-        _menusManager.ShowMenu(MenuType.AudioSettings);
+        _menusManager.ShowMenu(typeof(AudioSettingsMenuController));
     }
 
     private void OnVideoSettingsButtonDown()
     {
         _view.SetLastSelectedElement(_view.VideoSettingsButton);
-        _menusManager.ShowMenu(MenuType.VideoSettings);
+        _menusManager.ShowMenu(typeof(VideoSettingsMenuController));
     }
 
     private void OnRebindKeysButtonDown()
     {
         _view.SetLastSelectedElement(_view.RebindKeysButton);
-        _menusManager.ShowMenu(MenuType.RebindKeys);
+        _menusManager.ShowMenu(typeof(RebindKeysMenuController));
     }
 
     private void OnInterfaceSettingsButtonDown()
     {
         _view.SetLastSelectedElement(_view.InterfaceSettingsButton);
-        _menusManager.ShowMenu(MenuType.InterfaceSettings);
+        _menusManager.ShowMenu(typeof(InterfaceSettingsMenuController));
     }
 }

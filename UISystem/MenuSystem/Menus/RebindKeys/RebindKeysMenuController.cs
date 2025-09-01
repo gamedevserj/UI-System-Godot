@@ -17,10 +17,8 @@ internal class RebindKeysMenuController
     : SettingsMenuController<IViewCreator<RebindKeysMenuView>, RebindKeysMenuView, RebindKeysMenuModel>, IRebindInputReceiver
 {
 
-    public override MenuType Type => MenuType.RebindKeys;
-
     public RebindKeysMenuController(IViewCreator<RebindKeysMenuView> viewCreator, RebindKeysMenuModel model, 
-        IMenusManager<MenuType> menusManager, IPopupsManager<PopupType, PopupResult> popupsManager) 
+        IMenusManager menusManager, IPopupsManager<PopupResult> popupsManager) 
         : base(viewCreator, model, menusManager, popupsManager)
     { }
 

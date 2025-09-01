@@ -6,21 +6,20 @@ using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
+using UISystem.PopupSystem.Popups.Controllers;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
 internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView>, MainMenuView>
 {
 
-    public override MenuType Type => MenuType.Main;
-
     private readonly SceneTree _sceneTree;
-    private readonly IPopupsManager<PopupType, PopupResult> _popupsManager;
+    private readonly IPopupsManager<PopupResult> _popupsManager;
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(IViewCreator<MainMenuView> viewCreator, IMenuModel model, IMenusManager<MenuType> menusManager,
-        SceneTree sceneTree, IPopupsManager<PopupType, PopupResult> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
+    public MainMenuController(IViewCreator<MainMenuView> viewCreator, IMenuModel model, IMenusManager menusManager,
+        SceneTree sceneTree, IPopupsManager<PopupResult> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
         : base(viewCreator, model, menusManager)
     {
         _sceneTree = sceneTree;
@@ -60,14 +59,14 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
         _view.SetLastSelectedElement(_view.PlayButton);
         _screenFadeManager.FadeOut(() =>
         {
-            _menusManager.ShowMenu(MenuType.InGame, StackingType.Clear, instant: true);
+            _menusManager.ShowMenu(typeof(InGameMenuController), StackingType.Clear, instant: true);
         });
     }
 
     private void PressedOptions()
     {
         _view.SetLastSelectedElement(_view.OptionsButton);
-        _menusManager.ShowMenu(MenuType.Options);
+        _menusManager.ShowMenu(typeof(OptionsMenuController));
     }
 
     private void PressedQuit()
@@ -79,7 +78,7 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
     private void ShowQuitPopup()
     {
         SwitchInteractability(false);
-        _popupsManager.ShowPopup(PopupType.YesNo, PopupMessages.QuitGame, (result) =>
+        _popupsManager.ShowPopup(typeof(YesNoPopupController), PopupMessages.QuitGame, (result) =>
         {
             if (result == PopupResult.Yes)
                 _sceneTree.Quit();
