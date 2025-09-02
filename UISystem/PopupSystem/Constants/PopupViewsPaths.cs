@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UISystem.PopupSystem.Popups.Controllers;
 
 namespace UISystem.PopupSystem.Constants;
 public static class PopupViewsPaths
@@ -10,11 +12,11 @@ public static class PopupViewsPaths
     private const string YesNo = Folder + "YesNoPopupView.tscn";
     private const string YesNoCancel = Folder + "YesNoCancelPopupView.tscn";
 
-    public static readonly Dictionary<PopupType, string> Paths = new()
+    public static readonly Dictionary<Type, string> Paths = new()
     {
-        { PopupType.Yes, Yes },
-        { PopupType.YesNo, YesNo },
-        { PopupType.YesNoCancel, YesNoCancel },
+        { typeof(YesPopupController), Yes },
+        { typeof(YesNoPopupController), YesNo },
+        { typeof(YesNoCancelPopupController), YesNoCancel },
     };
 
 }

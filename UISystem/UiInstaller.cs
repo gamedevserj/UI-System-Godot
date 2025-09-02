@@ -47,9 +47,9 @@ public partial class UiInstaller : Node
         _inputProcessor = new InputProcessor();
 
         var popupsManager = new PopupsManager<PopupResult>();
-        var yesPopupViewCreator = new ViewCreator<YesPopupView>(GetPopupPath(PopupType.Yes), popupsParent);
-        var yesNoPopupViewCreator = new ViewCreator<YesNoPopupView>(GetPopupPath(PopupType.YesNo), popupsParent);
-        var yesNoCancelPopupViewCreator = new ViewCreator<YesNoCancelPopupView>(GetPopupPath(PopupType.YesNoCancel), popupsParent);
+        var yesPopupViewCreator = new ViewCreator<YesPopupView>(GetPopupPath(typeof(YesPopupController)), popupsParent);
+        var yesNoPopupViewCreator = new ViewCreator<YesNoPopupView>(GetPopupPath(typeof(YesNoPopupController)), popupsParent);
+        var yesNoCancelPopupViewCreator = new ViewCreator<YesNoCancelPopupView>(GetPopupPath(typeof(YesNoCancelPopupController)), popupsParent);
         var popups = new IPopupController<PopupResult>[]
         {
             new YesPopupController(yesPopupViewCreator, popupsManager),
@@ -89,7 +89,7 @@ public partial class UiInstaller : Node
         return MenuViewsPaths.Paths[menuType];
     }
 
-    private static string GetPopupPath(PopupType type)
+    private static string GetPopupPath(Type type)
     {
         return PopupViewsPaths.Paths[type];
     }
