@@ -1,4 +1,5 @@
 ﻿using Godot;
+using System;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PhysicalInput;
 using UISystem.Core.PopupSystem;
@@ -60,14 +61,14 @@ public partial class UiInstaller : Node
         var backgroundController = new MenuBackgroundController(GetTree(), menuBackground);
 
         var menusManager = new MenusManager();
-        var mainMenuViewCreator = new ViewCreator<MainMenuView>(GetMenuPath(MenuType.Main), menusParent);
-        var inGameMenuViewCreator = new ViewCreator<InGameMenuView>(GetMenuPath(MenuType.InGame), menusParent);
-        var pauseViewCreator = new ViewCreator<PauseMenuView>(GetMenuPath(MenuType.Pause), menusParent);
-        var optionsViewCreator = new ViewCreator<OptionsMenuView>(GetMenuPath(MenuType.Options), menusParent);
-        var audioSettingsViewCreator = new ViewCreator<AudioSettingsMenuView>(GetMenuPath(MenuType.AudioSettings), menusParent);
-        var videoSettingsViewCreator = new ViewCreator<VideoSettingsMenuView>(GetMenuPath(MenuType.VideoSettings), menusParent);
-        var rebindKeysViewCreator = new ViewCreator<RebindKeysMenuView>(GetMenuPath(MenuType.RebindKeys), menusParent);
-        var interfaceMenuViewCreator = new ViewCreator<InterfaceSettingsMenuView>(GetMenuPath(MenuType.InterfaceSettings), menusParent);
+        var mainMenuViewCreator = new ViewCreator<MainMenuView>(GetMenuPath(typeof(MainMenuController)), menusParent);
+        var inGameMenuViewCreator = new ViewCreator<InGameMenuView>(GetMenuPath(typeof(InGameMenuController)), menusParent);
+        var pauseViewCreator = new ViewCreator<PauseMenuView>(GetMenuPath(typeof(PauseMenuController)), menusParent);
+        var optionsViewCreator = new ViewCreator<OptionsMenuView>(GetMenuPath(typeof(OptionsMenuController)), menusParent);
+        var audioSettingsViewCreator = new ViewCreator<AudioSettingsMenuView>(GetMenuPath(typeof(AudioSettingsMenuController)), menusParent);
+        var videoSettingsViewCreator = new ViewCreator<VideoSettingsMenuView>(GetMenuPath(typeof(VideoSettingsMenuController)), menusParent);
+        var rebindKeysViewCreator = new ViewCreator<RebindKeysMenuView>(GetMenuPath(typeof(RebindKeysMenuController)), menusParent);
+        var interfaceMenuViewCreator = new ViewCreator<InterfaceSettingsMenuView>(GetMenuPath(typeof(InterfaceSettingsMenuController)), menusParent);
         var menus = new IMenuController[]
         {
             new MainMenuController(mainMenuViewCreator, null, menusManager, tree, popupsManager, screenFadeManager, backgroundController),
@@ -83,7 +84,7 @@ public partial class UiInstaller : Node
         menusManager.ShowMenu(typeof(MainMenuController), StackingType.Clear);
     }
 
-    private static string GetMenuPath(MenuType menuType)
+    private static string GetMenuPath(Type menuType)
     {
         return MenuViewsPaths.Paths[menuType];
     }

@@ -1,4 +1,6 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
+using UISystem.MenuSystem.Controllers;
 
 namespace UISystem.MenuSystem.Constants;
 internal partial class MenuViewsPaths
@@ -15,16 +17,16 @@ internal partial class MenuViewsPaths
     private const string RebindKeys = Folder + "RebindKeysMenuView.tscn";
     private const string InterfaceSettings = Folder + "InterfaceSettingsMenuView.tscn";
 
-    public static readonly Dictionary<MenuType, string> Paths = new()
+    public static readonly Dictionary<Type, string> Paths = new()
     {
-        { MenuType.Main, Main },
-        { MenuType.InGame, InGame },
-        { MenuType.Pause, Pause },
-        { MenuType.Options, Options },
-        { MenuType.AudioSettings, AudioSettings },
-        { MenuType.VideoSettings, VideoSettings },
-        { MenuType.RebindKeys, RebindKeys },
-        { MenuType.InterfaceSettings, InterfaceSettings },
+        { typeof(MainMenuController), Main },
+        { typeof(InGameMenuController), InGame },
+        { typeof(PauseMenuController), Pause },
+        { typeof(OptionsMenuController), Options },
+        { typeof(AudioSettingsMenuController), AudioSettings },
+        { typeof(VideoSettingsMenuController), VideoSettings },
+        { typeof(RebindKeysMenuController), RebindKeys },
+        { typeof(InterfaceSettingsMenuController), InterfaceSettings },
     };
 
 }
