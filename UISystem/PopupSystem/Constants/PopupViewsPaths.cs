@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using UISystem.PopupSystem.Popups.Controllers;
+using UISystem.PopupSystem.Popups.Views;
 
 namespace UISystem.PopupSystem.Constants;
 public static class PopupViewsPaths
@@ -14,9 +14,9 @@ public static class PopupViewsPaths
 
     public static readonly Dictionary<Type, string> Paths = new()
     {
-        { typeof(YesPopupController), Yes },
-        { typeof(YesNoPopupController), YesNo },
-        { typeof(YesNoCancelPopupController), YesNoCancel },
+        { typeof(YesPopupView), Yes },
+        { typeof(YesNoPopupView), YesNo },
+        { typeof(YesNoCancelPopupView), YesNoCancel },
     };
 
 }

@@ -1,6 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
-using UISystem.MenuSystem.Controllers;
+using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Constants;
 internal partial class MenuViewsPaths
@@ -19,14 +19,14 @@ internal partial class MenuViewsPaths
 
     public static readonly Dictionary<Type, string> Paths = new()
     {
-        { typeof(MainMenuController), Main },
-        { typeof(InGameMenuController), InGame },
-        { typeof(PauseMenuController), Pause },
-        { typeof(OptionsMenuController), Options },
-        { typeof(AudioSettingsMenuController), AudioSettings },
-        { typeof(VideoSettingsMenuController), VideoSettings },
-        { typeof(RebindKeysMenuController), RebindKeys },
-        { typeof(InterfaceSettingsMenuController), InterfaceSettings },
+        { typeof(MainMenuView), Main },
+        { typeof(InGameMenuView), InGame },
+        { typeof(PauseMenuView), Pause },
+        { typeof(OptionsMenuView), Options },
+        { typeof(AudioSettingsMenuView), AudioSettings },
+        { typeof(VideoSettingsMenuView), VideoSettings },
+        { typeof(RebindKeysMenuView), RebindKeys },
+        { typeof(InterfaceSettingsMenuView), InterfaceSettings },
     };
 
 }

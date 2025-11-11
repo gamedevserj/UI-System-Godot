@@ -1,5 +1,6 @@
 ﻿using Godot;
 using System;
+using System.Collections.Generic;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PhysicalInput;
 using UISystem.Core.PopupSystem;
@@ -47,41 +48,104 @@ public partial class UiInstaller : Node
         _inputProcessor = new InputProcessor();
 
         var popupsManager = new PopupsManager<PopupResult>();
-        var yesPopupViewCreator = new ViewCreator<YesPopupView>(GetPopupPath(typeof(YesPopupController)), popupsParent);
-        var yesNoPopupViewCreator = new ViewCreator<YesNoPopupView>(GetPopupPath(typeof(YesNoPopupController)), popupsParent);
-        var yesNoCancelPopupViewCreator = new ViewCreator<YesNoCancelPopupView>(GetPopupPath(typeof(YesNoCancelPopupController)), popupsParent);
-        var popups = new IPopupController<PopupResult>[]
-        {
-            new YesPopupController(yesPopupViewCreator, popupsManager),
-            new YesNoPopupController(yesNoPopupViewCreator, popupsManager),
-            new YesNoCancelPopupController(yesNoCancelPopupViewCreator, popupsManager)
-        };
+        var yesPopupViewCreator = new ViewCreator<YesPopupView>(GetPopupPath(typeof(YesPopupView)), popupsParent);
+        var yesNoPopupViewCreator = new ViewCreator<YesNoPopupView>(GetPopupPath(typeof(YesNoPopupView)), popupsParent);
+        var yesNoCancelPopupViewCreator = new ViewCreator<YesNoCancelPopupView>(GetPopupPath(typeof(YesNoCancelPopupView)), popupsParent);
+        var popups = new Dictionary<Type, IPopupController<PopupResult>>
+            {
+                {
+                    typeof(YesPopupView),
+                    new YesPopupController(yesPopupViewCreator, popupsManager)
+                },
+                {
+                    typeof(YesNoPopupView),
+                    new YesNoPopupController(yesNoPopupViewCreator, popupsManager)
+                },
+                {
+                    typeof(YesNoCancelPopupView),
+                    new YesNoCancelPopupController(yesNoCancelPopupViewCreator, popupsManager)
+                },
+            };
         popupsManager.Init(popups);
 
         var backgroundController = new MenuBackgroundController(GetTree(), menuBackground);
 
         var menusManager = new MenusManager();
-        var mainMenuViewCreator = new ViewCreator<MainMenuView>(GetMenuPath(typeof(MainMenuController)), menusParent);
-        var inGameMenuViewCreator = new ViewCreator<InGameMenuView>(GetMenuPath(typeof(InGameMenuController)), menusParent);
-        var pauseViewCreator = new ViewCreator<PauseMenuView>(GetMenuPath(typeof(PauseMenuController)), menusParent);
-        var optionsViewCreator = new ViewCreator<OptionsMenuView>(GetMenuPath(typeof(OptionsMenuController)), menusParent);
-        var audioSettingsViewCreator = new ViewCreator<AudioSettingsMenuView>(GetMenuPath(typeof(AudioSettingsMenuController)), menusParent);
-        var videoSettingsViewCreator = new ViewCreator<VideoSettingsMenuView>(GetMenuPath(typeof(VideoSettingsMenuController)), menusParent);
-        var rebindKeysViewCreator = new ViewCreator<RebindKeysMenuView>(GetMenuPath(typeof(RebindKeysMenuController)), menusParent);
-        var interfaceMenuViewCreator = new ViewCreator<InterfaceSettingsMenuView>(GetMenuPath(typeof(InterfaceSettingsMenuController)), menusParent);
-        var menus = new IMenuController[]
-        {
-            new MainMenuController(mainMenuViewCreator, null, menusManager, tree, popupsManager, screenFadeManager, backgroundController),
-            new InGameMenuController(inGameMenuViewCreator, new InGameMenuModel(), menusManager),
-            new PauseMenuController(pauseViewCreator, null, menusManager, popupsManager, screenFadeManager, backgroundController),
-            new OptionsMenuController(optionsViewCreator, null, menusManager),
-            new AudioSettingsMenuController(audioSettingsViewCreator, new AudioSettingsMenuModel(settings), menusManager, popupsManager),
-            new VideoSettingsMenuController(videoSettingsViewCreator, new VideoSettingsMenuModel(settings), menusManager, popupsManager),
-            new RebindKeysMenuController(rebindKeysViewCreator, new RebindKeysMenuModel(settings), menusManager, popupsManager),
-            new InterfaceSettingsMenuController(interfaceMenuViewCreator, new InterfaceSettingsMenuModel(settings), menusManager, popupsManager),
-        };
+        var mainMenuViewCreator = new ViewCreator<MainMenuView>(GetMenuPath(typeof(MainMenuView)), menusParent);
+        var inGameMenuViewCreator = new ViewCreator<InGameMenuView>(GetMenuPath(typeof(InGameMenuView)), menusParent);
+        var pauseViewCreator = new ViewCreator<PauseMenuView>(GetMenuPath(typeof(PauseMenuView)), menusParent);
+        var optionsViewCreator = new ViewCreator<OptionsMenuView>(GetMenuPath(typeof(OptionsMenuView)), menusParent);
+        var audioSettingsViewCreator = new ViewCreator<AudioSettingsMenuView>(GetMenuPath(typeof(AudioSettingsMenuView)), menusParent);
+        var videoSettingsViewCreator = new ViewCreator<VideoSettingsMenuView>(GetMenuPath(typeof(VideoSettingsMenuView)), menusParent);
+        var rebindKeysViewCreator = new ViewCreator<RebindKeysMenuView>(GetMenuPath(typeof(RebindKeysMenuView)), menusParent);
+        var interfaceMenuViewCreator = new ViewCreator<InterfaceSettingsMenuView>(GetMenuPath(typeof(InterfaceSettingsMenuView)), menusParent);
+
+        var menus = new Dictionary<Type, IMenuController>
+            {
+                {
+                    typeof(MainMenuView),
+                    new MainMenuController(
+                        mainMenuViewCreator, 
+                        null, 
+                        menusManager, 
+                        tree, 
+                        popupsManager, 
+                        screenFadeManager, 
+                        backgroundController)
+                },
+                {
+                    typeof(InGameMenuView),
+                    new InGameMenuController(inGameMenuViewCreator, new InGameMenuModel(), menusManager)
+                },
+                {
+                    typeof(PauseMenuView),
+                    new PauseMenuController(
+                        pauseViewCreator,
+                        null,
+                        menusManager,
+                        popupsManager,
+                        screenFadeManager,
+                        backgroundController)
+                },
+                {
+                    typeof(OptionsMenuView),
+                    new OptionsMenuController(optionsViewCreator, null, menusManager)
+                },
+                {
+                    typeof(AudioSettingsMenuView),
+                    new AudioSettingsMenuController(
+                        audioSettingsViewCreator,
+                        new AudioSettingsMenuModel(settings),
+                        menusManager,
+                        popupsManager)
+                },
+                {
+                    typeof(VideoSettingsMenuView),
+                    new VideoSettingsMenuController(
+                        videoSettingsViewCreator,
+                        new VideoSettingsMenuModel(settings),
+                        menusManager,
+                        popupsManager)
+                },
+                {
+                    typeof(RebindKeysMenuView),
+                    new RebindKeysMenuController(
+                        rebindKeysViewCreator,
+                        new RebindKeysMenuModel(settings),
+                        menusManager,
+                        popupsManager)
+                },
+                {
+                    typeof(InterfaceSettingsMenuView),
+                    new InterfaceSettingsMenuController(
+                        interfaceMenuViewCreator,
+                        new InterfaceSettingsMenuModel(settings),
+                        menusManager,
+                        popupsManager)
+                },
+            };
         menusManager.Init(menus);
-        menusManager.ShowMenu(typeof(MainMenuController), StackingType.Clear);
+        menusManager.ShowMenu(typeof(MainMenuView), StackingType.Clear);
     }
 
     private static string GetMenuPath(Type menuType)

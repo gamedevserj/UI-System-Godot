@@ -22,24 +22,24 @@ internal class OptionsMenuController : MenuControllerBase<IViewCreator<OptionsMe
     private void OnAudioSettingsButtonDown()
     {
         _view.SetLastSelectedElement(_view.AudioSettingsButton);
-        _menusManager.ShowMenu(typeof(AudioSettingsMenuController));
+        _menusManager.ShowMenu(typeof(AudioSettingsMenuView));
     }
 
     private void OnVideoSettingsButtonDown()
     {
         _view.SetLastSelectedElement(_view.VideoSettingsButton);
-        _menusManager.ShowMenu(typeof(VideoSettingsMenuController));
+        _menusManager.ShowMenu(typeof(VideoSettingsMenuView));
     }
 
     private void OnRebindKeysButtonDown()
     {
         _view.SetLastSelectedElement(_view.RebindKeysButton);
-        _menusManager.ShowMenu(typeof(RebindKeysMenuController));
+        _menusManager.ShowMenu(typeof(RebindKeysMenuView));
     }
 
     private void OnInterfaceSettingsButtonDown()
     {
         _view.SetLastSelectedElement(_view.InterfaceSettingsButton);
-        _menusManager.ShowMenu(typeof(InterfaceSettingsMenuController));
+        _menusManager.ShowMenu(typeof(InterfaceSettingsMenuView));
     }
 }

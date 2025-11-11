@@ -7,6 +7,7 @@ using UISystem.Core.Views;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Popups.Controllers;
+using UISystem.PopupSystem.Popups.Views;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
@@ -59,14 +60,14 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
         _view.SetLastSelectedElement(_view.PlayButton);
         _screenFadeManager.FadeOut(() =>
         {
-            _menusManager.ShowMenu(typeof(InGameMenuController), StackingType.Clear, instant: true);
+            _menusManager.ShowMenu(typeof(InGameMenuView), StackingType.Clear, instant: true);
         });
     }
 
     private void PressedOptions()
     {
         _view.SetLastSelectedElement(_view.OptionsButton);
-        _menusManager.ShowMenu(typeof(OptionsMenuController));
+        _menusManager.ShowMenu(typeof(OptionsMenuView));
     }
 
     private void PressedQuit()
@@ -78,7 +79,7 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
     private void ShowQuitPopup()
     {
         SwitchInteractability(false);
-        _popupsManager.ShowPopup(typeof(YesNoPopupController), PopupMessages.QuitGame, (result) =>
+        _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.QuitGame, (result) =>
         {
             if (result == PopupResult.Yes)
                 _sceneTree.Quit();

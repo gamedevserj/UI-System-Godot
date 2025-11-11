@@ -12,7 +12,7 @@ internal class InGameMenuController : MenuControllerBase<IViewCreator<InGameMenu
 
     public override void OnPauseButtonDown()
     {
-        _menusManager.ShowMenu(typeof(PauseMenuController));
+        _menusManager.ShowMenu(typeof(PauseMenuView));
     }
 
     protected override void SetupElements()

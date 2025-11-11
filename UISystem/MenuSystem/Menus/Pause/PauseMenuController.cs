@@ -7,6 +7,7 @@ using UISystem.Core.Views;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Popups.Controllers;
+using UISystem.PopupSystem.Popups.Views;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
@@ -53,7 +54,7 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
     private void PressedOptions()
     {
         _view.SetLastSelectedElement(_view.OptionsButton);
-        _menusManager.ShowMenu(typeof(OptionsMenuController));
+        _menusManager.ShowMenu(typeof(OptionsMenuView));
     }
 
     private void PressedReturn()
@@ -61,13 +62,13 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
         _view.SetLastSelectedElement(_view.ReturnToMainMenuButton);
         SwitchInteractability(false);
 
-        _popupsManager.ShowPopup(typeof(YesNoPopupController), PopupMessages.QuitToMainMenu, (result) =>
+        _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.QuitToMainMenu, (result) =>
         {
             if (result == PopupResult.Yes)
             {
                 _screenFadeManager.FadeOut(() =>
                 {
-                    _menusManager.ShowMenu(typeof(MainMenuController), StackingType.Clear, null, true);
+                    _menusManager.ShowMenu(typeof(MainMenuView), StackingType.Clear, null, true);
                 });
             }
             else if (result == PopupResult.No)

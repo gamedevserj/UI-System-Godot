@@ -6,6 +6,7 @@ using UISystem.Core.Views;
 using UISystem.Elements;
 using UISystem.PopupSystem;
 using UISystem.PopupSystem.Popups.Controllers;
+using UISystem.PopupSystem.Popups.Views;
 
 namespace UISystem.MenuSystem.SettingsMenu;
 internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
@@ -38,7 +39,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
             _view.SetLastSelectedElement(_view.ReturnButton);
             CanReceivePhysicalInput = false;
             SwitchInteractability(false);
-            _popupsManager.ShowPopup(typeof(YesNoCancelPopupController), PopupMessages.SaveChanges, (result) =>
+            _popupsManager.ShowPopup(typeof(YesNoCancelPopupView), PopupMessages.SaveChanges, (result) =>
             {
                 OnReturnToPreviousMenuPopupClosed(result);
                 CanReceivePhysicalInput = true;
@@ -75,7 +76,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
     {
         _view.SetLastSelectedElement(_view.ResetButton);
         SwitchInteractability(false);
-        _popupsManager.ShowPopup(typeof(YesNoPopupController), PopupMessages.ResetToDefault, (result) =>
+        _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.ResetToDefault, (result) =>
         {
             if (result == PopupResult.Yes)
             {
