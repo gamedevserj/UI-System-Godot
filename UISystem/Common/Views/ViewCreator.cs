@@ -3,7 +3,8 @@ using UISystem.Core.Views;
 using UISystem.Extensions;
 
 namespace UISystem.Views;
-internal class ViewCreator<TView> : ViewCreator<string, TView, Node> where TView : ViewBase
+internal class ViewCreator<TView> : ViewCreator<string, TView, Node> 
+    where TView : ViewBase
 {
 
     public override bool IsViewValid => _view.IsValid();

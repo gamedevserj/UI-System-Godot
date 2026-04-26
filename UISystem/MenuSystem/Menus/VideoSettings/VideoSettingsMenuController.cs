@@ -13,8 +13,12 @@ namespace UISystem.MenuSystem.Controllers;
 internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator<VideoSettingsMenuView>, VideoSettingsMenuView, VideoSettingsMenuModel>
 {
 
-    public VideoSettingsMenuController(IViewCreator<VideoSettingsMenuView> viewCreator, VideoSettingsMenuModel model, 
-        IMenusManager menusManager, IPopupsManager<PopupResult> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
+    public VideoSettingsMenuController(
+        IViewCreator<VideoSettingsMenuView> viewCreator, 
+        IMenusManager menusManager, 
+        VideoSettingsMenuModel model, 
+        IPopupsManager<PopupResult> popupsManager) 
+        : base(viewCreator, menusManager, model, popupsManager)
     { }
 
     protected override void SetupElements()

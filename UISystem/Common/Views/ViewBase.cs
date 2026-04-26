@@ -1,5 +1,4 @@
 ﻿using Godot;
-using System;
 using System.Threading.Tasks;
 using UISystem.Core.Transitions;
 using UISystem.Core.Views;
@@ -12,7 +11,6 @@ namespace UISystem.Views;
 /// </summary>
 public abstract partial class ViewBase : Control, IView
 {
-
     private IViewTransition _transition;
     protected IFocusableControl[] _focusableElements;
 
@@ -52,5 +50,4 @@ public abstract partial class ViewBase : Control, IView
     public abstract void FocusElement();
     protected abstract void PopulateFocusableElements();
     protected abstract IViewTransition CreateTransition();
-
 }

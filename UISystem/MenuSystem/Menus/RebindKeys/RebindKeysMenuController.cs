@@ -17,9 +17,12 @@ internal class RebindKeysMenuController
     : SettingsMenuController<IViewCreator<RebindKeysMenuView>, RebindKeysMenuView, RebindKeysMenuModel>, IRebindInputReceiver
 {
 
-    public RebindKeysMenuController(IViewCreator<RebindKeysMenuView> viewCreator, RebindKeysMenuModel model, 
-        IMenusManager menusManager, IPopupsManager<PopupResult> popupsManager) 
-        : base(viewCreator, model, menusManager, popupsManager)
+    public RebindKeysMenuController(
+        IViewCreator<RebindKeysMenuView> viewCreator, 
+        IMenusManager menusManager, 
+        RebindKeysMenuModel model, 
+        IPopupsManager<PopupResult> popupsManager) 
+        : base(viewCreator, menusManager, model, popupsManager)
     { }
 
     public void OnAnyButtonDown(InputEvent inputEvent)
@@ -107,5 +110,4 @@ internal class RebindKeysMenuController
     {
         UpdateAllButtonViews();
     }
-
 }

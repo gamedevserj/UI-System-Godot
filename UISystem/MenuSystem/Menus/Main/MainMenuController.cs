@@ -7,7 +7,6 @@ using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
 using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
-using UISystem.PopupSystem.Popups.Controllers;
 using UISystem.PopupSystem.Popups.Views;
 using UISystem.ScreenFade;
 
@@ -20,9 +19,9 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(IViewCreator<MainMenuView> viewCreator, IMenuModel model, IMenusManager menusManager,
+    public MainMenuController(IViewCreator<MainMenuView> viewCreator, IMenusManager menusManager,
         SceneTree sceneTree, IPopupsManager<PopupResult> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
-        : base(viewCreator, model, menusManager)
+        : base(viewCreator, menusManager)
     {
         _sceneTree = sceneTree;
         _popupsManager = popupsManager;
@@ -88,5 +87,4 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
                 SwitchInteractability(true);
         });
     }
-
 }

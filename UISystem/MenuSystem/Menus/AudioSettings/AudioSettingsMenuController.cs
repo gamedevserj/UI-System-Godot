@@ -1,5 +1,4 @@
-﻿using System;
-using UISystem.Core.MenuSystem;
+﻿using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
 using UISystem.MenuSystem.Models;
@@ -11,8 +10,12 @@ namespace UISystem.MenuSystem.Controllers;
 internal class AudioSettingsMenuController : SettingsMenuController<IViewCreator<AudioSettingsMenuView>, AudioSettingsMenuView, AudioSettingsMenuModel>
 {
 
-    public AudioSettingsMenuController(IViewCreator<AudioSettingsMenuView> viewCreator, AudioSettingsMenuModel model, 
-        IMenusManager menusManager, IPopupsManager<PopupResult> popupsManager) : base(viewCreator, model, menusManager, popupsManager)
+    public AudioSettingsMenuController(
+        IViewCreator<AudioSettingsMenuView> viewCreator, 
+        IMenusManager menusManager, 
+        AudioSettingsMenuModel model, 
+        IPopupsManager<PopupResult> popupsManager) 
+        : base(viewCreator, menusManager, model, popupsManager)
     { }
 
     protected override void SetupElements()

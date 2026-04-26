@@ -20,7 +20,6 @@ using UISystem.Views;
 namespace UISystem;
 public partial class UiInstaller : Node
 {
-
     public static UiInstaller Instance { get; private set; }
 
     [Export] private TextureRect menuBackground;
@@ -36,16 +35,14 @@ public partial class UiInstaller : Node
         Instance ??= this;
     }
 
-    public override void _Input(InputEvent inputEvent)
+    public override void _Input(InputEvent @event)
     {
-        _inputProcessor?.ProcessInput(inputEvent);
+        _inputProcessor?.ProcessInput(@event);
     }
 
     public void Init(GameSettings settings)
     {
         SceneTree tree = GetTree();
-
-        
 
         var popupsManager = new PopupsManager<PopupResult>();
         var yesPopupViewCreator = new ViewCreator<YesPopupView>(GetPopupPath(typeof(YesPopupView)), popupsParent);
@@ -86,7 +83,6 @@ public partial class UiInstaller : Node
                     typeof(MainMenuView),
                     new MainMenuController(
                         mainMenuViewCreator, 
-                        null, 
                         menusManager, 
                         tree, 
                         popupsManager, 
@@ -95,13 +91,12 @@ public partial class UiInstaller : Node
                 },
                 {
                     typeof(InGameMenuView),
-                    new InGameMenuController(inGameMenuViewCreator, new InGameMenuModel(), menusManager)
+                    new InGameMenuController(inGameMenuViewCreator, menusManager)
                 },
                 {
                     typeof(PauseMenuView),
                     new PauseMenuController(
                         pauseViewCreator,
-                        null,
                         menusManager,
                         popupsManager,
                         screenFadeManager,
@@ -109,38 +104,38 @@ public partial class UiInstaller : Node
                 },
                 {
                     typeof(OptionsMenuView),
-                    new OptionsMenuController(optionsViewCreator, null, menusManager)
+                    new OptionsMenuController(optionsViewCreator, menusManager)
                 },
                 {
                     typeof(AudioSettingsMenuView),
                     new AudioSettingsMenuController(
                         audioSettingsViewCreator,
-                        new AudioSettingsMenuModel(settings),
                         menusManager,
+                        new AudioSettingsMenuModel(settings),
                         popupsManager)
                 },
                 {
                     typeof(VideoSettingsMenuView),
                     new VideoSettingsMenuController(
                         videoSettingsViewCreator,
-                        new VideoSettingsMenuModel(settings),
                         menusManager,
+                        new VideoSettingsMenuModel(settings),
                         popupsManager)
                 },
                 {
                     typeof(RebindKeysMenuView),
                     new RebindKeysMenuController(
                         rebindKeysViewCreator,
-                        new RebindKeysMenuModel(settings),
                         menusManager,
+                        new RebindKeysMenuModel(settings),
                         popupsManager)
                 },
                 {
                     typeof(InterfaceSettingsMenuView),
                     new InterfaceSettingsMenuController(
                         interfaceMenuViewCreator,
-                        new InterfaceSettingsMenuModel(settings),
                         menusManager,
+                        new InterfaceSettingsMenuModel(settings),
                         popupsManager)
                 },
             };
@@ -149,14 +144,7 @@ public partial class UiInstaller : Node
         _inputProcessor = new InputProcessor(menusManager, popupsManager);
     }
 
-    private static string GetMenuPath(Type menuType)
-    {
-        return MenuViewsPaths.Paths[menuType];
-    }
+    private static string GetMenuPath(Type menuType) => MenuViewsPaths.Paths[menuType];
 
-    private static string GetPopupPath(Type type)
-    {
-        return PopupViewsPaths.Paths[type];
-    }
-
+    private static string GetPopupPath(Type type) => PopupViewsPaths.Paths[type];
 }
