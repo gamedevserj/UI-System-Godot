@@ -8,21 +8,25 @@ using UISystem.PopupSystem;
 namespace UISystem.PhysicalInput;
 internal class InputProcessor : IInputProcessor<InputEvent>
 {
+    private readonly IMenusManager _menusManager;
+    private readonly IPopupsManager<PopupResult> _popupsManager;
 
     private IInputReceiver _menuInputReceiver;
-    private IInputReceiver _popupInputReceiver;
     private IInputReceiver _activeReceiver;
     private IRebindInputReceiver _rebindInputReceiver;
 
-    public InputProcessor()
+    public InputProcessor(IMenusManager menusManager, IPopupsManager<PopupResult> popupsManager)
     {
-        MenusManager.OnControllerSwitch += OnMenuControllerSwitch;
-        PopupsManager<PopupResult>.OnControllerSwitch += OnPopupControllerSwitch;
+        _menusManager = menusManager;
+        _menusManager.OnControllerSwitch += OnMenuControllerSwitch;
+        _popupsManager = popupsManager;
+        _popupsManager.OnControllerSwitch += OnPopupControllerSwitch;
+
     }
     ~InputProcessor()
     {
-        MenusManager.OnControllerSwitch -= OnMenuControllerSwitch;
-        PopupsManager<PopupResult>.OnControllerSwitch -= OnPopupControllerSwitch;
+        _menusManager.OnControllerSwitch += OnMenuControllerSwitch;
+        _popupsManager.OnControllerSwitch += OnPopupControllerSwitch;
     }
 
     public void ProcessInput(InputEvent inputEvent)
@@ -42,8 +46,7 @@ internal class InputProcessor : IInputProcessor<InputEvent>
 
     private void OnPopupControllerSwitch(IInputReceiver inputReceiver)
     {
-        _popupInputReceiver = inputReceiver;
-        _activeReceiver = _popupInputReceiver ?? _menuInputReceiver;
+        _activeReceiver = inputReceiver ?? _menuInputReceiver;
     }
 
     private void OnMenuControllerSwitch(IInputReceiver inputReceiver)

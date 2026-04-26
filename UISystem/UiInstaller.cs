@@ -29,7 +29,7 @@ public partial class UiInstaller : Node
     [Export] private ScreenFadeManager screenFadeManager;
     [Export] private GuiPanel3D guiPanel3D;
 
-    IInputProcessor<InputEvent> _inputProcessor;
+    private IInputProcessor<InputEvent> _inputProcessor;
 
     public override void _EnterTree()
     {
@@ -45,7 +45,7 @@ public partial class UiInstaller : Node
     {
         SceneTree tree = GetTree();
 
-        _inputProcessor = new InputProcessor();
+        
 
         var popupsManager = new PopupsManager<PopupResult>();
         var yesPopupViewCreator = new ViewCreator<YesPopupView>(GetPopupPath(typeof(YesPopupView)), popupsParent);
@@ -146,6 +146,7 @@ public partial class UiInstaller : Node
             };
         menusManager.Init(menus);
         menusManager.ShowMenu(typeof(MainMenuView), StackingType.Clear);
+        _inputProcessor = new InputProcessor(menusManager, popupsManager);
     }
 
     private static string GetMenuPath(Type menuType)

@@ -1,5 +1,4 @@
 ﻿using Godot;
-using System;
 using System.Threading.Tasks;
 using UISystem.Core.Transitions;
 using UISystem.Extensions;
@@ -49,12 +48,11 @@ public class PanelSizeTransition : IViewTransition
         _elementsDuration = elementsDuration;
     }
 
-    public async void Hide(Action onHidden, bool instant)
+    public async Task Hide(bool instant = false)
     {
         if (instant)
         {
             _fadeObjectsContainer.HideItem();
-            onHidden?.Invoke();
             return;
         }
 
@@ -88,10 +86,11 @@ public class PanelSizeTransition : IViewTransition
 
         tween.SetTrans(Tween.TransitionType.Quad);
         tween.TweenAlpha(_fadeObjectsContainer, 0, FadeDuration);
-        tween.Finished += () => onHidden?.Invoke();
+
+        await SceneTree.ToSignal(tween, Tween.SignalName.Finished);
     }
 
-    public async void Show(Action onShown, bool instant)
+    public async Task Show(bool instant = false)
     {
         // should always hide before showing because awaiting for parameters shows menu for a split second
         _fadeObjectsContainer.HideItem();
@@ -108,7 +107,6 @@ public class PanelSizeTransition : IViewTransition
                 _elements[i].ResizableControl.Position = _elementsSizeSettings[i].OriginalPosition;
             }
             _fadeObjectsContainer.ShowItem();
-            onShown?.Invoke();
             return;
         }
         
@@ -131,7 +129,8 @@ public class PanelSizeTransition : IViewTransition
             bool parallel = i != 0;
             tween.TweenControlSize(parallel, _elements[i].ResizableControl, _elementsSizeSettings[i].OriginalSize, _elementsDuration, _elementsSizeSettings[i]);
         }
-        tween.Finished += () => onShown?.Invoke();
+
+        await SceneTree.ToSignal(tween, Tween.SignalName.Finished);
     }
 
     private async Task InitElementParameters()

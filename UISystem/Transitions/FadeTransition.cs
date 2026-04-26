@@ -1,5 +1,5 @@
 ﻿using Godot;
-using System;
+using System.Threading.Tasks;
 using UISystem.Core.Transitions;
 using UISystem.Helpers;
 
@@ -24,18 +24,17 @@ public class FadeTransition : IViewTransition
         Fader.Init(_target);
     }
 
-    public void Hide(Action onHidden, bool instant)
+    public async Task Hide(bool instant = false)
     {
         if(instant)
         {
             _target.Modulate = new Color(_target.Modulate, 0);
-            onHidden?.Invoke();
             return;
         }
-        Fader.Hide(SceneTree, _target, onHidden, instant);
+        await Fader.Hide(SceneTree, _target, instant);
     }
 
-    public void Show(Action onShown, bool instant)
+    public async Task Show(bool instant = false)
     {
         // should always hide before showing because awaiting for parameters shows menu for a split second
         _target.Modulate = new Color(_target.Modulate, 0);
@@ -43,9 +42,8 @@ public class FadeTransition : IViewTransition
         if (instant)
         {
             _target.Modulate = new Color(_target.Modulate, 1);
-            onShown?.Invoke();
             return;
         }
-        Fader.Show(SceneTree, _target, onShown, instant);
+        await Fader.Show(SceneTree, _target, instant);
     }
 }

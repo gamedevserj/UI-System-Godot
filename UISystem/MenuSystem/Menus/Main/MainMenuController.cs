@@ -1,5 +1,6 @@
 using Godot;
 using System;
+using System.Threading.Tasks;
 using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
@@ -29,17 +30,17 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
         _menuBackgroundController = menuBackgroundController;
     }
 
-    public override void Show(Action onComplete = null, bool instant = false)
+    public override async Task Show(Action onComplete = null, bool instant = false)
     {
-        base.Show(onComplete, instant);
         _menuBackgroundController.ShowBackground(instant);
+        await base.Show(onComplete, instant);
     }
 
-    public override void Hide(StackingType stackingType, Action onComplete = null, bool instant = false)
+    public override async Task Hide(StackingType stackingType, Action onComplete = null, bool instant = false)
     {
-        base.Hide(stackingType, onComplete, instant);
         if (stackingType != StackingType.Add)
             _menuBackgroundController.HideBackground(instant);
+        await base.Hide(stackingType, onComplete, instant);
     }
 
     protected override void SetupElements()

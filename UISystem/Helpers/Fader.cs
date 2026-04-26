@@ -1,5 +1,6 @@
 ﻿using Godot;
 using System;
+using System.Threading.Tasks;
 using UISystem.Constants;
 
 namespace UISystem.Helpers;
@@ -13,36 +14,36 @@ public static class Fader
         target.Modulate = new Color(target.Modulate, 0);
     }
 
-    public static void Show(SceneTree tree, Control target, Action onComplete = null, bool instant = false)
+    public static async Task Show(SceneTree tree, Control target, bool instant = false)
     {
         var targetColor = new Color(target.Modulate, 1);
         if (instant)
         {
-            InstantChange(target, targetColor, onComplete);
+            InstantChange(target, targetColor);
             return;
         }
 
-        TweenColor(tree, target, targetColor, onComplete);
+        await TweenColor(tree, target, targetColor);
     }
 
-    public static void Hide(SceneTree tree, Control target, Action onComplete = null, bool instant = false)
+    public static async Task Hide(SceneTree tree, Control target, bool instant = false)
     {
         var targetColor = new Color(target.Modulate, 0);
         if (instant)
         {
-            InstantChange(target, targetColor, onComplete);
+            InstantChange(target, targetColor);
             return;
         }
 
-        TweenColor(tree, target, targetColor, onComplete);
+        await TweenColor(tree, target, targetColor);
     }
 
-    private static void TweenColor(SceneTree tree, Control target, Color targetColor, Action onComplete = null)
+    private static async Task TweenColor(SceneTree tree, Control target, Color targetColor)
     {
         Tween tween = tree.CreateTween();
         tween.SetPauseMode(Tween.TweenPauseMode.Process);
         tween.TweenProperty(target, PropertyConstants.Modulate, targetColor, TransitionDuration);
-        tween.TweenCallback(Callable.From(() => onComplete?.Invoke()));
+        await tree.ToSignal(tween, Tween.SignalName.Finished);
     }
 
     private static void InstantChange(Control target, Color targetColor, Action onComplete = null)

@@ -1,5 +1,4 @@
 ﻿using Godot;
-using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
@@ -47,12 +46,11 @@ public class MainElementDropTransition : IViewTransition
         _secondaryElementDuration = secondaryElementDuration;
     }
 
-    public async void Hide(Action onHidden, bool instant)
+    public async Task Hide(bool instant = false)
     {
         if (instant)
         {
             _fadeObjectsContainer.HideItem();
-            onHidden?.Invoke();
             return;
         }
 
@@ -82,10 +80,11 @@ public class MainElementDropTransition : IViewTransition
 
         tween.SetTrans(Tween.TransitionType.Linear);
         tween.TweenAlpha(_fadeObjectsContainer, 0, FadeDuration);
-        tween.Finished += () => onHidden?.Invoke();
+
+        await SceneTree.ToSignal(tween, Tween.SignalName.Finished);
     }
 
-    public async void Show(Action onShown, bool instant)
+    public async Task Show(bool instant = false)
     {
         // should always hide before showing because awaiting for parameters shows menu for a split second
         _mainElement.ResizableControl.HideItem();
@@ -100,7 +99,6 @@ public class MainElementDropTransition : IViewTransition
             _mainElement.ResizableControl.ShowItem();
             _fadeObjectsContainer.ShowItem();
             SwitchSecondaryButtonsVisibility(true);
-            onShown?.Invoke();
             return;
         }
 
@@ -128,7 +126,8 @@ public class MainElementDropTransition : IViewTransition
         {
             tween.Parallel().TweenControlPosition(_secondaryElements[i].ResizableControl, Vector2.Zero, _secondaryElementDuration);
         }
-        tween.Finished += () => onShown?.Invoke();
+
+        await SceneTree.ToSignal(tween, Tween.SignalName.Finished);
     }
 
     private async Task InitElementParameters()

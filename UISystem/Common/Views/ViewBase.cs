@@ -1,5 +1,6 @@
 ﻿using Godot;
 using System;
+using System.Threading.Tasks;
 using UISystem.Core.Transitions;
 using UISystem.Core.Views;
 using UISystem.Elements;
@@ -32,24 +33,19 @@ public abstract partial class ViewBase : Control, IView
         }
     }
 
-    public void Show(Action onShown, bool instant = false)
+    public async Task Show(bool instant = false)
     {
         SwitchInteractability(false);
         Visible = true;
-        _transition.Show(()=>
-        {
-            SwitchInteractability(true);
-            onShown?.Invoke();
-        }, instant);
+        await _transition.Show(instant);
+        SwitchInteractability(true);
     }
 
-    public void Hide(Action onHidden, bool instant = false)
+    public async Task Hide(bool instant = false)
     {
         SwitchInteractability(false);
-        _transition.Hide(() => { 
-            onHidden?.Invoke();
-            Visible = false; // need to switch off visibility to allow GuiPanel3D to receive mouse events
-        }, instant);
+        await _transition.Hide(instant);
+        Visible = false; // need to switch off visibility to allow GuiPanel3D to receive mouse events
     }
 
     public void DestroyView() => this.SafeQueueFree();
