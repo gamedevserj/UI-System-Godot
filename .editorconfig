@@ -1,0 +1,78 @@
+# Default settings:
+# A newline ending every file
+# Use 4 spaces as indentation
+[*]
+insert_final_newline = true
+indent_style = space
+indent_size = 4
+trim_trailing_whitespace = true
+
+# C# files
+[*.cs]
+# avoid this. unless absolutely necessary
+dotnet_style_qualification_for_field = false:suggestion
+dotnet_style_qualification_for_property = false:suggestion
+dotnet_style_qualification_for_method = false:suggestion
+dotnet_style_qualification_for_event = false:suggestion
+
+# internal and private fields should be _camelCase
+dotnet_naming_rule.camel_case_for_private_internal_fields.severity = warning
+dotnet_naming_rule.camel_case_for_private_internal_fields.symbols  = private_internal_fields
+dotnet_naming_rule.camel_case_for_private_internal_fields.style    = camel_case_underscore_style
+dotnet_naming_symbols.private_internal_fields.applicable_kinds = field
+dotnet_naming_symbols.private_internal_fields.applicable_accessibilities = private, internal
+dotnet_naming_style.camel_case_underscore_style.required_prefix = _
+dotnet_naming_style.camel_case_underscore_style.capitalization = camel_case
+
+# name all constant fields using PascalCase
+dotnet_naming_rule.constant_fields_should_be_pascal_case.severity = warning
+dotnet_naming_rule.constant_fields_should_be_pascal_case.symbols  = constant_fields
+dotnet_naming_rule.constant_fields_should_be_pascal_case.style    = pascal_case_style
+dotnet_naming_symbols.constant_fields.applicable_kinds   = field
+dotnet_naming_symbols.constant_fields.required_modifiers = const
+dotnet_naming_style.pascal_case_style.capitalization = pascal_case
+
+# Code style defaults
+csharp_using_directive_placement = outside_namespace:suggestion
+dotnet_sort_system_directives_first = true
+csharp_prefer_braces = true:silent
+csharp_preserve_single_line_blocks = true
+csharp_preserve_single_line_statements = false
+csharp_prefer_static_local_function = true:suggestion
+csharp_prefer_simple_using_statement = false:none
+csharp_style_prefer_switch_expression = true:suggestion
+dotnet_style_readonly_field = true:suggestion
+
+###############################
+# StyleCop Rules              #
+###############################
+
+[*.cs]
+# Prefix local calls with this
+dotnet_diagnostic.SA1101.severity = none
+
+# Each attribute should be placed on its own line of code
+dotnet_diagnostic.SA1134.severity = none
+
+# Field names must not begin with underscore
+dotnet_diagnostic.SA1309.severity = none
+
+# Using directive should appear within namespace declaration
+dotnet_diagnostic.SA1200.severity = none
+
+# Disabled because it wants "required" before "public"
+# Declaration keywords must follow order
+dotnet_diagnostic.SA1206.severity = none
+
+# Enumeration items should be documented
+dotnet_diagnostic.SA1602.severity = none
+
+# Braces should not be ommited
+dotnet_diagnostic.SA1503.severity = none
+
+# Reduced to suggestions to allow not documenting return value for methods that return Task
+# Element return value should be documented
+dotnet_diagnostic.SA1615.severity = suggestion
+
+# The file header is missing or not located at the top of the file
+dotnet_diagnostic.SA1633.severity = none

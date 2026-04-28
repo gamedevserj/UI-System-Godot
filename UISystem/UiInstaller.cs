@@ -49,20 +49,20 @@ public partial class UiInstaller : Node
         var yesNoPopupViewCreator = new ViewCreator<YesNoPopupView>(GetPopupPath(typeof(YesNoPopupView)), popupsParent);
         var yesNoCancelPopupViewCreator = new ViewCreator<YesNoCancelPopupView>(GetPopupPath(typeof(YesNoCancelPopupView)), popupsParent);
         var popups = new Dictionary<Type, IPopupController<PopupResult>>
+        {
             {
-                {
-                    typeof(YesPopupView),
-                    new YesPopupController(yesPopupViewCreator, popupsManager)
-                },
-                {
-                    typeof(YesNoPopupView),
-                    new YesNoPopupController(yesNoPopupViewCreator, popupsManager)
-                },
-                {
-                    typeof(YesNoCancelPopupView),
-                    new YesNoCancelPopupController(yesNoCancelPopupViewCreator, popupsManager)
-                },
-            };
+                typeof(YesPopupView),
+                new YesPopupController(yesPopupViewCreator, popupsManager)
+            },
+            {
+                typeof(YesNoPopupView),
+                new YesNoPopupController(yesNoPopupViewCreator, popupsManager)
+            },
+            {
+                typeof(YesNoCancelPopupView),
+                new YesNoCancelPopupController(yesNoCancelPopupViewCreator, popupsManager)
+            },
+        };
         popupsManager.Init(popups);
 
         var backgroundController = new MenuBackgroundController(GetTree(), menuBackground);
@@ -78,67 +78,67 @@ public partial class UiInstaller : Node
         var interfaceMenuViewCreator = new ViewCreator<InterfaceSettingsMenuView>(GetMenuPath(typeof(InterfaceSettingsMenuView)), menusParent);
 
         var menus = new Dictionary<Type, IMenuController>
+        {
             {
-                {
-                    typeof(MainMenuView),
-                    new MainMenuController(
-                        mainMenuViewCreator, 
-                        menusManager, 
-                        tree, 
-                        popupsManager, 
-                        screenFadeManager, 
-                        backgroundController)
-                },
-                {
-                    typeof(InGameMenuView),
-                    new InGameMenuController(inGameMenuViewCreator, menusManager)
-                },
-                {
-                    typeof(PauseMenuView),
-                    new PauseMenuController(
-                        pauseViewCreator,
-                        menusManager,
-                        popupsManager,
-                        screenFadeManager,
-                        backgroundController)
-                },
-                {
-                    typeof(OptionsMenuView),
-                    new OptionsMenuController(optionsViewCreator, menusManager)
-                },
-                {
-                    typeof(AudioSettingsMenuView),
-                    new AudioSettingsMenuController(
-                        audioSettingsViewCreator,
-                        menusManager,
-                        new AudioSettingsMenuModel(settings),
-                        popupsManager)
-                },
-                {
-                    typeof(VideoSettingsMenuView),
-                    new VideoSettingsMenuController(
-                        videoSettingsViewCreator,
-                        menusManager,
-                        new VideoSettingsMenuModel(settings),
-                        popupsManager)
-                },
-                {
-                    typeof(RebindKeysMenuView),
-                    new RebindKeysMenuController(
-                        rebindKeysViewCreator,
-                        menusManager,
-                        new RebindKeysMenuModel(settings),
-                        popupsManager)
-                },
-                {
-                    typeof(InterfaceSettingsMenuView),
-                    new InterfaceSettingsMenuController(
-                        interfaceMenuViewCreator,
-                        menusManager,
-                        new InterfaceSettingsMenuModel(settings),
-                        popupsManager)
-                },
-            };
+                typeof(MainMenuView),
+                new MainMenuController(
+                    mainMenuViewCreator, 
+                    menusManager, 
+                    tree, 
+                    popupsManager, 
+                    screenFadeManager, 
+                    backgroundController)
+            },
+            {
+                typeof(InGameMenuView),
+                new InGameMenuController(inGameMenuViewCreator, menusManager)
+            },
+            {
+                typeof(PauseMenuView),
+                new PauseMenuController(
+                    pauseViewCreator,
+                    menusManager,
+                    popupsManager,
+                    screenFadeManager,
+                    backgroundController)
+            },
+            {
+                typeof(OptionsMenuView),
+                new OptionsMenuController(optionsViewCreator, menusManager)
+            },
+            {
+                typeof(AudioSettingsMenuView),
+                new AudioSettingsMenuController(
+                    audioSettingsViewCreator,
+                    menusManager,
+                    new AudioSettingsMenuModel(settings),
+                    popupsManager)
+            },
+            {
+                typeof(VideoSettingsMenuView),
+                new VideoSettingsMenuController(
+                    videoSettingsViewCreator,
+                    menusManager,
+                    new VideoSettingsMenuModel(settings),
+                    popupsManager)
+            },
+            {
+                typeof(RebindKeysMenuView),
+                new RebindKeysMenuController(
+                    rebindKeysViewCreator,
+                    menusManager,
+                    new RebindKeysMenuModel(settings),
+                    popupsManager)
+            },
+            {
+                typeof(InterfaceSettingsMenuView),
+                new InterfaceSettingsMenuController(
+                    interfaceMenuViewCreator,
+                    menusManager,
+                    new InterfaceSettingsMenuModel(settings),
+                    popupsManager)
+            },
+        };
         menusManager.Init(menus);
         menusManager.ShowMenu(typeof(MainMenuView), StackingType.Clear);
         _inputProcessor = new InputProcessor(menusManager, popupsManager);
