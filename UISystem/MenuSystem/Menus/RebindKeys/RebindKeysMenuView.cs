@@ -7,43 +7,74 @@ using UISystem.Transitions;
 using UISystem.Transitions.Interfaces;
 
 namespace UISystem.MenuSystem.Views;
+
+/// <summary>
+/// Rebind keys menu view.
+/// </summary>
 public partial class RebindKeysMenuView : SettingsMenuView
 {
+    [Export] private RebindableKeyButtonView _moveLeft;
+    [Export] private RebindableKeyButtonView _moveLeftJoystick;
+    [Export] private RebindableKeyButtonView _moveRight;
+    [Export] private RebindableKeyButtonView _moveRightJoystick;
+    [Export] private RebindableKeyButtonView _jump;
+    [Export] private RebindableKeyButtonView _jumpJoystick;
+    [Export] private Control _panel;
+    [Export] private ResizableControlView _moveLeftLabelResizableControl;
+    [Export] private ResizableControlView _moveRightLabelResizableControl;
+    [Export] private ResizableControlView _jumpLabelResizableControl;
 
-    [Export] private RebindableKeyButtonView moveLeft;
-    [Export] private RebindableKeyButtonView moveLeftJoystick;
-    [Export] private RebindableKeyButtonView moveRight;
-    [Export] private RebindableKeyButtonView moveRightJoystick;
-    [Export] private RebindableKeyButtonView jump;
-    [Export] private RebindableKeyButtonView jumpJoystick;
-    [Export] private Control panel;
-    [Export] private ResizableControlView moveLeftLabelResizableControl;
-    [Export] private ResizableControlView moveRightLabelResizableControl;
-    [Export] private ResizableControlView jumpLabelResizableControl;
+    /// <summary>
+    /// Gets move left button view.
+    /// </summary>
+    public RebindableKeyButtonView MoveLeft => _moveLeft;
 
-    public RebindableKeyButtonView MoveLeft => moveLeft;
-    public RebindableKeyButtonView MoveLeftJoystick => moveLeftJoystick;
-    public RebindableKeyButtonView MoveRight => moveRight;
-    public RebindableKeyButtonView MoveRightJoystick => moveRightJoystick;
-    public RebindableKeyButtonView Jump => jump;
-    public RebindableKeyButtonView JumpJoystick => jumpJoystick;
-    public Control Panel => panel;
-    public ResizableControlView MoveLeftLabelResizableControl => moveLeftLabelResizableControl;
-    public ResizableControlView MoveRightLabelResizableControl => moveRightLabelResizableControl;
-    public ResizableControlView JumpLabelResizableControl => jumpLabelResizableControl;
+    /// <summary>
+    /// Gets joystick move left button.
+    /// </summary>
+    public RebindableKeyButtonView MoveLeftJoystick => _moveLeftJoystick;
 
+    /// <summary>
+    /// Gets move right button.
+    /// </summary>
+    public RebindableKeyButtonView MoveRight => _moveRight;
+
+    /// <summary>
+    /// Gets joystick move right button.
+    /// </summary>
+    public RebindableKeyButtonView MoveRightJoystick => _moveRightJoystick;
+
+    /// <summary>
+    /// Gets jump button.
+    /// </summary>
+    public RebindableKeyButtonView Jump => _jump;
+
+    /// <summary>
+    /// Gets joystick jump button.
+    /// </summary>
+    public RebindableKeyButtonView JumpJoystick => _jumpJoystick;
+
+    /// <inheritdoc/>
     protected override IViewTransition CreateTransition()
     {
-        return new PanelSizeTransition(this, FadeObjectsContainer, Panel,
-            new ITweenableMenuElement[] { ReturnButton, ResetButton,
-                MoveLeft, MoveLeftJoystick, MoveRight, MoveRightJoystick, Jump, JumpJoystick,
-                MoveLeftLabelResizableControl, MoveRightLabelResizableControl, JumpLabelResizableControl});
+        return new PanelSizeTransition(
+            this,
+            FadeObjectsContainer,
+            _panel,
+            new ITweenableMenuElement[]
+                {
+                    ReturnButton, ResetButton, MoveLeft, MoveLeftJoystick, MoveRight, MoveRightJoystick,
+                    Jump, JumpJoystick,
+                    _moveLeftLabelResizableControl, _moveRightLabelResizableControl, _jumpLabelResizableControl,
+                });
     }
 
+    /// <inheritdoc/>
     protected override void PopulateFocusableElements()
     {
         FocusableElements = new IFocusableUiElement[]
-        { MoveLeft, MoveLeftJoystick, MoveRight, MoveRightJoystick, Jump, JumpJoystick, ResetButton, ReturnButton };
+        {
+            MoveLeft, MoveLeftJoystick, MoveRight, MoveRightJoystick, Jump, JumpJoystick, ResetButton, ReturnButton,
+        };
     }
-
 }

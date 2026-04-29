@@ -3,17 +3,31 @@ using UISystem.Elements;
 using UISystem.Elements.ElementViews;
 
 namespace UISystem.MenuSystem.SettingsMenu;
+
+/// <summary>
+/// Base class for menus controlling game settings.
+/// </summary>
 public abstract partial class SettingsMenuView : MenuView
 {
+    [Export] private Control _fadeObjectsContainer;
+    [Export] private ButtonView _returnButton;
+    [Export] private ButtonView _resetButton;
 
-    [Export] protected Control fadeObjectsContainer;
-    [Export] private ButtonView returnButton;
-    [Export] private ButtonView resetButton;
+    /// <summary>
+    /// Gets fade objects container.
+    /// </summary>
+    public Control FadeObjectsContainer => _fadeObjectsContainer;
 
-    public Control FadeObjectsContainer => fadeObjectsContainer;
-    public ButtonView ReturnButton => returnButton;
-    public ButtonView ResetButton => resetButton;
+    /// <summary>
+    /// Gets return button.
+    /// </summary>
+    public ButtonView ReturnButton => _returnButton;
 
+    /// <summary>
+    /// Gets reset button.
+    /// </summary>
+    public ButtonView ResetButton => _resetButton;
+
+    /// <inheritdoc/>
     protected override IFocusableUiElement DefaultSelectedElement => ReturnButton;
-
 }

@@ -3,13 +3,23 @@ using UISystem.Core.Views;
 using UISystem.MenuSystem.Views;
 
 namespace UISystem.MenuSystem.Controllers;
+
+/// <summary>
+/// Options menu controller.
+/// </summary>
 internal class OptionsMenuController : MenuControllerBase<IViewCreator<OptionsMenuView>, OptionsMenuView>
 {
-
-    public OptionsMenuController(IViewCreator<OptionsMenuView> viewCreator, IMenusManager menusManager) 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="OptionsMenuController"/> class.
+    /// </summary>
+    /// <param name="viewCreator">View creator.</param>
+    /// <param name="menusManager">Menus manager.</param>
+    public OptionsMenuController(IViewCreator<OptionsMenuView> viewCreator, IMenusManager menusManager)
         : base(viewCreator, menusManager)
-    { }   
+    {
+    }
 
+    /// <inheritdoc/>
     protected override void SetupElements()
     {
         View.ReturnButton.ButtonDown += OnReturnButtonDown;

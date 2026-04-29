@@ -1,10 +1,9 @@
 ﻿using Godot;
 using UISystem.Core.Transitions;
-using UISystem.Core.Views;
 using UISystem.Elements;
 using UISystem.Elements.ElementViews;
-using UISystem.Transitions.Interfaces;
 using UISystem.Transitions;
+using UISystem.Transitions.Interfaces;
 
 namespace UISystem.PopupSystem.Popups.Views;
 internal partial class YesPopupView : PopupView
@@ -13,7 +12,7 @@ internal partial class YesPopupView : PopupView
     [Export] protected ButtonView yesButton;
 
     public ButtonView YesButton => yesButton;
-    public override IFocusableUiElement DefaultSelectedElement => YesButton;
+    protected override IFocusableUiElement DefaultSelectedElement => YesButton;
 
     protected override IViewTransition CreateTransition()
     {

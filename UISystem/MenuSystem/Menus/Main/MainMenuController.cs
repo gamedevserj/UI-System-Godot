@@ -1,6 +1,6 @@
-using Godot;
 using System;
 using System.Threading.Tasks;
+using Godot;
 using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
@@ -11,16 +11,33 @@ using UISystem.PopupSystem.Popups.Views;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
+
+/// <summary>
+/// Main menu controller.
+/// </summary>
 internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView>, MainMenuView>
 {
-
     private readonly SceneTree _sceneTree;
     private readonly IPopupsManager<PopupResult> _popupsManager;
     private readonly MenuBackgroundController _menuBackgroundController;
     private readonly ScreenFadeManager _screenFadeManager;
 
-    public MainMenuController(IViewCreator<MainMenuView> viewCreator, IMenusManager menusManager,
-        SceneTree sceneTree, IPopupsManager<PopupResult> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MainMenuController"/> class.
+    /// </summary>
+    /// <param name="viewCreator">View creator.</param>
+    /// <param name="menusManager">Menus manager.</param>
+    /// <param name="sceneTree">Scene tree.</param>
+    /// <param name="popupsManager">Popups manager.</param>
+    /// <param name="screenFadeManager">Screen fade manager.</param>
+    /// <param name="menuBackgroundController">Menu background controller.</param>
+    public MainMenuController(
+        IViewCreator<MainMenuView> viewCreator,
+        IMenusManager menusManager,
+        SceneTree sceneTree,
+        IPopupsManager<PopupResult> popupsManager,
+        ScreenFadeManager screenFadeManager,
+        MenuBackgroundController menuBackgroundController)
         : base(viewCreator, menusManager)
     {
         _sceneTree = sceneTree;
@@ -29,12 +46,14 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
         _menuBackgroundController = menuBackgroundController;
     }
 
+    /// <inheritdoc/>
     public override async Task Show(Action onComplete = null, bool instant = false)
     {
         _menuBackgroundController.ShowBackground(instant);
         await base.Show(onComplete, instant);
     }
 
+    /// <inheritdoc/>
     public override async Task Hide(StackingType stackingType, Action onComplete = null, bool instant = false)
     {
         if (stackingType != StackingType.Add)
@@ -42,26 +61,26 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
         await base.Hide(stackingType, onComplete, instant);
     }
 
-    protected override void SetupElements()
-    {
-        View.PlayButton.ButtonDown += PressedPlay;
-        View.OptionsButton.ButtonDown += PressedOptions;
-        View.QuitButton.ButtonDown += PressedQuit;
-    }
-
+    /// <inheritdoc/>
     public override void OnReturnButtonDown()
     {
         if (CanReturnToPreviousMenu)
             ShowQuitPopup();
     }
 
-    private void PressedPlay()
+    /// <inheritdoc/>
+    protected override void SetupElements()
+    {
+        View.PlayButton.ButtonDown += async () => await PressedPlay();
+        View.OptionsButton.ButtonDown += PressedOptions;
+        View.QuitButton.ButtonDown += PressedQuit;
+    }
+
+    private async Task PressedPlay()
     {
         View.SetLastSelectedElement(View.PlayButton);
-        _screenFadeManager.FadeOut(() =>
-        {
-            MenusManager.ShowMenu(typeof(InGameMenuView), StackingType.Clear, instant: true);
-        });
+        await _screenFadeManager.FadeOut();
+        MenusManager.ShowMenu(typeof(InGameMenuView), StackingType.Clear, instant: true);
     }
 
     private void PressedOptions()

@@ -1,34 +1,53 @@
 using Godot;
 using UISystem.Core.Transitions;
-using UISystem.Core.Views;
 using UISystem.Elements;
 using UISystem.Elements.ElementViews;
 using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Views;
+
+/// <summary>
+/// Pause menu view.
+/// </summary>
 public partial class PauseMenuView : MenuView
 {
+    [Export] private ButtonView _resumeGameButton;
+    [Export] private ButtonView _optionsButton;
+    [Export] private ButtonView _returnToMainMenuButton;
+    [Export] private Control _fadeObjectsContainer;
 
-    [Export] private ButtonView resumeGameButton;
-    [Export] private ButtonView optionsButton;
-    [Export] private ButtonView returnToMainMenuButton;
-    [Export] private Control fadeObjectsContainer;
+    /// <summary>
+    /// Gets resume game button.
+    /// </summary>
+    public ButtonView ResumeGameButton => _resumeGameButton;
 
-    public ButtonView ResumeGameButton => resumeGameButton;
-    public ButtonView OptionsButton => optionsButton;
-    public ButtonView ReturnToMainMenuButton => returnToMainMenuButton;
-    public Control FadeObjectsContainer => fadeObjectsContainer;
+    /// <summary>
+    /// Gets options button.
+    /// </summary>
+    public ButtonView OptionsButton => _optionsButton;
 
+    /// <summary>
+    /// Gets return to main menu button.
+    /// </summary>
+    public ButtonView ReturnToMainMenuButton => _returnToMainMenuButton;
+
+    /// <summary>
+    /// Gets fade objects container.
+    /// </summary>
+    public Control FadeObjectsContainer => _fadeObjectsContainer;
+
+    /// <inheritdoc/>
     protected override IFocusableUiElement DefaultSelectedElement => ResumeGameButton;
 
+    /// <inheritdoc/>
     protected override IViewTransition CreateTransition()
     {
         return new MainElementDropTransition(this, FadeObjectsContainer, ResumeGameButton, new[] { OptionsButton, ReturnToMainMenuButton });
     }
 
+    /// <inheritdoc/>
     protected override void PopulateFocusableElements()
     {
         FocusableElements = new IFocusableUiElement[] { ResumeGameButton, OptionsButton, ReturnToMainMenuButton };
     }
-
 }

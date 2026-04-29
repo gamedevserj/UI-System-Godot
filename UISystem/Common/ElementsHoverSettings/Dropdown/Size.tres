@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_2ag5r")
-changeSizeHover = Vector2(8, 8)
-changeSizeFocus = Vector2(16, 16)
-changeSizeFocusHover = Vector2(24, 24)
+_changeSizeHover = Vector2(8, 8)
+_changeSizeFocus = Vector2(16, 16)
+_changeSizeFocusHover = Vector2(24, 24)

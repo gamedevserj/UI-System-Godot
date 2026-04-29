@@ -11,7 +11,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_l6vvb"]
 
-[node name="RebindKeysMenuView" type="Control" node_paths=PackedStringArray("moveLeft", "moveLeftJoystick", "moveRight", "moveRightJoystick", "jump", "jumpJoystick", "returnButton", "panel", "moveLeftLabelResizableControl", "moveRightLabelResizableControl", "jumpLabelResizableControl", "fadeObjectsContainer", "resetButton")]
+[node name="RebindKeysMenuView" type="Control" node_paths=PackedStringArray("_moveLeft", "_moveLeftJoystick", "_moveRight", "_moveRightJoystick", "_jump", "_jumpJoystick", "_panel", "_moveLeftLabelResizableControl", "_moveRightLabelResizableControl", "_jumpLabelResizableControl", "_fadeObjectsContainer", "_returnButton", "_resetButton")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 3
@@ -21,19 +21,19 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_53hud")
-moveLeft = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard")
-moveLeftJoystick = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveLeftJoystick")
-moveRight = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard")
-moveRightJoystick = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveRightJoystick")
-jump = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/JumpKeyboard")
-jumpJoystick = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/JumpJoystick")
-returnButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/ReturnButton")
-panel = NodePath("Container/Panel")
-moveLeftLabelResizableControl = NodePath("Container/Panel/Border/Color/HBoxContainer/Labels/MoveLeftContainer/ResizableControl")
-moveRightLabelResizableControl = NodePath("Container/Panel/Border/Color/HBoxContainer/Labels/MoveRightContainer/ResizableControl")
-jumpLabelResizableControl = NodePath("Container/Panel/Border/Color/HBoxContainer/Labels/JumpContainer/ResizableControl")
-fadeObjectsContainer = NodePath("Container")
-resetButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton")
+_moveLeft = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard")
+_moveLeftJoystick = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveLeftJoystick")
+_moveRight = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard")
+_moveRightJoystick = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveRightJoystick")
+_jump = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/JumpKeyboard")
+_jumpJoystick = NodePath("Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/JumpJoystick")
+_panel = NodePath("Container/Panel")
+_moveLeftLabelResizableControl = NodePath("Container/Panel/Border/Color/HBoxContainer/Labels/MoveLeftContainer/ResizableControl")
+_moveRightLabelResizableControl = NodePath("Container/Panel/Border/Color/HBoxContainer/Labels/MoveRightContainer/ResizableControl")
+_jumpLabelResizableControl = NodePath("Container/Panel/Border/Color/HBoxContainer/Labels/JumpContainer/ResizableControl")
+_fadeObjectsContainer = NodePath("Container")
+_returnButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/ReturnButton")
+_resetButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]
 light_mask = 2

@@ -19,6 +19,11 @@ public abstract partial class ViewBase : Control, IView
     /// </summary>
     protected IFocusableUiElement[] FocusableElements { get; set; }
 
+    /// <summary>
+    /// Gets the element that is selected by default when menu is shown for the first time.
+    /// </summary>
+    protected abstract IFocusableUiElement DefaultSelectedElement { get; }
+
     /// <inheritdoc/>
     public virtual void Init()
     {

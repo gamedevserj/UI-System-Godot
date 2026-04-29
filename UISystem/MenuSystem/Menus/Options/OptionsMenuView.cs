@@ -5,34 +5,67 @@ using UISystem.Elements.ElementViews;
 using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Views;
+
+/// <summary>
+/// Options menu view.
+/// </summary>
 public partial class OptionsMenuView : MenuView
 {
+    [Export] private ButtonView _interfaceSettingsButton;
+    [Export] private ButtonView _audioSettingsButton;
+    [Export] private ButtonView _videoSettingsButton;
+    [Export] private ButtonView _rebindKeysButton;
+    [Export] private ButtonView _returnButton;
+    [Export] private Control _fadeObjectsContainer;
 
-    [Export] private ButtonView interfaceSettingsButton;
-    [Export] private ButtonView audioSettingsButton;
-    [Export] private ButtonView videoSettingsButton;
-    [Export] private ButtonView rebindKeysButton;
-    [Export] private ButtonView returnButton;
-    [Export] private Control fadeObjectsContainer;
+    /// <summary>
+    /// Gets return button.
+    /// </summary>
+    public ButtonView ReturnButton => _returnButton;
 
-    public ButtonView ReturnButton => returnButton;
-    public ButtonView InterfaceSettingsButton => interfaceSettingsButton;
-    public ButtonView AudioSettingsButton => audioSettingsButton;
-    public ButtonView VideoSettingsButton => videoSettingsButton;
-    public ButtonView RebindKeysButton => rebindKeysButton;
-    public Control FadeObjectsContainer => fadeObjectsContainer;
+    /// <summary>
+    /// Gets interface settings button.
+    /// </summary>
+    public ButtonView InterfaceSettingsButton => _interfaceSettingsButton;
 
+    /// <summary>
+    /// Gets audio settings button.
+    /// </summary>
+    public ButtonView AudioSettingsButton => _audioSettingsButton;
+
+    /// <summary>
+    /// Gets video settings button.
+    /// </summary>
+    public ButtonView VideoSettingsButton => _videoSettingsButton;
+
+    /// <summary>
+    /// Gets rebind keys button.
+    /// </summary>
+    public ButtonView RebindKeysButton => _rebindKeysButton;
+
+    /// <inheritdoc/>
     protected override IFocusableUiElement DefaultSelectedElement => InterfaceSettingsButton;
 
+    /// <inheritdoc/>
     protected override IViewTransition CreateTransition()
     {
-        return new MainElementDropTransition(this, FadeObjectsContainer, InterfaceSettingsButton,
-        new[] { ReturnButton, AudioSettingsButton, VideoSettingsButton, RebindKeysButton });
-    }
-    protected override void PopulateFocusableElements()
-    {
-        FocusableElements = new IFocusableUiElement[] { ReturnButton, AudioSettingsButton, VideoSettingsButton,
-            RebindKeysButton, InterfaceSettingsButton };
+        return new MainElementDropTransition(
+            this,
+            _fadeObjectsContainer,
+            InterfaceSettingsButton,
+            new[] { ReturnButton, AudioSettingsButton, VideoSettingsButton, RebindKeysButton });
     }
 
+    /// <inheritdoc/>
+    protected override void PopulateFocusableElements()
+    {
+        FocusableElements = new IFocusableUiElement[]
+        {
+            ReturnButton,
+            AudioSettingsButton,
+            VideoSettingsButton,
+            RebindKeysButton,
+            InterfaceSettingsButton,
+        };
+    }
 }

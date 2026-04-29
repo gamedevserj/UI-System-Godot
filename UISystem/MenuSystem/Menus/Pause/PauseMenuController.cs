@@ -10,15 +10,30 @@ using UISystem.PopupSystem.Popups.Views;
 using UISystem.ScreenFade;
 
 namespace UISystem.MenuSystem.Controllers;
+
+/// <summary>
+/// Pause menu controller.
+/// </summary>
 internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuView>, PauseMenuView>
 {
-
     private readonly IPopupsManager<PopupResult> _popupsManager;
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
-    public PauseMenuController(IViewCreator<PauseMenuView> viewCreator, IMenusManager menusManager,
-        IPopupsManager<PopupResult> popupsManager, ScreenFadeManager screenFadeManager, MenuBackgroundController menuBackgroundController) 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="PauseMenuController"/> class.
+    /// </summary>
+    /// <param name="viewCreator">View creator.</param>
+    /// <param name="menusManager">Menus manager.</param>
+    /// <param name="popupsManager">Popups manager.</param>
+    /// <param name="screenFadeManager">Screen fade manager.</param>
+    /// <param name="menuBackgroundController">Menu background controller.</param>
+    public PauseMenuController(
+        IViewCreator<PauseMenuView> viewCreator,
+        IMenusManager menusManager,
+        IPopupsManager<PopupResult> popupsManager,
+        ScreenFadeManager screenFadeManager,
+        MenuBackgroundController menuBackgroundController)
         : base(viewCreator, menusManager)
     {
         _popupsManager = popupsManager;
@@ -26,24 +41,22 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
         _menuBackgroundController = menuBackgroundController;
     }
 
+    /// <inheritdoc/>
     public override async Task Show(Action onComplete = null, bool instant = false)
     {
         _menuBackgroundController.ShowBackground(instant);
         await base.Show(onComplete, instant);
     }
 
+    /// <inheritdoc/>
     public override async Task Hide(StackingType stackingType, Action onComplete = null, bool instant = false)
     {
-        await base.Hide(stackingType, () =>
-        {
-            
-        }, instant);
         if (stackingType != StackingType.Add)
             _menuBackgroundController.HideBackground(instant);
-
-        onComplete?.Invoke();
+        await base.Hide(stackingType, onComplete, instant);
     }
 
+    /// <inheritdoc/>
     protected override void SetupElements()
     {
         View.ResumeGameButton.ButtonDown += OnReturnButtonDown;
@@ -62,14 +75,12 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
         View.SetLastSelectedElement(View.ReturnToMainMenuButton);
         SwitchInteractability(false);
 
-        _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.QuitToMainMenu, (result) =>
+        _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.QuitToMainMenu, async (result) =>
         {
             if (result == PopupResult.Yes)
             {
-                _screenFadeManager.FadeOut(() =>
-                {
-                    MenusManager.ShowMenu(typeof(MainMenuView), StackingType.Clear, null, true);
-                });
+                await _screenFadeManager.FadeOut();
+                MenusManager.ShowMenu(typeof(MainMenuView), StackingType.Clear, null, true);
             }
             else if (result == PopupResult.No)
             {
@@ -77,5 +88,4 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
             }
         });
     }
-
 }

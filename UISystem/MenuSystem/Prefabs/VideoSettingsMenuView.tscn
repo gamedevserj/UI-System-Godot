@@ -6,7 +6,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_wvtwh"]
 
-[node name="VideoSettingsMenuView" type="Control" node_paths=PackedStringArray("windowModeDropdown", "resolutionDropdown", "saveSettingsButton", "returnButton", "panel", "fadeObjectsContainer", "resetButton")]
+[node name="VideoSettingsMenuView" type="Control" node_paths=PackedStringArray("_windowModeDropdown", "_resolutionDropdown", "_saveSettingsButton", "_panel", "_fadeObjectsContainer", "_returnButton", "_resetButton")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 3
@@ -18,13 +18,13 @@ grow_vertical = 2
 size_flags_horizontal = 3
 size_flags_vertical = 3
 script = ExtResource("1_8cb4u")
-windowModeDropdown = NodePath("Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown")
-resolutionDropdown = NodePath("Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown")
-saveSettingsButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/SaveSettingsButton")
-returnButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/ReturnButton")
-panel = NodePath("Container/Panel")
-fadeObjectsContainer = NodePath("Container")
-resetButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton")
+_windowModeDropdown = NodePath("Container/Panel/Border/Color/VBoxContainer/WindowModeDropdown")
+_resolutionDropdown = NodePath("Container/Panel/Border/Color/VBoxContainer/ResolutionDropdown")
+_saveSettingsButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/SaveSettingsButton")
+_panel = NodePath("Container/Panel")
+_fadeObjectsContainer = NodePath("Container")
+_returnButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/ReturnButton")
+_resetButton = NodePath("Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton")
 
 [node name="Container" type="Control" parent="."]
 light_mask = 2

@@ -11,26 +11,43 @@ using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
 
 namespace UISystem.MenuSystem.Controllers;
+
+/// <summary>
+/// Interface settings menu controller.
+/// </summary>
 internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCreator<InterfaceSettingsMenuView>, InterfaceSettingsMenuView, InterfaceSettingsMenuModel>
 {
+    private readonly int _controllerIconsTypesAmount;
 
-    private readonly int _controllerIconsNumber;
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="InterfaceSettingsMenuController"/> class.
+    /// </summary>
+    /// <param name="viewCreator">View creator.</param>
+    /// <param name="menusManager">Menus manager.</param>
+    /// <param name="model">Interface settings menu model.</param>
+    /// <param name="popupsManager">Popups manager.</param>
     public InterfaceSettingsMenuController(
-        IViewCreator<InterfaceSettingsMenuView> viewCreator, 
-        IMenusManager menusManager, 
-        InterfaceSettingsMenuModel model, 
-        IPopupsManager<PopupResult> popupsManager) 
+        IViewCreator<InterfaceSettingsMenuView> viewCreator,
+        IMenusManager menusManager,
+        InterfaceSettingsMenuModel model,
+        IPopupsManager<PopupResult> popupsManager)
         : base(viewCreator, menusManager, model, popupsManager)
     {
-        _controllerIconsNumber = Enum.GetNames(typeof(ControllerIconsType)).Length;
+        _controllerIconsTypesAmount = Enum.GetNames(typeof(ControllerIconsType)).Length;
     }
 
+    /// <inheritdoc/>
     protected override void SetupElements()
     {
         SetupControllerIconsDropdown();
         base.SetupElements();
         View.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
+    }
+
+    /// <inheritdoc/>
+    protected override void ResetViewToDefault()
+    {
+        View.ControllerIconsDropdown.SelectItem((int)_model.ControllerIconsType);
     }
 
     private void OnSaveSettingsButtonDown()
@@ -41,12 +58,13 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCre
 
     private void SetupControllerIconsDropdown()
     {
-        OptionButtonItem[] items = new OptionButtonItem[_controllerIconsNumber];
+        OptionButtonItem[] items = new OptionButtonItem[_controllerIconsTypesAmount];
         for (int i = 0; i < items.Length; i++)
         {
             var name = ((ControllerIconsType)i).ToString();
             items[i] = new OptionButtonItem(name, i);
         }
+
         View.ControllerIconsDropdown.AddMultipleItems(items);
         View.ControllerIconsDropdown.ItemSelected += SelectControllerIconsType;
         View.ControllerIconsDropdown.SelectItem((int)_model.ControllerIconsType);
@@ -57,10 +75,4 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCre
         _model.SelectIconType((int)index);
         View.SetLastSelectedElement(View.ControllerIconsDropdown);
     }
-
-    protected override void ResetViewToDefault()
-    {
-        View.ControllerIconsDropdown.SelectItem((int)_model.ControllerIconsType);
-    }
-
 }

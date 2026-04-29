@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Main/MainMenuView.cs" id="1_qlhqn"]
 [ext_resource type="PackedScene" uid="uid://ck4an0jqn373h" path="res://UISystem/Common/Prefabs/Variants/MenuNavigationButton.tscn" id="2_ox1c7"]
 
-[node name="MainMenuView" type="Control" node_paths=PackedStringArray("playButton", "optionsButton", "quitButton", "fadeObjectsContainer", "testButton", "test")]
+[node name="MainMenuView" type="Control" node_paths=PackedStringArray("_playButton", "_optionsButton", "_quitButton", "_fadeObjectsContainer")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 3
@@ -13,12 +13,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_qlhqn")
-playButton = NodePath("Container/ButtonsContainer/PlayButton")
-optionsButton = NodePath("Container/ButtonsContainer/OptionsButton")
-quitButton = NodePath("Container/ButtonsContainer/QuitButton")
-fadeObjectsContainer = NodePath("Container")
-testButton = NodePath("")
-test = NodePath("")
+_playButton = NodePath("Container/ButtonsContainer/PlayButton")
+_optionsButton = NodePath("Container/ButtonsContainer/OptionsButton")
+_quitButton = NodePath("Container/ButtonsContainer/QuitButton")
+_fadeObjectsContainer = NodePath("Container")
 
 [node name="Container" type="Control" parent="."]
 light_mask = 2

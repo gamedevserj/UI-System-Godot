@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Options/OptionsMenuView.cs" id="1_sgbji"]
 [ext_resource type="PackedScene" uid="uid://ck4an0jqn373h" path="res://UISystem/Common/Prefabs/Variants/MenuNavigationButton.tscn" id="2_arv6h"]
 
-[node name="OptionsMenuView" type="Control" node_paths=PackedStringArray("interfaceSettingsButton", "audioSettingsButton", "videoSettingsButton", "rebindKeysButton", "returnButton", "fadeObjectsContainer")]
+[node name="OptionsMenuView" type="Control" node_paths=PackedStringArray("_interfaceSettingsButton", "_audioSettingsButton", "_videoSettingsButton", "_rebindKeysButton", "_returnButton", "_fadeObjectsContainer")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 3
@@ -13,12 +13,12 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_sgbji")
-interfaceSettingsButton = NodePath("Container/VBoxContainer/InterfaceSettingsButton")
-audioSettingsButton = NodePath("Container/VBoxContainer/AudioSettingsButton")
-videoSettingsButton = NodePath("Container/VBoxContainer/VideoSettingsButton")
-rebindKeysButton = NodePath("Container/VBoxContainer/RebindKeysButton")
-returnButton = NodePath("Container/VBoxContainer/ReturnButton")
-fadeObjectsContainer = NodePath("Container")
+_interfaceSettingsButton = NodePath("Container/VBoxContainer/InterfaceSettingsButton")
+_audioSettingsButton = NodePath("Container/VBoxContainer/AudioSettingsButton")
+_videoSettingsButton = NodePath("Container/VBoxContainer/VideoSettingsButton")
+_rebindKeysButton = NodePath("Container/VBoxContainer/RebindKeysButton")
+_returnButton = NodePath("Container/VBoxContainer/ReturnButton")
+_fadeObjectsContainer = NodePath("Container")
 
 [node name="Container" type="Control" parent="."]
 light_mask = 2

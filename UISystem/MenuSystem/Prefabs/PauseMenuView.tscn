@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/Pause/PauseMenuView.cs" id="1_wuqlt"]
 [ext_resource type="PackedScene" uid="uid://ck4an0jqn373h" path="res://UISystem/Common/Prefabs/Variants/MenuNavigationButton.tscn" id="2_gndws"]
 
-[node name="PauseMenuView" type="Control" node_paths=PackedStringArray("resumeGameButton", "optionsButton", "returnToMainMenuButton", "fadeObjectsContainer")]
+[node name="PauseMenuView" type="Control" node_paths=PackedStringArray("_resumeGameButton", "_optionsButton", "_returnToMainMenuButton", "_fadeObjectsContainer")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 3
@@ -13,10 +13,10 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("1_wuqlt")
-resumeGameButton = NodePath("Container/VBoxContainer/ResumeButton")
-optionsButton = NodePath("Container/VBoxContainer/OptionsButton")
-returnToMainMenuButton = NodePath("Container/VBoxContainer/ReturnToMainMenuButton")
-fadeObjectsContainer = NodePath("Container")
+_resumeGameButton = NodePath("Container/VBoxContainer/ResumeButton")
+_optionsButton = NodePath("Container/VBoxContainer/OptionsButton")
+_returnToMainMenuButton = NodePath("Container/VBoxContainer/ReturnToMainMenuButton")
+_fadeObjectsContainer = NodePath("Container")
 
 [node name="Container" type="Control" parent="."]
 light_mask = 2

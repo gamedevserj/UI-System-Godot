@@ -13,28 +13,74 @@ using UISystem.PhysicalInput;
 using UISystem.PopupSystem;
 
 namespace UISystem.MenuSystem.Controllers;
-internal class RebindKeysMenuController 
+
+/// <summary>
+/// Rebind keys menu controller.
+/// </summary>
+internal class RebindKeysMenuController
     : SettingsMenuController<IViewCreator<RebindKeysMenuView>, RebindKeysMenuView, RebindKeysMenuModel>, IRebindInputReceiver
 {
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="RebindKeysMenuController"/> class.
+    /// </summary>
+    /// <param name="viewCreator">View creator.</param>
+    /// <param name="menusManager">Menus manager.</param>
+    /// <param name="model">Rebind keys menu model.</param>
+    /// <param name="popupsManager">Popups manager.</param>
     public RebindKeysMenuController(
-        IViewCreator<RebindKeysMenuView> viewCreator, 
-        IMenusManager menusManager, 
-        RebindKeysMenuModel model, 
-        IPopupsManager<PopupResult> popupsManager) 
+        IViewCreator<RebindKeysMenuView> viewCreator,
+        IMenusManager menusManager,
+        RebindKeysMenuModel model,
+        IPopupsManager<PopupResult> popupsManager)
         : base(viewCreator, menusManager, model, popupsManager)
-    { }
+    {
+    }
 
+    /// <summary>
+    /// If rebinding is in progress - rebinds key, otherwise does nothing.
+    /// </summary>
+    /// <param name="inputEvent">Button/key that is being pressed.</param>
     public void OnAnyButtonDown(InputEvent inputEvent)
     {
         if (_model.IsRebinding)
             _model.RebindKey(inputEvent);
     }
 
+    /// <inheritdoc/>
     public override void OnReturnButtonDown()
     {
         if (!_model.IsRebinding)
             base.OnReturnButtonDown();
+    }
+
+    /// <inheritdoc/>
+    protected override void ResetViewToDefault()
+    {
+        UpdateAllButtonViews();
+    }
+
+    /// <inheritdoc/>
+    protected override void SetupElements()
+    {
+        View.ReturnButton.ButtonDown += OnReturnButtonDown;
+        View.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
+
+        View.MoveLeft.ButtonDown += () =>
+        OnButtonDown(View.MoveLeft, InputsData.MoveLeft, InputsData.KeyboardEventIndex);
+        View.MoveLeftJoystick.ButtonDown += () =>
+        OnButtonDown(View.MoveLeftJoystick, InputsData.MoveLeft, InputsData.JoystickEventIndex);
+
+        View.MoveRight.ButtonDown += () =>
+        OnButtonDown(View.MoveRight, InputsData.MoveRight, InputsData.KeyboardEventIndex);
+        View.MoveRightJoystick.ButtonDown += () =>
+        OnButtonDown(View.MoveRightJoystick, InputsData.MoveRight, InputsData.JoystickEventIndex);
+
+        View.Jump.ButtonDown += () =>
+        OnButtonDown(View.Jump, InputsData.Jump, InputsData.KeyboardEventIndex);
+        View.JumpJoystick.ButtonDown += () =>
+        OnButtonDown(View.JumpJoystick, InputsData.Jump, InputsData.JoystickEventIndex);
+
+        UpdateAllButtonViews();
     }
 
     private void UpdateButtonView(RebindableKeyButtonView button, string action, int index)
@@ -67,29 +113,6 @@ internal class RebindKeysMenuController
         }
     }
 
-    protected override void SetupElements()
-    {
-        View.ReturnButton.ButtonDown += OnReturnButtonDown;
-        View.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
-
-        View.MoveLeft.ButtonDown += () =>
-        OnButtonDown(View.MoveLeft, InputsData.MoveLeft, InputsData.KeyboardEventIndex);
-        View.MoveLeftJoystick.ButtonDown += () =>
-        OnButtonDown(View.MoveLeftJoystick, InputsData.MoveLeft, InputsData.JoystickEventIndex);
-
-        View.MoveRight.ButtonDown += () =>
-        OnButtonDown(View.MoveRight, InputsData.MoveRight, InputsData.KeyboardEventIndex);
-        View.MoveRightJoystick.ButtonDown += () =>
-        OnButtonDown(View.MoveRightJoystick, InputsData.MoveRight, InputsData.JoystickEventIndex);
-
-        View.Jump.ButtonDown += () =>
-        OnButtonDown(View.Jump, InputsData.Jump, InputsData.KeyboardEventIndex);
-        View.JumpJoystick.ButtonDown += () =>
-        OnButtonDown(View.JumpJoystick, InputsData.Jump, InputsData.JoystickEventIndex);
-
-        UpdateAllButtonViews();
-    }
-
     private void UpdateAllButtonViews()
     {
         string action = InputsData.MoveLeft;
@@ -103,11 +126,5 @@ internal class RebindKeysMenuController
         action = InputsData.Jump;
         UpdateButtonView(View.Jump, action, InputsData.KeyboardEventIndex);
         UpdateButtonView(View.JumpJoystick, action, InputsData.JoystickEventIndex);
-
-    }
-
-    protected override void ResetViewToDefault()
-    {
-        UpdateAllButtonViews();
     }
 }

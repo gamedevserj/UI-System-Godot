@@ -4,21 +4,26 @@ using UISystem.Elements;
 using UISystem.Transitions;
 
 namespace UISystem.MenuSystem.Views;
+
+/// <summary>
+/// In-game menu view.
+/// </summary>
 public partial class InGameMenuView : MenuView
 {
 
-    [Export] private Control fadeObjectsContainer;
+    [Export] private Control _fadeObjectsContainer;
 
-    public Control FadeObjectsContainer => fadeObjectsContainer;
-
+    /// <inheritdoc/>
     protected override IFocusableUiElement DefaultSelectedElement => null;
 
+    /// <inheritdoc/>
     protected override IViewTransition CreateTransition()
     {
-        return new FadeTransition(FadeObjectsContainer);
+        return new FadeTransition(_fadeObjectsContainer);
     }
 
+    /// <inheritdoc/>
     protected override void PopulateFocusableElements()
-    { }
-
+    {
+    }
 }

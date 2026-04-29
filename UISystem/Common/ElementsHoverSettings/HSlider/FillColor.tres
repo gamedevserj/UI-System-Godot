@@ -4,7 +4,7 @@
 
 [resource]
 script = ExtResource("1_ch53p")
-hoverColor = Color(0.533333, 0.686275, 1, 1)
-focusColor = Color(0.533333, 0.686275, 1, 1)
-focusHoverColor = Color(0.533333, 0.686275, 1, 1)
-disabledColor = Color(0.5, 0.5, 0.5, 1)
+_hoverColor = Color(0.533, 0.68, 1, 1)
+_focusColor = Color(0.533333, 0.678431, 1, 1)
+_focusHoverColor = Color(0.533333, 0.678431, 1, 1)
+_disabledColor = Color(0.5, 0.5, 0.5, 1)
