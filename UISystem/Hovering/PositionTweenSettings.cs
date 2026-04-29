@@ -9,21 +9,21 @@ namespace UISystem.Hovering;
 [GlobalClass]
 public partial class PositionTweenSettings : TweenSettings<Vector2>
 {
-    [Export] private Vector2 changePositionHover = new(0, 0);
-    [Export] private Vector2 changePositionFocus = new(0, 0);
-    [Export] private Vector2 changePositionFocusHover = new(0, 0);
+    [Export] private Vector2 _changePositionHover = new(0, 0);
+    [Export] private Vector2 _changePositionFocus = new(0, 0);
+    [Export] private Vector2 _changePositionFocusHover = new(0, 0);
 
     /// <inheritdoc/>
     protected override Vector2 NormalValue => Vector2.Zero;
 
     /// <inheritdoc/>
-    protected override Vector2 HoverValue => changePositionHover;
+    protected override Vector2 HoverValue => _changePositionHover;
 
     /// <inheritdoc/>
-    protected override Vector2 FocusValue => changePositionFocus;
+    protected override Vector2 FocusValue => _changePositionFocus;
 
     /// <inheritdoc/>
-    protected override Vector2 FocusHoverValue => changePositionFocusHover;
+    protected override Vector2 FocusHoverValue => _changePositionFocusHover;
 
     /// <inheritdoc/>
     protected override Vector2 DisabledValue => Vector2.Zero;

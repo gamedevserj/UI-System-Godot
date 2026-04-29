@@ -9,22 +9,22 @@ namespace UISystem.Hovering;
 [GlobalClass]
 public partial class ColorTweenSettings : TweenSettings<Color>
 {
-    [Export] private Color hoverColor = new(1, 1, 1, 1);
-    [Export] private Color focusColor = new(1, 1, 1, 1);
-    [Export] private Color focusHoverColor = new(1, 1, 1, 1);
-    [Export] private Color disabledColor = new(0.5f, 0.5f, 0.5f, 1);
+    [Export] private Color _hoverColor = new(1, 1, 1, 1);
+    [Export] private Color _focusColor = new(1, 1, 1, 1);
+    [Export] private Color _focusHoverColor = new(1, 1, 1, 1);
+    [Export] private Color _disabledColor = new(0.5f, 0.5f, 0.5f, 1);
 
     /// <inheritdoc/>
-    protected override Color HoverValue => hoverColor;
+    protected override Color HoverValue => _hoverColor;
 
     /// <inheritdoc/>
-    protected override Color FocusValue => focusColor;
+    protected override Color FocusValue => _focusColor;
 
     /// <inheritdoc/>
-    protected override Color FocusHoverValue => focusHoverColor;
+    protected override Color FocusHoverValue => _focusHoverColor;
 
     /// <inheritdoc/>
-    protected override Color DisabledValue => disabledColor;
+    protected override Color DisabledValue => _disabledColor;
 
     /// <inheritdoc/>
     public override IHoverTweener CreateTweener(Control target, TweeningSettings transitionAndEaseSettings, bool parallel = true)

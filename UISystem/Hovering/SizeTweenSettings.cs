@@ -9,21 +9,21 @@ namespace UISystem.Hovering;
 [GlobalClass]
 public partial class SizeTweenSettings : TweenSettings<Vector2>
 {
-    [Export] private Vector2 changeSizeHover = new(0, 0);
-    [Export] private Vector2 changeSizeFocus = new(0, 0);
-    [Export] private Vector2 changeSizeFocusHover = new(0, 0);
+    [Export] private Vector2 _changeSizeHover = new(0, 0);
+    [Export] private Vector2 _changeSizeFocus = new(0, 0);
+    [Export] private Vector2 _changeSizeFocusHover = new(0, 0);
 
     /// <inheritdoc/>
     protected override Vector2 NormalValue => Vector2.Zero;
 
     /// <inheritdoc/>
-    protected override Vector2 HoverValue => changeSizeHover;
+    protected override Vector2 HoverValue => _changeSizeHover;
 
     /// <inheritdoc/>
-    protected override Vector2 FocusValue => changeSizeFocus;
+    protected override Vector2 FocusValue => _changeSizeFocus;
 
     /// <inheritdoc/>
-    protected override Vector2 FocusHoverValue => changeSizeFocusHover;
+    protected override Vector2 FocusHoverValue => _changeSizeFocusHover;
 
     /// <inheritdoc/>
     protected override Vector2 DisabledValue => Vector2.Zero;

@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_ht0xw")
-changePositionHover = Vector2(-4, -4)
-changePositionFocus = Vector2(-8, -8)
-changePositionFocusHover = Vector2(-12, -12)
+_changePositionHover = Vector2(-4, -4)
+_changePositionFocus = Vector2(-8, -8)
+_changePositionFocusHover = Vector2(-12, -12)

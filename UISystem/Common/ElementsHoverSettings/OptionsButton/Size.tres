@@ -4,6 +4,6 @@
 
 [resource]
 script = ExtResource("1_bpxue")
-changeSizeHover = Vector2(10, 10)
-changeSizeFocus = Vector2(20, 20)
-changeSizeFocusHover = Vector2(26, 26)
+_changeSizeHover = Vector2(10, 10)
+_changeSizeFocus = Vector2(20, 20)
+_changeSizeFocusHover = Vector2(26, 26)
