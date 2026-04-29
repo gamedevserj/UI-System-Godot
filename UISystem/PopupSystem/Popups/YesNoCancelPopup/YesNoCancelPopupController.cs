@@ -1,22 +1,32 @@
-﻿using System;
-using UISystem.Core.PopupSystem;
+﻿using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
 using UISystem.PopupSystem.Popups.Views;
 
 namespace UISystem.PopupSystem.Popups.Controllers;
+
+/// <summary>
+/// Yes/No/Cancel popup controller.
+/// </summary>
 internal class YesNoCancelPopupController : PopupControllerBase<IViewCreator<YesNoCancelPopupView>, YesNoCancelPopupView>
 {
+    /// <summary>
+    /// Initializes a new instance of the <see cref="YesNoCancelPopupController"/> class.
+    /// </summary>
+    /// <param name="viewCreator">View creator.</param>
+    /// <param name="popupsManager">Popups manager.</param>
+    public YesNoCancelPopupController(IViewCreator<YesNoCancelPopupView> viewCreator, IPopupsManager<PopupResult> popupsManager)
+        : base(viewCreator, popupsManager)
+    {
+    }
 
+    /// <inheritdoc/>
     public override PopupResult PressedReturnPopupResult => PopupResult.Cancel;
 
-    public YesNoCancelPopupController(IViewCreator<YesNoCancelPopupView> viewCreator, IPopupsManager<PopupResult> popupsManager) : base(viewCreator, popupsManager)
-    { }
-
+    /// <inheritdoc/>
     protected override void SetupElements()
     {
         View.YesButton.ButtonDown += () => PopupsManager.HidePopup(PopupResult.Yes);
         View.NoButton.ButtonDown += () => PopupsManager.HidePopup(PopupResult.No);
         View.CancelButton.ButtonDown += () => PopupsManager.HidePopup(PopupResult.Cancel);
     }
-
 }

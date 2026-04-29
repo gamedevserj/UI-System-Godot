@@ -1,5 +1,6 @@
 using System;
 using System.Threading.Tasks;
+using AsyncAwaitBestPractices;
 using Godot;
 using UISystem.Constants;
 using UISystem.Core.MenuSystem;
@@ -49,7 +50,7 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
     /// <inheritdoc/>
     public override async Task Show(Action onComplete = null, bool instant = false)
     {
-        _menuBackgroundController.ShowBackground(instant);
+        _menuBackgroundController.ShowBackground(instant).SafeFireAndForget();
         await base.Show(onComplete, instant);
     }
 
@@ -57,7 +58,7 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
     public override async Task Hide(StackingType stackingType, Action onComplete = null, bool instant = false)
     {
         if (stackingType != StackingType.Add)
-            _menuBackgroundController.HideBackground(instant);
+            _menuBackgroundController.HideBackground(instant).SafeFireAndForget();
         await base.Hide(stackingType, onComplete, instant);
     }
 
@@ -65,7 +66,7 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
     public override void OnReturnButtonDown()
     {
         if (CanReturnToPreviousMenu)
-            ShowQuitPopup();
+            ShowQuitPopup().SafeFireAndForget();
     }
 
     /// <inheritdoc/>
@@ -80,25 +81,26 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
     {
         View.SetLastSelectedElement(View.PlayButton);
         await _screenFadeManager.FadeOut();
-        MenusManager.ShowMenu(typeof(InGameMenuView), StackingType.Clear, instant: true);
+        await MenusManager.ShowMenu(typeof(InGameMenuView), StackingType.Clear, instant: true);
+        await _screenFadeManager.FadeIn();
     }
 
     private void PressedOptions()
     {
         View.SetLastSelectedElement(View.OptionsButton);
-        MenusManager.ShowMenu(typeof(OptionsMenuView));
+        MenusManager.ShowMenu(typeof(OptionsMenuView)).SafeFireAndForget();
     }
 
     private void PressedQuit()
     {
         View.SetLastSelectedElement(View.QuitButton);
-        ShowQuitPopup();
+        ShowQuitPopup().SafeFireAndForget();
     }
 
-    private void ShowQuitPopup()
+    private async Task ShowQuitPopup()
     {
         SwitchInteractability(false);
-        _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.QuitGame, (result) =>
+        await _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.QuitGame, (result) =>
         {
             if (result == PopupResult.Yes)
                 _sceneTree.Quit();

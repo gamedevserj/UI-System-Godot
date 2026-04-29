@@ -1,13 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://4mgylfwefvrf"]
+[gd_scene load_steps=7 format=3 uid="uid://4mgylfwefvrf"]
 
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_g8fkn"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="2_vcy83"]
 [ext_resource type="Script" path="res://UISystem/Elements/ElementViews/ResizableControlView.cs" id="3_7xdby"]
 [ext_resource type="Script" path="res://UISystem/PopupSystem/Popups/YesPopup/YesPopupView.cs" id="4_rbuno"]
+[ext_resource type="Resource" uid="uid://pxdlfq08bkq1" path="res://UISystem/Common/ElementsHoverSettings/OptionsButton/HoverSettings.tres" id="5_73bjx"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_guta3"]
 
-[node name="YesPopup" type="Control" node_paths=PackedStringArray("yesButton", "messageMask", "fadeObjectsContainer", "panel", "messageLabel")]
+[node name="YesPopup" type="Control" node_paths=PackedStringArray("_yesButton", "_fadeObjectsContainer", "_panel", "_messageLabel", "_messageMask")]
 light_mask = 2
 visibility_layer = 2
 z_index = 30
@@ -18,11 +19,11 @@ anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
 script = ExtResource("4_rbuno")
-yesButton = NodePath("FadeObjectContainer/Outline/Color/ButtonsContainer/YesButton")
-messageMask = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask")
-fadeObjectsContainer = NodePath("FadeObjectContainer")
-panel = NodePath("FadeObjectContainer/Outline")
-messageLabel = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask/Message")
+_yesButton = NodePath("FadeObjectContainer/Outline/Color/ButtonsContainer/YesButton")
+_fadeObjectsContainer = NodePath("FadeObjectContainer")
+_panel = NodePath("FadeObjectContainer/Outline")
+_messageLabel = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask/Message")
+_messageMask = NodePath("FadeObjectContainer/Outline/Color/VBoxContainer/TextMask")
 
 [node name="FadeObjectContainer" type="Control" parent="."]
 light_mask = 2
@@ -128,10 +129,15 @@ offset_right = -0.815063
 offset_bottom = -0.698517
 theme_override_constants/separation = 25
 
-[node name="YesButton" parent="FadeObjectContainer/Outline/Color/ButtonsContainer" instance=ExtResource("2_vcy83")]
+[node name="YesButton" parent="FadeObjectContainer/Outline/Color/ButtonsContainer" node_paths=PackedStringArray("_resizableControl", "_innerColor", "_border", "_label") instance=ExtResource("2_vcy83")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 2
+_buttonHoverSettings = ExtResource("5_73bjx")
+_resizableControl = NodePath("ResizableControl")
+_innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
+_border = NodePath("ResizableControl/Border")
+_label = NodePath("ResizableControl/ContentClipper/Label")
 
 [node name="ResizableControl" parent="FadeObjectContainer/Outline/Color/ButtonsContainer/YesButton" index="0"]
 light_mask = 2

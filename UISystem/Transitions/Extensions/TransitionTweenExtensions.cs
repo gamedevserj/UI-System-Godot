@@ -5,22 +5,38 @@ using UISystem.Transitions.Extensions;
 using UISystem.Transitions.Structs;
 
 namespace UISystem.Transitions.Extensions;
+
+/// <summary>
+/// Extensions for tween transitions.
+/// </summary>
 public static class TransitionTweenExtensions
 {
-
-    // for transitions that scale object to center
-    public static void TweenControlSize(this Tween tween, bool parallel, Control target, Vector2 size, float duration,
+    /// <summary>
+    /// Controls size for transitions that scale object to center.
+    /// </summary>
+    /// <param name="tween">Target tween.</param>
+    /// <param name="parallel">Whether size control should happen in parrallel.</param>
+    /// <param name="target">Target control.</param>
+    /// <param name="size">Target size.</param>
+    /// <param name="duration">Tween duration.</param>
+    /// <param name="settings">Resizable control settings.</param>
+    public static void TweenControlSize(
+        this Tween tween,
+        bool parallel,
+        Control target,
+        Vector2 size,
+        float duration,
         ResizableControlSettings settings)
     {
         if (parallel)
-            tween.Parallel().TweenControlSize(target, size, duration);
-        else
-            tween.TweenControlSize(target, size, duration);
+            tween.Parallel();
+
+        tween.TweenControlSize(target, size, duration);
 
         float multiplierX = GetHorizontalMultiplier(settings.HorizontalDirection);
         float multiplierY = GetVerticalMultiplier(settings.VerticalDirection);
         Vector2 sizeDifference = size - settings.OriginalSize;
-        Vector2 position = settings.OriginalPosition - sizeDifference * new Vector2(multiplierX, multiplierY);
+        Vector2 position = settings.OriginalPosition - (sizeDifference * new Vector2(multiplierX, multiplierY));
 
         // in order to change size properly when direction is set to center or bottom/right, it needs to be parallel
         tween.Parallel().TweenControlPosition(target, position, duration);
@@ -41,5 +57,4 @@ public static class TransitionTweenExtensions
         VerticalDirection.FromBottom => 1,
         _ => 0,
     };
-
 }

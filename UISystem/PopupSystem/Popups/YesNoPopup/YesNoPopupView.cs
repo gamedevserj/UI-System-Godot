@@ -6,25 +6,41 @@ using UISystem.Transitions;
 using UISystem.Transitions.Interfaces;
 
 namespace UISystem.PopupSystem.Popups.Views;
+
+/// <summary>
+/// Yes/No popup view.
+/// </summary>
 internal partial class YesNoPopupView : PopupView
 {
+    [Export] private ButtonView _yesButton;
+    [Export] private ButtonView _noButton;
 
-    [Export] protected ButtonView yesButton;
-    [Export] private ButtonView noButton;
+    /// <summary>
+    /// Gets yes button.
+    /// </summary>
+    public ButtonView YesButton => _yesButton;
 
-    public ButtonView YesButton => yesButton;
-    public ButtonView NoButton => noButton;
+    /// <summary>
+    /// Gets no button.
+    /// </summary>
+    public ButtonView NoButton => _noButton;
 
+    /// <inheritdoc/>
     protected override IFocusableUiElement DefaultSelectedElement => NoButton;
+
+    /// <inheritdoc/>
     protected override IViewTransition CreateTransition()
     {
-        return new PanelSizeTransition(this, FadeObjectsContainer, Panel,
-        new ITweenableMenuElement[] { YesButton, NoButton, MessageMask });
+        return new PanelSizeTransition(
+            this,
+            FadeObjectsContainer,
+            Panel,
+            new ITweenableMenuElement[] { YesButton, NoButton, MessageMask });
     }
 
+    /// <inheritdoc/>
     protected override void PopulateFocusableElements()
     {
         FocusableElements = new IFocusableUiElement[] { YesButton, NoButton };
     }
-
 }

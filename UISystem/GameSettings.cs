@@ -1,47 +1,89 @@
-﻿using Godot;
-using System;
+﻿using System;
 using System.Linq;
+using Godot;
 using UISystem.Common.Enums;
 using UISystem.Constants;
 using UISystem.Core.Constants;
 using static Godot.DisplayServer;
 
 namespace UISystem;
+
+/// <summary>
+/// Game settings.
+/// </summary>
 public class GameSettings
 {
-
-    public static event Action<float> OnMusicVolumeChanged;
-    public static event Action<float> OnSfxVolumeChanged;
-    public static event Action<ControllerIconsType> OnControllerIconsChanged;
+    private readonly ConfigFile _config;
 
     private float _musicVolume;
     private float _sfxVolume;
     private ControllerIconsType _controllerIcons;
 
-    private readonly ConfigFile _config;
+    /// <summary>
+    /// Initializes a new instance of the <see cref="GameSettings"/> class.
+    /// </summary>
+    /// <param name="config">Config file.</param>
+    public GameSettings(ConfigFile config)
+    {
+        _config = config;
+        LoadSettings();
+    }
 
-    public float MusicVolume 
-    {   
+    /// <summary>
+    /// Event fired when music volume is changed.
+    /// </summary>
+    public static event Action<float> OnMusicVolumeChanged;
+
+    /// <summary>
+    /// Event fired when SFX volume is changed.
+    /// </summary>
+    public static event Action<float> OnSfxVolumeChanged;
+
+    /// <summary>
+    /// Event fired when control icons are changed.
+    /// </summary>
+    public static event Action<ControllerIconsType> OnControllerIconsChanged;
+
+    /// <summary>
+    /// Gets or sets music volume.
+    /// </summary>
+    public float MusicVolume
+    {
         get => _musicVolume;
         set
         {
             _musicVolume = value;
             OnMusicVolumeChanged?.Invoke(value);
-        } 
+        }
     }
-    public float SfxVolume 
-    { 
-        get => _sfxVolume; 
+
+    /// <summary>
+    /// Gets or sets SFX volume.
+    /// </summary>
+    public float SfxVolume
+    {
+        get => _sfxVolume;
         set
         {
             _sfxVolume = value;
             OnSfxVolumeChanged?.Invoke(value);
         }
     }
+
+    /// <summary>
+    /// Gets or sets resolution.
+    /// </summary>
     public Vector2I Resolution { get; set; } = ConfigData.DefaultResolution;
+
+    /// <summary>
+    /// Gets or sets window mode.
+    /// </summary>
     public WindowMode WindowMode { get; set; } = ConfigData.DefaultWindowMode;
 
-    public ControllerIconsType ControllerIconsType 
+    /// <summary>
+    /// Gets or sets controller icon type.
+    /// </summary>
+    public ControllerIconsType ControllerIconsType
     {
         get => _controllerIcons;
         set
@@ -51,13 +93,9 @@ public class GameSettings
         }
     }
 
-
-    public GameSettings(ConfigFile config)
-    {
-        _config = config;
-        LoadSettings();
-    }
-
+    /// <summary>
+    /// Saves audio settings.
+    /// </summary>
     public void SaveAudioSettings()
     {
         _config.SetValue(ConfigData.AudioSectionName, ConfigData.MusicVolumeKey, MusicVolume);
@@ -65,12 +103,18 @@ public class GameSettings
         Save();
     }
 
+    /// <summary>
+    /// Saves interface settings.
+    /// </summary>
     public void SaveInterfaceSettings()
     {
         _config.SetValue(ConfigData.InterfaceSectionName, ConfigData.ControllerIconsKey, (int)ControllerIconsType);
         Save();
     }
 
+    /// <summary>
+    /// Saves video settings.
+    /// </summary>
     public void SaveVideoSettings()
     {
         _config.SetValue(ConfigData.VideoSectionName, ConfigData.ResolutionKey, Resolution);
@@ -78,6 +122,9 @@ public class GameSettings
         Save();
     }
 
+    /// <summary>
+    /// Resets input controls to default.
+    /// </summary>
     public void ResetInputMapToDefault()
     {
         InputMap.LoadFromProjectSettings();
@@ -85,6 +132,11 @@ public class GameSettings
         Save();
     }
 
+    /// <summary>
+    /// Saves input action key.
+    /// </summary>
+    /// <param name="action">Input action.</param>
+    /// <param name="events">Button/key to assign and save.</param>
     public void SaveInputActionKey(string action, Godot.Collections.Array<InputEvent> events)
     {
         InputMap.ActionEraseEvents(action);
@@ -92,6 +144,7 @@ public class GameSettings
         {
             InputMap.ActionAddEvent(action, item);
         }
+
         SetInputInConfig(action);
         Save();
     }
@@ -108,8 +161,11 @@ public class GameSettings
         SfxVolume = (float)GetConfigValue(ConfigData.AudioSectionName, ConfigData.SfxVolumeKey, ConfigData.DefaultSfxVolume, ref saveNewSettings);
 
         Resolution = (Vector2I)GetConfigValue(ConfigData.VideoSectionName, ConfigData.ResolutionKey, ConfigData.DefaultResolution, ref saveNewSettings);
-        int windowModeIndex = (int)GetConfigValue(ConfigData.VideoSectionName, ConfigData.WindowModeKey, 
-            VideoSettings.GetWindwoModeIndex(ConfigData.DefaultWindowMode), ref saveNewSettings);
+        int windowModeIndex = (int)GetConfigValue(
+            ConfigData.VideoSectionName,
+            ConfigData.WindowModeKey,
+            VideoSettings.GetWindwoModeIndex(ConfigData.DefaultWindowMode),
+            ref saveNewSettings);
         WindowMode = VideoSettings.WindowModeOptions[windowModeIndex];
 
         ControllerIconsType = (ControllerIconsType)(int)GetConfigValue(ConfigData.InterfaceSectionName, ConfigData.ControllerIconsKey, (int)ConfigData.DefaultControllerIconsType, ref saveNewSettings);
@@ -128,7 +184,8 @@ public class GameSettings
             isNewSetting = true;
 
         Variant value = _config.GetValue(sectionName, keyName, defaultValue);
-        if (isNewSetting) _config.SetValue(sectionName, keyName, value);
+        if (isNewSetting)
+            _config.SetValue(sectionName, keyName, value);
 
         return value;
     }
@@ -179,5 +236,4 @@ public class GameSettings
         var events = InputMap.ActionGetEvents(action);
         _config.SetValue(ConfigData.KeysSectionName, action, events);
     }
-
 }

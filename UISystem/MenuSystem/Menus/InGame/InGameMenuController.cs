@@ -1,4 +1,5 @@
-﻿using UISystem.Core.MenuSystem;
+﻿using AsyncAwaitBestPractices;
+using UISystem.Core.MenuSystem;
 using UISystem.Core.Views;
 using UISystem.MenuSystem.Views;
 
@@ -23,7 +24,7 @@ internal class InGameMenuController : MenuControllerBase<IViewCreator<InGameMenu
     /// <inheritdoc/>
     public override void OnPauseButtonDown()
     {
-        MenusManager.ShowMenu(typeof(PauseMenuView));
+        MenusManager.ShowMenu(typeof(PauseMenuView)).SafeFireAndForget();
     }
 
     /// <inheritdoc/>

@@ -10,25 +10,25 @@ namespace UISystem.PopupSystem;
 /// </summary>
 public abstract partial class PopupView : ViewBase, IPopupView
 {
-    [Export] protected Control fadeObjectsContainer;
-    [Export] protected Control panel;
-    [Export] private Label messageLabel;
-    [Export] protected ResizableControlView messageMask;
+    [Export] private Control _fadeObjectsContainer;
+    [Export] private Control _panel;
+    [Export] private Label _messageLabel;
+    [Export] private ResizableControlView _messageMask;
 
     /// <summary>
     /// Gets fade objects container.
     /// </summary>
-    public Control FadeObjectsContainer => fadeObjectsContainer;
+    public Control FadeObjectsContainer => _fadeObjectsContainer;
 
     /// <summary>
     /// Gets panel.
     /// </summary>
-    public Control Panel => panel;
+    public Control Panel => _panel;
 
     /// <summary>
     /// Gets message mask resizable control.
     /// </summary>
-    public ResizableControlView MessageMask => messageMask;
+    public ResizableControlView MessageMask => _messageMask;
 
     /// <inheritdoc/>
     public override void FocusElement()
@@ -42,6 +42,6 @@ public abstract partial class PopupView : ViewBase, IPopupView
     /// <inheritdoc/>
     public void SetMessage(string message)
     {
-        messageLabel.Text = message;
+        _messageLabel.Text = message;
     }
 }

@@ -8,7 +8,7 @@
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_vnlb0"]
 
-[node name="UIInstaller" type="Control" node_paths=PackedStringArray("menuBackground", "menusParent", "popupsParent", "screenFadeManager", "guiPanel3D")]
+[node name="UIInstaller" type="Control" node_paths=PackedStringArray("_menuBackground", "_menusParent", "_popupsParent", "_screenFadeManager", "_guiPanel3D")]
 process_mode = 3
 light_mask = 2
 visibility_layer = 2
@@ -20,11 +20,11 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 script = ExtResource("1_rgp7s")
-menuBackground = NodePath("CanvasLayer/MenuBackground")
-menusParent = NodePath("CanvasLayer/MenusParent")
-popupsParent = NodePath("CanvasLayer/PopupsParent")
-screenFadeManager = NodePath("CanvasLayer/ScreenFadeManager")
-guiPanel3D = NodePath("GUIPanel3D")
+_menuBackground = NodePath("CanvasLayer/MenuBackground")
+_menusParent = NodePath("CanvasLayer/MenusParent")
+_popupsParent = NodePath("CanvasLayer/PopupsParent")
+_screenFadeManager = NodePath("CanvasLayer/ScreenFadeManager")
+_guiPanel3D = NodePath("GUIPanel3D")
 
 [node name="CanvasLayer" type="CanvasLayer" parent="."]
 

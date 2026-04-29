@@ -1,4 +1,5 @@
-﻿using UISystem.Constants;
+﻿using AsyncAwaitBestPractices;
+using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
@@ -56,11 +57,13 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
             View.SetLastSelectedElement(View.ReturnButton);
             CanReceivePhysicalInput = false;
             SwitchInteractability(false);
-            PopupsManager.ShowPopup(typeof(YesNoCancelPopupView), PopupMessages.SaveChanges, (result) =>
-            {
-                OnReturnToPreviousMenuPopupClosed(result);
-                CanReceivePhysicalInput = true;
-            });
+            PopupsManager
+                .ShowPopup(typeof(YesNoCancelPopupView), PopupMessages.SaveChanges, (result) =>
+                {
+                    OnReturnToPreviousMenuPopupClosed(result);
+                    CanReceivePhysicalInput = true;
+                })
+                .SafeFireAndForget();
         }
         else
         {
@@ -105,15 +108,17 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
     {
         View.SetLastSelectedElement(View.ResetButton);
         SwitchInteractability(false);
-        PopupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.ResetToDefault, (result) =>
-        {
-            if (result == PopupResult.Yes)
-            {
-                Model.ResetToDefault();
-                UpdateFullView();
-            }
+        PopupsManager
+            .ShowPopup(typeof(YesNoPopupView), PopupMessages.ResetToDefault, (result) =>
+                {
+                    if (result == PopupResult.Yes)
+                    {
+                        Model.ResetToDefault();
+                        UpdateFullView();
+                    }
 
-            SwitchInteractability(true);
-        });
+                    SwitchInteractability(true);
+                })
+            .SafeFireAndForget();
     }
 }

@@ -1,22 +1,21 @@
-﻿using Godot;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using Godot;
 using UISystem.Core.Transitions;
 using UISystem.Extensions;
 using UISystem.Transitions.Interfaces;
 
 namespace UISystem.Transitions;
+
+/// <summary>
+/// Transition where elements fall down from the main one.
+/// </summary>
 public class MainElementDropTransition : IViewTransition
 {
-
     private const float FadeDuration = 0.1f;
     private const float MainElementAnimationDuration = 0.2f;
     private const float SecondaryElementAnimationDuration = 0.1f;
-
-    private Vector2 _mainElementSize;
-    private bool _initializedParameters;
-    private SceneTree _sceneTree;
 
     private readonly Control _caller;
     private readonly Control _fadeObjectsContainer;
@@ -25,17 +24,25 @@ public class MainElementDropTransition : IViewTransition
     private readonly float _mainElementDuration;
     private readonly float _secondaryElementDuration;
 
-    private SceneTree SceneTree
-    {
-        get
-        {
-            _sceneTree ??= _caller.GetTree();
-            return _sceneTree;
-        }
-    }
+    private Vector2 _mainElementSize;
+    private bool _initializedParameters;
+    private SceneTree _sceneTree;
 
-    public MainElementDropTransition(Control caller, Control fadeObjectsContainer, ITweenableMenuElement mainResizableControl,
-        ITweenableMenuElement[] secondaryElements, float mainElementDuration = MainElementAnimationDuration, 
+    /// <summary>
+    /// Initializes a new instance of the <see cref="MainElementDropTransition"/> class.
+    /// </summary>
+    /// <param name="caller">Control that calls this transition.</param>
+    /// <param name="fadeObjectsContainer">Fade objects container.</param>
+    /// <param name="mainResizableControl">Main resizable element.</param>
+    /// <param name="secondaryElements">Secondary elements.</param>
+    /// <param name="mainElementDuration">Duration for the main element to resize.</param>
+    /// <param name="secondaryElementDuration">Duration for the secondary elements to drop.</param>
+    public MainElementDropTransition(
+        Control caller,
+        Control fadeObjectsContainer,
+        ITweenableMenuElement mainResizableControl,
+        ITweenableMenuElement[] secondaryElements,
+        float mainElementDuration = MainElementAnimationDuration,
         float secondaryElementDuration = SecondaryElementAnimationDuration)
     {
         _caller = caller;
@@ -46,6 +53,16 @@ public class MainElementDropTransition : IViewTransition
         _secondaryElementDuration = secondaryElementDuration;
     }
 
+    private SceneTree SceneTree
+    {
+        get
+        {
+            _sceneTree ??= _caller.GetTree();
+            return _sceneTree;
+        }
+    }
+
+    /// <inheritdoc/>
     public async Task Hide(bool instant = false)
     {
         if (instant)
@@ -59,6 +76,7 @@ public class MainElementDropTransition : IViewTransition
         {
             tasks[i] = _secondaryElements[i].ResetHover();
         }
+
         tasks[_secondaryElements.Length] = _mainElement.ResetHover();
         await Task.WhenAll(tasks);
 
@@ -71,6 +89,7 @@ public class MainElementDropTransition : IViewTransition
         {
             tween.Parallel().TweenControlGlobalPosition(_secondaryElements[i].ResizableControl, _mainElement.ResizableControl.GlobalPosition, _secondaryElementDuration);
         }
+
         tween.TweenCallback(Callable.From(() => { SwitchSecondaryButtonsVisibility(false); }));
 
         Vector2 size = new(0, _mainElementSize.Y);
@@ -84,6 +103,7 @@ public class MainElementDropTransition : IViewTransition
         await SceneTree.ToSignal(tween, Tween.SignalName.Finished);
     }
 
+    /// <inheritdoc/>
     public async Task Show(bool instant = false)
     {
         // should always hide before showing because awaiting for parameters shows menu for a split second
@@ -148,6 +168,7 @@ public class MainElementDropTransition : IViewTransition
             buttonsByPosition[i].PositionControl.ZIndex = i;
             last = i;
         }
+
         _mainElement.PositionControl.ZIndex = last + 1;
     }
 
@@ -161,5 +182,4 @@ public class MainElementDropTransition : IViewTransition
                 _secondaryElements[i].ResizableControl.HideItem();
         }
     }
-
 }

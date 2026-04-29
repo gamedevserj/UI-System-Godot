@@ -1,3 +1,4 @@
+using AsyncAwaitBestPractices;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.Views;
 using UISystem.MenuSystem.Views;
@@ -32,24 +33,24 @@ internal class OptionsMenuController : MenuControllerBase<IViewCreator<OptionsMe
     private void OnAudioSettingsButtonDown()
     {
         View.SetLastSelectedElement(View.AudioSettingsButton);
-        MenusManager.ShowMenu(typeof(AudioSettingsMenuView));
+        MenusManager.ShowMenu(typeof(AudioSettingsMenuView)).SafeFireAndForget();
     }
 
     private void OnVideoSettingsButtonDown()
     {
         View.SetLastSelectedElement(View.VideoSettingsButton);
-        MenusManager.ShowMenu(typeof(VideoSettingsMenuView));
+        MenusManager.ShowMenu(typeof(VideoSettingsMenuView)).SafeFireAndForget();
     }
 
     private void OnRebindKeysButtonDown()
     {
         View.SetLastSelectedElement(View.RebindKeysButton);
-        MenusManager.ShowMenu(typeof(RebindKeysMenuView));
+        MenusManager.ShowMenu(typeof(RebindKeysMenuView)).SafeFireAndForget();
     }
 
     private void OnInterfaceSettingsButtonDown()
     {
         View.SetLastSelectedElement(View.InterfaceSettingsButton);
-        MenusManager.ShowMenu(typeof(InterfaceSettingsMenuView));
+        MenusManager.ShowMenu(typeof(InterfaceSettingsMenuView)).SafeFireAndForget();
     }
 }

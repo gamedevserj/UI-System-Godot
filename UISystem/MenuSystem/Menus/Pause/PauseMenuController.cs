@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Threading.Tasks;
+using AsyncAwaitBestPractices;
 using UISystem.Constants;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
@@ -44,7 +45,7 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
     /// <inheritdoc/>
     public override async Task Show(Action onComplete = null, bool instant = false)
     {
-        _menuBackgroundController.ShowBackground(instant);
+        _menuBackgroundController.ShowBackground(instant).SafeFireAndForget();
         await base.Show(onComplete, instant);
     }
 
@@ -52,7 +53,7 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
     public override async Task Hide(StackingType stackingType, Action onComplete = null, bool instant = false)
     {
         if (stackingType != StackingType.Add)
-            _menuBackgroundController.HideBackground(instant);
+            _menuBackgroundController.HideBackground(instant).SafeFireAndForget();
         await base.Hide(stackingType, onComplete, instant);
     }
 
@@ -67,7 +68,7 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
     private void PressedOptions()
     {
         View.SetLastSelectedElement(View.OptionsButton);
-        MenusManager.ShowMenu(typeof(OptionsMenuView));
+        MenusManager.ShowMenu(typeof(OptionsMenuView)).SafeFireAndForget();
     }
 
     private void PressedReturn()
@@ -75,17 +76,20 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
         View.SetLastSelectedElement(View.ReturnToMainMenuButton);
         SwitchInteractability(false);
 
-        _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.QuitToMainMenu, async (result) =>
-        {
-            if (result == PopupResult.Yes)
+        _popupsManager
+            .ShowPopup(typeof(YesNoPopupView), PopupMessages.QuitToMainMenu, async (result) =>
             {
-                await _screenFadeManager.FadeOut();
-                MenusManager.ShowMenu(typeof(MainMenuView), StackingType.Clear, null, true);
-            }
-            else if (result == PopupResult.No)
-            {
-                SwitchInteractability(true);
-            }
-        });
+                if (result == PopupResult.Yes)
+                {
+                    await _screenFadeManager.FadeOut();
+                    await MenusManager.ShowMenu(typeof(MainMenuView), StackingType.Clear, instant: true);
+                    await _screenFadeManager.FadeIn();
+                }
+                else if (result == PopupResult.No)
+                {
+                    SwitchInteractability(true);
+                }
+            })
+            .SafeFireAndForget();
     }
 }

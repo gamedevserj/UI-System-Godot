@@ -1,15 +1,20 @@
-using Godot;
-using System;
 using System.Threading.Tasks;
+using Godot;
 using UISystem.Helpers;
 
 namespace UISystem.ScreenFade;
+
+/// <summary>
+/// Screen fade manager.
+/// </summary>
 public partial class ScreenFadeManager : TextureRect
 {
-
     private bool _isFading;
 
-    public async Task FadeOut(Action onFadeOutComplete = null)
+    /// <summary>
+    /// Fades screen out.
+    /// </summary>
+    public async Task FadeOut()
     {
         if (_isFading)
             return;
@@ -18,11 +23,15 @@ public partial class ScreenFadeManager : TextureRect
         MouseFilter = MouseFilterEnum.Stop;
 
         await Fader.Show(GetTree(), this);
-        onFadeOutComplete?.Invoke();
+    }
 
+    /// <summary>
+    /// Fades screen in.
+    /// </summary>
+    public async Task FadeIn()
+    {
         await Fader.Hide(GetTree(), this);
         _isFading = false;
         MouseFilter = MouseFilterEnum.Ignore;
     }
-
 }
