@@ -9,7 +9,6 @@ namespace UISystem.MenuSystem;
 /// </summary>
 public abstract partial class MenuView : ViewBase, IMenuView<IFocusableUiElement>
 {
-
     private IFocusableUiElement _lastSelectedElement;
 
     /// <inheritdoc/>

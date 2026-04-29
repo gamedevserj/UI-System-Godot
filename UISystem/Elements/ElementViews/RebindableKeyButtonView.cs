@@ -7,7 +7,6 @@ namespace UISystem.Elements.ElementViews;
 /// </summary>
 public partial class RebindableKeyButtonView : ButtonView
 {
-
     [Export] private TextureRect textureRect;
 
     /// <summary>

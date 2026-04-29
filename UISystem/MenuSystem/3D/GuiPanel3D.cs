@@ -9,12 +9,11 @@ namespace UISystem.MenuSystem;
 /// </summary>
 public partial class GuiPanel3D : Node
 {
-
-    [Export] private SubViewport subViewport;
-    [Export] private MeshInstance3D quad;
-    [Export] private Area3D area3d;
-    [Export] private Control menusParent;
-    [Export] private Control popupsParent;
+    [Export] private SubViewport _subViewport;
+    [Export] private MeshInstance3D _quad;
+    [Export] private Area3D _area3d;
+    [Export] private Control _menusParent;
+    [Export] private Control _popupsParent;
 
     private bool _isMouseInside;
     private Vector2 _lastEventPosition2D;
@@ -23,24 +22,24 @@ public partial class GuiPanel3D : Node
     /// <summary>
     /// Gets the subviewport.
     /// </summary>
-    public SubViewport SubViewport => subViewport;
+    public SubViewport SubViewport => _subViewport;
 
     /// <summary>
     /// Gets menus parent.
     /// </summary>
-    public Control MenusParent => menusParent;
+    public Control MenusParent => _menusParent;
 
     /// <summary>
     /// Gets popups parent.
     /// </summary>
-    public Control PopupsParent => popupsParent;
+    public Control PopupsParent => _popupsParent;
 
     /// <inheritdoc/>
     public override void _Ready()
     {
-        area3d.MouseEntered += MouseEnteredArea;
-        area3d.MouseExited += MouseExitedArea;
-        area3d.InputEvent += MouseInputEvent;
+        _area3d.MouseEntered += MouseEnteredArea;
+        _area3d.MouseExited += MouseExitedArea;
+        _area3d.InputEvent += MouseInputEvent;
     }
 
     private void MouseEnteredArea() => _isMouseInside = true;
@@ -53,7 +52,7 @@ public partial class GuiPanel3D : Node
             return;
 
         // Get mesh size to detect edges and make conversions. This code only support PlaneMesh and QuadMesh.
-        var quadMeshSize = (quad.Mesh as QuadMesh).Size;
+        var quadMeshSize = (_quad.Mesh as QuadMesh).Size;
 
         // Event position in Area3D in world coordinate space.
         var eventPosition3D = eventPosition;
@@ -63,7 +62,7 @@ public partial class GuiPanel3D : Node
 
         // Convert position to a coordinate space relative to the Area3D node.
         // NOTE: affine_inverse accounts for the Area3D node's scale, rotation, and position in the scene!
-        eventPosition3D = quad.GlobalTransform.AffineInverse() * eventPosition3D;
+        eventPosition3D = _quad.GlobalTransform.AffineInverse() * eventPosition3D;
 
         // TODO: Adapt to bilboard mode or avoid completely.
         Vector2 eventPosition2D = Vector2.Zero;
@@ -84,8 +83,8 @@ public partial class GuiPanel3D : Node
 
             // Finally, we convert the position to the following range: 0 -> viewport.size
             // We need to do these conversions so the event's position is in the viewport's coordinate system.
-            eventPosition2D.X *= subViewport.Size.X;
-            eventPosition2D.Y *= subViewport.Size.Y;
+            eventPosition2D.X *= _subViewport.Size.X;
+            eventPosition2D.Y *= _subViewport.Size.Y;
         }
         else if (!_lastEventPosition2D.IsEqualApprox(Vector2.Zero))
         {
@@ -136,6 +135,6 @@ public partial class GuiPanel3D : Node
         _lastEventTime = now;
 
         // Finally, send the processed input event to the viewport.
-        subViewport.PushInput(@event);
+        _subViewport.PushInput(@event);
     }
 }

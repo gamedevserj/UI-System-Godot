@@ -39,8 +39,8 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCre
     /// <inheritdoc/>
     protected override void SetupElements()
     {
-        SetupControllerIconsDropdown();
         base.SetupElements();
+        SetupControllerIconsDropdown();
         View.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
     }
 

@@ -89,6 +89,22 @@ public class RebindKeysMenuModel : ISettingsMenuModel
         EndRebinding();
     }
 
+    /// <inheritdoc/>
+    public void SaveSettings()
+    {
+        // is not implemented in this setup
+        // saving happens when player presses a key
+        // if you want to change it - store the actions that player tried to rebind and save/discard them when the button is pressed
+    }
+
+    /// <inheritdoc/>
+    public void DiscardChanges()
+    {
+        // is not implemented in this setup
+        // saving happens when player presses a key
+        // if you want to change it - store the actions that player tried to rebind and save/discard them when the button is pressed
+    }
+
     private static bool IsCancellingRebinding(InputEvent key)
     {
         bool cancel = false;
@@ -152,21 +168,5 @@ public class RebindKeysMenuModel : ISettingsMenuModel
         }
 
         return result;
-    }
-
-    /// <inheritdoc/>
-    public void SaveSettings()
-    {
-        // is not implemented in this setup
-        // saving happens when player presses a key
-        // if you want to change it - store the actions that player tried to rebind and save/discard them when the button is pressed
-    }
-
-    /// <inheritdoc/>
-    public void DiscardChanges()
-    {
-        // is not implemented in this setup
-        // saving happens when player presses a key
-        // if you want to change it - store the actions that player tried to rebind and save/discard them when the button is pressed
     }
 }

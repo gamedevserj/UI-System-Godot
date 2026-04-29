@@ -9,7 +9,6 @@ namespace UISystem.Elements.HoverSettings;
 [GlobalClass]
 public partial class HSliderHoverSettings : Resource
 {
-
     [Export] private float duration = 1;
     [Export] private float resetDuration = 0.25f;
     [Export] private Tween.EaseType ease = Tween.EaseType.Out;

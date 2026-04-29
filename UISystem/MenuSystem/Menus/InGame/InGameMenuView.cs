@@ -10,7 +10,6 @@ namespace UISystem.MenuSystem.Views;
 /// </summary>
 public partial class InGameMenuView : MenuView
 {
-
     [Export] private Control _fadeObjectsContainer;
 
     /// <inheritdoc/>

@@ -17,14 +17,14 @@ albedo_texture = SubResource("ViewportTexture_m3af8")
 [sub_resource type="BoxShape3D" id="4"]
 size = Vector3(1.6, 0.9, 0.1)
 
-[node name="GUIPanel3D" type="Node3D" node_paths=PackedStringArray("subViewport", "quad", "area3d", "menusParent", "popupsParent")]
+[node name="GUIPanel3D" type="Node3D" node_paths=PackedStringArray("_subViewport", "_quad", "_area3d", "_menusParent", "_popupsParent")]
 process_mode = 3
 script = ExtResource("1_s31ks")
-subViewport = NodePath("SubViewport")
-quad = NodePath("Quad")
-area3d = NodePath("Quad/Area3D")
-menusParent = NodePath("SubViewport/MenusParent")
-popupsParent = NodePath("SubViewport/PopupsParent")
+_subViewport = NodePath("SubViewport")
+_quad = NodePath("Quad")
+_area3d = NodePath("Quad/Area3D")
+_menusParent = NodePath("SubViewport/MenusParent")
+_popupsParent = NodePath("SubViewport/PopupsParent")
 
 [node name="SubViewport" type="SubViewport" parent="."]
 transparent_bg = true

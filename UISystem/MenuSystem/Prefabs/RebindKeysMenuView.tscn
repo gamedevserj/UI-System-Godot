@@ -1,10 +1,11 @@
-[gd_scene load_steps=9 format=3 uid="uid://bkc5imtbwisbp"]
+[gd_scene load_steps=10 format=3 uid="uid://bkc5imtbwisbp"]
 
 [ext_resource type="Script" path="res://UISystem/MenuSystem/Menus/RebindKeys/RebindKeysMenuView.cs" id="1_53hud"]
 [ext_resource type="Script" path="res://UISystem/Elements/ElementViews/RebindableKeyButtonView.cs" id="2_1gokv"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="2_dyxee"]
 [ext_resource type="Script" path="res://UISystem/Elements/ElementViews/ResizableControlView.cs" id="2_tg1hn"]
 [ext_resource type="Texture2D" uid="uid://fx6gyp2ifiet" path="res://UISystem/Textures/Inputs/ellipsis.png" id="3_hujmc"]
+[ext_resource type="Resource" uid="uid://pxdlfq08bkq1" path="res://UISystem/Common/ElementsHoverSettings/OptionsButton/HoverSettings.tres" id="6_lio84"]
 [ext_resource type="PackedScene" uid="uid://b0ifhq3dslldh" path="res://UISystem/Common/Prefabs/Variants/MenuOptionButtonView.tscn" id="8_2psh3"]
 
 [sub_resource type="CanvasTexture" id="CanvasTexture_0fftd"]
@@ -241,12 +242,17 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 90
 alignment = 1
 
-[node name="MoveLeftKeyboard" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
+[node name="MoveLeftKeyboard" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("textureRect", "_resizableControl", "_innerColor", "_border", "_label") instance=ExtResource("8_2psh3")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
+_buttonHoverSettings = ExtResource("6_lio84")
+_resizableControl = NodePath("ResizableControl")
+_innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
+_border = NodePath("ResizableControl/Border")
+_label = NodePath("ResizableControl/ContentClipper/Label")
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveLeftKeyboard" index="0"]
 light_mask = 2
@@ -312,12 +318,17 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="MoveRightKeyboard" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
+[node name="MoveRightKeyboard" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("textureRect", "_resizableControl", "_innerColor", "_border", "_label") instance=ExtResource("8_2psh3")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
+_buttonHoverSettings = ExtResource("6_lio84")
+_resizableControl = NodePath("ResizableControl")
+_innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
+_border = NodePath("ResizableControl/Border")
+_label = NodePath("ResizableControl/ContentClipper/Label")
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/MoveRightKeyboard" index="0"]
 light_mask = 2
@@ -367,12 +378,17 @@ texture = ExtResource("3_hujmc")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="JumpKeyboard" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
+[node name="JumpKeyboard" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard" node_paths=PackedStringArray("textureRect", "_resizableControl", "_innerColor", "_border", "_label") instance=ExtResource("8_2psh3")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
+_buttonHoverSettings = ExtResource("6_lio84")
+_resizableControl = NodePath("ResizableControl")
+_innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
+_border = NodePath("ResizableControl/Border")
+_label = NodePath("ResizableControl/ContentClipper/Label")
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsKeyboard/JumpKeyboard" index="0"]
 light_mask = 2
@@ -430,12 +446,17 @@ size_flags_horizontal = 3
 theme_override_constants/separation = 90
 alignment = 1
 
-[node name="MoveLeftJoystick" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
+[node name="MoveLeftJoystick" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("textureRect", "_resizableControl", "_innerColor", "_border", "_label") instance=ExtResource("8_2psh3")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
+_buttonHoverSettings = ExtResource("6_lio84")
+_resizableControl = NodePath("ResizableControl")
+_innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
+_border = NodePath("ResizableControl/Border")
+_label = NodePath("ResizableControl/ContentClipper/Label")
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveLeftJoystick" index="0"]
 light_mask = 2
@@ -485,12 +506,17 @@ texture = ExtResource("3_hujmc")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="MoveRightJoystick" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
+[node name="MoveRightJoystick" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("textureRect", "_resizableControl", "_innerColor", "_border", "_label") instance=ExtResource("8_2psh3")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
+_buttonHoverSettings = ExtResource("6_lio84")
+_resizableControl = NodePath("ResizableControl")
+_innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
+_border = NodePath("ResizableControl/Border")
+_label = NodePath("ResizableControl/ContentClipper/Label")
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/MoveRightJoystick" index="0"]
 light_mask = 2
@@ -540,12 +566,17 @@ texture = ExtResource("3_hujmc")
 expand_mode = 1
 stretch_mode = 5
 
-[node name="JumpJoystick" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("textureRect") instance=ExtResource("8_2psh3")]
+[node name="JumpJoystick" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick" node_paths=PackedStringArray("textureRect", "_resizableControl", "_innerColor", "_border", "_label") instance=ExtResource("8_2psh3")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 2
 script = ExtResource("2_1gokv")
 textureRect = NodePath("ResizableControl/ContentClipper/TextureRect")
+_buttonHoverSettings = ExtResource("6_lio84")
+_resizableControl = NodePath("ResizableControl")
+_innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
+_border = NodePath("ResizableControl/Border")
+_label = NodePath("ResizableControl/ContentClipper/Label")
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/HBoxContainer/ButtonsJoystick/JumpJoystick" index="0"]
 light_mask = 2
@@ -612,10 +643,15 @@ theme_override_constants/separation = 40
 alignment = 1
 metadata/_edit_use_anchors_ = true
 
-[node name="ReturnButton" parent="Container/Panel/Border/Color/ButtonsContainer" instance=ExtResource("8_2psh3")]
+[node name="ReturnButton" parent="Container/Panel/Border/Color/ButtonsContainer" node_paths=PackedStringArray("_resizableControl", "_innerColor", "_border", "_label") instance=ExtResource("8_2psh3")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 2
+_buttonHoverSettings = ExtResource("6_lio84")
+_resizableControl = NodePath("ResizableControl")
+_innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
+_border = NodePath("ResizableControl/Border")
+_label = NodePath("ResizableControl/ContentClipper/Label")
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/ButtonsContainer/ReturnButton" index="0"]
 light_mask = 2
@@ -654,10 +690,15 @@ offset_right = 165.0
 offset_bottom = 40.5
 text = "RETURN"
 
-[node name="ResetToDefaultButton" parent="Container/Panel/Border/Color/ButtonsContainer" instance=ExtResource("8_2psh3")]
+[node name="ResetToDefaultButton" parent="Container/Panel/Border/Color/ButtonsContainer" node_paths=PackedStringArray("_resizableControl", "_innerColor", "_border", "_label") instance=ExtResource("8_2psh3")]
 light_mask = 2
 visibility_layer = 2
 layout_mode = 2
+_buttonHoverSettings = ExtResource("6_lio84")
+_resizableControl = NodePath("ResizableControl")
+_innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
+_border = NodePath("ResizableControl/Border")
+_label = NodePath("ResizableControl/ContentClipper/Label")
 
 [node name="ResizableControl" parent="Container/Panel/Border/Color/ButtonsContainer/ResetToDefaultButton" index="0"]
 light_mask = 2

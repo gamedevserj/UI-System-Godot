@@ -13,7 +13,6 @@ namespace UISystem.MenuSystem.Views;
 /// </summary>
 public partial class InterfaceSettingsMenuView : SettingsMenuView
 {
-
     [Export] private DropdownView _controllerIconsDropdown;
     [Export] private ButtonView _saveSettingsButton;
     [Export] private Control _panel;

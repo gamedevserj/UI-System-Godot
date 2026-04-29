@@ -62,8 +62,7 @@ internal class RebindKeysMenuController
     /// <inheritdoc/>
     protected override void SetupElements()
     {
-        View.ReturnButton.ButtonDown += OnReturnButtonDown;
-        //View.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
+        base.SetupElements();
 
         View.MoveLeft.ButtonDown += () =>
         OnButtonDown(View.MoveLeft, InputsData.MoveLeft, InputsData.KeyboardEventIndex);

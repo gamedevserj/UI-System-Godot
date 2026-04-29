@@ -11,7 +11,6 @@ namespace UISystem.Elements.ElementViews;
 /// </summary>
 public partial class HSliderView : HSlider, IFocusableUiElement, ITweenableMenuElement
 {
-
     [Export] private HSliderHoverSettings hoverSettings;
     [Export] private Control grabber;
     [Export] private Control grabberResizableControl;
