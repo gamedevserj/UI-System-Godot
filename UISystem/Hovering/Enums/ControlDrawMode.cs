@@ -1,4 +1,8 @@
 ﻿namespace UISystem.Hovering;
+
+/// <summary>
+/// Defines control states.
+/// </summary>
 public enum ControlDrawMode
 {
     Normal = 0,
