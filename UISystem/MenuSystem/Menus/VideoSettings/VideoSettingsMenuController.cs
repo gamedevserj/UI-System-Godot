@@ -38,14 +38,14 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
         base.SetupElements();
         SetupWindowModeDropdown();
         SetupResolutionDropdown();
-        View.SaveSettingsButton.ButtonDown += _model.SaveSettings;
+        View.SaveSettingsButton.ButtonDown += Model.SaveSettings;
     }
 
     /// <inheritdoc/>
-    protected override void ResetViewToDefault()
+    protected override void UpdateFullView()
     {
-        View.WindowModeDropdown.SelectItem(_model.CurrenWindowModeIndex);
-        View.ResolutionDropdown.SelectItem(_model.CurrentResolutionIndex);
+        View.WindowModeDropdown.SelectItem(Model.CurrenWindowModeIndex);
+        View.ResolutionDropdown.SelectItem(Model.CurrentResolutionIndex);
     }
 
     private void SetupWindowModeDropdown()
@@ -59,7 +59,7 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
         }
 
         View.WindowModeDropdown.AddMultipleItems(items);
-        View.WindowModeDropdown.SelectItem(_model.CurrenWindowModeIndex);
+        View.WindowModeDropdown.SelectItem(Model.CurrenWindowModeIndex);
         View.WindowModeDropdown.ItemSelected += OnWindowModeDropdownSelect;
     }
 
@@ -76,18 +76,18 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
 
         // if player resizes window, there won't be any matching resolutions
         // this is to prevent dropdown being empty and show some value
-        int index = _model.CurrentResolutionIndex > 0 ? _model.CurrentResolutionIndex : 0;
+        int index = Model.CurrentResolutionIndex > 0 ? Model.CurrentResolutionIndex : 0;
         View.ResolutionDropdown.SelectItem(index);
         View.ResolutionDropdown.ItemSelected += OnResolutionDropdownSelect;
     }
 
     private void OnResolutionDropdownSelect(long index)
     {
-        _model.SelectResolution((int)index);
+        Model.SelectResolution((int)index);
     }
 
     private void OnWindowModeDropdownSelect(long index)
     {
-        _model.SelectWindowMode((int)index);
+        Model.SelectWindowMode((int)index);
     }
 }

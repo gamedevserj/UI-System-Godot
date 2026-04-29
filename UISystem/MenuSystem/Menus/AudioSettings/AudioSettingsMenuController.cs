@@ -39,22 +39,22 @@ internal class AudioSettingsMenuController : SettingsMenuController<IViewCreator
     }
 
     /// <inheritdoc/>
-    protected override void ResetViewToDefault()
+    protected override void UpdateFullView()
     {
-        View.MusicSlider.SetValue(_model.MusicVolume);
-        View.SfxSlider.SetValue(_model.SfxVolume);
+        View.MusicSlider.SetValue(Model.MusicVolume);
+        View.SfxSlider.SetValue(Model.SfxVolume);
         View.SetLastSelectedElement(View.ResetButton);
     }
 
     private void OnSaveSettingsButtonDown()
     {
-        _model.SaveSettings();
+        Model.SaveSettings();
         View.SetLastSelectedElement(View.SaveSettingsButton);
     }
 
     private void SetupMusicSlider()
     {
-        View.MusicSlider.SetValueNoSignal(_model.MusicVolume);
+        View.MusicSlider.SetValueNoSignal(Model.MusicVolume);
         View.MusicSlider.DragEnded += OnMusicSliderDragEnded;
         View.MusicSlider.DragStarted += OnMusicSliderDragStarted;
     }
@@ -62,18 +62,18 @@ internal class AudioSettingsMenuController : SettingsMenuController<IViewCreator
     private void OnMusicSliderDragEnded(bool dragEnded)
     {
         if (dragEnded)
-            _model.MusicVolume = (float)View.MusicSlider.Value;
+            Model.MusicVolume = (float)View.MusicSlider.Value;
     }
 
     private void OnMusicSliderDragStarted()
     {
-        _model.MusicVolume = (float)View.MusicSlider.Value;
+        Model.MusicVolume = (float)View.MusicSlider.Value;
         View.SetLastSelectedElement(View.MusicSlider);
     }
 
     private void SetupSfxSlider()
     {
-        View.SfxSlider.SetValueNoSignal(_model.SfxVolume);
+        View.SfxSlider.SetValueNoSignal(Model.SfxVolume);
         View.SfxSlider.DragEnded += OnSfxSliderDragEnded;
         View.SfxSlider.DragStarted += OnSfxSliderDragStarted;
     }
@@ -81,12 +81,12 @@ internal class AudioSettingsMenuController : SettingsMenuController<IViewCreator
     private void OnSfxSliderDragEnded(bool dragEnded)
     {
         if (dragEnded)
-            _model.SfxVolume = (float)View.SfxSlider.Value;
+            Model.SfxVolume = (float)View.SfxSlider.Value;
     }
 
     private void OnSfxSliderDragStarted()
     {
-        _model.SfxVolume = (float)View.SfxSlider.Value;
+        Model.SfxVolume = (float)View.SfxSlider.Value;
         View.SetLastSelectedElement(View.SfxSlider);
     }
 }

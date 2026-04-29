@@ -7,42 +7,56 @@ using UISystem.PopupSystem;
 using UISystem.PopupSystem.Popups.Views;
 
 namespace UISystem.MenuSystem.SettingsMenu;
+
+/// <summary>
+/// Settings menu controller.
+/// </summary>
+/// <typeparam name="TViewCreator">Type of view creator. Must implement <see cref="IViewCreator{TView}"/>.</typeparam>
+/// <typeparam name="TView">Type of view. Must inherit <see cref="SettingsMenuView"/>.</typeparam>
+/// <typeparam name="TModel">Type of model. Must implement <see cref="ISettingsMenuModel"/>.</typeparam>
 internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
     : MenuController<TViewCreator, TView, IFocusableUiElement>
     where TViewCreator : IViewCreator<TView>
     where TView : SettingsMenuView
     where TModel : ISettingsMenuModel
 {
-    protected readonly TModel _model;
-    protected readonly IPopupsManager<PopupResult> _popupsManager;
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="SettingsMenuController{TViewCreator, TView, TModel}"/> class.
+    /// </summary>
+    /// <param name="viewCreator">View creator.</param>
+    /// <param name="menusManager">Menus manager.</param>
+    /// <param name="model">Menu model.</param>
+    /// <param name="popupsManager">Popups manager.</param>
     protected SettingsMenuController(
-        TViewCreator viewCreator, 
-        IMenusManager menusManager, 
+        TViewCreator viewCreator,
+        IMenusManager menusManager,
         TModel model,
-        IPopupsManager<PopupResult> popupsManager) 
+        IPopupsManager<PopupResult> popupsManager)
         : base(viewCreator, menusManager)
     {
-        _model = model;
-        _popupsManager = popupsManager;
+        Model = model;
+        PopupsManager = popupsManager;
     }
 
-    protected abstract void ResetViewToDefault();
+    /// <summary>
+    /// Gets the model.
+    /// </summary>
+    protected TModel Model { get; private set; }
 
-    protected override void SetupElements()
-    {
-        View.ReturnButton.ButtonDown += OnReturnButtonDown;
-        View.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
-    }
+    /// <summary>
+    /// Gets the popups manager.
+    /// </summary>
+    protected IPopupsManager<PopupResult> PopupsManager { get; private set; }
 
+    /// <inheritdoc/>
     public override void OnReturnButtonDown()
     {
-        if (_model.HasUnappliedSettings)
+        if (Model.HasUnappliedSettings)
         {
             View.SetLastSelectedElement(View.ReturnButton);
             CanReceivePhysicalInput = false;
             SwitchInteractability(false);
-            _popupsManager.ShowPopup(typeof(YesNoCancelPopupView), PopupMessages.SaveChanges, (result) =>
+            PopupsManager.ShowPopup(typeof(YesNoCancelPopupView), PopupMessages.SaveChanges, (result) =>
             {
                 OnReturnToPreviousMenuPopupClosed(result);
                 CanReceivePhysicalInput = true;
@@ -54,16 +68,28 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
         }
     }
 
-    protected void OnReturnToPreviousMenuPopupClosed(PopupResult result)
+    /// <summary>
+    /// Resets the view.
+    /// </summary>
+    protected abstract void UpdateFullView();
+
+    /// <inheritdoc/>
+    protected override void SetupElements()
+    {
+        View.ReturnButton.ButtonDown += OnReturnButtonDown;
+        View.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
+    }
+
+    private void OnReturnToPreviousMenuPopupClosed(PopupResult result)
     {
         switch (result)
         {
             case PopupResult.No:
-                _model.DiscardChanges();
+                Model.DiscardChanges();
                 base.OnReturnButtonDown();
                 break;
             case PopupResult.Yes:
-                _model.SaveSettings();
+                Model.SaveSettings();
                 base.OnReturnButtonDown();
                 break;
             case PopupResult.Cancel:
@@ -75,17 +101,18 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
         }
     }
 
-    protected virtual void OnResetToDefaultButtonDown()
+    private void OnResetToDefaultButtonDown()
     {
         View.SetLastSelectedElement(View.ResetButton);
         SwitchInteractability(false);
-        _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.ResetToDefault, (result) =>
+        PopupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.ResetToDefault, (result) =>
         {
             if (result == PopupResult.Yes)
             {
-                _model.ResetToDefault();
-                ResetViewToDefault();
+                Model.ResetToDefault();
+                UpdateFullView();
             }
+
             SwitchInteractability(true);
         });
     }

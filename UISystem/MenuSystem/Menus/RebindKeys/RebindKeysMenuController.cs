@@ -42,19 +42,19 @@ internal class RebindKeysMenuController
     /// <param name="inputEvent">Button/key that is being pressed.</param>
     public void OnAnyButtonDown(InputEvent inputEvent)
     {
-        if (_model.IsRebinding)
-            _model.RebindKey(inputEvent);
+        if (Model.IsRebinding)
+            Model.RebindKey(inputEvent);
     }
 
     /// <inheritdoc/>
     public override void OnReturnButtonDown()
     {
-        if (!_model.IsRebinding)
+        if (!Model.IsRebinding)
             base.OnReturnButtonDown();
     }
 
     /// <inheritdoc/>
-    protected override void ResetViewToDefault()
+    protected override void UpdateFullView()
     {
         UpdateAllButtonViews();
     }
@@ -63,7 +63,7 @@ internal class RebindKeysMenuController
     protected override void SetupElements()
     {
         View.ReturnButton.ButtonDown += OnReturnButtonDown;
-        View.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
+        //View.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
 
         View.MoveLeft.ButtonDown += () =>
         OnButtonDown(View.MoveLeft, InputsData.MoveLeft, InputsData.KeyboardEventIndex);
@@ -86,7 +86,7 @@ internal class RebindKeysMenuController
     private void UpdateButtonView(RebindableKeyButtonView button, string action, int index)
     {
         var actionEvent = InputMap.ActionGetEvents(action)[index];
-        button.TextureRect.Texture = (Texture2D)GD.Load(Icons.GetIcon(actionEvent, _model.IconsType));
+        button.TextureRect.Texture = (Texture2D)GD.Load(Icons.GetIcon(actionEvent, Model.IconsType));
     }
 
     private void OnButtonDown(RebindableKeyButtonView button, string action, int index)
@@ -95,7 +95,7 @@ internal class RebindKeysMenuController
         View.SetLastSelectedElement(button);
         SwitchInteractability(false);
 
-        _model.StartRebinding(action, index, () =>
+        Model.StartRebinding(action, index, () =>
         {
             SwitchRebindingButtonFocusability(button, true);
             UpdateButtonView(button, action, index);

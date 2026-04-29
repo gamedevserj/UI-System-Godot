@@ -45,14 +45,14 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCre
     }
 
     /// <inheritdoc/>
-    protected override void ResetViewToDefault()
+    protected override void UpdateFullView()
     {
-        View.ControllerIconsDropdown.SelectItem((int)_model.ControllerIconsType);
+        View.ControllerIconsDropdown.SelectItem((int)Model.ControllerIconsType);
     }
 
     private void OnSaveSettingsButtonDown()
     {
-        _model.SaveSettings();
+        Model.SaveSettings();
         View.SetLastSelectedElement(View.SaveSettingsButton);
     }
 
@@ -67,12 +67,12 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCre
 
         View.ControllerIconsDropdown.AddMultipleItems(items);
         View.ControllerIconsDropdown.ItemSelected += SelectControllerIconsType;
-        View.ControllerIconsDropdown.SelectItem((int)_model.ControllerIconsType);
+        View.ControllerIconsDropdown.SelectItem((int)Model.ControllerIconsType);
     }
 
     private void SelectControllerIconsType(long index)
     {
-        _model.SelectIconType((int)index);
+        Model.SelectIconType((int)index);
         View.SetLastSelectedElement(View.ControllerIconsDropdown);
     }
 }
