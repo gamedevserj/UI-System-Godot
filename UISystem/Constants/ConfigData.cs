@@ -3,9 +3,16 @@ using UISystem.Common.Enums;
 using static Godot.DisplayServer;
 
 namespace UISystem.Constants;
+
+// Suppressing jsut to keep elements grouped by sections.
+#pragma warning disable SA1600 // Elements should be documented
+#pragma warning disable SA1201 // Elements should appear in the correct order
+#pragma warning disable SA1516 // Elements should be separated by blank line
+/// <summary>
+/// Class containing config keys and default values.
+/// </summary>
 public static class ConfigData
 {
-
     public const string ConfigLocation = "user://Config.cfg";
 
     public const string AudioSectionName = "AudioSettings";
@@ -25,5 +32,7 @@ public static class ConfigData
     public const string InterfaceSectionName = "Interface";
     public const string ControllerIconsKey = "ControllerIcons";
     public const ControllerIconsType DefaultControllerIconsType = ControllerIconsType.Xbox;
-
 }
+#pragma warning restore SA1600 // Elements should be documented
+#pragma warning restore SA1201 // Elements should appear in the correct order
+#pragma warning restore SA1516 // Elements should be separated by blank line

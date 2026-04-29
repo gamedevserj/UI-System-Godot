@@ -14,6 +14,6 @@ public abstract partial class SettingsMenuView : MenuView
     public ButtonView ReturnButton => returnButton;
     public ButtonView ResetButton => resetButton;
 
-    protected override IFocusableControl DefaultSelectedElement => ReturnButton;
+    protected override IFocusableUiElement DefaultSelectedElement => ReturnButton;
 
 }

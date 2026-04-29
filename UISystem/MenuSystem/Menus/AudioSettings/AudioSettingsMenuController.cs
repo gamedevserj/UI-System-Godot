@@ -7,74 +7,86 @@ using UISystem.MenuSystem.Views;
 using UISystem.PopupSystem;
 
 namespace UISystem.MenuSystem.Controllers;
+
+/// <summary>
+/// Audio settings menu controller.
+/// </summary>
 internal class AudioSettingsMenuController : SettingsMenuController<IViewCreator<AudioSettingsMenuView>, AudioSettingsMenuView, AudioSettingsMenuModel>
 {
-
+    /// <summary>
+    /// Initializes a new instance of the <see cref="AudioSettingsMenuController"/> class.
+    /// </summary>
+    /// <param name="viewCreator">View creator.</param>
+    /// <param name="menusManager">Menus manager.</param>
+    /// <param name="model">Audio settings menu model.</param>
+    /// <param name="popupsManager">Popups manager.</param>
     public AudioSettingsMenuController(
-        IViewCreator<AudioSettingsMenuView> viewCreator, 
-        IMenusManager menusManager, 
-        AudioSettingsMenuModel model, 
-        IPopupsManager<PopupResult> popupsManager) 
+        IViewCreator<AudioSettingsMenuView> viewCreator,
+        IMenusManager menusManager,
+        AudioSettingsMenuModel model,
+        IPopupsManager<PopupResult> popupsManager)
         : base(viewCreator, menusManager, model, popupsManager)
-    { }
+    {
+    }
 
+    /// <inheritdoc/>
     protected override void SetupElements()
     {
         base.SetupElements();
         SetupMusicSlider();
         SetupSfxSlider();
-        _view.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
+        View.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
+    }
+
+    /// <inheritdoc/>
+    protected override void ResetViewToDefault()
+    {
+        View.MusicSlider.SetValue(_model.MusicVolume);
+        View.SfxSlider.SetValue(_model.SfxVolume);
+        View.SetLastSelectedElement(View.ResetButton);
     }
 
     private void OnSaveSettingsButtonDown()
     {
         _model.SaveSettings();
-        _view.SetLastSelectedElement(_view.SaveSettingsButton);
+        View.SetLastSelectedElement(View.SaveSettingsButton);
     }
 
     private void SetupMusicSlider()
     {
-        _view.MusicSlider.SetValueNoSignal(_model.MusicVolume);
-        _view.MusicSlider.DragEnded += OnMusicSliderDragEnded;
-        _view.MusicSlider.DragStarted += OnMusicSliderDragStarted;
+        View.MusicSlider.SetValueNoSignal(_model.MusicVolume);
+        View.MusicSlider.DragEnded += OnMusicSliderDragEnded;
+        View.MusicSlider.DragStarted += OnMusicSliderDragStarted;
     }
 
     private void OnMusicSliderDragEnded(bool dragEnded)
     {
         if (dragEnded)
-            _model.MusicVolume = (float)_view.MusicSlider.Value;
+            _model.MusicVolume = (float)View.MusicSlider.Value;
     }
 
     private void OnMusicSliderDragStarted()
     {
-        _model.MusicVolume = (float)_view.MusicSlider.Value;
-        _view.SetLastSelectedElement(_view.MusicSlider);
+        _model.MusicVolume = (float)View.MusicSlider.Value;
+        View.SetLastSelectedElement(View.MusicSlider);
     }
 
     private void SetupSfxSlider()
     {
-        _view.SfxSlider.SetValueNoSignal(_model.SfxVolume);
-        _view.SfxSlider.DragEnded += OnSfxSliderDragEnded;
-        _view.SfxSlider.DragStarted += OnSfxSliderDragStarted;
+        View.SfxSlider.SetValueNoSignal(_model.SfxVolume);
+        View.SfxSlider.DragEnded += OnSfxSliderDragEnded;
+        View.SfxSlider.DragStarted += OnSfxSliderDragStarted;
     }
 
     private void OnSfxSliderDragEnded(bool dragEnded)
     {
         if (dragEnded)
-            _model.SfxVolume = (float)_view.SfxSlider.Value;
+            _model.SfxVolume = (float)View.SfxSlider.Value;
     }
 
     private void OnSfxSliderDragStarted()
     {
-        _model.SfxVolume = (float)_view.SfxSlider.Value;
-        _view.SetLastSelectedElement(_view.SfxSlider);
+        _model.SfxVolume = (float)View.SfxSlider.Value;
+        View.SetLastSelectedElement(View.SfxSlider);
     }
-
-    protected override void ResetViewToDefault()
-    {
-        _view.MusicSlider.SetValue(_model.MusicVolume);
-        _view.SfxSlider.SetValue(_model.SfxVolume);
-        _view.SetLastSelectedElement(_view.ResetButton);
-    }
-
 }

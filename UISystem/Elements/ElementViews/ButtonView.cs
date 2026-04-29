@@ -1,41 +1,58 @@
-using Godot;
 using System.Threading.Tasks;
+using Godot;
 using UISystem.Elements.HoverSettings;
 using UISystem.Hovering;
 using UISystem.Transitions.Interfaces;
 
 namespace UISystem.Elements.ElementViews;
-public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuElement
-{
 
-    [Export] private ButtonHoverSettings buttonHoverSettings;
-    [Export] private Control resizableControl;
-    [Export] private Control innerColor;
-    [Export] private Control border;
-    [Export] private Label label;
+/// <summary>
+/// Base class for button view.
+/// </summary>
+public partial class ButtonView : BaseButton, IFocusableUiElement, ITweenableMenuElement
+{
+    [Export] private ButtonHoverSettings _buttonHoverSettings;
+    [Export] private Control _resizableControl;
+    [Export] private Control _innerColor;
+    [Export] private Control _border;
+    [Export] private Label _label;
 
     private IHoverTweener _hoverTweener;
     private bool _mouseOver;
     private Tween _tween;
 
+    /// <summary>
+    /// Gets the control responsible for button position.
+    /// </summary>
     public Control PositionControl => this;
-    public Control ResizableControl => resizableControl;
 
+    /// <summary>
+    /// Gets the control responsible for resizing the button.
+    /// </summary>
+    public Control ResizableControl => _resizableControl;
+
+    /// <inheritdoc/>
     public override async void _EnterTree()
     {
-        if (buttonHoverSettings == null) return;
+        if (_buttonHoverSettings == null)
+            return;
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
-        _hoverTweener = buttonHoverSettings.CreateTweener(resizableControl, innerColor, border, label);
+        _hoverTweener = _buttonHoverSettings.CreateTweener(_resizableControl, _innerColor, _border, _label);
         Subscribe();
     }
 
+    /// <inheritdoc/>
     public override void _ExitTree() => Unsubscribe();
 
+    /// <summary>
+    /// Resets button hover state.
+    /// </summary>
     public async Task ResetHover()
     {
-        if (_hoverTweener == null) await Task.CompletedTask;
+        if (_hoverTweener == null)
+            await Task.CompletedTask;
 
         _tween?.Kill();
         _tween = GetTree().CreateTween();
@@ -43,7 +60,11 @@ public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuE
         await ToSignal(_tween, Tween.SignalName.Finished);
     }
 
-    // there is no OnDisabled event in BaseButton, so it should be disabled via this method to change appearance
+    /// <summary>
+    /// Switches button on/off.
+    /// There is no OnDisabled event in BaseButton, so it should be disabled via this method to change appearance.
+    /// </summary>
+    /// <param name="disable">Whether button should be disabled.</param>
     public void SwitchButton(bool disable)
     {
         Disabled = disable;
@@ -60,7 +81,8 @@ public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuE
 
     private void Unsubscribe()
     {
-        if (buttonHoverSettings == null) return;
+        if (_buttonHoverSettings == null)
+            return;
         FocusEntered -= OnFocusEntered;
         FocusExited -= OnFocusExited;
         MouseEntered -= OnMouseEntered;
@@ -72,6 +94,7 @@ public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuE
         _mouseOver = true;
         HoverTween();
     }
+
     private void OnMouseExited()
     {
         _mouseOver = false;
@@ -79,10 +102,13 @@ public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuE
     }
 
     private void OnFocusEntered() => HoverTween();
+
     private void OnFocusExited() => HoverTween();
+
     private void HoverTween()
     {
-        if (_hoverTweener == null) return;
+        if (_hoverTweener == null)
+            return;
 
         _tween?.Kill();
         _tween = GetTree().CreateTween();
@@ -91,13 +117,15 @@ public partial class ButtonView : BaseButton, IFocusableControl, ITweenableMenuE
 
     private ControlDrawMode GetDrawingMode()
     {
-        if (Disabled) return ControlDrawMode.Disabled;
+        if (Disabled)
+            return ControlDrawMode.Disabled;
         if (HasFocus())
         {
             return _mouseOver ? ControlDrawMode.HoverFocus : ControlDrawMode.Focus;
         }
         else
+        {
             return _mouseOver ? ControlDrawMode.Hover : ControlDrawMode.Normal;
+        }
     }
-
 }

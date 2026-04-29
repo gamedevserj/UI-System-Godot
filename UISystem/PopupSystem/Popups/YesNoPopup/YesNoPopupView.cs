@@ -15,7 +15,7 @@ internal partial class YesNoPopupView : PopupView
     public ButtonView YesButton => yesButton;
     public ButtonView NoButton => noButton;
 
-    public override IFocusableControl DefaultSelectedElement => NoButton;
+    public override IFocusableUiElement DefaultSelectedElement => NoButton;
     protected override IViewTransition CreateTransition()
     {
         return new PanelSizeTransition(this, FadeObjectsContainer, Panel,
@@ -24,7 +24,7 @@ internal partial class YesNoPopupView : PopupView
 
     protected override void PopulateFocusableElements()
     {
-        _focusableElements = new IFocusableControl[] { YesButton, NoButton };
+        FocusableElements = new IFocusableUiElement[] { YesButton, NoButton };
     }
 
 }

@@ -1,15 +1,14 @@
-﻿using Godot;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
+using Godot;
 
 namespace UISystem.Common.Constants;
+
+/// <summary>
+/// Class containgin keyboard icon names.
+/// </summary>
 public static class KeyboardIcons
 {
-    private static string ItemsFolder => "res://UISystem/Textures/Inputs/Keyboard/";
-    private static readonly Dictionary<Key, string> _keys;
-
-    static KeyboardIcons()
-    {
-        _keys = new Dictionary<Key, string>()
+    private static readonly Dictionary<Key, string> _keys = new()
         {
             { Key.None, "keyboard_escape.png" },
             { Key.Escape, "keyboard_escape.png" },
@@ -43,8 +42,8 @@ public static class KeyboardIcons
             { Key.F8, "keyboard_f8.png" },
             { Key.F9, "keyboard_f9.png" },
             { Key.F10, "keyboard_f10.png" },
-            { Key.F11, "keyboard_f11.png"  },
-            { Key.F12, "keyboard_f12.png"},
+            { Key.F11, "keyboard_f11.png" },
+            { Key.F12, "keyboard_f12.png" },
             { Key.KpMultiply, "keyboard_asterisk.png" },
             { Key.KpDivide, "keyboard_slash_forward.png" },
             { Key.KpSubtract, "keyboard_minus.png" },
@@ -116,8 +115,14 @@ public static class KeyboardIcons
             { Key.Bracketright, "keyboard_bracket_close.png" },
             { Key.Asciitilde, "keyboard_tilde.png" },
         };
-    }
 
+    private static string ItemsFolder => "res://UISystem/Textures/Inputs/Keyboard/";
+
+    /// <summary>
+    /// Gets the keyboard icon name.
+    /// </summary>
+    /// <param name="key">Keyboard key.</param>
+    /// <returns>Path to the icon image.</returns>
     public static string GetIcon(Key key)
     {
         return ItemsFolder + _keys[key];
@@ -306,6 +311,4 @@ public static class KeyboardIcons
             case Key.Section:
                 break;
      * */
-
-
 }

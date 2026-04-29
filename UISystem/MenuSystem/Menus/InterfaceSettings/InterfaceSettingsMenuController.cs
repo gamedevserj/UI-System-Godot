@@ -30,13 +30,13 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCre
     {
         SetupControllerIconsDropdown();
         base.SetupElements();
-        _view.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
+        View.SaveSettingsButton.ButtonDown += OnSaveSettingsButtonDown;
     }
 
     private void OnSaveSettingsButtonDown()
     {
         _model.SaveSettings();
-        _view.SetLastSelectedElement(_view.SaveSettingsButton);
+        View.SetLastSelectedElement(View.SaveSettingsButton);
     }
 
     private void SetupControllerIconsDropdown()
@@ -47,20 +47,20 @@ internal class InterfaceSettingsMenuController : SettingsMenuController<IViewCre
             var name = ((ControllerIconsType)i).ToString();
             items[i] = new OptionButtonItem(name, i);
         }
-        _view.ControllerIconsDropdown.AddMultipleItems(items);
-        _view.ControllerIconsDropdown.ItemSelected += SelectControllerIconsType;
-        _view.ControllerIconsDropdown.SelectItem((int)_model.ControllerIconsType);
+        View.ControllerIconsDropdown.AddMultipleItems(items);
+        View.ControllerIconsDropdown.ItemSelected += SelectControllerIconsType;
+        View.ControllerIconsDropdown.SelectItem((int)_model.ControllerIconsType);
     }
 
     private void SelectControllerIconsType(long index)
     {
         _model.SelectIconType((int)index);
-        _view.SetLastSelectedElement(_view.ControllerIconsDropdown);
+        View.SetLastSelectedElement(View.ControllerIconsDropdown);
     }
 
     protected override void ResetViewToDefault()
     {
-        _view.ControllerIconsDropdown.SelectItem((int)_model.ControllerIconsType);
+        View.ControllerIconsDropdown.SelectItem((int)_model.ControllerIconsType);
     }
 
 }

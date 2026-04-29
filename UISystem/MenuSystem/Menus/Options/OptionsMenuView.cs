@@ -22,7 +22,7 @@ public partial class OptionsMenuView : MenuView
     public ButtonView RebindKeysButton => rebindKeysButton;
     public Control FadeObjectsContainer => fadeObjectsContainer;
 
-    protected override IFocusableControl DefaultSelectedElement => InterfaceSettingsButton;
+    protected override IFocusableUiElement DefaultSelectedElement => InterfaceSettingsButton;
 
     protected override IViewTransition CreateTransition()
     {
@@ -31,7 +31,7 @@ public partial class OptionsMenuView : MenuView
     }
     protected override void PopulateFocusableElements()
     {
-        _focusableElements = new IFocusableControl[] { ReturnButton, AudioSettingsButton, VideoSettingsButton,
+        FocusableElements = new IFocusableUiElement[] { ReturnButton, AudioSettingsButton, VideoSettingsButton,
             RebindKeysButton, InterfaceSettingsButton };
     }
 

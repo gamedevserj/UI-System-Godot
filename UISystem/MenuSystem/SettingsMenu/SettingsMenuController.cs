@@ -8,7 +8,7 @@ using UISystem.PopupSystem.Popups.Views;
 
 namespace UISystem.MenuSystem.SettingsMenu;
 internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
-    : MenuController<TViewCreator, TView, IFocusableControl>
+    : MenuController<TViewCreator, TView, IFocusableUiElement>
     where TViewCreator : IViewCreator<TView>
     where TView : SettingsMenuView
     where TModel : ISettingsMenuModel
@@ -31,15 +31,15 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
 
     protected override void SetupElements()
     {
-        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
-        _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
+        View.ReturnButton.ButtonDown += OnReturnButtonDown;
+        View.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
     }
 
     public override void OnReturnButtonDown()
     {
         if (_model.HasUnappliedSettings)
         {
-            _view.SetLastSelectedElement(_view.ReturnButton);
+            View.SetLastSelectedElement(View.ReturnButton);
             CanReceivePhysicalInput = false;
             SwitchInteractability(false);
             _popupsManager.ShowPopup(typeof(YesNoCancelPopupView), PopupMessages.SaveChanges, (result) =>
@@ -77,7 +77,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
 
     protected virtual void OnResetToDefaultButtonDown()
     {
-        _view.SetLastSelectedElement(_view.ResetButton);
+        View.SetLastSelectedElement(View.ResetButton);
         SwitchInteractability(false);
         _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.ResetToDefault, (result) =>
         {

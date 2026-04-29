@@ -44,9 +44,9 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
 
     protected override void SetupElements()
     {
-        _view.PlayButton.ButtonDown += PressedPlay;
-        _view.OptionsButton.ButtonDown += PressedOptions;
-        _view.QuitButton.ButtonDown += PressedQuit;
+        View.PlayButton.ButtonDown += PressedPlay;
+        View.OptionsButton.ButtonDown += PressedOptions;
+        View.QuitButton.ButtonDown += PressedQuit;
     }
 
     public override void OnReturnButtonDown()
@@ -57,22 +57,22 @@ internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView
 
     private void PressedPlay()
     {
-        _view.SetLastSelectedElement(_view.PlayButton);
+        View.SetLastSelectedElement(View.PlayButton);
         _screenFadeManager.FadeOut(() =>
         {
-            _menusManager.ShowMenu(typeof(InGameMenuView), StackingType.Clear, instant: true);
+            MenusManager.ShowMenu(typeof(InGameMenuView), StackingType.Clear, instant: true);
         });
     }
 
     private void PressedOptions()
     {
-        _view.SetLastSelectedElement(_view.OptionsButton);
-        _menusManager.ShowMenu(typeof(OptionsMenuView));
+        View.SetLastSelectedElement(View.OptionsButton);
+        MenusManager.ShowMenu(typeof(OptionsMenuView));
     }
 
     private void PressedQuit()
     {
-        _view.SetLastSelectedElement(_view.QuitButton);
+        View.SetLastSelectedElement(View.QuitButton);
         ShowQuitPopup();
     }
 

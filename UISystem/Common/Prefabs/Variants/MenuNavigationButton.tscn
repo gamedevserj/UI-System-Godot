@@ -5,16 +5,16 @@
 [ext_resource type="StyleBox" uid="uid://d1gy2bt5uinfv" path="res://UISystem/Styles/ButtonShape.tres" id="4_6uuwg"]
 [ext_resource type="Theme" uid="uid://bwj1we86ii4gw" path="res://UISystem/Themes/ButtonsFontTheme.tres" id="5_osv58"]
 
-[node name="MenuNavigationButton" type="Button" node_paths=PackedStringArray("resizableControl", "innerColor", "border", "label")]
+[node name="MenuNavigationButton" type="Button" node_paths=PackedStringArray("_resizableControl", "_innerColor", "_border", "_label")]
 self_modulate = Color(1, 1, 1, 0)
 size_flags_vertical = 3
 flat = true
 script = ExtResource("1_tsrqv")
-buttonHoverSettings = ExtResource("2_pe4x4")
-resizableControl = NodePath("ResizableControl")
-innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
-border = NodePath("ResizableControl/Border")
-label = NodePath("ResizableControl/TextClipper/Label")
+_buttonHoverSettings = ExtResource("2_pe4x4")
+_resizableControl = NodePath("ResizableControl")
+_innerColor = NodePath("ResizableControl/Border/Control/InsideColor")
+_border = NodePath("ResizableControl/Border")
+_label = NodePath("ResizableControl/TextClipper/Label")
 
 [node name="ResizableControl" type="Control" parent="."]
 layout_mode = 3

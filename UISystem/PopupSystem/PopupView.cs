@@ -17,7 +17,7 @@ public abstract partial class PopupView : ViewBase, IPopupView
     public Control Panel => panel;
     public Label Message { set => messageLabel = value; }
     public ResizableControlView MessageMask => messageMask;
-    public abstract IFocusableControl DefaultSelectedElement { get; }
+    public abstract IFocusableUiElement DefaultSelectedElement { get; }
 
     public override void FocusElement()
     {

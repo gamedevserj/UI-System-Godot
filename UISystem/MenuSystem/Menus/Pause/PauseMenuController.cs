@@ -46,20 +46,20 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
 
     protected override void SetupElements()
     {
-        _view.ResumeGameButton.ButtonDown += OnReturnButtonDown;
-        _view.OptionsButton.ButtonDown += PressedOptions;
-        _view.ReturnToMainMenuButton.ButtonDown += PressedReturn;
+        View.ResumeGameButton.ButtonDown += OnReturnButtonDown;
+        View.OptionsButton.ButtonDown += PressedOptions;
+        View.ReturnToMainMenuButton.ButtonDown += PressedReturn;
     }
 
     private void PressedOptions()
     {
-        _view.SetLastSelectedElement(_view.OptionsButton);
-        _menusManager.ShowMenu(typeof(OptionsMenuView));
+        View.SetLastSelectedElement(View.OptionsButton);
+        MenusManager.ShowMenu(typeof(OptionsMenuView));
     }
 
     private void PressedReturn()
     {
-        _view.SetLastSelectedElement(_view.ReturnToMainMenuButton);
+        View.SetLastSelectedElement(View.ReturnToMainMenuButton);
         SwitchInteractability(false);
 
         _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.QuitToMainMenu, (result) =>
@@ -68,7 +68,7 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
             {
                 _screenFadeManager.FadeOut(() =>
                 {
-                    _menusManager.ShowMenu(typeof(MainMenuView), StackingType.Clear, null, true);
+                    MenusManager.ShowMenu(typeof(MainMenuView), StackingType.Clear, null, true);
                 });
             }
             else if (result == PopupResult.No)

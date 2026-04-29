@@ -14,9 +14,9 @@ internal class YesNoCancelPopupController : PopupControllerBase<IViewCreator<Yes
 
     protected override void SetupElements()
     {
-        _view.YesButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.Yes);
-        _view.NoButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.No);
-        _view.CancelButton.ButtonDown += () => _popupsManager.HidePopup(PopupResult.Cancel);
+        View.YesButton.ButtonDown += () => PopupsManager.HidePopup(PopupResult.Yes);
+        View.NoButton.ButtonDown += () => PopupsManager.HidePopup(PopupResult.No);
+        View.CancelButton.ButtonDown += () => PopupsManager.HidePopup(PopupResult.Cancel);
     }
 
 }

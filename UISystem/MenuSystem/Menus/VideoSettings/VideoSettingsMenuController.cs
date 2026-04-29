@@ -26,7 +26,7 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
         base.SetupElements();
         SetupWindowModeDropdown();
         SetupResolutionDropdown();
-        _view.SaveSettingsButton.ButtonDown += _model.SaveSettings;
+        View.SaveSettingsButton.ButtonDown += _model.SaveSettings;
     }
 
     private void SetupWindowModeDropdown()
@@ -38,9 +38,9 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
             var name = Regex.Replace(windowModeNames[i].ToString(), "([A-Z])", " $1").Trim(); // to have space in ExclusiveFullscreen
             items[i] = new OptionButtonItem(name, i);
         }
-        _view.WindowModeDropdown.AddMultipleItems(items);
-        _view.WindowModeDropdown.SelectItem(_model.CurrenWindowModeIndex);
-        _view.WindowModeDropdown.ItemSelected += OnWindowModeDropdownSelect;
+        View.WindowModeDropdown.AddMultipleItems(items);
+        View.WindowModeDropdown.SelectItem(_model.CurrenWindowModeIndex);
+        View.WindowModeDropdown.ItemSelected += OnWindowModeDropdownSelect;
     }
 
     private void SetupResolutionDropdown()
@@ -52,12 +52,12 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
             items[i] = new OptionButtonItem(resolutionNames[i], i);
         }
 
-        _view.ResolutionDropdown.AddMultipleItems(items);
+        View.ResolutionDropdown.AddMultipleItems(items);
         // if player resizes window, there won't be any matching resolutions
         // this is to prevent dropdown being empty and show some value
         int index = _model.CurrentResolutionIndex > 0 ? _model.CurrentResolutionIndex : 0;
-        _view.ResolutionDropdown.SelectItem(index);
-        _view.ResolutionDropdown.ItemSelected += OnResolutionDropdownSelect;
+        View.ResolutionDropdown.SelectItem(index);
+        View.ResolutionDropdown.ItemSelected += OnResolutionDropdownSelect;
     }
 
     private void OnResolutionDropdownSelect(long index)
@@ -72,7 +72,7 @@ internal class VideoSettingsMenuController : SettingsMenuController<IViewCreator
 
     protected override void ResetViewToDefault()
     {
-        _view.WindowModeDropdown.SelectItem(_model.CurrenWindowModeIndex);
-        _view.ResolutionDropdown.SelectItem(_model.CurrentResolutionIndex);
+        View.WindowModeDropdown.SelectItem(_model.CurrenWindowModeIndex);
+        View.ResolutionDropdown.SelectItem(_model.CurrentResolutionIndex);
     }
 }

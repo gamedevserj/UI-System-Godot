@@ -46,7 +46,7 @@ internal class RebindKeysMenuController
     private void OnButtonDown(RebindableKeyButtonView button, string action, int index)
     {
         button.TextureRect.Texture = (Texture2D)GD.Load(Icons.EllipsisImage);
-        _view.SetLastSelectedElement(button);
+        View.SetLastSelectedElement(button);
         SwitchInteractability(false);
 
         _model.StartRebinding(action, index, () =>
@@ -57,35 +57,35 @@ internal class RebindKeysMenuController
         });
     }
 
-    private void SwitchRebindingButtonFocusability(IFocusableControl button, bool allowFocus)
+    private void SwitchRebindingButtonFocusability(IFocusableUiElement button, bool allowFocus)
     {
         SwitchInteractability(allowFocus);
         if (allowFocus)
         {
-            _view.GetViewport().SetInputAsHandled();
-            _view.SetLastSelectedElement(button);
+            View.GetViewport().SetInputAsHandled();
+            View.SetLastSelectedElement(button);
         }
     }
 
     protected override void SetupElements()
     {
-        _view.ReturnButton.ButtonDown += OnReturnButtonDown;
-        _view.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
+        View.ReturnButton.ButtonDown += OnReturnButtonDown;
+        View.ResetButton.ButtonDown += OnResetToDefaultButtonDown;
 
-        _view.MoveLeft.ButtonDown += () =>
-        OnButtonDown(_view.MoveLeft, InputsData.MoveLeft, InputsData.KeyboardEventIndex);
-        _view.MoveLeftJoystick.ButtonDown += () =>
-        OnButtonDown(_view.MoveLeftJoystick, InputsData.MoveLeft, InputsData.JoystickEventIndex);
+        View.MoveLeft.ButtonDown += () =>
+        OnButtonDown(View.MoveLeft, InputsData.MoveLeft, InputsData.KeyboardEventIndex);
+        View.MoveLeftJoystick.ButtonDown += () =>
+        OnButtonDown(View.MoveLeftJoystick, InputsData.MoveLeft, InputsData.JoystickEventIndex);
 
-        _view.MoveRight.ButtonDown += () =>
-        OnButtonDown(_view.MoveRight, InputsData.MoveRight, InputsData.KeyboardEventIndex);
-        _view.MoveRightJoystick.ButtonDown += () =>
-        OnButtonDown(_view.MoveRightJoystick, InputsData.MoveRight, InputsData.JoystickEventIndex);
+        View.MoveRight.ButtonDown += () =>
+        OnButtonDown(View.MoveRight, InputsData.MoveRight, InputsData.KeyboardEventIndex);
+        View.MoveRightJoystick.ButtonDown += () =>
+        OnButtonDown(View.MoveRightJoystick, InputsData.MoveRight, InputsData.JoystickEventIndex);
 
-        _view.Jump.ButtonDown += () =>
-        OnButtonDown(_view.Jump, InputsData.Jump, InputsData.KeyboardEventIndex);
-        _view.JumpJoystick.ButtonDown += () =>
-        OnButtonDown(_view.JumpJoystick, InputsData.Jump, InputsData.JoystickEventIndex);
+        View.Jump.ButtonDown += () =>
+        OnButtonDown(View.Jump, InputsData.Jump, InputsData.KeyboardEventIndex);
+        View.JumpJoystick.ButtonDown += () =>
+        OnButtonDown(View.JumpJoystick, InputsData.Jump, InputsData.JoystickEventIndex);
 
         UpdateAllButtonViews();
     }
@@ -93,16 +93,16 @@ internal class RebindKeysMenuController
     private void UpdateAllButtonViews()
     {
         string action = InputsData.MoveLeft;
-        UpdateButtonView(_view.MoveLeft, action, InputsData.KeyboardEventIndex);
-        UpdateButtonView(_view.MoveLeftJoystick, action, InputsData.JoystickEventIndex);
+        UpdateButtonView(View.MoveLeft, action, InputsData.KeyboardEventIndex);
+        UpdateButtonView(View.MoveLeftJoystick, action, InputsData.JoystickEventIndex);
 
         action = InputsData.MoveRight;
-        UpdateButtonView(_view.MoveRight, action, InputsData.KeyboardEventIndex);
-        UpdateButtonView(_view.MoveRightJoystick, action, InputsData.JoystickEventIndex);
+        UpdateButtonView(View.MoveRight, action, InputsData.KeyboardEventIndex);
+        UpdateButtonView(View.MoveRightJoystick, action, InputsData.JoystickEventIndex);
 
         action = InputsData.Jump;
-        UpdateButtonView(_view.Jump, action, InputsData.KeyboardEventIndex);
-        UpdateButtonView(_view.JumpJoystick, action, InputsData.JoystickEventIndex);
+        UpdateButtonView(View.Jump, action, InputsData.KeyboardEventIndex);
+        UpdateButtonView(View.JumpJoystick, action, InputsData.JoystickEventIndex);
 
     }
 

@@ -19,7 +19,7 @@ public partial class PauseMenuView : MenuView
     public ButtonView ReturnToMainMenuButton => returnToMainMenuButton;
     public Control FadeObjectsContainer => fadeObjectsContainer;
 
-    protected override IFocusableControl DefaultSelectedElement => ResumeGameButton;
+    protected override IFocusableUiElement DefaultSelectedElement => ResumeGameButton;
 
     protected override IViewTransition CreateTransition()
     {
@@ -28,7 +28,7 @@ public partial class PauseMenuView : MenuView
 
     protected override void PopulateFocusableElements()
     {
-        _focusableElements = new IFocusableControl[] { ResumeGameButton, OptionsButton, ReturnToMainMenuButton };
+        FocusableElements = new IFocusableUiElement[] { ResumeGameButton, OptionsButton, ReturnToMainMenuButton };
     }
 
 }

@@ -3,11 +3,11 @@ using UISystem.Elements;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem;
-public abstract partial class MenuView : ViewBase, IMenuView<IFocusableControl>
+public abstract partial class MenuView : ViewBase, IMenuView<IFocusableUiElement>
 {
 
-    private IFocusableControl _lastSelectedElement;
-    protected abstract IFocusableControl DefaultSelectedElement { get; }
+    private IFocusableUiElement _lastSelectedElement;
+    protected abstract IFocusableUiElement DefaultSelectedElement { get; }
 
     public override void FocusElement()
     {
@@ -21,7 +21,7 @@ public abstract partial class MenuView : ViewBase, IMenuView<IFocusableControl>
         }
     }
 
-    public void SetLastSelectedElement(IFocusableControl lastSelectedElement)
+    public void SetLastSelectedElement(IFocusableUiElement lastSelectedElement)
     {
         _lastSelectedElement = lastSelectedElement;
     }

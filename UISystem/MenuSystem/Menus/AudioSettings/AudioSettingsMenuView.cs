@@ -31,7 +31,7 @@ public partial class AudioSettingsMenuView : SettingsMenuView
     }
     protected override void PopulateFocusableElements()
     {
-        _focusableElements = new IFocusableControl[] { MusicSlider, SfxSlider, SaveSettingsButton, ResetButton, ReturnButton };
+        FocusableElements = new IFocusableUiElement[] { MusicSlider, SfxSlider, SaveSettingsButton, ResetButton, ReturnButton };
     }
 
 }

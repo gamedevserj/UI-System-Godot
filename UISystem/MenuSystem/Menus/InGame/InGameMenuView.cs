@@ -11,7 +11,7 @@ public partial class InGameMenuView : MenuView
 
     public Control FadeObjectsContainer => fadeObjectsContainer;
 
-    protected override IFocusableControl DefaultSelectedElement => null;
+    protected override IFocusableUiElement DefaultSelectedElement => null;
 
     protected override IViewTransition CreateTransition()
     {

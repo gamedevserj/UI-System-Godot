@@ -1,7 +1,11 @@
 ﻿namespace UISystem.Core.Constants;
-internal class InputsData
-{
 
+/// <summary>
+/// Class containing inputs data.
+/// </summary>
+#pragma warning disable SA1600 // Elements should be documented
+internal static class InputsData
+{
     public const string ReturnButton = "ReturnToPreviousMenu";
     public const string PauseButton = "PauseButton";
 
@@ -13,5 +17,5 @@ internal class InputsData
     public const string Jump = "Jump";
 
     public static readonly string[] RebindableActions = { MoveLeft, MoveRight, Jump };
-
 }
+#pragma warning restore SA1600 // Elements should be documented
