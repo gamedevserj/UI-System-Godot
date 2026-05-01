@@ -34,7 +34,8 @@ public partial class DropdownView : OptionButton, IFocusableUiElement, ITweenabl
     /// <inheritdoc/>
     public override async void _EnterTree()
     {
-        if (buttonHoverSettings == null) return;
+        if (buttonHoverSettings == null)
+            return;
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
@@ -50,7 +51,8 @@ public partial class DropdownView : OptionButton, IFocusableUiElement, ITweenabl
     /// </summary>
     public async Task ResetHover()
     {
-        if (_hoverTweener == null) await Task.CompletedTask;
+        if (_hoverTweener == null)
+            await Task.CompletedTask;
 
         _tween?.Kill();
         _tween = GetTree().CreateTween();
@@ -88,7 +90,8 @@ public partial class DropdownView : OptionButton, IFocusableUiElement, ITweenabl
 
     private void Unsubscribe()
     {
-        if (buttonHoverSettings == null) return;
+        if (buttonHoverSettings == null)
+            return;
         FocusEntered -= OnFocusEntered;
         FocusExited -= OnFocusExited;
         MouseEntered -= OnMouseEntered;
@@ -119,7 +122,8 @@ public partial class DropdownView : OptionButton, IFocusableUiElement, ITweenabl
 
     private void HoverTween()
     {
-        if (_hoverTweener == null) return;
+        if (_hoverTweener == null)
+            return;
 
         _tween?.Kill();
         _tween = GetTree().CreateTween();
@@ -128,7 +132,8 @@ public partial class DropdownView : OptionButton, IFocusableUiElement, ITweenabl
 
     private ControlDrawMode GetDrawingMode()
     {
-        if (Disabled) return ControlDrawMode.Disabled;
+        if (Disabled)
+            return ControlDrawMode.Disabled;
         if (HasFocus())
         {
             return _mouseOver ? ControlDrawMode.HoverFocus : ControlDrawMode.Focus;

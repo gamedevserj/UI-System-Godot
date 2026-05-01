@@ -4,7 +4,6 @@ using UISystem.Core.Views;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
-using UISystem.PopupSystem;
 
 namespace UISystem.MenuSystem.Controllers;
 
@@ -24,7 +23,7 @@ internal class AudioSettingsMenuController : SettingsMenuController<IViewCreator
         IViewCreator<AudioSettingsMenuView> viewCreator,
         IMenusManager menusManager,
         AudioSettingsMenuModel model,
-        IPopupsManager<PopupResult> popupsManager)
+        IPopupsManager popupsManager)
         : base(viewCreator, menusManager, model, popupsManager)
     {
     }

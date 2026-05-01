@@ -11,7 +11,6 @@ using UISystem.MenuSystem.Controllers;
 using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.Views;
 using UISystem.PhysicalInput;
-using UISystem.PopupSystem;
 using UISystem.PopupSystem.Constants;
 using UISystem.PopupSystem.Popups.Controllers;
 using UISystem.PopupSystem.Popups.Views;
@@ -58,11 +57,11 @@ public partial class UiInstaller : Node
     {
         SceneTree tree = GetTree();
 
-        var popupsManager = new PopupsManager<PopupResult>();
+        var popupsManager = new PopupsManager();
         var yesPopupViewCreator = new ViewCreator<YesPopupView>(GetPopupPath(typeof(YesPopupView)), _popupsParent);
         var yesNoPopupViewCreator = new ViewCreator<YesNoPopupView>(GetPopupPath(typeof(YesNoPopupView)), _popupsParent);
         var yesNoCancelPopupViewCreator = new ViewCreator<YesNoCancelPopupView>(GetPopupPath(typeof(YesNoCancelPopupView)), _popupsParent);
-        var popups = new Dictionary<Type, IPopupController<PopupResult>>
+        var popups = new Dictionary<Type, IPopupController>
         {
             {
                 typeof(YesPopupView),

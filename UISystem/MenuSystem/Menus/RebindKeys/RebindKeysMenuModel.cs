@@ -152,7 +152,8 @@ public class RebindKeysMenuModel : ISettingsMenuModel
 
         for (int i = 0; i < currentEvents.Count; i++)
         {
-            if (key.IsMatch(eventToCheck)) // the same key that was before rebinding
+            // the same key that was before rebinding
+            if (key.IsMatch(eventToCheck))
             {
                 result = false;
                 break;

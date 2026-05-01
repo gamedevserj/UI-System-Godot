@@ -36,7 +36,8 @@ public partial class HSliderView : HSlider, IFocusableUiElement, ITweenableMenuE
     /// <inheritdoc/>
     public override async void _EnterTree()
     {
-        if (hoverSettings == null) return;
+        if (hoverSettings == null)
+            return;
 
         await ToSignal(RenderingServer.Singleton, RenderingServerInstance.SignalName.FramePostDraw);
 
@@ -51,7 +52,8 @@ public partial class HSliderView : HSlider, IFocusableUiElement, ITweenableMenuE
     /// <inheritdoc/>
     public async Task ResetHover()
     {
-        if (_hoverTweener == null) await Task.CompletedTask;
+        if (_hoverTweener == null)
+            await Task.CompletedTask;
 
         _tween?.Kill();
         _tween = GetTree().CreateTween();
@@ -80,7 +82,8 @@ public partial class HSliderView : HSlider, IFocusableUiElement, ITweenableMenuE
 
     private void Unsubscribe()
     {
-        if (hoverSettings == null) return;
+        if (hoverSettings == null)
+            return;
         FocusEntered -= OnFocusEntered;
         FocusExited -= OnFocusExited;
         MouseEntered -= OnMouseEntered;
@@ -107,7 +110,8 @@ public partial class HSliderView : HSlider, IFocusableUiElement, ITweenableMenuE
 
     private void HoverTween()
     {
-        if (_hoverTweener == null) return;
+        if (_hoverTweener == null)
+            return;
 
         _tween?.Kill();
         _tween = GetTree().CreateTween();

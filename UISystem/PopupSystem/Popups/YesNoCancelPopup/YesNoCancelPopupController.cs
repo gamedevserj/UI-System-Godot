@@ -7,14 +7,14 @@ namespace UISystem.PopupSystem.Popups.Controllers;
 /// <summary>
 /// Yes/No/Cancel popup controller.
 /// </summary>
-internal class YesNoCancelPopupController : PopupControllerBase<IViewCreator<YesNoCancelPopupView>, YesNoCancelPopupView>
+internal class YesNoCancelPopupController : PopupController<IViewCreator<YesNoCancelPopupView>, YesNoCancelPopupView>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="YesNoCancelPopupController"/> class.
     /// </summary>
     /// <param name="viewCreator">View creator.</param>
     /// <param name="popupsManager">Popups manager.</param>
-    public YesNoCancelPopupController(IViewCreator<YesNoCancelPopupView> viewCreator, IPopupsManager<PopupResult> popupsManager)
+    public YesNoCancelPopupController(IViewCreator<YesNoCancelPopupView> viewCreator, IPopupsManager popupsManager)
         : base(viewCreator, popupsManager)
     {
     }

@@ -10,7 +10,6 @@ using UISystem.MenuSystem.Models;
 using UISystem.MenuSystem.SettingsMenu;
 using UISystem.MenuSystem.Views;
 using UISystem.PhysicalInput;
-using UISystem.PopupSystem;
 
 namespace UISystem.MenuSystem.Controllers;
 
@@ -31,7 +30,7 @@ internal class RebindKeysMenuController
         IViewCreator<RebindKeysMenuView> viewCreator,
         IMenusManager menusManager,
         RebindKeysMenuModel model,
-        IPopupsManager<PopupResult> popupsManager)
+        IPopupsManager popupsManager)
         : base(viewCreator, menusManager, model, popupsManager)
     {
     }

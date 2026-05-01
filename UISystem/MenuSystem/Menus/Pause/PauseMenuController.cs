@@ -6,7 +6,6 @@ using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
 using UISystem.MenuSystem.Views;
-using UISystem.PopupSystem;
 using UISystem.PopupSystem.Popups.Views;
 using UISystem.ScreenFade;
 
@@ -17,7 +16,7 @@ namespace UISystem.MenuSystem.Controllers;
 /// </summary>
 internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuView>, PauseMenuView>
 {
-    private readonly IPopupsManager<PopupResult> _popupsManager;
+    private readonly IPopupsManager _popupsManager;
     private readonly ScreenFadeManager _screenFadeManager;
     private readonly MenuBackgroundController _menuBackgroundController;
 
@@ -32,7 +31,7 @@ internal class PauseMenuController : MenuControllerBase<IViewCreator<PauseMenuVi
     public PauseMenuController(
         IViewCreator<PauseMenuView> viewCreator,
         IMenusManager menusManager,
-        IPopupsManager<PopupResult> popupsManager,
+        IPopupsManager popupsManager,
         ScreenFadeManager screenFadeManager,
         MenuBackgroundController menuBackgroundController)
         : base(viewCreator, menusManager)

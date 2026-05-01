@@ -7,14 +7,14 @@ namespace UISystem.PopupSystem.Popups.Controllers;
 /// <summary>
 /// Yes popup controller.
 /// </summary>
-internal class YesPopupController : PopupControllerBase<IViewCreator<YesPopupView>, YesPopupView>
+internal class YesPopupController : PopupController<IViewCreator<YesPopupView>, YesPopupView>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="YesPopupController"/> class.
     /// </summary>
     /// <param name="viewCreator">View creator.</param>
     /// <param name="popupsManager">Popups manager.</param>
-    public YesPopupController(IViewCreator<YesPopupView> viewCreator, IPopupsManager<PopupResult> popupsManager)
+    public YesPopupController(IViewCreator<YesPopupView> viewCreator, IPopupsManager popupsManager)
         : base(viewCreator, popupsManager)
     {
     }

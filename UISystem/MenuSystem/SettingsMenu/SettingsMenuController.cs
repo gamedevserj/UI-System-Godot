@@ -4,7 +4,6 @@ using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
 using UISystem.Elements;
-using UISystem.PopupSystem;
 using UISystem.PopupSystem.Popups.Views;
 
 namespace UISystem.MenuSystem.SettingsMenu;
@@ -32,7 +31,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
         TViewCreator viewCreator,
         IMenusManager menusManager,
         TModel model,
-        IPopupsManager<PopupResult> popupsManager)
+        IPopupsManager popupsManager)
         : base(viewCreator, menusManager)
     {
         Model = model;
@@ -47,7 +46,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
     /// <summary>
     /// Gets the popups manager.
     /// </summary>
-    protected IPopupsManager<PopupResult> PopupsManager { get; private set; }
+    protected IPopupsManager PopupsManager { get; private set; }
 
     /// <inheritdoc/>
     public override void OnReturnButtonDown()

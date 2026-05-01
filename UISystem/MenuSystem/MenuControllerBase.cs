@@ -5,11 +5,11 @@ using UISystem.Elements;
 namespace UISystem.MenuSystem;
 
 /// <summary>
-/// just a base class to adapt generic controller to Godot's specific parameters
-/// so that there is no need to specify IFocusableControl for every controller
+/// A base class to adapt generic controller to Godot's specific parameters,
+/// so that there is no need to specify <see cref="IMenuView{IFocusableUiElement}"/> for every controller.
 /// </summary>
-/// <typeparam name="TViewCreator">Type of view creator. Must implement <see cref="IViewCreator{TView}"/></typeparam>
-/// <typeparam name="TView">Type of view. Must implement <see cref="IMenuView{TInteractableElement}"/></typeparam>
+/// <typeparam name="TViewCreator">Type of view creator. Must implement <see cref="IViewCreator{TView}"/>.</typeparam>
+/// <typeparam name="TView">Type of view. Must implement <see cref="IMenuView{IFocusableUiElement}"/>.</typeparam>
 internal abstract class MenuControllerBase<TViewCreator, TView>
     : MenuController<TViewCreator, TView, IFocusableUiElement>
     where TViewCreator : IViewCreator<TView>
