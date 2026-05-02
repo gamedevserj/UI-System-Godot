@@ -46,7 +46,7 @@ public partial class VideoSettingsMenuView : SettingsMenuView
     /// <inheritdoc/>
     protected override void PopulateFocusableElements()
     {
-        FocusableElements = new IFocusableUiElement[]
+        FocusableElements = new IInteractableElement[]
         {
             WindowModeDropdown, ResolutionDropdown, SaveSettingsButton, ResetButton, ReturnButton,
         };

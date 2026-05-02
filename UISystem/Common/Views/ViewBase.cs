@@ -17,12 +17,12 @@ public abstract partial class ViewBase : Control, IView
     /// <summary>
     /// Gets or sets interactable elements.
     /// </summary>
-    protected IFocusableUiElement[] FocusableElements { get; set; }
+    protected IInteractableElement[] FocusableElements { get; set; }
 
     /// <summary>
     /// Gets the element that is selected by default when menu is shown for the first time.
     /// </summary>
-    protected abstract IFocusableUiElement DefaultSelectedElement { get; }
+    protected abstract IInteractableElement DefaultSelectedElement { get; }
 
     /// <inheritdoc/>
     public virtual void Init()

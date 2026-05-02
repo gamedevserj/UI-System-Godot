@@ -11,7 +11,7 @@ namespace UISystem.Elements.ElementViews;
 /// <summary>
 /// Base class for horizontal slider view.
 /// </summary>
-public partial class HSliderView : HSlider, IFocusableUiElement, ITweenableMenuElement
+public partial class HSliderView : HSlider, IInteractableElement, ITweenableMenuElement
 {
     [Export] private HSliderHoverSettings hoverSettings;
     [Export] private Control grabber;

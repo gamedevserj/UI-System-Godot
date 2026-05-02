@@ -13,7 +13,7 @@ public partial class InGameMenuView : MenuView
     [Export] private Control _fadeObjectsContainer;
 
     /// <inheritdoc/>
-    protected override IFocusableUiElement DefaultSelectedElement => null;
+    protected override IInteractableElement DefaultSelectedElement => null;
 
     /// <inheritdoc/>
     protected override IViewTransition CreateTransition()

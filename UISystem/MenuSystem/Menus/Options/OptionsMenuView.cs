@@ -44,7 +44,7 @@ public partial class OptionsMenuView : MenuView
     public ButtonView RebindKeysButton => _rebindKeysButton;
 
     /// <inheritdoc/>
-    protected override IFocusableUiElement DefaultSelectedElement => InterfaceSettingsButton;
+    protected override IInteractableElement DefaultSelectedElement => InterfaceSettingsButton;
 
     /// <inheritdoc/>
     protected override IViewTransition CreateTransition()
@@ -59,7 +59,7 @@ public partial class OptionsMenuView : MenuView
     /// <inheritdoc/>
     protected override void PopulateFocusableElements()
     {
-        FocusableElements = new IFocusableUiElement[]
+        FocusableElements = new IInteractableElement[]
         {
             ReturnButton,
             AudioSettingsButton,

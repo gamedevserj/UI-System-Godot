@@ -11,7 +11,7 @@ namespace UISystem.Elements.ElementViews;
 /// <summary>
 /// Base class for button view.
 /// </summary>
-public partial class ButtonView : BaseButton, IFocusableUiElement, ITweenableMenuElement
+public partial class ButtonView : BaseButton, IInteractableElement, ITweenableMenuElement
 {
     [Export] private ButtonHoverSettings _buttonHoverSettings;
     [Export] private Control _resizableControl;

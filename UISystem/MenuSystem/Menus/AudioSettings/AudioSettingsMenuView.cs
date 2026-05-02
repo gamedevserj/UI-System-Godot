@@ -72,6 +72,6 @@ public partial class AudioSettingsMenuView : SettingsMenuView
     /// <inheritdoc/>
     protected override void PopulateFocusableElements()
     {
-        FocusableElements = new IFocusableUiElement[] { MusicSlider, SfxSlider, SaveSettingsButton, ResetButton, ReturnButton };
+        FocusableElements = new IInteractableElement[] { MusicSlider, SfxSlider, SaveSettingsButton, ResetButton, ReturnButton };
     }
 }

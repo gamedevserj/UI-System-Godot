@@ -20,7 +20,7 @@ internal partial class YesPopupView : PopupView
     public ButtonView YesButton => _yesButton;
 
     /// <inheritdoc/>
-    protected override IFocusableUiElement DefaultSelectedElement => YesButton;
+    protected override IInteractableElement DefaultSelectedElement => YesButton;
 
     /// <inheritdoc/>
     protected override IViewTransition CreateTransition()
@@ -31,6 +31,6 @@ internal partial class YesPopupView : PopupView
     /// <inheritdoc/>
     protected override void PopulateFocusableElements()
     {
-        FocusableElements = new IFocusableUiElement[] { YesButton };
+        FocusableElements = new IInteractableElement[] { YesButton };
     }
 }

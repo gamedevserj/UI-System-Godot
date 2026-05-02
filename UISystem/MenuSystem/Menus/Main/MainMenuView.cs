@@ -37,7 +37,7 @@ public partial class MainMenuView : MenuView
     public Control FadeObjectsContainer => _fadeObjectsContainer;
 
     /// <inheritdoc/>
-    protected override IFocusableUiElement DefaultSelectedElement => PlayButton;
+    protected override IInteractableElement DefaultSelectedElement => PlayButton;
 
     /// <inheritdoc/>
     protected override IViewTransition CreateTransition()
@@ -48,6 +48,6 @@ public partial class MainMenuView : MenuView
     /// <inheritdoc/>
     protected override void PopulateFocusableElements()
     {
-        FocusableElements = new IFocusableUiElement[] { PlayButton, OptionsButton, QuitButton };
+        FocusableElements = new IInteractableElement[] { PlayButton, OptionsButton, QuitButton };
     }
 }

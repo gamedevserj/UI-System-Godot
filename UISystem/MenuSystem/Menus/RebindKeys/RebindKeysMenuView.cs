@@ -72,7 +72,7 @@ public partial class RebindKeysMenuView : SettingsMenuView
     /// <inheritdoc/>
     protected override void PopulateFocusableElements()
     {
-        FocusableElements = new IFocusableUiElement[]
+        FocusableElements = new IInteractableElement[]
         {
             MoveLeft, MoveLeftJoystick, MoveRight, MoveRightJoystick, Jump, JumpJoystick, ResetButton, ReturnButton,
         };

@@ -101,7 +101,7 @@ internal class RebindKeysMenuController
         });
     }
 
-    private void SwitchRebindingButtonFocusability(IFocusableUiElement button, bool allowFocus)
+    private void SwitchRebindingButtonFocusability(IInteractableElement button, bool allowFocus)
     {
         SwitchInteractability(allowFocus);
         if (allowFocus)

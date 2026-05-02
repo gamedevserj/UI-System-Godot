@@ -40,6 +40,6 @@ public partial class InterfaceSettingsMenuView : SettingsMenuView
     /// <inheritdoc/>
     protected override void PopulateFocusableElements()
     {
-        FocusableElements = new IFocusableUiElement[] { ReturnButton, ControllerIconsDropdown, SaveSettingsButton, ResetButton };
+        FocusableElements = new IInteractableElement[] { ReturnButton, ControllerIconsDropdown, SaveSettingsButton, ResetButton };
     }
 }

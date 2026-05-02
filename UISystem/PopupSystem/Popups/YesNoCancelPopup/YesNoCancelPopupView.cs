@@ -32,7 +32,7 @@ internal partial class YesNoCancelPopupView : PopupView
     public ButtonView CancelButton => _cancelButton;
 
     /// <inheritdoc/>
-    protected override IFocusableUiElement DefaultSelectedElement => CancelButton;
+    protected override IInteractableElement DefaultSelectedElement => CancelButton;
 
     /// <inheritdoc/>
     protected override IViewTransition CreateTransition()
@@ -47,6 +47,6 @@ internal partial class YesNoCancelPopupView : PopupView
     /// <inheritdoc/>
     protected override void PopulateFocusableElements()
     {
-        FocusableElements = new IFocusableUiElement[] { YesButton, NoButton, CancelButton };
+        FocusableElements = new IInteractableElement[] { YesButton, NoButton, CancelButton };
     }
 }

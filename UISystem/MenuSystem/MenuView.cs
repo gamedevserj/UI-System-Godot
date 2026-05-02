@@ -9,7 +9,7 @@ namespace UISystem.MenuSystem;
 /// </summary>
 public abstract partial class MenuView : ViewBase, IMenuView
 {
-    private IFocusableUiElement _lastSelectedElement;
+    private IInteractableElement _lastSelectedElement;
 
     /// <inheritdoc/>
     public override void FocusElement()
@@ -25,7 +25,7 @@ public abstract partial class MenuView : ViewBase, IMenuView
     }
 
     /// <inheritdoc/>
-    public void SetLastSelectedElement(IFocusableUiElement lastSelectedElement)
+    public void SetLastSelectedElement(IInteractableElement lastSelectedElement)
     {
         _lastSelectedElement = lastSelectedElement;
     }

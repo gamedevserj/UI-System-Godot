@@ -11,7 +11,7 @@ namespace UISystem.Elements.ElementViews;
 /// <summary>
 /// Base class for dropdown view.
 /// </summary>
-public partial class DropdownView : OptionButton, IFocusableUiElement, ITweenableMenuElement
+public partial class DropdownView : OptionButton, IInteractableElement, ITweenableMenuElement
 {
     [Export] private ButtonHoverSettings buttonHoverSettings;
     [Export] private Control resizableControl;
