@@ -1,9 +1,9 @@
 ﻿using AsyncAwaitBestPractices;
 using UISystem.Constants;
+using UISystem.Core.Elements;
 using UISystem.Core.MenuSystem;
 using UISystem.Core.PopupSystem;
 using UISystem.Core.Views;
-using UISystem.Elements;
 using UISystem.PopupSystem.Popups.Views;
 
 namespace UISystem.MenuSystem.SettingsMenu;
@@ -15,7 +15,7 @@ namespace UISystem.MenuSystem.SettingsMenu;
 /// <typeparam name="TView">Type of view. Must inherit <see cref="SettingsMenuView"/>.</typeparam>
 /// <typeparam name="TModel">Type of model. Must implement <see cref="ISettingsMenuModel"/>.</typeparam>
 internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
-    : MenuController<TViewCreator, TView, IFocusableUiElement>
+    : MenuController<TViewCreator, TView>
     where TViewCreator : IViewCreator<TView>
     where TView : SettingsMenuView
     where TModel : ISettingsMenuModel

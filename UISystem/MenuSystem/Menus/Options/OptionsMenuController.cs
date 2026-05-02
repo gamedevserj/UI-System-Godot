@@ -8,7 +8,7 @@ namespace UISystem.MenuSystem.Controllers;
 /// <summary>
 /// Options menu controller.
 /// </summary>
-internal class OptionsMenuController : MenuControllerBase<IViewCreator<OptionsMenuView>, OptionsMenuView>
+internal class OptionsMenuController : MenuController<IViewCreator<OptionsMenuView>, OptionsMenuView>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="OptionsMenuController"/> class.

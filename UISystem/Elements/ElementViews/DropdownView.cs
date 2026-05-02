@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Godot;
+using UISystem.Core.Elements;
 using UISystem.Elements.HoverSettings;
+using UISystem.Extensions;
 using UISystem.Hovering;
 using UISystem.Transitions.Interfaces;
 
@@ -71,12 +73,37 @@ public partial class DropdownView : OptionButton, IFocusableUiElement, ITweenabl
         HoverTween();
     }
 
-    // needs to be a separate method to update label when selecting is called from code
-    // because view awaits one frame before subscribing when entering tree to allow controls to setup their transforms
+    /// <summary>
+    /// Selects an item in the dropdown. Needs to be a separate method to update label when selecting is called from code,
+    /// because view awaits one frame before subscribing when entering tree to allow controls to setup their transforms.
+    /// </summary>
+    /// <param name="index">Item index.</param>
     public void SelectItem(long index)
     {
         Select((int)index);
         UpdateText((int)index);
+    }
+
+    /// <inheritdoc/>
+    public void SwitchFocus(bool focus)
+    {
+        if (focus)
+            GrabFocus();
+        else
+            ReleaseFocus();
+    }
+
+    /// <inheritdoc/>
+    public bool IsValidElement() => this.IsValid();
+
+    /// <inheritdoc/>
+    public void SwitchFocusAvailability(bool focusable)
+    {
+        FocusMode = focusable ? FocusModeEnum.All : FocusModeEnum.None;
+        MouseFilter = focusable ? MouseFilterEnum.Stop : MouseFilterEnum.Ignore;
+
+        if (!focusable && HasFocus())
+            SwitchFocus(false);
     }
 
     private void Subscribe()

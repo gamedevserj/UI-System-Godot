@@ -1,5 +1,5 @@
-﻿using UISystem.Core.MenuSystem;
-using UISystem.Elements;
+﻿using UISystem.Core.Elements;
+using UISystem.Core.MenuSystem;
 using UISystem.Views;
 
 namespace UISystem.MenuSystem;
@@ -7,7 +7,7 @@ namespace UISystem.MenuSystem;
 /// <summary>
 /// Base class for menu views.
 /// </summary>
-public abstract partial class MenuView : ViewBase, IMenuView<IFocusableUiElement>
+public abstract partial class MenuView : ViewBase, IMenuView
 {
     private IFocusableUiElement _lastSelectedElement;
 

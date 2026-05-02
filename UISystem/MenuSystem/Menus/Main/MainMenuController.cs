@@ -15,7 +15,7 @@ namespace UISystem.MenuSystem.Controllers;
 /// <summary>
 /// Main menu controller.
 /// </summary>
-internal class MainMenuController : MenuControllerBase<IViewCreator<MainMenuView>, MainMenuView>
+internal class MainMenuController : MenuController<IViewCreator<MainMenuView>, MainMenuView>
 {
     private readonly SceneTree _sceneTree;
     private readonly IPopupsManager _popupsManager;

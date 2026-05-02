@@ -1,6 +1,8 @@
 ﻿using System.Threading.Tasks;
 using Godot;
+using UISystem.Core.Elements;
 using UISystem.Elements.HoverSettings;
+using UISystem.Extensions;
 using UISystem.Hovering;
 using UISystem.Transitions.Interfaces;
 
@@ -68,6 +70,28 @@ public partial class HSliderView : HSlider, IFocusableUiElement, ITweenableMenuE
             return;
 
         UpdateSliderVisual(newValue);
+    }
+
+    /// <inheritdoc/>
+    public void SwitchFocus(bool focus)
+    {
+        if (focus)
+            GrabFocus();
+        else
+            ReleaseFocus();
+    }
+
+    /// <inheritdoc/>
+    public bool IsValidElement() => this.IsValid();
+
+    /// <inheritdoc/>
+    public void SwitchFocusAvailability(bool focusable)
+    {
+        FocusMode = focusable ? FocusModeEnum.All : FocusModeEnum.None;
+        MouseFilter = focusable ? MouseFilterEnum.Stop : MouseFilterEnum.Ignore;
+
+        if (!focusable && HasFocus())
+            SwitchFocus(false);
     }
 
     private void Subscribe()

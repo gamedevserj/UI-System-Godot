@@ -8,7 +8,7 @@ namespace UISystem.MenuSystem.Controllers;
 /// <summary>
 /// In-game menu controller.
 /// </summary>
-internal class InGameMenuController : MenuControllerBase<IViewCreator<InGameMenuView>, InGameMenuView>
+internal class InGameMenuController : MenuController<IViewCreator<InGameMenuView>, InGameMenuView>
 {
     /// <summary>
     /// Initializes a new instance of the <see cref="InGameMenuController"/> class.
