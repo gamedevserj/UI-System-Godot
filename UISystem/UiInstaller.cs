@@ -90,7 +90,7 @@ public partial class UiInstaller : Node
                     popupsManager,
                     _screenFadeManager,
                     backgroundController),
-            new InGameMenuController(inGameMenuViewCreator, menusManager),
+            new InGameMenuController(inGameMenuViewCreator, menusManager, backgroundController),
             new PauseMenuController(
                     pauseViewCreator,
                     menusManager,

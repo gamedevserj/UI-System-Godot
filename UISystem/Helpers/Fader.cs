@@ -1,5 +1,4 @@
-﻿using System;
-using System.Threading.Tasks;
+﻿using System.Threading.Tasks;
 using Godot;
 using UISystem.Constants;
 
@@ -27,7 +26,8 @@ public static class Fader
     /// <param name="tree">Scene tree.</param>
     /// <param name="target">Target control.</param>
     /// <param name="instant">Whether transition should happen instantly.</param>
-    public static async Task Show(SceneTree tree, Control target, bool instant = false)
+    /// <param name="duration">Tween duration.</param>
+    public static async Task Show(SceneTree tree, Control target, bool instant = false, float duration = TransitionDuration)
     {
         var targetColor = new Color(target.Modulate, 1);
         if (instant)
@@ -36,7 +36,7 @@ public static class Fader
             return;
         }
 
-        await TweenColor(tree, target, targetColor);
+        await TweenColor(tree, target, targetColor, duration);
     }
 
     /// <summary>
@@ -45,7 +45,8 @@ public static class Fader
     /// <param name="tree">Scene tree.</param>
     /// <param name="target">Target control.</param>
     /// <param name="instant">Whether transition should happen instantly.</param>
-    public static async Task Hide(SceneTree tree, Control target, bool instant = false)
+    /// <param name="duration">Tween duration.</param>
+    public static async Task Hide(SceneTree tree, Control target, bool instant = false, float duration = TransitionDuration)
     {
         var targetColor = new Color(target.Modulate, 0);
         if (instant)
@@ -54,20 +55,19 @@ public static class Fader
             return;
         }
 
-        await TweenColor(tree, target, targetColor);
+        await TweenColor(tree, target, targetColor, duration);
     }
 
-    private static async Task TweenColor(SceneTree tree, Control target, Color targetColor)
+    private static async Task TweenColor(SceneTree tree, Control target, Color targetColor, float duration)
     {
         Tween tween = tree.CreateTween();
         tween.SetPauseMode(Tween.TweenPauseMode.Process);
-        tween.TweenProperty(target, PropertyConstants.Modulate, targetColor, TransitionDuration);
+        tween.TweenProperty(target, PropertyConstants.Modulate, targetColor, duration);
         await tree.ToSignal(tween, Tween.SignalName.Finished);
     }
 
-    private static void InstantChange(Control target, Color targetColor, Action onComplete = null)
+    private static void InstantChange(Control target, Color targetColor)
     {
         target.Modulate = targetColor;
-        onComplete?.Invoke();
     }
 }

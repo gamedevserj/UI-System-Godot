@@ -47,18 +47,10 @@ internal class MainMenuController : MenuController<IViewCreator<MainMenuView>, M
     }
 
     /// <inheritdoc/>
-    public override async Task Show(Action onComplete = null, bool instant = false)
+    public override async Task Show(bool instant = false)
     {
         _menuBackgroundController.ShowBackground(instant).SafeFireAndForget();
-        await base.Show(onComplete, instant);
-    }
-
-    /// <inheritdoc/>
-    public override async Task Hide(StackingType stackingType, Action onComplete = null, bool instant = false)
-    {
-        if (stackingType != StackingType.Add)
-            _menuBackgroundController.HideBackground(instant).SafeFireAndForget();
-        await base.Hide(stackingType, onComplete, instant);
+        await base.Show(instant);
     }
 
     /// <inheritdoc/>
