@@ -27,9 +27,9 @@ internal class InputProcessor : IInputProcessor<InputEvent>
     public InputProcessor(IMenusManager menusManager, IPopupsManager popupsManager)
     {
         _menusManager = menusManager;
-        _menusManager.OnControllerSwitch += OnMenuControllerSwitch;
+        _menusManager.ControllerSwitched += OnMenuControllerSwitch;
         _popupsManager = popupsManager;
-        _popupsManager.OnControllerSwitch += OnPopupControllerSwitch;
+        _popupsManager.ControllerSwitched += OnPopupControllerSwitch;
     }
 
     /// <summary>
@@ -37,8 +37,8 @@ internal class InputProcessor : IInputProcessor<InputEvent>
     /// </summary>
     ~InputProcessor()
     {
-        _menusManager.OnControllerSwitch += OnMenuControllerSwitch;
-        _popupsManager.OnControllerSwitch += OnPopupControllerSwitch;
+        _menusManager.ControllerSwitched += OnMenuControllerSwitch;
+        _popupsManager.ControllerSwitched += OnPopupControllerSwitch;
     }
 
     /// <inheritdoc/>

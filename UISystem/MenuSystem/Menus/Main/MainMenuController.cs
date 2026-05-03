@@ -80,14 +80,14 @@ internal class MainMenuController : MenuController<IViewCreator<MainMenuView>, M
     {
         View.SetLastSelectedElement(View.PlayButton);
         await _screenFadeManager.FadeOut();
-        await MenusManager.ShowMenu(typeof(InGameMenuView), StackingType.Clear, instant: true);
+        await MenusManager.ShowMenu<InGameMenuView>(StackingType.Clear, instant: true);
         await _screenFadeManager.FadeIn();
     }
 
     private void PressedOptions()
     {
         View.SetLastSelectedElement(View.OptionsButton);
-        MenusManager.ShowMenu(typeof(OptionsMenuView)).SafeFireAndForget();
+        MenusManager.ShowMenu<OptionsMenuView>().SafeFireAndForget();
     }
 
     private void PressedQuit()
@@ -99,7 +99,7 @@ internal class MainMenuController : MenuController<IViewCreator<MainMenuView>, M
     private async Task ShowQuitPopup()
     {
         SwitchInteractability(false);
-        await _popupsManager.ShowPopup(typeof(YesNoPopupView), PopupMessages.QuitGame, (result) =>
+        await _popupsManager.ShowPopup<YesNoPopupView>(PopupMessages.QuitGame, (result) =>
         {
             if (result == PopupResult.Yes)
                 _sceneTree.Quit();

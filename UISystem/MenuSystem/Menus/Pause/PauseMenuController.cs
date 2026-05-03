@@ -67,7 +67,7 @@ internal class PauseMenuController : MenuController<IViewCreator<PauseMenuView>,
     private void PressedOptions()
     {
         View.SetLastSelectedElement(View.OptionsButton);
-        MenusManager.ShowMenu(typeof(OptionsMenuView)).SafeFireAndForget();
+        MenusManager.ShowMenu<OptionsMenuView>().SafeFireAndForget();
     }
 
     private void PressedReturn()
@@ -76,12 +76,12 @@ internal class PauseMenuController : MenuController<IViewCreator<PauseMenuView>,
         SwitchInteractability(false);
 
         _popupsManager
-            .ShowPopup(typeof(YesNoPopupView), PopupMessages.QuitToMainMenu, async (result) =>
+            .ShowPopup<YesNoPopupView>(PopupMessages.QuitToMainMenu, async (result) =>
             {
                 if (result == PopupResult.Yes)
                 {
                     await _screenFadeManager.FadeOut();
-                    await MenusManager.ShowMenu(typeof(MainMenuView), StackingType.Clear, instant: true);
+                    await MenusManager.ShowMenu<MainMenuView>(StackingType.Clear, instant: true);
                     await _screenFadeManager.FadeIn();
                 }
                 else if (result == PopupResult.No)

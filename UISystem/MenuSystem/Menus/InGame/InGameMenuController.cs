@@ -23,7 +23,7 @@ internal class InGameMenuController : MenuController<IViewCreator<InGameMenuView
     /// <inheritdoc/>
     public override void OnPauseButtonDown()
     {
-        MenusManager.ShowMenu(typeof(PauseMenuView)).SafeFireAndForget();
+        MenusManager.ShowMenu<PauseMenuView>().SafeFireAndForget();
     }
 
     /// <inheritdoc/>

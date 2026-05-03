@@ -57,7 +57,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
             CanReceivePhysicalInput = false;
             SwitchInteractability(false);
             PopupsManager
-                .ShowPopup(typeof(YesNoCancelPopupView), PopupMessages.SaveChanges, (result) =>
+                .ShowPopup<YesNoCancelPopupView>(PopupMessages.SaveChanges, (result) =>
                 {
                     OnReturnToPreviousMenuPopupClosed(result);
                     CanReceivePhysicalInput = true;
@@ -108,7 +108,7 @@ internal abstract class SettingsMenuController<TViewCreator, TView, TModel>
         View.SetLastSelectedElement(View.ResetButton);
         SwitchInteractability(false);
         PopupsManager
-            .ShowPopup(typeof(YesNoPopupView), PopupMessages.ResetToDefault, (result) =>
+            .ShowPopup<YesNoPopupView>(PopupMessages.ResetToDefault, (result) =>
                 {
                     if (result == PopupResult.Yes)
                     {

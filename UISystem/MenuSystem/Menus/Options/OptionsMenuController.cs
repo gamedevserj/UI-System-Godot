@@ -33,24 +33,24 @@ internal class OptionsMenuController : MenuController<IViewCreator<OptionsMenuVi
     private void OnAudioSettingsButtonDown()
     {
         View.SetLastSelectedElement(View.AudioSettingsButton);
-        MenusManager.ShowMenu(typeof(AudioSettingsMenuView)).SafeFireAndForget();
+        MenusManager.ShowMenu<AudioSettingsMenuView>().SafeFireAndForget();
     }
 
     private void OnVideoSettingsButtonDown()
     {
         View.SetLastSelectedElement(View.VideoSettingsButton);
-        MenusManager.ShowMenu(typeof(VideoSettingsMenuView)).SafeFireAndForget();
+        MenusManager.ShowMenu<VideoSettingsMenuView>().SafeFireAndForget();
     }
 
     private void OnRebindKeysButtonDown()
     {
         View.SetLastSelectedElement(View.RebindKeysButton);
-        MenusManager.ShowMenu(typeof(RebindKeysMenuView)).SafeFireAndForget();
+        MenusManager.ShowMenu<RebindKeysMenuView>().SafeFireAndForget();
     }
 
     private void OnInterfaceSettingsButtonDown()
     {
         View.SetLastSelectedElement(View.InterfaceSettingsButton);
-        MenusManager.ShowMenu(typeof(InterfaceSettingsMenuView)).SafeFireAndForget();
+        MenusManager.ShowMenu<InterfaceSettingsMenuView>().SafeFireAndForget();
     }
 }
